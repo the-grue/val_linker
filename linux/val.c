@@ -35,7 +35,6 @@
   |  New Orleans, LA                                                        |
   |  February 10, 1989                                                      |
   |                                                                         |
-  |  TURBO-C 2.0 Compile command: TCC -ms VAL.C ASMSUBS.C                   |
   +-------------------------------------------------------------------------+*/
 
 #include <stdio.h>
