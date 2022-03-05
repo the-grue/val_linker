@@ -178,7 +178,7 @@ BeginCode
  outfile.buffer             = outfile_buffer;
  outfile.buffer_size        = buffer_size.val;
 
- If temp_filename.val IsNull
+ if ( temp_filename.val IsNull
   Then
    temp_file = (file_info_ptr)
                 allocate_memory(Addr(static_pool),
@@ -251,7 +251,7 @@ BeginCode
  c_common_lname  = lookup_lname(8, (byte *) "c_common");
  generated_lname = lookup_lname(11 ,(byte *) "(generated)");
  none_lname      = lookup_lname(6,  (byte *) "(none)");
- If case_ignore.val IsTrue
+ if ( case_ignore.val IsTrue
   Then
    BSS_lname                = lookup_lname(3, (byte *) "bss");
    DGROUP_lname             = lookup_lname(6, (byte *) "dgroup");

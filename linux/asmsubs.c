@@ -53,9 +53,9 @@ BeginCode
 /* The following assembly code is the equivalent of the following C code:
  While len-- IsNotZero
   BeginWhile
-   If *left IsNotEqualTo *right
+   if ( *left IsNotEqualTo *right
     Then
-     If *left LessThan *right
+     if ( *left LessThan *right
       Then
        return(-1);
       Else
@@ -128,11 +128,11 @@ BeginCode
 /* The following assembly code is the equivalent of the following C code:
  While len Exceeds 0
   BeginWhile
-   If *pattern Is '*'
+   if ( *pattern Is '*'
     Then
      return(True);
     EndIf;
-   If (*pattern IsNot '?') AndIf (*pattern IsNot *source)
+   if ( (*pattern IsNot '?') AndIf (*pattern IsNot *source)
     Then
      return(False);
     EndIf;
@@ -393,7 +393,7 @@ EndDeclarations
  For i=0; i LessThan len; i++
   BeginFor
    *word_ptr = 0;
-   If (address-- And 1)
+   if ( (address-- And 1)
     Then
      word.high_byte = *data++;
     Else

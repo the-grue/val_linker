@@ -42,13 +42,13 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot COMDEF_record
+ if ( Current_record_header.rec_typ IsNot COMDEF_record
   Then
    return(False);
   EndIf;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
-   If n_externals NotLessThan max_externals.val
+   if ( n_externals NotLessThan max_externals.val
     Then
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -63,7 +63,7 @@ BeginCode
                       max_externals.val);
     EndIf;
    len         = obj_name_length();
-   If case_ignore.val
+   if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
     EndIf;
@@ -95,7 +95,7 @@ BeginCode
                        current_record_offset,
                        element_type);
     EndCase;
-   If Pub.type_entry Is unused
+   if ( Pub.type_entry Is unused
     Then
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry             = expected_type;
@@ -113,16 +113,16 @@ BeginCode
        break;
      EndCase;
     Else
-     If Pub.type_entry Is expected_type
+     if ( Pub.type_entry Is expected_type
       Then
-       If (element_size              * element_count)              Exceeds 
+       if ( (element_size              * element_count)              Exceeds 
           (Pub.Communal.element_size * Pub.Communal.element_count)
         Then /* We need the largest common */
          Pub.Communal.element_size  = element_size;
          Pub.Communal.element_count = element_count;
         EndIf;
       Else
-       If (Pub.type_entry Is near_communal) OrIf
+       if ( (Pub.type_entry Is near_communal) OrIf
           (Pub.type_entry Is far_communal)
         Then
          linker_error(4, "Translator error:\n"
@@ -154,7 +154,7 @@ BeginDeclarations
 bit_8                                  comment_class;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot COMENT_record
+ if ( Current_record_header.rec_typ IsNot COMENT_record
   Then
    return(False);
   EndIf;
@@ -185,7 +185,7 @@ bit_16 obj_component()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If obj_data() OrIf obj_debug_record()
+ if ( obj_data() OrIf obj_debug_record()
   Then
    return(True);
   EndIf;
@@ -203,7 +203,7 @@ bit_16 obj_content_def()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Not obj_data_record()
+ if ( Not obj_data_record()
   Then
    return(False);
   EndIf;
@@ -229,7 +229,7 @@ bit_16 obj_data()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If obj_content_def() OrIf
+ if ( obj_content_def() OrIf
     obj_thread_def()  OrIf
     obj_TYPDEF()      OrIf
     obj_PUBDEF()      OrIf
@@ -256,7 +256,7 @@ bit_16 obj_data_record()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If obj_LIDATA() OrIf obj_LEDATA()
+ if ( obj_LIDATA() OrIf obj_LEDATA()
   Then
    return(True);
   EndIf;
@@ -275,7 +275,7 @@ bit_16 obj_debug_record()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If obj_LINNUM()
+ if ( obj_LINNUM()
   Then
    return(True);
   EndIf;
@@ -294,13 +294,13 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot EXTDEF_record
+ if ( Current_record_header.rec_typ IsNot EXTDEF_record
   Then
    return(False);
   EndIf;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
-   If n_externals NotLessThan max_externals.val
+   if ( n_externals NotLessThan max_externals.val
     Then
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -315,7 +315,7 @@ BeginCode
                       max_externals.val);
     EndIf;
    len         = obj_name_length();
-   If case_ignore.val
+   if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
     EndIf;
@@ -323,12 +323,12 @@ BeginCode
    obj_ptr.b8 += len;
    obj_name_length();  /* Eat the type index. */
    externals[++n_externals] = pub;
-   If Pub.type_entry Is unused
+   if ( Pub.type_entry Is unused
     Then
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
     Else
-     If (Pub.type_entry Is public_in_library) AndIf
+     if ( (Pub.type_entry Is public_in_library) AndIf
         (Not Pub.Library.requested)
       Then
        library_request_count++;
@@ -351,14 +351,14 @@ bit_16 obj_FIXUPP()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot FIXUPP_record
+ if ( Current_record_header.rec_typ IsNot FIXUPP_record
   Then
    return(False);
   EndIf;
  FIXUPP_contains_only_threads = True;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
-   If (*obj_ptr.TRD_DAT).type_fixupp_record IsZero
+   if ( (*obj_ptr.TRD_DAT).type_fixupp_record IsZero
     Then
      obj_FIXUPP_thread();
     Else
@@ -431,7 +431,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If FIX_DAT.f IsZero
+ if ( FIX_DAT.f IsZero
   Then  /* Frame is specified explicitly */
    frame_method         = FIX_DAT.frame;
    fixup.frame_method   = frame_method;
@@ -455,7 +455,7 @@ BeginCode
     EndCase;
   Else  /* Frame is specified by a thread */
    thread_number        = FIX_DAT.frame;
-   If Not frame_thread[thread_number].thread_defined
+   if ( Not frame_thread[thread_number].thread_defined
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -478,7 +478,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If FIX_DAT.t IsZero
+ if ( FIX_DAT.t IsZero
   Then  /* Target is specified explicitly */
    target_method       = FIX_DAT.targt;
    fixup.target_method = target_method;
@@ -501,7 +501,7 @@ BeginCode
     EndCase;
   Else  /* Target is specified by a thread */
    thread_number         = FIX_DAT.targt;
-   If Not target_thread[thread_number].thread_defined
+   if ( Not target_thread[thread_number].thread_defined
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -518,7 +518,7 @@ BeginCode
    fixup.target_method   = target_thread[thread_number].method;
   EndIf;
 
- If FIX_DAT.p IsZero
+ if ( FIX_DAT.p IsZero
   Then  /* There is a target displacement */
    fixup.target_offset = *obj_ptr.b16++;
   Else  /* The target displacement is zero */
@@ -527,7 +527,7 @@ BeginCode
 
  fixup.external_error_detected = False;
 
- If (fixup.mode IsZero) AndIf
+ if ( (fixup.mode IsZero) AndIf
                              ((fixup.location_type Is base_location)    OrIf
                               (fixup.location_type Is pointer_location) OrIf
                               (fixup.location_type Is hibyte_location))
@@ -543,9 +543,9 @@ BeginCode
                    current_record_offset);
   EndIf;
 
- If last_LxDATA_record_type Is LEDATA_record
+ if ( last_LxDATA_record_type Is LEDATA_record
   Then
-   If ((fixup.location_type Is base_location)     OrIf
+   if ( ((fixup.location_type Is base_location)     OrIf
        (fixup.location_type Is pointer_location)) AndIf
       (exefile IsTrue)
     Then /* Base and pointer locations will require a relocation item
@@ -558,7 +558,7 @@ BeginCode
                    BytePtr(Addr(fixup)),
                    sizeof(fixup));
   Else
-   If fixup.mode IsZero
+   if ( fixup.mode IsZero
     Then
      linker_error(4, "Translator warning:\n"
                      "\tModule:  \"%Fs\"\n"
@@ -625,7 +625,7 @@ BeginCode
  block_count  = *obj_ptr.b16++;  LIDATA_index += sizeof(bit_16);
  content      = obj_ptr.b8;
  old_index    = LIDATA_index;
- If block_count IsNotZero
+ if ( block_count IsNotZero
   Then  /* Handle recursive case:  Content is iterated data block */
    For i=0; i<repeat_count; i++
     BeginFor
@@ -642,7 +642,7 @@ BeginCode
      obj_ptr.b8   = content;
      LIDATA_index = old_index;
      len          = Bit_16(*obj_ptr.b8++);  LIDATA_index += sizeof(bit_8);
-     If (fixup_index NotLessThan LIDATA_index)        AndIf
+     if ( (fixup_index NotLessThan LIDATA_index)        AndIf
         (fixup_index LessThan   (LIDATA_index + len))
       Then
        write_temp_file(Current_record_header.rec_typ,
@@ -650,7 +650,7 @@ BeginCode
                        LIDATA_offset + fixup_index - LIDATA_index,
                        BytePtr(Addr(fixup)),
                        sizeof(fixup));
-       If ((fixup.location_type Is base_location)     OrIf
+       if ( ((fixup.location_type Is base_location)     OrIf
            (fixup.location_type Is pointer_location)) AndIf
           (exefile IsTrue)
         Then /* Base and pointer locations will require a relocation item
@@ -681,7 +681,7 @@ BeginCode
  TRD_DAT = *obj_ptr.TRD_DAT++;
  thread  = TRD_DAT.thred;
  method  = TRD_DAT.method;
- If TRD_DAT.d IsZero
+ if ( TRD_DAT.d IsZero
   Then  /* This is a target thread */
    target_thread[thread].method = Bit_8(method);
    target_thread[thread].thread_defined = True;
@@ -745,13 +745,13 @@ bit_16                                 len;
 bit_16                                 segment_index;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot FORREF_record
+ if ( Current_record_header.rec_typ IsNot FORREF_record
   Then
    return(False);
   EndIf;
  segment_index = obj_index_segment();
  len           = Current_record_header.rec_len - 2;
- If segment_index Exceeds 127
+ if ( segment_index Exceeds 127
   Then
    len--;
   EndIf;
@@ -784,13 +784,13 @@ segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 EndDeclarations
 BeginCode
- If combine Is stack_combine
+ if ( combine Is stack_combine
   Then
    length += AlignmentGap(length, 1L); /* Stacks should be an integral
                                           number of words. */
   EndIf;
  seg             = lookup_segment(segment_lname, class_lname, combine);
- If (combine IsNot common_combine) OrIf (Seg.lsegs.first IsNull)
+ if ( (combine IsNot common_combine) OrIf (Seg.lsegs.first IsNull)
   Then
    Seg.address   = address;
    Seg.length   += length;
@@ -803,7 +803,7 @@ BeginCode
    Lseg.address  = address;
    Lseg.length   = length;
    Lseg.align    = align;
-   If (combine IsNot common_combine)      AndIf
+   if ( (combine IsNot common_combine)      AndIf
       (combine IsNot blank_common_combine)
     Then  /* Don't allocate common data yet.  (We will wait until we
              know how long the common block will be.) */
@@ -815,25 +815,25 @@ BeginCode
    Insert lseg AtEnd InList Seg.lsegs EndInsert;
   Else  /* Not the first occurrence of this common */
    lseg = Seg.lsegs.first;
-   If length Exceeds Seg.length
+   if ( length Exceeds Seg.length
     Then  /* Expand common block to be big enough to hold this entry. */
      Seg.length  =
      Lseg.length = length;
     EndIf;
-   If align Exceeds Lseg.align
+   if ( align Exceeds Lseg.align
     Then  /* Align to largest boundary. */
      Lseg.align = align;
     EndIf;
   EndIf;
- If Seg.combine Is stack_combine
+ if ( Seg.combine Is stack_combine
   Then
-   If Not stack_segment_found
+   if ( Not stack_segment_found
     Then
      largest_stack_seg        = seg;
      largest_stack_seg_length = Seg.length;
      stack_segment_found      = True;
     Else
-     If Seg.length Exceeds largest_stack_seg_length
+     if ( Seg.length Exceeds largest_stack_seg_length
       Then
        largest_stack_seg        = seg;
        largest_stack_seg_length = Seg.length;
@@ -862,13 +862,13 @@ segment_entry_ptr                      seg;
 bit_16                                 segment_index;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot GRPDEF_record
+ if ( Current_record_header.rec_typ IsNot GRPDEF_record
   Then
    return(False);
   EndIf;
  group_index         = obj_index_LNAME();
  group               = lookup_group(lnames[group_index]);
- If n_groups NotLessThan max_groups.val
+ if ( n_groups NotLessThan max_groups.val
   Then
    linker_error(12, "Internal limit exceeded:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -884,7 +884,7 @@ BeginCode
  gnames[++n_groups]  = group;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
-   If *obj_ptr.b8++ IsNot 0xFF
+   if ( *obj_ptr.b8++ IsNot 0xFF
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -900,11 +900,11 @@ BeginCode
    segment_index = obj_index_segment();
    lseg          = snames[segment_index];
    seg           = Lseg.segment;
-   If Seg.owning_group IsNull
+   if ( Seg.owning_group IsNull
     Then
      Seg.owning_group = group;
     Else
-     If Seg.owning_group IsNot group
+     if ( Seg.owning_group IsNot group
       Then
        linker_error(4, "Attempt to place segment \"%Fs\" into group \"%Fs\"\n"
                        "\twhen it is already in group \"%Fs\".\n"
@@ -932,14 +932,14 @@ BeginDeclarations
 bit_16                                 index;
 EndDeclarations
 BeginCode
- If *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 LessThan 128
   Then
    index = Bit_16(*obj_ptr.b8++);
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   EndIf;
-   If index Exceeds n_externals
+   if ( index Exceeds n_externals
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -965,14 +965,14 @@ BeginDeclarations
 bit_16                                 index;
 EndDeclarations
 BeginCode
- If *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 LessThan 128
   Then
    index = Bit_16(*obj_ptr.b8++);
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   EndIf;
-   If index Exceeds n_groups
+   if ( index Exceeds n_groups
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -998,14 +998,14 @@ BeginDeclarations
 bit_16                                 index;
 EndDeclarations
 BeginCode
- If *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 LessThan 128
   Then
    index = Bit_16(*obj_ptr.b8++);
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   EndIf;
-   If index Exceeds n_lnames
+   if ( index Exceeds n_lnames
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1031,14 +1031,14 @@ BeginDeclarations
 bit_16                                 index;
 EndDeclarations
 BeginCode
- If *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 LessThan 128
   Then
    index = Bit_16(*obj_ptr.b8++);
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   EndIf;
-   If index Exceeds n_segments
+   if ( index Exceeds n_segments
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1071,7 +1071,7 @@ EndDeclarations
 BeginCode
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
- If block_count IsNotZero
+ if ( block_count IsNotZero
   Then  /* Handle recursive case:  Content is iterated data block */
    content = obj_ptr.b8;
    For i=0; i<repeat_count; i++
@@ -1111,7 +1111,7 @@ EndDeclarations
 BeginCode
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
- If repeat_count IsZero
+ if ( repeat_count IsZero
   Then /* This is a translator error. */
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1124,7 +1124,7 @@ BeginCode
                     current_record_offset);
   EndIf;
  length       = 0L;
- If block_count IsNotZero
+ if ( block_count IsNotZero
   Then  /* Handle recursive case:  Content is iterated data block */
    For i=0; i<block_count; i++
     BeginFor
@@ -1149,20 +1149,20 @@ bit_8                                  element_size;
 EndDeclarations
 BeginCode
  element_size = *obj_ptr.b8++;
- If element_size LessThan 129
+ if ( element_size LessThan 129
   Then
    return(Bit_32(element_size));
   Else
-   If element_size Is 129
+   if ( element_size Is 129
     Then
      return(Bit_32(*obj_ptr.b16++));
     Else
-     If element_size Is 132
+     if ( element_size Is 132
       Then
        obj_ptr.b8--;
        return((*obj_ptr.b32++) And 0x00FFFFFFL);
       Else
-       If element_size Is 136
+       if ( element_size Is 136
         Then
          return(*obj_ptr.b32++);
         Else
@@ -1197,7 +1197,7 @@ bit_16                                 offset;
 bit_16                                 segment_index;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot LEDATA_record
+ if ( Current_record_header.rec_typ IsNot LEDATA_record
   Then
    return(False);
   EndIf;
@@ -1206,14 +1206,14 @@ BeginCode
  last_LxDATA_lseg        =
  lseg                    = snames[segment_index];
  len                     = Current_record_header.rec_len - 4;
- If segment_index Exceeds 127
+ if ( segment_index Exceeds 127
   Then
    len--;
   EndIf;
  last_LxDATA_offset =
  offset             = *obj_ptr.b16++;
  next_byte          = Bit_32(offset) + Bit_32(len);
- If next_byte Exceeds Lseg.length
+ if ( next_byte Exceeds Lseg.length
   Then
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1224,11 +1224,11 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset);
   EndIf;
- If next_byte Exceeds Lseg.highest_uninitialized_byte
+ if ( next_byte Exceeds Lseg.highest_uninitialized_byte
   Then
    Lseg.highest_uninitialized_byte = next_byte;
   EndIf;
- If (*last_LxDATA_Lseg.segment).combine IsNot common_combine
+ if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
   Then
    far_move(Addr(Lseg.data[offset]), obj_ptr.b8, len);
   Else  /* We must save the initialization data out to the tmp file until
@@ -1256,7 +1256,7 @@ bit_32                                 next_byte;
 bit_16                                 segment_index;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot LIDATA_record
+ if ( Current_record_header.rec_typ IsNot LIDATA_record
   Then
    return(False);
   EndIf;
@@ -1270,7 +1270,7 @@ BeginCode
  last_LxDATA_offset      = *obj_ptr.b16++;
  LIDATA_length           = obj_LIDATA_length();
  next_byte               = last_LxDATA_offset + LIDATA_length;
- If next_byte Exceeds last_LxDATA_Lseg.length
+ if ( next_byte Exceeds last_LxDATA_Lseg.length
   Then
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1281,11 +1281,11 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset);
   EndIf;
- If next_byte Exceeds last_LxDATA_Lseg.highest_uninitialized_byte
+ if ( next_byte Exceeds last_LxDATA_Lseg.highest_uninitialized_byte
   Then
    last_LxDATA_Lseg.highest_uninitialized_byte = next_byte;
   EndIf;
- If (*last_LxDATA_Lseg.segment).combine IsNot common_combine
+ if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
   Then
    While obj_ptr.b8 IsNot end_of_record.b8
    BeginWhile
@@ -1294,7 +1294,7 @@ BeginCode
   Else  /* We must save the initialization data out to the tmp file until
            later when we know the length. */
    len                     = Current_record_header.rec_len - 4;
-   If segment_index Exceeds 127
+   if ( segment_index Exceeds 127
     Then
      len--;
     EndIf;
@@ -1338,7 +1338,7 @@ bit_16 obj_LINNUM()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot LINNUM_record
+ if ( Current_record_header.rec_typ IsNot LINNUM_record
   Then
    return(False);
   EndIf;
@@ -1355,13 +1355,13 @@ bit_16 obj_LNAMES()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot LNAMES_record
+ if ( Current_record_header.rec_typ IsNot LNAMES_record
   Then
    return(False);
   EndIf;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
-   If n_lnames NotLessThan max_lnames.val
+   if ( n_lnames NotLessThan max_lnames.val
     Then
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1394,13 +1394,13 @@ bit_16                                 target_method;
 bit_16                                 thread_number;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot MODEND_record
+ if ( Current_record_header.rec_typ IsNot MODEND_record
   Then
    return(False);
   EndIf;
  MOD_TYP = *obj_ptr.MOD_TYP++;
 
- If MOD_TYP.zeros IsNotZero
+ if ( MOD_TYP.zeros IsNotZero
   Then
    linker_error(4, "Translator error:\n"
                    "\tModule:  \"%Fs\"\n"
@@ -1412,12 +1412,12 @@ BeginCode
                    current_record_offset);
   EndIf;
 
- If (MOD_TYP.mattr IsNot 1) AndIf (MOD_TYP.mattr IsNot 3)
+ if ( (MOD_TYP.mattr IsNot 1) AndIf (MOD_TYP.mattr IsNot 3)
   Then  /* We have no starting address */
    return(True);
   EndIf;
 
- If MOD_TYP.l IsNot 1
+ if ( MOD_TYP.l IsNot 1
   Then
    linker_error(4, "Translator error:\n"
                    "\tModule:  \"%Fs\"\n"
@@ -1429,7 +1429,7 @@ BeginCode
                    current_record_offset);
   EndIf;
 
- If start_address_found IsTrue
+ if ( start_address_found IsTrue
   Then
    linker_error(4, "Multiple start address encountered.  The start address\n"
                    "in module \"%Fs\" of file \"%Fs\" has been ignored.\n",
@@ -1453,7 +1453,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If END_DAT.f IsZero
+ if ( END_DAT.f IsZero
   Then  /* Frame is specified explicitly */
    frame_method                 = END_DAT.frame;
    start_address.frame_method   = frame_method;
@@ -1480,7 +1480,7 @@ BeginCode
     EndCase;
   Else  /* Frame is specified by a thread */
    thread_number                = END_DAT.frame;
-   If Not frame_thread[thread_number].thread_defined
+   if ( Not frame_thread[thread_number].thread_defined
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1503,7 +1503,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If END_DAT.t IsZero
+ if ( END_DAT.t IsZero
   Then  /* Target is specified explicitly */
    target_method               = END_DAT.targt;
    start_address.target_method = target_method;
@@ -1528,7 +1528,7 @@ BeginCode
     EndCase;
   Else  /* Target is specified by a thread */
    thread_number                 = END_DAT.targt;
-   If Not target_thread[thread_number].thread_defined
+   if ( Not target_thread[thread_number].thread_defined
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1545,7 +1545,7 @@ BeginCode
    start_address.target_method   = target_thread[thread_number].method;
   EndIf;
 
- If END_DAT.p IsZero
+ if ( END_DAT.p IsZero
   Then  /* There is a target displacement */
    start_address.target_offset = *obj_ptr.b16++;
   Else  /* The target displacement is zero */
@@ -1574,13 +1574,13 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot MODEXT_record
+ if ( Current_record_header.rec_typ IsNot MODEXT_record
   Then
    return(False);
   EndIf;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
-   If n_externals NotLessThan max_externals.val
+   if ( n_externals NotLessThan max_externals.val
     Then
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1595,7 +1595,7 @@ BeginCode
                       max_externals.val);
     EndIf;
    len         = obj_name_length();
-   If case_ignore.val
+   if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
     EndIf;
@@ -1603,7 +1603,7 @@ BeginCode
    obj_ptr.b8 += len;
    obj_name_length();  /* Eat the type index. */
    externals[++n_externals] = pub;
-   If Pub.type_entry Is unused
+   if ( Pub.type_entry Is unused
     Then
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
@@ -1629,26 +1629,26 @@ public_entry_ptr                       pub;
 bit_16                                 segment_index;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot MODPUB_record
+ if ( Current_record_header.rec_typ IsNot MODPUB_record
   Then
    return(False);
   EndIf;
  group_index = obj_index_group();
  segment_index = obj_index_segment();
- If (segment_index IsZero) AndIf (group_index IsZero)
+ if ( (segment_index IsZero) AndIf (group_index IsZero)
   Then
    frame = *obj_ptr.b16++;
   EndIf;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    len = obj_name_length();
-   If case_ignore.val
+   if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
     EndIf;
    pub = lookup_public(len, obj_ptr.b8, tmodule_number);
    obj_ptr.b8 += len;
-   If Pub.type_entry Is internal
+   if ( Pub.type_entry Is internal
     Then
      linker_error(4, "Duplicate definition of public \"%Fs\".\n"
                      "\tDefinition in module \"%Fs\" of file \"%Fs\" "
@@ -1658,7 +1658,7 @@ BeginCode
      obj_ptr.b16++;      /* Eat offset. */
      obj_name_length();  /* Eat type index. */
     Else
-     If Pub.type_entry Is unused
+     if ( Pub.type_entry Is unused
       Then
        Insert pub AtEnd InList external_list EndInsert;
       EndIf;
@@ -1687,7 +1687,7 @@ bit_16 obj_modtail()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If obj_MODEND()
+ if ( obj_MODEND()
   Then
    return(True);
   EndIf;
@@ -1706,11 +1706,11 @@ bit_16                                 len;
 EndDeclarations
 BeginCode
  len = obj_name_length();
- If len IsZero
+ if ( len IsZero
   Then
    name = none_lname;
   Else
-   If case_ignore.val
+   if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
     EndIf;
@@ -1729,7 +1729,7 @@ bit_16 obj_name_length()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 LessThan 128
   Then
    return(Bit_16(*obj_ptr.b8++));
   Else
@@ -1762,7 +1762,7 @@ BeginCode
    current_record_offset = Bit_32(infile.byte_position) +
                            infile.start_of_buffer_position -
                            Bit_32(sizeof(obj_record_header_type)-1);
-   If Current_record_header.rec_len Exceeds MAX_OBJECT_FILE_READ_SIZE
+   if ( Current_record_header.rec_len Exceeds MAX_OBJECT_FILE_READ_SIZE
     Then
      linker_error(12, "Probable invalid OBJ format "
                       "or possible translator error:\n"
@@ -1779,7 +1779,7 @@ BeginCode
     EndIf;
    file_read(Current_record_header.variant_part, 
              Current_record_header.rec_len);
-   If (objchecksum.val IsTrue) AndIf
+   if ( (objchecksum.val IsTrue) AndIf
       (Bit_8(checksum(Current_record_header.rec_len +
                       sizeof(obj_record_header_type)-1,
                      (byte *) current_record_header)) IsNotZero)
@@ -1817,26 +1817,26 @@ public_entry_ptr                       pub;
 bit_16                                 segment_index;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot PUBDEF_record
+ if ( Current_record_header.rec_typ IsNot PUBDEF_record
   Then
    return(False);
   EndIf;
  group_index = obj_index_group();
  segment_index = obj_index_segment();
- If (segment_index IsZero) AndIf (group_index IsZero)
+ if ( (segment_index IsZero) AndIf (group_index IsZero)
   Then
    frame = *obj_ptr.b16++;
   EndIf;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    len = obj_name_length();
-   If case_ignore.val
+   if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
     EndIf;
    pub = lookup_public(len, obj_ptr.b8, 0);
    obj_ptr.b8 += len;
-   If Pub.type_entry Is internal
+   if ( Pub.type_entry Is internal
     Then
      linker_error(4, "Duplicate definition of public \"%Fs\".\n"
                      "\tDefinition in module \"%Fs\" of file \"%Fs\" "
@@ -1846,11 +1846,11 @@ BeginCode
      obj_ptr.b16++;      /* Eat offset. */
      obj_name_length();  /* Eat type index. */
     Else
-     If Pub.type_entry Is unused
+     if ( Pub.type_entry Is unused
       Then
        Insert pub AtEnd InList external_list EndInsert;
       EndIf;
-     If (Pub.type_entry Is public_in_library) AndIf
+     if ( (Pub.type_entry Is public_in_library) AndIf
         (Pub.Library.requested)
       Then
        library_request_count--;
@@ -1888,20 +1888,20 @@ bit_16                                 segment_index;
 lname_entry_ptr                        segment_lname;
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot SEGDEF_record
+ if ( Current_record_header.rec_typ IsNot SEGDEF_record
   Then
    return(False);
   EndIf;
  acbp    = *obj_ptr.acbp++;
  align   = Bit_8(acbp.a);
- If align Is absolute_segment
+ if ( align Is absolute_segment
   Then
    address  = (Bit_32(*obj_ptr.b16++) ShiftedLeft 4L);  /* Frame */
    address += Bit_32(*obj_ptr.b8++);                    /* Offset */
   Else
    address = 0L;
   EndIf;
- If align Exceeds dword_aligned
+ if ( align Exceeds dword_aligned
   Then
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1914,11 +1914,11 @@ BeginCode
                     align);
   EndIf;
  combine = Bit_8(acbp.c);
- If (combine Is 4) OrIf (combine Is 7)
+ if ( (combine Is 4) OrIf (combine Is 7)
   Then /* Treat combine types 4 and 7 the same as 2. */
    combine = public_combine;
   EndIf;
- If (combine Is 1) OrIf (combine Is 3)
+ if ( (combine Is 1) OrIf (combine Is 3)
   Then /* This is a translator error. */
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1931,9 +1931,9 @@ BeginCode
                     combine);
   EndIf;
  length = Bit_32(*obj_ptr.b16++);
- If acbp.b IsNotZero
+ if ( acbp.b IsNotZero
   Then
-   If length IsNotZero
+   if ( length IsNotZero
     Then
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1958,7 +1958,7 @@ BeginCode
                              infile.file_info,
                              address,
                              length);
- If n_segments NotLessThan max_segments.val
+ if ( n_segments NotLessThan max_segments.val
   Then
    linker_error(12, "Internal limit exceeded:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -2009,7 +2009,7 @@ bit_16 obj_THEADR()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot THEADR_record
+ if ( Current_record_header.rec_typ IsNot THEADR_record
   Then
    return(False);
   EndIf;
@@ -2030,9 +2030,9 @@ bit_16 obj_thread_def()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If obj_FIXUPP()
+ if ( obj_FIXUPP()
   Then
-   If FIXUPP_contains_only_threads
+   if ( FIXUPP_contains_only_threads
     Then
      return(True);
     Else
@@ -2081,7 +2081,7 @@ BeginCode
  tmodule_number++;
  tmodule_name = lookup_lname(31, (byte *) "(THEADR record not encountered)");
  obj_next_record();
- If Not obj_THEADR()
+ if ( Not obj_THEADR()
   Then
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -2092,7 +2092,7 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset);
   EndIf;
- If Not obj_seg_grp()
+ if ( Not obj_seg_grp()
   Then
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -2106,7 +2106,7 @@ BeginCode
  While obj_component()
   BeginWhile
   EndWhile;
- If Not obj_modtail()
+ if ( Not obj_modtail()
   Then
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -2129,7 +2129,7 @@ bit_16 obj_TYPDEF()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Current_record_header.rec_typ IsNot TYPDEF_record
+ if ( Current_record_header.rec_typ IsNot TYPDEF_record
   Then
    return(False);
   EndIf;
@@ -2156,7 +2156,7 @@ BeginCode
  temp_file_header.offset        = offset;
  file_write(BytePtr(Addr(temp_file_header)), 
             Bit_32(sizeof(temp_file_header)));
- If len Exceeds 0
+ if ( len Exceeds 0
   Then
    file_write(data, Bit_32(len));
   EndIf;

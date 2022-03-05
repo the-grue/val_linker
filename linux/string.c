@@ -33,15 +33,15 @@ EndDeclarations
 BeginCode
  left_len  = Length(left);
  right_len = Length(right);
- If (left_len IsZero) AndIf (right_len IsZero)
+ if ( (left_len IsZero) AndIf (right_len IsZero)
   Then
    return(0);
   EndIf;
- If left_len LessThan right_len
+ if ( left_len LessThan right_len
   Then
    return(-1);
   EndIf;
- If left_len GreaterThan right_len
+ if ( left_len GreaterThan right_len
   Then
    return(1);
   EndIf;
@@ -59,7 +59,7 @@ bit_16                                 left_len;
 EndDeclarations
 BeginCode
  left_len = Length(left);
- If left_len IsZero
+ if ( left_len IsZero
   Then
    return(0);
   EndIf;
@@ -76,7 +76,7 @@ BeginDeclarations
 bit_16                                 temp;
 EndDeclarations
 BeginCode
- If (Length(source) + Length(dest)) Exceeds MaxLength(dest)
+ if ( (Length(source) + Length(dest)) Exceeds MaxLength(dest)
   Then
    linker_error(8,"Destination string to small (%u bytes) to hold "
                   "concatination of:\n"
@@ -101,7 +101,7 @@ string_ptr concat_char_to_string(string_ptr dest, byte c)
 BeginDeclarations
 EndDeclarations
 BeginCode
- If (Length(dest) + 1) Exceeds MaxLength(dest)
+ if ( (Length(dest) + 1) Exceeds MaxLength(dest)
   Then
    linker_error(8,"Destination string to small (%u bytes) to add \"%c\" "
                   "to string:\n"
@@ -123,7 +123,7 @@ string_ptr copy_string (string_ptr dest, string_ptr source)
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Length(source) Exceeds MaxLength(dest)
+ if ( Length(source) Exceeds MaxLength(dest)
   Then
    linker_error(8,"Destination string to small (%u bytes) to hold:\n"
                   "\t\"%Fs\" (%u bytes)\n",
@@ -147,11 +147,11 @@ bit_16                                 string_length;
 EndDeclarations
 BeginCode
  string_length = Length(s);
- If string_length NotGreaterThan at
+ if ( string_length NotGreaterThan at
   Then
    return(s);
   EndIf;
- If string_length LessThan (at + len)
+ if ( string_length LessThan (at + len)
   Then
    len = string_length - at;
   EndIf;
@@ -222,7 +222,7 @@ BeginCode
  pattern_length = Length(pattern);
  pat            = String(pattern);
  len            = Length(s);
- If (len - from) LessThan pattern_length
+ if ( (len - from) LessThan pattern_length
   Then
    return(0xFFFF);
   EndIf;
@@ -230,7 +230,7 @@ BeginCode
  left  = Addr(String(s)[from]);
  For i=from; i LessThan iteration_count; i++
   BeginFor
-   If far_compare(left++, pat, pattern_length) IsZero
+   if ( far_compare(left++, pat, pattern_length) IsZero
     Then
      return(i);
     EndIf;
@@ -283,13 +283,13 @@ bit_16                                 n_searches;
 byte_ptr                               source;
 EndDeclarations
 BeginCode
- If FirstCharIn(pattern) Is '*'
+ if ( FirstCharIn(pattern) Is '*'
   Then
    cut_string(pattern, 0, 1);
-   If LastCharIn(pattern) Is '*'
+   if ( LastCharIn(pattern) Is '*'
     Then /* We must perform exhaustive search */
      cut_string(pattern, 0, Length(pattern)-1);
-     If Length(pattern) Exceeds Length(s)
+     if ( Length(pattern) Exceeds Length(s)
       Then
        return(False);
       EndIf;
@@ -297,13 +297,13 @@ BeginCode
      source = String(s);
      For i=0; i<n_searches; i++
       BeginFor
-       If far_match(String(pattern), source++, Length(pattern))
+       if ( far_match(String(pattern), source++, Length(pattern))
         Then
          return(True);
         EndIf;
       EndFor;
     Else /* We must match only the tail */
-     If Length(pattern) Exceeds Length(s)
+     if ( Length(pattern) Exceeds Length(s)
       Then
        return(False);
       Else
@@ -345,7 +345,7 @@ EndDeclarations
 BeginCode
  length_string          = Length(dest);
  length_inserted_string = Length(s);
- If (length_string + length_inserted_string) Exceeds MaxLength(dest)
+ if ( (length_string + length_inserted_string) Exceeds MaxLength(dest)
   Then
    linker_error(8,"Destination string too small (%u bytes) to insert:\n"
                   "\t\"%Fs\" (%u bytes) into\n"
@@ -354,11 +354,11 @@ BeginCode
                   s, length_inserted_string,
                   String(dest), length_string);
   EndIf;
- If length_inserted_string IsZero
+ if ( length_inserted_string IsZero
   Then
    return(dest);
   EndIf;
- If at Exceeds length_string
+ if ( at Exceeds length_string
   Then
    at = length_string;
   EndIf;
@@ -389,11 +389,11 @@ BeginCode
  pattern_length = Length(pattern);
  len            = Length(s);
  pat            = String(pattern);
- If len LessThan pattern_length
+ if ( len LessThan pattern_length
   Then
    return(0xFFFF);
   EndIf;
- If from Exceeds (len - pattern_length)
+ if ( from Exceeds (len - pattern_length)
   Then
    from = len - pattern_length;
   EndIf;
@@ -401,7 +401,7 @@ BeginCode
  right = Addr(String(s)[from]);
  For i=0; i LessThan iteration_count; i++, from--
   BeginFor
-   If far_compare(right--, pat, pattern_length) IsZero
+   if ( far_compare(right--, pat, pattern_length) IsZero
     Then
      return(from);
     EndIf;
@@ -420,7 +420,7 @@ bit_16                                 len;
 EndDeclarations
 BeginCode
  len  = far_index(s, 0);
- If len Exceeds MaxLength(temp_string)
+ if ( len Exceeds MaxLength(temp_string)
   Then
    linker_error(8,"Destination string too small (%u bytes) to hold:\n"
                   "\t\"%s\" (%u bytes)\n",
@@ -443,19 +443,19 @@ bit_16                                 string_length;
 EndDeclarations
 BeginCode
  string_length = Length(s);
- If string_length IsZero
+ if ( string_length IsZero
   Then
    return(null_string);
   EndIf;
- If at NotLessThan string_length
+ if ( at NotLessThan string_length
   Then
    at = string_length - 1;
   EndIf;
- If len Exceeds Bit_16(string_length - at)
+ if ( len Exceeds Bit_16(string_length - at)
   Then
    len = string_length - at;
   EndIf;
- If len Exceeds MaxLength(temp_string)
+ if ( len Exceeds MaxLength(temp_string)
   Then
    linker_error(8,"Destination string too small in SUBSTR operation\n");
   EndIf;
@@ -473,7 +473,7 @@ string_ptr trunc_string(string_ptr s, bit_16 at)
 BeginDeclarations
 EndDeclarations
 BeginCode
- If Length(s) NotGreaterThan at+1
+ if ( Length(s) NotGreaterThan at+1
   Then
    return(s);
   EndIf;

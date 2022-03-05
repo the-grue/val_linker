@@ -20,7 +20,7 @@ BeginCode
  file_read(BytePtr(Addr(fixup)), sizeof(fixup));
  frame_address  = frame();
  target_address = target();
- If ((target_address LessThan frame_address) OrIf
+ if ( ((target_address LessThan frame_address) OrIf
      (target_address Exceeds (frame_address + 65535L))) AndIf
     (fixup.frame_method IsNot 6) AndIf (frame_absolute IsFalse)
   Then
@@ -38,16 +38,16 @@ BeginCode
  byte_location  = 
               Addr((*temp_file_header.lseg).data[temp_file_header.offset]);
  word_location  = (bit_16 far *) byte_location;
- If fixup.mode IsZero
+ if ( fixup.mode IsZero
   Then /* Self-relative fixup */
    location_address = (*temp_file_header.lseg).address +
                       Bit_32(temp_file_header.offset) +
                       1L;
-   If fixup.location_type Is offset_location
+   if ( fixup.location_type Is offset_location
     Then
      location_address++;
     EndIf;
-   If (location_address LessThan frame_address) OrIf
+   if ( (location_address LessThan frame_address) OrIf
       (location_address Exceeds (frame_address + 65535L)) OrIf
       (frame_absolute IsTrue)
     Then
@@ -70,7 +70,7 @@ BeginCode
                          1L;
       IP_distance_to_target = Int_32(target_address) -
                               Int_32(location_address);
-      If (IP_distance_to_target < -128L) OrIf
+      if ( (IP_distance_to_target < -128L) OrIf
          (IP_distance_to_target > 127L)
        Then
         linker_error(4, "Byte self-relative fixup error:\n"
@@ -98,7 +98,7 @@ BeginCode
   Else /* Segment-relative fixup */
    fbval          = Bit_16(frame_address ShiftedRight 4);
    foval          = target_address - frame_address;
-   If (frame_absolute IsFalse)                     AndIf
+   if ( (frame_absolute IsFalse)                     AndIf
       (exefile IsFalse)                            AndIf
       ((fixup.location_type Is base_location)      OrIf
        (fixup.location_type Is pointer_location))
@@ -115,7 +115,7 @@ BeginCode
       break;
      When base_location:
       *word_location += fbval;
-      If exefile IsTrue
+      if ( exefile IsTrue
        Then
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset);
@@ -124,7 +124,7 @@ BeginCode
      When pointer_location:
       *word_location++ += Bit_16(foval);
       *word_location   += fbval;
-      If exefile IsTrue
+      if ( exefile IsTrue
        Then
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset+2);
@@ -231,7 +231,7 @@ EndDeclarations
 BeginCode
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
- If block_count IsNotZero
+ if ( block_count IsNotZero
   Then  /* Handle recursive case:  Content is iterated data block */
    content = obj_ptr.b8;
    For i=0; i<repeat_count; i++
@@ -378,12 +378,12 @@ BeginCode
   |      First, we will figure out how long the EXE header will be.         |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If exefile IsTrue
+ if ( exefile IsTrue
   Then
    exe_header_size  = Bit_32(sizeof(EXE_header_type)) - 
                       Bit_32(sizeof(bit_32)) + 
                      (Bit_32(sizeof(bit_32)) * Bit_32(n_relocation_items));
-   If align_exe_header.val IsTrue
+   if ( align_exe_header.val IsTrue
     Then
      exe_header_size += AlignmentGap(exe_header_size, 0xFL);
     Else
@@ -436,10 +436,10 @@ segment_entry_ptr                      seg;
 EndDeclarations
 BeginCode
  frame_absolute = False;
- If Pub.type_entry IsNot internal
+ if ( Pub.type_entry IsNot internal
   Then
    seg = (*temp_file_header.lseg).segment;
-   If Not fixup.external_error_detected
+   if ( Not fixup.external_error_detected
     Then
      linker_error(4, "\tModule \"%Fs\" in file \"%Fs\"\n"
                      "\treferences unresolved external \"%Fs\"\n"
@@ -453,9 +453,9 @@ BeginCode
     EndIf;
    address = 0L;
   Else
-   If Pub.Internal.group IsNull
+   if ( Pub.Internal.group IsNull
     Then
-     If Pub.Internal.lseg IsNull
+     if ( Pub.Internal.lseg IsNull
       Then
        frame_absolute = True;
        address        = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
@@ -488,10 +488,10 @@ segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 EndDeclarations
 BeginCode
- If Pub.type_entry IsNot internal
+ if ( Pub.type_entry IsNot internal
   Then
    seg = (*temp_file_header.lseg).segment;
-   If Not fixup.external_error_detected
+   if ( Not fixup.external_error_detected
     Then
      linker_error(4, "\tModule \"%Fs\" in file \"%Fs\"\n"
                      "\treferences unresolved external \"%Fs\"\n"
@@ -505,7 +505,7 @@ BeginCode
     EndIf;
    address = 0L;
   Else
-   If Pub.Internal.lseg IsNull
+   if ( Pub.Internal.lseg IsNull
     Then
      address = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
     Else

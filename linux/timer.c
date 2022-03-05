@@ -38,7 +38,7 @@ BeginDeclarations
  bit_32                                t;
 EndDeclarations
 BeginCode
- If start_time Exceeds stop_time
+ if ( start_time Exceeds stop_time
   Then /* We passed midnight and must add 24 hours to stop time */
    stop_time += 8640000L;
   EndIf;
@@ -47,7 +47,7 @@ BeginCode
  ss  = Bit_16(t Mod 60L);                      t /= 60L;
  mm  = Bit_16(t Mod 60L);                      t /= 60L;
  hh  = Bit_16(t);
- If hh IsNotZero
+ if ( hh IsNotZero
   Then
    sprintf(time_array,"%u:%02u:%02u.%02u",hh,mm,ss,cc);
   ElseIf mm IsNotZero

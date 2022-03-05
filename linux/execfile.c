@@ -27,7 +27,7 @@ BeginCode
  Exe_header.min_paragraphs_above = Bit_16((n_uninitialized_bytes + 
                   AlignmentGap(n_uninitialized_bytes, 0xFL)) ShiftedRight 4L);
  Exe_header.max_paragraphs_above = CPARMAXALLOC.val;
- If stack_segment_found IsTrue
+ if ( stack_segment_found IsTrue
   Then
    Exe_header.initial_SS = CanonicFrame(Largest_stack_seg.address);
    Exe_header.initial_SP = Bit_16(largest_stack_seg_length +
@@ -46,7 +46,7 @@ BeginCode
   |    Run a checksum on all the bytes in the soon-to-exist EXE file.       |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If exechecksum.val IsTrue
+ if ( exechecksum.val IsTrue
   Then
    checksum = word_checksum(Bit_16(exe_header_size), 0, BytePtr(exe_header));
    TraverseList(segment_list, seg)
@@ -92,18 +92,18 @@ BeginCode
   |                         Validate start address.                         |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If start_address_found IsTrue
+ if ( start_address_found IsTrue
   Then
    fixup                 = start_address;
    initial_CS            = CanonicFrame(frame());
    initial_IP            = Bit_16(target() - frame());
-   If (comfile.val IsTrue)      AndIf 
+   if ( (comfile.val IsTrue)      AndIf 
       (initial_CS IsNotZero)    AndIf 
       (initial_IP IsNot 0x0100)
     Then  /* COM file start address must be 0000:0100 */
       linker_error(4, "Start address for COM file is not 0000:0100.\n");
     Else
-     If (sysfile.val IsTrue)   AndIf
+     if ( (sysfile.val IsTrue)   AndIf
         (initial_CS IsNotZero) AndIf 
         (initial_IP IsNotZero)
       Then  /* SYS file start address must be 0000:0000 */
@@ -120,29 +120,29 @@ BeginCode
   |                        Validate stack segment.                          |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If (comfile.val IsTrue) AndIf (stack_segment_found IsTrue)
+ if ( (comfile.val IsTrue) AndIf (stack_segment_found IsTrue)
   Then  /* COM file should not have a stack segment. */
     linker_error(4, "COM file should not have a stack segment.\n");
   Else
-   If (sysfile.val IsTrue) AndIf (stack_segment_found IsTrue)
+   if ( (sysfile.val IsTrue) AndIf (stack_segment_found IsTrue)
     Then  /* SYS file should not have a stack segment. */
       linker_error(4, "SYS file should not have a stack segment.\n");
     Else
-     If (exefile IsTrue) AndIf (stack_segment_found IsFalse)
+     if ( (exefile IsTrue) AndIf (stack_segment_found IsFalse)
       Then  /* EXE file should have a stack segment. */
        linker_error(4, "EXE file should have a stack segment.\n");
       EndIf;
     EndIf;
   EndIf;
  
- If pause.val IsTrue
+ if ( pause.val IsTrue
   Then
    printf("About to write \"%Fs\".\n", (*exe_file_list.first).filename);
    printf("Press [RETURN] key to continue.\n");
    gets(CharPtr(object_file_element));
   EndIf;
  file_open_for_write(exe_file_list.first);
- If exefile IsTrue
+ if ( exefile IsTrue
   Then
    make_EXE_header();
   EndIf;
@@ -163,13 +163,13 @@ BeginCode
    TraverseList(Seg.lsegs, lseg)
     BeginTraverse
      ExitIf(Lseg.address NotLessThan highest_uninitialized_byte);
-     If Lseg.address LessThan next_available_address
+     if ( Lseg.address LessThan next_available_address
       Then
        LoopIf((Lseg.address+Lseg.length) NotGreaterThan 
               next_available_address);
        data_index     = next_available_address - Lseg.address;
        partial_length = Lseg.length - data_index;
-       If Seg.combine IsNot blank_common_combine
+       if ( Seg.combine IsNot blank_common_combine
         Then
          file_write(Addr(Lseg.data[Bit_16(data_index)]), partial_length);
         Else
@@ -178,16 +178,16 @@ BeginCode
 		next_available_address += partial_length;
       Else
        gap = Lseg.address - next_available_address;
-       If gap IsNotZero
+       if ( gap IsNotZero
         Then
          write_gap(gap);
          next_available_address += gap;
         EndIf;
-       If (Lseg.address + Lseg.length) Exceeds highest_uninitialized_byte
+       if ( (Lseg.address + Lseg.length) Exceeds highest_uninitialized_byte
         Then
          partial_length = (Lseg.address + Lseg.length) - 
                           highest_uninitialized_byte;
-         If Seg.combine IsNot blank_common_combine
+         if ( Seg.combine IsNot blank_common_combine
           Then
            file_write(Lseg.data, partial_length);
           Else
@@ -195,7 +195,7 @@ BeginCode
           EndIf;
           next_available_address += partial_length;
         Else
-         If Seg.combine IsNot blank_common_combine
+         if ( Seg.combine IsNot blank_common_combine
           Then
            file_write(Lseg.data, Lseg.length);
           Else
@@ -223,7 +223,7 @@ EndDeclarations
 BeginCode
  While length Exceeds 0
   BeginWhile
-   If length Exceeds Bit_32(MAX_ELEMENT_SIZE)
+   if ( length Exceeds Bit_32(MAX_ELEMENT_SIZE)
     Then
      file_write(BytePtr(object_file_element), Bit_32(MAX_ELEMENT_SIZE));
      length -= Bit_32(MAX_ELEMENT_SIZE);

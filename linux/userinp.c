@@ -27,7 +27,7 @@ BeginCode
  copy_string(default_filename, program_directory_string);
  process_filename(default_filename);
  change_extension(default_filename, env_extension_string);
- If file_exists(default_filename, 0)
+ if ( file_exists(default_filename, 0)
   Then
    concat_string(parm_string, at_string);
    concat_string(parm_string, default_filename);
@@ -40,7 +40,7 @@ BeginCode
                                  0xFFFF, 
                                  backslash_string) + 1);
  process_filename(token);
- If (file_exists(token, 0)) AndIf 
+ if ( (file_exists(token, 0)) AndIf 
     (compare_string(token, default_filename) IsNotZero)
   Then
    concat_string(parm_string, at_string);
@@ -53,7 +53,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  env_var = (byte *) getenv("LINK");
- If env_var IsNull
+ if ( env_var IsNull
   Then
    env_var = (byte *) "";
   EndIf;
@@ -66,7 +66,7 @@ BeginCode
   +-------------------------------------------------------------------------+*/
  For i=1; i<argc; i++
   BeginFor
-   If i Exceeds 1
+   if ( i Exceeds 1
     Then
      concat_string(parm_string, space_string);
     EndIf;
@@ -104,12 +104,12 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If comfile.val IsTrue
+ if ( comfile.val IsTrue
   Then
    default_extension = com_extension_string;
    default_prompt = "COM file[%Fs]:  ";
   Else
-   If sysfile.val IsTrue
+   if ( sysfile.val IsTrue
     Then
      default_extension = sys_extension_string;
      default_prompt = "SYS file[%Fs]:  ";
@@ -137,7 +137,7 @@ BeginCode
  prompting_for     = 3;
  process_user_output_file(Addr(lst_file_list),
                           False);
- If (First(lst_file_list) IsNull)                 AndIf
+ if ( (First(lst_file_list) IsNull)                 AndIf
     ((map.set IsTrue) OrIf (detail_level.val Exceeds 0))
   Then
    copy_string(token, string((*(exe_file_list.first)).filename));
@@ -182,10 +182,10 @@ BeginCode
  Repeat
   BeginRepeat
    get_filename_token(required, list);
-   If Length(token) Exceeds 0
+   if ( Length(token) Exceeds 0
     Then
      process_filename(token);
-      If index_string(token, 0, colon_string) IsNot 1
+      if ( index_string(token, 0, colon_string) IsNot 1
        Then
         linker_error(4, "\"%Fs\" is an illegal input file name.\n",
                         String(token));
@@ -217,11 +217,11 @@ BeginCode
  Repeat
   BeginRepeat
    get_filename_token(required, list);
-   If Length(token) Exceeds 0
+   if ( Length(token) Exceeds 0
     Then
      process_filename(token);
      add_extension_to_file(token,default_extension);
-     If List.first IsNull
+     if ( List.first IsNull
       Then
        file_entry = (file_info_ptr)
                      allocate_memory(Addr(static_pool),

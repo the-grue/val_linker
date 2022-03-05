@@ -46,9 +46,9 @@ BeginCode
  desc  = free_pool.memory_descriptor_list;
  While desc IsNotNull
   BeginWhile
-   If Desc.available NotLessThan size
+   if ( Desc.available NotLessThan size
     Then
-     If prior IsNull
+     if ( prior IsNull
       Then
        free_pool.memory_descriptor_list  = Desc.next;
       Else
@@ -99,13 +99,13 @@ BeginCode
  desc = Pool.memory_descriptor_list;
  While desc IsNotNull
   BeginWhile
-   If size NotGreaterThan Desc.available
+   if ( size NotGreaterThan Desc.available
     Then /* We can take the element from this chunk */
      Pool.used_bytes         += size;
      element                  = Desc.unused_base;
      Desc.unused_base        += Bit_16(size);
      Desc.available          -= size;
-     If prev IsNotNull
+     if ( prev IsNotNull
       Then
        Prev.next                   = Desc.next;
        Desc.next                   = Pool.memory_descriptor_list;
@@ -156,7 +156,7 @@ BeginCode
  inregs.h.ah = 0x48;                     /* DOS allocate memory */
  inregs.x.bx = 0xFFFF;                   /* Ask for too much memory */
  rc = intdos(Addr(inregs),Addr(outregs));/* Do the allocate expecting to fail*/
- If (outregs.x.cflag IsFalse) OrIf (rc IsNot 8)
+ if ( (outregs.x.cflag IsFalse) OrIf (rc IsNot 8)
   Then
    DOS_error("Problem allocating memory above heap.\n");
   EndIf;
@@ -165,7 +165,7 @@ BeginCode
 
  far_memory      = (byte huge *) MakeFarPtr(outregs.x.ax,0);
  far_memory_size = Bit_32(inregs.x.bx) ShiftedLeft 4;
- If far_memory_size LessThan 65536L
+ if ( far_memory_size LessThan 65536L
   Then
    linker_error(8,"Too little memory above heap.\n"
                  "\tTry running again with smaller buffersize and/or\n"
@@ -201,7 +201,7 @@ BeginCode
    desc = (memory_descriptor_ptr) 
            allocate_memory(Addr(static_pool),
                            Bit_32(sizeof(memory_descriptor_type)));
-   If far_memory_size Exceeds 65536L
+   if ( far_memory_size Exceeds 65536L
     Then
      size_this_chunk                  = 65536L;
     Else

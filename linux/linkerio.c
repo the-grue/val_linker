@@ -14,10 +14,10 @@ va_list                                argptr;
 bit_16                                 error_number;
 EndDeclarations
 BeginCode
- If outregs.x.cflag
+ if ( outregs.x.cflag
   Then
    error_number = outregs.x.ax;
-   If error_number Exceeds 58
+   if ( error_number Exceeds 58
     Then
      error_number = 59;
     EndIf;
@@ -44,11 +44,11 @@ bit_16                                 error_number;
 EndDeclarations
 BeginCode
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
- If (outregs.x.cflag) AndIf
+ if ( (outregs.x.cflag) AndIf
     (Not ((inregs.h.al  Is 0x41) AndIf (outregs.x.ax Is 2)))
   Then
    error_number = outregs.x.ax;
-   If error_number Exceeds 58
+   if ( error_number Exceeds 58
     Then
      error_number = 59;
     EndIf;
@@ -74,7 +74,7 @@ BeginCode
  fprintf(stdout,"\nLinker Error (Severity %d)\n",severity);
  va_start(argptr,format);
  vfprintf(stdout,format,argptr);
- If severity Exceeds 7
+ if ( severity Exceeds 7
   Then
    end_linker(severity);
   Else
@@ -115,11 +115,11 @@ BeginCode
  va_start(argptr,format);
  vsprintf(CharPtr(object_file_element), format, argptr);
  len = strlen(CharPtr(object_file_element));
- If len IsZero
+ if ( len IsZero
   Then
    return;
   EndIf;
- If object_file_element[len-1] Is '\n'
+ if ( object_file_element[len-1] Is '\n'
   Then
    object_file_element[len-1] = '\000';
    strcat(CharPtr(object_file_element), "\r\n");

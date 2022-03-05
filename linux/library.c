@@ -48,7 +48,7 @@ BeginCode
      file_position(pos);
      Lib_file.module_count++;
      obj_tmodule();
-     If Pub.type_entry IsNot internal
+     if ( Pub.type_entry IsNot internal
       Then
        linker_error(12, "Library directory error:\n"
                         "\tLibrary:  \"%Fs\"\n"
@@ -124,7 +124,7 @@ BeginCode
  file_open_for_read(lib_file);
  file_IO_limit(sizeof(library_file_header_type));
  file_read(object_file_element, sizeof(library_file_header_type));
- If Lib_hdr.flag IsNot 0xF0
+ if ( Lib_hdr.flag IsNot 0xF0
   Then
    linker_error(4,"File \"%Fs\" is not in LIB file format.\n"
                   "\tThis file has been ignored.\n",
@@ -157,7 +157,7 @@ BeginCode
               Addr(Directory_page.offset_to_symbol[symbol_index]);
      symbol_in_page = (bit_16 *)
                       Addr(Symbol.symbol[Symbol.length_of_symbol]);
-     If case_ignore.val
+     if ( case_ignore.val
       Then
        far_to_lower(Symbol.symbol, Symbol.length_of_symbol);
       EndIf;
@@ -171,7 +171,7 @@ BeginCode
   | same manner except it will log when it ignores a module in a library.   |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
-     If Pub.type_entry IsNot unused
+     if ( Pub.type_entry IsNot unused
       Then  /* Log the ambiguity. */
        linker_error(4,"The symbol \"%Fs\" is defined in the libraries\n"
                       "\t\"%Fs\" and \"%Fs\".\n"
@@ -183,7 +183,7 @@ BeginCode
        Pub.Library.page      = Symbol_in_page;
        Pub.Library.lib_file  = lib_file;
        Pub.Library.requested = False;
-       If symbol_count NotLessThan MAX_PUBLICS_IN_LIBRARY
+       if ( symbol_count NotLessThan MAX_PUBLICS_IN_LIBRARY
         Then
          linker_error(8,"Limitation of not more than %u public symbols in "
                         "a library\n"
@@ -197,7 +197,7 @@ BeginCode
     EndFor;
   EndFor;
  file_close_for_read();
- If symbol_count Exceeds 0
+ if ( symbol_count Exceeds 0
   Then
    sort_directory(0, symbol_count-1);
    public_array = public_sort_array;
@@ -264,7 +264,7 @@ bit_16                                 j;
 public_entry_ptr                       temp;
 EndDeclarations
 BeginCode
- If left NotLessThan right
+ if ( left NotLessThan right
   Then
    return;
   EndIf;
@@ -274,7 +274,7 @@ BeginCode
   BeginWhile
    While i LessThan j
     BeginWhile
-     If (*public_sort_array[i]).Library.page GreaterThan
+     if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
       Then
        temp                 = public_sort_array[i];
@@ -286,7 +286,7 @@ BeginCode
     EndWhile;
    While i LessThan j
     BeginWhile
-     If (*public_sort_array[i]).Library.page GreaterThan
+     if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
       Then
        temp                 = public_sort_array[i];
@@ -297,7 +297,7 @@ BeginCode
      i++;
     EndWhile;
   EndWhile;
-  If i Exceeds 0
+  if ( i Exceeds 0
    Then
     sort_directory(left, i-1);
    EndIf;

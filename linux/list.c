@@ -19,18 +19,18 @@ BeginCode
  prior = Null;
  TraverseList(Lst, current)
   BeginTraverse
-   If current Is elem
+   if ( current Is elem
     Then
-     If prior Is Null
+     if ( prior Is Null
       Then
        First(Lst) = Elem.next;
-       If First(Lst) Is Null
+       if ( First(Lst) Is Null
         Then
          Last(Lst) = Null;
         EndIf;
       Else
        Prior.next = Elem.next;
-       If Last(Lst) Is elem
+       if ( Last(Lst) Is elem
         Then
          Last(Lst) = prior;
         EndIf;
@@ -71,7 +71,7 @@ BeginCode
    When 0:
     Elem.next  = Aftr.next;
     Aftr.next  = elem;
-    If Elem.next IsNull
+    if ( Elem.next IsNull
      Then
       Last(Lst) = elem;
      EndIf;
@@ -82,7 +82,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
    When 1:
-    If Last(Lst) IsNull
+    if ( Last(Lst) IsNull
      Then
       First(Lst) = elem;
      Else
@@ -99,7 +99,7 @@ BeginCode
    When 2:
     Elem.next  = First(Lst);
     First(Lst) = elem;
-    If Last(Lst) IsNull
+    if ( Last(Lst) IsNull
      Then
       Last(Lst) = elem;
      EndIf;
@@ -123,14 +123,14 @@ BeginDeclarations
 #define Lst                            (*lst)
 EndDeclarations
 BeginCode
- If First(Lst) IsNull
+ if ( First(Lst) IsNull
   Then
    Elem = Null;
    return;
   EndIf;
  Elem       = First(Lst);
  First(Lst) = (*Elem).next;
- If First(Lst) IsNull
+ if ( First(Lst) IsNull
   Then
    Last(Lst) = Null;
   EndIf;

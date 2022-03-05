@@ -9,11 +9,11 @@ string_ptr add_extension_to_file(string_ptr fn, string_ptr ext)
 BeginDeclarations
 EndDeclarations
 BeginCode
- If index_string(fn,0,colon_string) IsNot 1
+ if ( index_string(fn,0,colon_string) IsNot 1
   Then  /* AUX:, CON:, or PRN: */
    return(fn);
   EndIf;
- If index_string(fn,0,dot_string) Is 0xFFFF
+ if ( index_string(fn,0,dot_string) Is 0xFFFF
   Then
    concat_string(fn,ext);
   EndIf;
@@ -38,7 +38,7 @@ EndDeclarations
 BeginCode
  matched_file = String(current_filename);
  rc = start_file_search(fn, 0);
- If rc IsNotZero
+ if ( rc IsNotZero
   Then
    linker_error(4,"No matching files for file specification:\n"
                   "\t\"%Fs\"\n",
@@ -55,7 +55,7 @@ BeginCode
                        IsZero;
      ExitIf(already_in_list);
     EndTraverse;
-   If Not already_in_list
+   if ( Not already_in_list
     Then
      file_entry = (file_info_ptr)
                    allocate_memory(Addr(static_pool),
@@ -115,7 +115,7 @@ BeginCode
  inregs.h.ah = 0x4F;                   /* Continue file search */
  rc = (bit_16) intdos(Addr(inregs), Addr(outregs));
  set_DTA_address(old_DTA);
- If rc IsNotZero
+ if ( rc IsNotZero
   Then
    copy_string(current_filename, null_string);
   Else
@@ -145,7 +145,7 @@ BeginCode
  *String(directory) = '\\';
  Length(directory) = far_index(String(directory), 0);
  far_to_lower(String(directory), Length(directory));
- If LastCharIn(directory) IsNot '\\'
+ if ( LastCharIn(directory) IsNot '\\'
   Then
    concat_string(directory,backslash_string);
   EndIf;
@@ -184,7 +184,7 @@ BeginDeclarations
 #define File                           infile
 EndDeclarations
 BeginCode
- If File.file_handle Exceeds 4
+ if ( File.file_handle Exceeds 4
   Then  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
    inregs.x.bx = File.file_handle;
@@ -207,7 +207,7 @@ BeginDeclarations
 #define File                           outfile
 EndDeclarations
 BeginCode
- If File.bytes_in_buffer Exceeds 0
+ if ( File.bytes_in_buffer Exceeds 0
   Then
    inregs.h.ah = 0x40;               /* Write */
    inregs.x.bx = File.file_handle;
@@ -217,7 +217,7 @@ BeginCode
    DOS_int21("Trouble writing file \"%Fs\" at byte %lu.\n",
              (*File.file_info).filename, File.next_buffer_position);
   EndIf;
- If File.file_handle Exceeds 4
+ if ( File.file_handle Exceeds 4
   Then  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
    inregs.x.bx = File.file_handle;
@@ -282,7 +282,7 @@ BeginDeclarations
 #define File                           infile
 EndDeclarations
 BeginCode
- If (limit IsZero) OrIf (limit Exceeds File.buffer_size)
+ if ( (limit IsZero) OrIf (limit Exceeds File.buffer_size)
   Then
    File.IO_limit = File.buffer_size;
   Else
@@ -323,17 +323,17 @@ BeginCode
   |                    Open the file and save the handle                    |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If compare_string(string(File_info.filename), device_AUX) IsZero
+ if ( compare_string(string(File_info.filename), device_AUX) IsZero
   Then
    File.file_handle = 3;
    return;
   EndIf;
- If compare_string(string(File_info.filename), device_CON) IsZero
+ if ( compare_string(string(File_info.filename), device_CON) IsZero
   Then
    File.file_handle = 0;
    return;
   EndIf;
- If compare_string(string(File_info.filename), device_PRN) IsZero
+ if ( compare_string(string(File_info.filename), device_PRN) IsZero
   Then
    File.file_handle = 4;
    return;
@@ -381,17 +381,17 @@ BeginCode
   |                    Open the file and save the handle                    |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If compare_string(string(File_info.filename), device_AUX) IsZero
+ if ( compare_string(string(File_info.filename), device_AUX) IsZero
   Then
    File.file_handle = 3;
    return;
   EndIf;
- If compare_string(string(File_info.filename), device_CON) IsZero
+ if ( compare_string(string(File_info.filename), device_CON) IsZero
   Then
    File.file_handle = 1;
    return;
   EndIf;
- If compare_string(string(File_info.filename), device_PRN) IsZero
+ if ( compare_string(string(File_info.filename), device_PRN) IsZero
   Then
    File.file_handle = 4;
    return;
@@ -420,7 +420,7 @@ BeginDeclarations
 #define File                           infile
 EndDeclarations
 BeginCode
- If (position NotLessThan File.start_of_buffer_position) AndIf
+ if ( (position NotLessThan File.start_of_buffer_position) AndIf
     (position LessThan    File.next_buffer_position)
   Then
    File.byte_position        = Bit_16(position-File.start_of_buffer_position);
@@ -459,9 +459,9 @@ EndDeclarations
 BeginCode
  While length Exceeds 0
   BeginWhile
-   If length Exceeds File.bytes_left_in_buffer
+   if ( length Exceeds File.bytes_left_in_buffer
     Then
-     If File.bytes_left_in_buffer Exceeds 0
+     if ( File.bytes_left_in_buffer Exceeds 0
       Then
        far_move(into, File.current_byte, File.bytes_left_in_buffer);
        length -= File.bytes_left_in_buffer;
@@ -508,7 +508,7 @@ EndDeclarations
 BeginCode
  While length Exceeds 0L
   BeginWhile
-   If length Exceeds Bit_32(File.bytes_left_in_buffer)
+   if ( length Exceeds Bit_32(File.bytes_left_in_buffer)
     Then
      far_move(File.current_byte, from, File.bytes_left_in_buffer);
      length               -= Bit_32(File.bytes_left_in_buffer);
@@ -577,17 +577,17 @@ BeginCode
   |                       Check for AUX:, CON: & PRN:                       |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If compare_string(substr(fn,0,4), device_AUX) IsZero
+ if ( compare_string(substr(fn,0,4), device_AUX) IsZero
   Then
    copy_string(fn, device_AUX);
    return(fn);
   EndIf;
- If compare_string(substr(fn,0,4), device_CON) IsZero
+ if ( compare_string(substr(fn,0,4), device_CON) IsZero
   Then
    copy_string(fn, device_CON);
    return(fn);
   EndIf;
- If compare_string(substr(fn,0,4), device_PRN) IsZero
+ if ( compare_string(substr(fn,0,4), device_PRN) IsZero
   Then
    copy_string(fn, device_PRN);
    return(fn);               
@@ -597,7 +597,7 @@ BeginCode
   |                      Add drive designator if missing.                   |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If compare_string(substr(fn,1,1), colon_string) IsNotZero
+ if ( compare_string(substr(fn,1,1), colon_string) IsNotZero
   Then
    paste_string(fn, 0, default_drive_string);
   EndIf;
@@ -606,7 +606,7 @@ BeginCode
   |          Substitute current directory if not based from root.           |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- If compare_string(substr(fn,2,1), backslash_string) IsNotZero
+ if ( compare_string(substr(fn,2,1), backslash_string) IsNotZero
   Then
    default_directory(fn, default_directory_string);
    paste_string(fn, 2, default_directory_string);
@@ -620,12 +620,12 @@ BeginCode
  right = index_string(fn, left+1, backslash_string);
  While right IsNot 0xffff
   BeginWhile
-   If compare_string(substr(fn,left,4), backslash_dot_dot_string) IsZero
+   if ( compare_string(substr(fn,left,4), backslash_dot_dot_string) IsZero
     Then
      cut_string(fn, left, 3);
      right = left;
      left  = reverse_index_string(fn, right-1, backslash_string);
-     If left Is 0xffff
+     if ( left Is 0xffff
       Then
        return(null_string);
       EndIf;
@@ -633,7 +633,7 @@ BeginCode
      right = index_string(fn, left+1, backslash_string);
      ContinueLoop;
     Else
-     If compare_string(substr(fn,left,3), backslash_dot_string) IsZero
+     if ( compare_string(substr(fn,left,3), backslash_dot_string) IsZero
       Then
        cut_string(fn, left, 2);
        right = index_string(fn, left+1, backslash_string);
@@ -700,7 +700,7 @@ BeginCode
  inregs.x.cx = attr;
  rc = (bit_16) intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  set_DTA_address(old_DTA);
- If rc IsNotZero
+ if ( rc IsNotZero
   Then
    copy_string(current_filename, null_string);
   Else

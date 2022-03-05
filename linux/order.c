@@ -27,7 +27,7 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 EndDeclarations
 BeginCode
- If (*Active_segment.lsegs.first).align IsZero
+ if ( (*Active_segment.lsegs.first).align IsZero
   Then /* Don't align absolute segments */
    return;
   EndIf;
@@ -35,7 +35,7 @@ BeginCode
  TraverseList(Active_segment.lsegs, lseg)
   BeginTraverse
    LoopIf(Lseg.align Is absolute_segment);
-   If Active_segment.combine Is common_combine
+   if ( Active_segment.combine Is common_combine
     Then  /* Finally, we know how big the common area is, so allocate
              memory for it.  */
      Lseg.data = allocate_memory(Addr(static_pool), Lseg.length);
@@ -45,7 +45,7 @@ BeginCode
    next_available_address += gap;
    Lseg.address            = next_available_address;
    next_available_address += Lseg.length;
-   If Lseg.highest_uninitialized_byte IsNotZero
+   if ( Lseg.highest_uninitialized_byte IsNotZero
     Then
      highest_uninitialized_byte                =
      Active_segment.highest_uninitialized_byte =
@@ -56,26 +56,26 @@ BeginCode
  Active_segment.length  = (*Active_segment.lsegs.last).address +
                           (*Active_segment.lsegs.last).length -
                           Active_segment.address;
- If Active_segment.highest_uninitialized_byte IsZero
+ if ( Active_segment.highest_uninitialized_byte IsZero
   Then
    Active_segment.highest_uninitialized_byte =
     (*Active_segment.lsegs.first).address;
   EndIf;
- If (Active_segment.owning_group IsNotNull) AndIf
+ if ( (Active_segment.owning_group IsNotNull) AndIf
     ((*Active_segment.owning_group).first_segment IsNull)
   Then
    (*Active_segment.owning_group).first_segment = active_segment;
   EndIf;
- If (DOSSEG.val IsTrue) AndIf 
+ if ( (DOSSEG.val IsTrue) AndIf 
     (Active_segment.owning_group IsNotNull) AndIf
     ((*Active_segment.owning_group).group_name Is DGROUP_lname)
   Then
-   If (edata_segment IsNull) AndIf
+   if ( (edata_segment IsNull) AndIf
       (Active_segment.class_name Is BSS_lname)
     Then
      edata_segment = active_segment;
      pub = lookup_public(6, (byte *) "_edata", 0);
-     If (Pub.type_entry Is external) OrIf (Pub.type_entry Is unused)
+     if ( (Pub.type_entry Is external) OrIf (Pub.type_entry Is unused)
       Then
        Pub.type_entry      = internal;
        Pub.Internal.group  = Active_segment.owning_group;
@@ -88,12 +88,12 @@ BeginCode
                        "because it was explicitly defined.\n");
       EndIf;
     EndIf;
-   If (end_segment IsNull) AndIf
+   if ( (end_segment IsNull) AndIf
       (Active_segment.class_name Is STACK_lname)
     Then
      end_segment = active_segment;
      pub = lookup_public(4, (byte *) "_end", 0);
-     If (Pub.type_entry Is external) OrIf (Pub.type_entry Is unused)
+     if ( (Pub.type_entry Is external) OrIf (Pub.type_entry Is unused)
       Then
        Pub.type_entry      = internal;
        Pub.Internal.group  = Active_segment.owning_group;
@@ -126,7 +126,7 @@ BeginCode
    order_token_get_char();
   EndWhile;
  copy_string(token, null_string);
- If IsIdentifier(token_break_char)
+ if ( IsIdentifier(token_break_char)
   Then
    While IsIdentifier(token_break_char)
     BeginWhile
@@ -135,7 +135,7 @@ BeginCode
     EndWhile;
    lowercase_string(token);
   Else
-   If token_break_char Is '['
+   if ( token_break_char Is '['
     Then
      While token_break_char IsNot ']'
       BeginWhile
@@ -143,7 +143,7 @@ BeginCode
        order_token_get_char();
       EndWhile;
      order_token_get_char();
-     If case_ignore.val
+     if ( case_ignore.val
       Then
        lowercase_string(token);
       EndIf;
@@ -195,14 +195,14 @@ BeginCode
      Pop segment_list InTo active_segment EndPop;
      order_expression_char_ptr = start_of_expression;
      token_break_char = ' ';
-     If codeview_information_present AndIf
+     if ( codeview_information_present AndIf
         (((Active_segment.segment_name Is codeview_segment_TYPES) AndIf
           (Active_segment.class_name Is codeview_class_DEBTYP)) OrIf
          ((Active_segment.segment_name Is codeview_segment_SYMBOLS) AndIf
           (Active_segment.class_name Is codeview_class_DEBSYM)))
       Then /* Eat the codeview segment */
       Else /* Process all non-codeview segments */
-       If order_expression()
+       if ( order_expression()
         Then
          Insert active_segment AtEnd InList segments_ordered_list EndInsert;
          align_active_segment();
@@ -288,20 +288,20 @@ group_entry_ptr                        group;
 bit_16                                 operand;
 EndDeclarations
 BeginCode
- If TokenIs(true_string)
+ if ( TokenIs(true_string)
   Then
    get_order_token();
    return(True);
   EndIf;
- If TokenIs(false_string)
+ if ( TokenIs(false_string)
   Then
    get_order_token();
    return(False);
   EndIf;
- If TokenIs(open_paren_string)
+ if ( TokenIs(open_paren_string)
   Then
    operand = order_expression();
-   If TokenIs(close_paren_string)
+   if ( TokenIs(close_paren_string)
     Then
      get_order_token();
      return(operand);
@@ -311,10 +311,10 @@ BeginCode
                      String(ordering.val));
     EndIf;
   EndIf;
- If TokenStartsWith(segment_string)
+ if ( TokenStartsWith(segment_string)
   Then
    get_order_token();
-   If *String(token) IsNot '['
+   if ( *String(token) IsNot '['
     Then
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
@@ -326,10 +326,10 @@ BeginCode
    get_order_token();
    return(operand);
   EndIf;
- If TokenStartsWith(group_string)
+ if ( TokenStartsWith(group_string)
   Then
    get_order_token();
-   If *String(token) IsNot '['
+   if ( *String(token) IsNot '['
     Then
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
@@ -337,7 +337,7 @@ BeginCode
     EndIf;
    cut_string(token, 0, 1);
    group = Active_segment.owning_group;
-   If group IsNull
+   if ( group IsNull
     Then
      operand = False;
     Else
@@ -347,10 +347,10 @@ BeginCode
    get_order_token();
    return(operand);
   EndIf;
- If TokenStartsWith(class_string)
+ if ( TokenStartsWith(class_string)
   Then
    get_order_token();
-   If *String(token) IsNot '['
+   if ( *String(token) IsNot '['
     Then
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
@@ -395,7 +395,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If comfile.val IsTrue
+ if ( comfile.val IsTrue
   Then
    address_base = 0x100L;
   Else
@@ -414,9 +414,9 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If ordering.val IsNull
+ if ( ordering.val IsNull
   Then
-   If DOSSEG.val IsTrue
+   if ( DOSSEG.val IsTrue
     Then
      ordering.val = duplicate_string(Addr(static_pool),
       string((byte *) ("(seg[*code]|seg[*CODE], "
@@ -441,19 +441,19 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If exefile IsFalse
+ if ( exefile IsFalse
   Then
-   If stack_segment_found IsTrue
+   if ( stack_segment_found IsTrue
     Then
      linker_error(4, "Stack segment found for a non .EXE file.\n");
     EndIf;
   Else
-   If (stack_segment_found IsFalse) AndIf
+   if ( (stack_segment_found IsFalse) AndIf
       (stack.set           IsFalse)
     Then
      linker_error(4, "No stack segment for .EXE file.\n");
     Else
-     If (stack.set IsTrue) AndIf 
+     if ( (stack.set IsTrue) AndIf 
         (Bit_16(Largest_stack_seg.length) LessThan stack.val)
       Then
        obj_generate_segment(generated_lname,
@@ -478,7 +478,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- If near_communals IsNotNull
+ if ( near_communals IsNotNull
   Then
    length = 0L;
    For pub=near_communals; pub IsNotNull; pub=Pub.Communal.next_communal
@@ -486,7 +486,7 @@ BeginCode
      LoopIf(Pub.type_entry IsNot near_communal);
      length += Pub.Communal.element_size;
     EndFor;
-   If length Exceeds 65536L
+   if ( length Exceeds 65536L
     Then
      linker_error(8, "Near communal size exceeds 64K by %lu bytes.\n",
                      length-65536L);
@@ -532,13 +532,13 @@ BeginCode
    next_communal = Pub.Communal.next_communal;
    LoopIf(Pub.type_entry IsNot far_communal); 
    length = Pub.Communal.element_size * Pub.Communal.element_count;
-   If length Exceeds 65536L
+   if ( length Exceeds 65536L
     Then
      Pub.Communal.next_communal = huge_communals;
      huge_communals             = pub;
      ContinueLoop;
     EndIf;
-   If (lseg IsNull) OrIf ((length + Bit_32(offset)) Exceeds 65536L)
+   if ( (lseg IsNull) OrIf ((length + Bit_32(offset)) Exceeds 65536L)
     Then
      lseg = obj_generate_segment(FAR_BSS_lname,
                                  FAR_BSS_lname,
@@ -581,7 +581,7 @@ BeginCode
                                exe_file_list.first,
                                0L,             /* not absolute segment */
                                0L);
-   If Pub.Communal.element_size Exceeds 65536L
+   if ( Pub.Communal.element_size Exceeds 65536L
     Then
      linker_error(4, "Communal \"%Fs\" has element size exceeding 64K.\n",
                      Pub.symbol);
@@ -635,7 +635,7 @@ void order_token_get_char()
 BeginDeclarations
 EndDeclarations
 BeginCode
- If token_break_char Is '\000'
+ if ( token_break_char Is '\000'
   Then
    linker_error(8, "Expression syntax error:\n"
                    "\t\"%Fs\"\n",
