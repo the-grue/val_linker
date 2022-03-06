@@ -125,7 +125,7 @@ Enumeration align_enum
   paragraph_aligned,
   page_aligned,
   dword_aligned
- EndEnumeration;
+ };
 
 struct bit_16_switch_struct
  {
@@ -148,7 +148,7 @@ Enumeration combine_enum
   stack_combine                        = 5,
   common_combine                       = 6,
   blank_common_combine                 = 9
- EndEnumeration;
+ };
 
 struct DTA_struct
  {
@@ -224,7 +224,7 @@ Enumeration public_entry_class_enum
   internal,
   far_communal,
   near_communal
- EndEnumeration;
+ };
 
 struct public_entry_struct
  {
@@ -351,7 +351,7 @@ Enumeration loc_enum
   base_location,
   pointer_location,
   hibyte_location
- EndEnumeration;
+ };
 
 struct lseg_struct
  {
@@ -415,7 +415,7 @@ Enumeration obj_mod_rec_type_enum
   FORREF_record                        = 0xb2,
   MODEXT_record                        = 0xb4,
   MODPUB_record                        = 0xb6
- EndEnumeration;
+ };
 
 struct obj_record_header_struct
  {
@@ -490,7 +490,7 @@ Enumeration token_class_enum
   switch_end_token_type,
   text_token_type,
   terminator_token_type
- EndEnumeration;
+ };
 
 struct token_stack_struct
  {
