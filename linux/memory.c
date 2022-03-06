@@ -196,7 +196,7 @@ memory_descriptor_ptr                  desc;
  free_pool.pool_size                  =
  free_pool.used_bytes                 = 0L;
  free_pool.memory_descriptor_list     = NULL;
- while ( far_memory_size IsNotZero
+ while ( far_memory_size != 0
   ) {
    desc = (memory_descriptor_ptr) 
            allocate_memory(Addr(static_pool),

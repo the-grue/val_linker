@@ -408,7 +408,7 @@ bit_16                                 paren_count;
     paren_count = 1;
     token_type  = text_token_type;
     concat_char_to_string(next_token, token_break_char);
-    while ( paren_count IsNotZero
+    while ( paren_count != 0
      ) {
       token_get_char();
       if ( token_break_char IsNot '\n'

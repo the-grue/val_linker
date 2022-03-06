@@ -193,7 +193,7 @@ bit_32                                 stop_address;
      print("Fixups:\n");
      file_open_for_read(temp_file);
      file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
-     while ( temp_file_header.rec_typ IsNotZero
+     while ( temp_file_header.rec_typ != 0
       ) {
        if ( temp_file_header.rec_typ IsNot FIXUPP_record
         ) {

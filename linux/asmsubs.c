@@ -51,7 +51,7 @@ int_16 far_compare (byte_ptr left, byte_ptr right, bit_16 len)
 
 
 /* The following assembly code is the equivalent of the following C code:
- while ( len-- IsNotZero
+ while ( len-- != 0
   ) {
    if ( *left != *right
     ) {
@@ -175,7 +175,7 @@ byte_ptr far_move (byte_ptr dest, byte_ptr source, bit_16 len)
 
 
 /* The following assembly code is the equivalent of the following C code:
- while ( len-- IsNotZero
+ while ( len-- != 0
   ) {
    *dest++ = *source++;
   }; */
@@ -203,7 +203,7 @@ byte_ptr far_move_left (byte_ptr dest, byte_ptr source, bit_16 len)
 /* The following assembly code is the equivalent of the following C code:
  dest   += len - 1;
  source += len - 1;
- while ( len-- IsNotZero
+ while ( len-- != 0
   ) {
    *dest-- = *source--;
   }; */
@@ -233,7 +233,7 @@ byte_ptr far_set (byte_ptr dest, byte source, bit_16 len)
 
 
 /* The following assembly code is the equivalent of the following C code:
- while ( len-- IsNotZero
+ while ( len-- != 0
   ) {
    *dest++ = source;
   }; */
@@ -259,7 +259,7 @@ byte_ptr far_to_lower (byte_ptr dest, bit_16 len)
 
 
 /* The following assembly code is the equivalent of the following C code:
- while ( len-- IsNotZero
+ while ( len-- != 0
   ) {
    tolower(*dest++);
   }; */

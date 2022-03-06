@@ -38,7 +38,7 @@ bit_16                                 rc;
 
  matched_file = String(current_filename);
  rc = start_file_search(fn, 0);
- if ( rc IsNotZero
+ if ( rc != 0
   ) {
    linker_error(4,"No matching files for file specification:\n"
                   "\t\"%Fs\"\n",
@@ -115,7 +115,7 @@ bit_16                                 rc;
  inregs.h.ah = 0x4F;                   /* Continue file search */
  rc = (bit_16) intdos(Addr(inregs), Addr(outregs));
  set_DTA_address(old_DTA);
- if ( rc IsNotZero
+ if ( rc != 0
   ) {
    copy_string(current_filename, null_string);
   } else {
@@ -597,7 +597,7 @@ bit_16                                 right;
   |                      Add drive designator if missing.                   |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( compare_string(substr(fn,1,1), colon_string) IsNotZero
+ if ( compare_string(substr(fn,1,1), colon_string) != 0
   ) {
    paste_string(fn, 0, default_drive_string);
   };
@@ -606,7 +606,7 @@ bit_16                                 right;
   |          Substitute current directory if not based from root.           |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( compare_string(substr(fn,2,1), backslash_string) IsNotZero
+ if ( compare_string(substr(fn,2,1), backslash_string) != 0
   ) {
    default_directory(fn, default_directory_string);
    paste_string(fn, 2, default_directory_string);
@@ -700,7 +700,7 @@ bit_16                                 rc;
  inregs.x.cx = attr;
  rc = (bit_16) intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  set_DTA_address(old_DTA);
- if ( rc IsNotZero
+ if ( rc != 0
   ) {
    copy_string(current_filename, null_string);
   } else {

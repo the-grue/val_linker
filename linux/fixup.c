@@ -231,7 +231,7 @@ bit_16                                 repeat_count;
 
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
- if ( block_count IsNotZero
+ if ( block_count != 0
   ) {  /* Handle recursive case:  Content is iterated data block */
    content = obj_ptr.b8;
    for ( i=0; i<repeat_count; i++
@@ -396,7 +396,7 @@ void pass_two()
   };
  file_open_for_read(temp_file);
  file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
- while ( temp_file_header.rec_typ IsNotZero
+ while ( temp_file_header.rec_typ != 0
   ) {
    switch ( temp_file_header.rec_typ
     ) {

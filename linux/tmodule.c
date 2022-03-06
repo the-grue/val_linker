@@ -625,7 +625,7 @@ bit_16                                 repeat_count;
  block_count  = *obj_ptr.b16++;  LIDATA_index += sizeof(bit_16);
  content      = obj_ptr.b8;
  old_index    = LIDATA_index;
- if ( block_count IsNotZero
+ if ( block_count != 0
   ) {  /* Handle recursive case:  Content is iterated data block */
    for ( i=0; i<repeat_count; i++
     ) {
@@ -1071,7 +1071,7 @@ bit_16                                 repeat_count;
 
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
- if ( block_count IsNotZero
+ if ( block_count != 0
   ) {  /* Handle recursive case:  Content is iterated data block */
    content = obj_ptr.b8;
    for ( i=0; i<repeat_count; i++
@@ -1124,7 +1124,7 @@ bit_16                                 repeat_count;
                     current_record_offset);
   };
  length       = 0L;
- if ( block_count IsNotZero
+ if ( block_count != 0
   ) {  /* Handle recursive case:  Content is iterated data block */
    for ( i=0; i<block_count; i++
     ) {
@@ -1400,7 +1400,7 @@ bit_16                                 thread_number;
   };
  MOD_TYP = *obj_ptr.MOD_TYP++;
 
- if ( MOD_TYP.zeros IsNotZero
+ if ( MOD_TYP.zeros != 0
   ) {
    linker_error(4, "Translator error:\n"
                    "\tModule:  \"%Fs\"\n"
@@ -1782,7 +1782,7 @@ void obj_next_record()
    if ( (objchecksum.val != 0) AndIf
       (Bit_8(checksum(Current_record_header.rec_len +
                       sizeof(obj_record_header_type)-1,
-                     (byte *) current_record_header)) IsNotZero)
+                     (byte *) current_record_header)) != 0)
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1931,9 +1931,9 @@ lname_entry_ptr                        segment_lname;
                     combine);
   };
  length = Bit_32(*obj_ptr.b16++);
- if ( acbp.b IsNotZero
+ if ( acbp.b != 0
   ) {
-   if ( length IsNotZero
+   if ( length != 0
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"

@@ -41,7 +41,7 @@ token_stack_ptr                        source_element;
                                  backslash_string) + 1);
  process_filename(token);
  if ( (file_exists(token, 0)) AndIf 
-    (compare_string(token, default_filename) IsNotZero)
+    (compare_string(token, default_filename) != 0)
   ) {
    concat_string(parm_string, at_string);
    concat_string(parm_string, token);

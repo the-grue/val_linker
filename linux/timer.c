@@ -47,10 +47,10 @@ char_ptr elapsed_time(bit_32 start_time, bit_32 stop_time)
  ss  = Bit_16(t Mod 60L);                      t /= 60L;
  mm  = Bit_16(t Mod 60L);                      t /= 60L;
  hh  = Bit_16(t);
- if ( hh IsNotZero
+ if ( hh != 0
   ) {
    sprintf(time_array,"%u:%02u:%02u.%02u",hh,mm,ss,cc);
-  } else if ( mm IsNotZero
+  } else if ( mm != 0
    ) {
     sprintf(time_array,"%u:%02u.%02u",mm,ss,cc);
    } else {

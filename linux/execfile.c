@@ -98,14 +98,14 @@ segment_entry_ptr                      seg;
    initial_CS            = CanonicFrame(frame());
    initial_IP            = Bit_16(target() - frame());
    if ( (comfile.val != 0)      AndIf 
-      (initial_CS IsNotZero)    AndIf 
+      (initial_CS != 0)    AndIf 
       (initial_IP IsNot 0x0100)
     ) {  /* COM file start address must be 0000:0100 */
       linker_error(4, "Start address for COM file is not 0000:0100.\n");
     } else {
      if ( (sysfile.val != 0)   AndIf
-        (initial_CS IsNotZero) AndIf 
-        (initial_IP IsNotZero)
+        (initial_CS != 0) AndIf 
+        (initial_IP != 0)
       ) {  /* SYS file start address must be 0000:0000 */
         linker_error(4, "Start address for SYS file is not 0000:0000.\n");
       };
@@ -178,7 +178,7 @@ segment_entry_ptr                      seg;
 		next_available_address += partial_length;
       } else {
        gap = Lseg.address - next_available_address;
-       if ( gap IsNotZero
+       if ( gap != 0
         ) {
          write_gap(gap);
          next_available_address += gap;

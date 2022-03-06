@@ -76,8 +76,8 @@ ListTypeOf(Generic_Element);
 #define IsNotNull            != 0
 #define IsEmpty              == 0
 #define IsNotEmpty           != 0
-#define IsNotZero            != 0
-/*#define IsTrue               != 0
+/*#define IsNotZero            != 0
+#define IsTrue               != 0
 #define IsFalse              == 0
 #define NotGreaterThan       <=
 #define GreaterThanOrEqualTo >=*/

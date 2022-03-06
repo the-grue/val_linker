@@ -45,7 +45,7 @@ public_entry_ptr                       pub;
    next_available_address += gap;
    Lseg.address            = next_available_address;
    next_available_address += Lseg.length;
-   if ( Lseg.highest_uninitialized_byte IsNotZero
+   if ( Lseg.highest_uninitialized_byte != 0
     ) {
      highest_uninitialized_byte                =
      Active_segment.highest_uninitialized_byte =
