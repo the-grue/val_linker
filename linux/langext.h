@@ -8,11 +8,7 @@
 
 /* Block basic C commands */
 
-/*#define For                  for (
-#define BeginFor             ) {
-#define EndFor               }*/
-
-#define BeginDeclarations    {
+/*#define BeginDeclarations    {*/
 #define EndDeclarations
 #define BeginCode
 #define EndCode              }

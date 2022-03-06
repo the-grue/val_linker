@@ -19,7 +19,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 checksum(bit_16 len, byte *sym)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
@@ -47,7 +47,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 int_16 far_compare (byte_ptr left, byte_ptr right, bit_16 len)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
@@ -90,7 +90,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 far_index(byte_ptr dest, byte c)
-BeginDeclarations
+{
 bit_16                                 i;
 EndDeclarations
 BeginCode
@@ -122,7 +122,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 far_match (byte_ptr pattern, byte_ptr s, bit_16 len)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
@@ -171,7 +171,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 byte_ptr far_move (byte_ptr dest, byte_ptr source, bit_16 len)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
@@ -197,7 +197,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 byte_ptr far_move_left (byte_ptr dest, byte_ptr source, bit_16 len)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
@@ -229,7 +229,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 byte_ptr far_set (byte_ptr dest, byte source, bit_16 len)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
@@ -255,7 +255,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 byte_ptr far_to_lower (byte_ptr dest, bit_16 len)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
@@ -292,11 +292,11 @@ void library_directory_hash(byte_ptr      sym,
                             bit_16       *delta_block,
                             bit_16       *starting_entry,
                             bit_16       *delta_entry)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
-BeginDeclarations
+{
 byte                                  *beg_str;
 byte                                  *end_str;
 bit_16                                 c;
@@ -375,11 +375,11 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 word_checksum(bit_16 len, bit_16 address, byte_ptr data)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
-BeginDeclarations
+{
 Structure word_struct
  BeginStructure
   bit_8                                low_byte;

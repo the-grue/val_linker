@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr add_extension_to_file(string_ptr fn, string_ptr ext)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  if ( index_string(fn,0,colon_string) IsNot 1
@@ -26,7 +26,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void add_files_to_list(file_info_list *file_list, string_ptr fn)
-BeginDeclarations
+{
 bit_16                                 already_in_list;
 byte_ptr                               matched_file;
 bit_16                                 compare_len;
@@ -83,7 +83,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr change_extension(string_ptr  fn, string_ptr ext)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  trunc_string(fn, reverse_index_string(fn,0xFFFF,dot_string));
@@ -99,7 +99,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 continue_file_search()
-BeginDeclarations
+{
 bit_16                                 rc;
 EndDeclarations
 BeginCode
@@ -134,7 +134,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr default_directory(string_ptr drive, string_ptr directory)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  inregs.h.ah = 0x47;                   /* Get current directory*/
@@ -160,7 +160,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr default_drive()
-BeginDeclarations
+{
 string_ptr                             drive;
 EndDeclarations
 BeginCode
@@ -180,7 +180,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_close_for_read()
-BeginDeclarations
+{
 #define File                           infile
 EndDeclarations
 BeginCode
@@ -203,7 +203,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_close_for_write()
-BeginDeclarations
+{
 #define File                           outfile
 EndDeclarations
 BeginCode
@@ -236,7 +236,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 file_exists(string_ptr fn, bit_16 attr)
-BeginDeclarations
+{
 bit_16                                 rc;
 EndDeclarations
 BeginCode
@@ -259,7 +259,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_delete(file_info_ptr file_info)
-BeginDeclarations
+{
 #define File_info                      (*file_info)
 EndDeclarations
 BeginCode
@@ -278,7 +278,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_IO_limit(bit_16 limit)
-BeginDeclarations
+{
 #define File                           infile
 EndDeclarations
 BeginCode
@@ -300,7 +300,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_open_for_read(file_info_ptr file_info)
-BeginDeclarations
+{
 #define File                           infile
 #define File_info                      (*file_info)
 EndDeclarations
@@ -358,7 +358,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_open_for_write(file_info_ptr file_info)
-BeginDeclarations
+{
 #define File                           outfile
 #define File_info                      (*file_info)
 EndDeclarations
@@ -416,7 +416,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_position(bit_32 position)
-BeginDeclarations
+{
 #define File                           infile
 EndDeclarations
 BeginCode
@@ -453,7 +453,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_read(byte_ptr into, bit_16 length)
-BeginDeclarations
+{
 #define File                           infile
 EndDeclarations
 BeginCode
@@ -502,7 +502,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void file_write(byte_ptr from, bit_32 length)
-BeginDeclarations
+{
 #define File                           outfile
 EndDeclarations
 BeginCode
@@ -550,7 +550,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 DTA_ptr get_DTA_address()
-BeginDeclarations
+{
 DTA_ptr                                DTA_address;
 EndDeclarations
 BeginCode
@@ -566,7 +566,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr process_filename(string_ptr fn)
-BeginDeclarations
+{
 bit_16                                 left;
 bit_16                                 right;
 EndDeclarations
@@ -654,7 +654,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void set_DTA_address(DTA_ptr DTA_address)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  inregs.h.ah = 0x1A;                   /* Set DTA address */
@@ -672,7 +672,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 start_file_search(string_ptr fn, bit_16 attr)
-BeginDeclarations
+{
 bit_16                                 rc;
 EndDeclarations
 BeginCode

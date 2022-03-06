@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void end_linker(bit_16 return_code)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  if ( statistics.val IsTrue
@@ -22,7 +22,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void linker_statistics()
-BeginDeclarations
+{
 file_info_ptr                          file;
 #define File                           (*file)
 EndDeclarations

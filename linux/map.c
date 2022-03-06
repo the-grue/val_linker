@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void link_map()
-BeginDeclarations
+{
 file_info_ptr                          file;
 #define File                           (*file)
 group_entry_ptr                        grp;
@@ -298,7 +298,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void map_memory(byte_ptr data, bit_32 address, bit_32 length)
-BeginDeclarations
+{
 bit_16                                 i;
 bit_32                                 line_address;
 char                                   ascii[20];
@@ -346,7 +346,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void sort_publics_by_name(bit_16 left, bit_16 right)
-BeginDeclarations
+{
 bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;
@@ -401,7 +401,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void sort_publics_by_value(bit_16 left, bit_16 right)
-BeginDeclarations
+{
 bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;

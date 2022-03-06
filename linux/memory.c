@@ -34,7 +34,7 @@
 
 memory_descriptor_ptr add_chunk_to_pool(pool_descriptor_ptr pool,
                                         bit_32 size)
-BeginDeclarations
+{
 #define Pool                           (*pool)
 memory_descriptor_ptr                  desc;
 #define Desc                           (*desc)
@@ -81,7 +81,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 
 byte_ptr allocate_memory (pool_descriptor_ptr pool, bit_32 size)
-BeginDeclarations
+{
 #define Pool                           (*pool)
 #define Desc                           (*desc)
 #define Prev                           (*prev)
@@ -141,7 +141,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 
 void initialize_memory()
-BeginDeclarations
+{
 byte huge                             *far_memory;
 bit_32                                 far_memory_size;
 bit_32                                 size_this_chunk;
@@ -234,7 +234,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 
 void release_pool(pool_descriptor_ptr pool)
-BeginDeclarations
+{
 #define Pool                           (*pool)
 memory_descriptor_ptr                  desc;
 #define Desc                           (*desc)

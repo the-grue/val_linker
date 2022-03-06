@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void process_libraries()
-BeginDeclarations
+{
 file_info_ptr                          current_lib_file_info;
 EndDeclarations
 BeginCode
@@ -29,7 +29,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void process_library(file_info_ptr lib_file)
-BeginDeclarations
+{
 #define Lib_file                       (*lib_file)
 bit_32                                 pos;
 public_entry_ptr                       pub;
@@ -76,7 +76,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void process_library_directories()
-BeginDeclarations
+{
 file_info_ptr                          current_lib_file_info;
 EndDeclarations
 BeginCode
@@ -100,7 +100,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void process_library_directory(file_info_ptr lib_file)
-BeginDeclarations
+{
 #define Lib_file                       (*lib_file)
 bit_16                                 entry_number;
 bit_16                                 current_block;
@@ -258,7 +258,7 @@ need A2 until after we process B1 in library B.  We then have to go back
 to library A and pick up A2.  The more this happens, the longer the link
 time.*/
 void sort_directory(bit_16 left, bit_16 right)
-BeginDeclarations
+{
 bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;

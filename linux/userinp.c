@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void get_filenames_from_user(bit_16 argc, byte *argv[])
-BeginDeclarations
+{
 byte                                  *env_var;
 bit_16                                 i;
 file_info_ptr                          file_entry;
@@ -174,7 +174,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void process_user_input_files(file_info_list *list,
                               bit_16          required)
-BeginDeclarations
+{
 #define List                           (*list)
 EndDeclarations
 BeginCode
@@ -207,7 +207,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void process_user_output_file(file_info_list *list,
                               bit_16          required)
-BeginDeclarations
+{
 file_info_ptr                          file_entry;
 #define File_entry                     (*file_entry)
 #define List                           (*list)

@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void complete_a_filename_token()
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  copy_string(token, next_token);
@@ -30,7 +30,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void eat_white_space()
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  while ( token_break_char Is ' '
@@ -45,7 +45,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 token_stack_ptr get_free_token_source_element()
-BeginDeclarations
+{
 token_stack_ptr                        elem;
 EndDeclarations
 BeginCode
@@ -66,7 +66,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void get_filename_token(bit_16            required,
                         file_info_list   *list)
-BeginDeclarations
+{
 #define List                           (*list)
 token_stack_ptr                        source_element;
 #define Source_element                 (*source_element)
@@ -220,7 +220,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 FILE *input_open(string_ptr fn)
-BeginDeclarations
+{
 FILE                                  *infile;
 EndDeclarations
 BeginCode
@@ -239,7 +239,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void process_switch()
-BeginDeclarations
+{
 switch_table_ptr                       current_switch;
 #define Current_switch                 (*current_switch)
 EndDeclarations
@@ -276,7 +276,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_bit_16_switch(switch_table_ptr current_switch)
-BeginDeclarations
+{
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((bit_16_switch_ptr)(*current_switch).affected_thing))
 EndDeclarations
@@ -315,7 +315,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_opt_bit_16(switch_table_ptr current_switch)
-BeginDeclarations
+{
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((bit_16_switch_ptr)(*current_switch).affected_thing))
 EndDeclarations
@@ -354,7 +354,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_out_token()
-BeginDeclarations
+{
 bit_16                                 paren_count;
 EndDeclarations
 BeginCode
@@ -489,7 +489,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_help_switch(switch_table_ptr current_switch)
-BeginDeclarations
+{
 #define Affected_thing (*((boolean_switch_ptr)(*current_switch).affected_thing))
 FILE                                  *help_file;
 EndDeclarations
@@ -524,7 +524,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_reset_bit_16(switch_table_ptr current_switch)
-BeginDeclarations
+{
 #define Affected_thing (*((bit_16_switch_ptr)(*current_switch).affected_thing))
 EndDeclarations
 BeginCode
@@ -542,7 +542,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_reset_switch(switch_table_ptr current_switch)
-BeginDeclarations
+{
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((boolean_switch_ptr)(*current_switch).affected_thing))
 EndDeclarations
@@ -561,7 +561,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_set_switch(switch_table_ptr current_switch)
-BeginDeclarations
+{
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((boolean_switch_ptr)(*current_switch).affected_thing))
 EndDeclarations
@@ -580,7 +580,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void scan_text_switch(switch_table_ptr current_switch)
-BeginDeclarations
+{
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((text_switch_ptr)(*current_switch).affected_thing))
 EndDeclarations
@@ -614,7 +614,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void token_get_char()
-BeginDeclarations
+{
 int_16                                 c;
 token_stack_ptr                        tos;
 #define Tos                            (*tos)

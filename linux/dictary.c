@@ -67,7 +67,7 @@ reduce searching time. */
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 group_entry_ptr lookup_group(lname_entry_ptr  group_lname)
-BeginDeclarations
+{
 #define Group_lname                    (*group_lname)
 bit_16                                 hash_val;
 group_entry_ptr                        group_entry;
@@ -114,7 +114,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 lname_entry_ptr lookup_lname(bit_16 len, byte *sym)
-BeginDeclarations
+{
 bit_16                                 charsum;
 bit_16                                 hash_val;
 lname_entry_ptr                        lname_entry;
@@ -165,7 +165,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 public_entry_ptr lookup_public(bit_16 len, byte *sym, bit_16 module)
-BeginDeclarations
+{
 bit_16                                 hash_val;
 public_entry_ptr                       pub_entry;
 #define Pub_entry                      (*pub_entry)
@@ -218,7 +218,7 @@ EndCode
 segment_entry_ptr lookup_segment(lname_entry_ptr  segment_lname,
                                  lname_entry_ptr  class_lname,
                                  combine_type     combine)
-BeginDeclarations
+{
 #define Segment_lname                  (*segment_lname)
 #define Class_lname                    (*class_lname)
 bit_16                                 hash_val;

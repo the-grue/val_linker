@@ -18,7 +18,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void align_active_segment()
-BeginDeclarations
+{
 bit_32                                 gap;
 lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
@@ -118,7 +118,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void get_order_token()
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  while ( token_break_char Is ' '
@@ -161,7 +161,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void order_and_align_segments()
-BeginDeclarations
+{
 byte_ptr                               start_of_expression;
 EndDeclarations
 BeginCode
@@ -238,7 +238,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 order_expression()
-BeginDeclarations
+{
 bit_16                                 left_operand;
 EndDeclarations
 BeginCode
@@ -260,7 +260,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 order_factor()
-BeginDeclarations
+{
 bit_16                                 unary_not;
 EndDeclarations
 BeginCode
@@ -282,7 +282,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 order_primary()
-BeginDeclarations
+{
 group_entry_ptr                        group;
 #define Group                          (*group)
 bit_16                                 operand;
@@ -375,7 +375,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void order_prologue()
-BeginDeclarations
+{
 group_entry_ptr                        group;
 bit_32                                 length;
 lseg_ptr                               lseg;
@@ -611,7 +611,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 order_term()
-BeginDeclarations
+{
 bit_16                                 left_operand;
 EndDeclarations
 BeginCode
@@ -632,7 +632,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void order_token_get_char()
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  if ( token_break_char Is '\000'

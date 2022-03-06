@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr allocate_string(pool_descriptor_ptr pool, bit_16 len)
-BeginDeclarations
+{
 string_ptr                             temp;
 #define Temp                           (*temp)
 EndDeclarations
@@ -26,7 +26,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 int compare_string(string_ptr left, string_ptr right)
-BeginDeclarations
+{
 bit_16                                 left_len;
 bit_16                                 right_len;
 EndDeclarations
@@ -54,7 +54,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 int compare_short_string(string_ptr left, string_ptr right)
-BeginDeclarations
+{
 bit_16                                 left_len;
 EndDeclarations
 BeginCode
@@ -72,7 +72,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr concat_string(string_ptr dest, string_ptr source)
-BeginDeclarations
+{
 bit_16                                 temp;
 EndDeclarations
 BeginCode
@@ -98,7 +98,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr concat_char_to_string(string_ptr dest, byte c)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  if ( (Length(dest) + 1) Exceeds MaxLength(dest)
@@ -120,7 +120,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr copy_string (string_ptr dest, string_ptr source)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  if ( Length(source) Exceeds MaxLength(dest)
@@ -141,7 +141,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr cut_string(string_ptr s, bit_16 at, bit_16 len)
-BeginDeclarations
+{
 bit_16                                 length_to_right;
 bit_16                                 string_length;
 EndDeclarations
@@ -167,7 +167,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr duplicate_string(pool_descriptor_ptr pool, string_ptr s)
-BeginDeclarations
+{
 string_ptr                             temp;
 #define Temp                           (*temp)
 EndDeclarations
@@ -187,7 +187,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr edit_number_string(string_ptr s, char_ptr format, ...)
-BeginDeclarations
+{
 va_list                                argptr;
 bit_16                                 i;
 EndDeclarations
@@ -210,7 +210,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 index_string(string_ptr s, bit_16 from, string_ptr pattern)
-BeginDeclarations
+{
 bit_16                                 i;
 bit_16                                 iteration_count;
 byte_ptr                               left;
@@ -244,7 +244,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr lowercase_string(string_ptr s)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  far_to_lower(String(s), Length(s));
@@ -257,7 +257,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr make_constant_string(pool_descriptor_ptr pool, byte *s)
-BeginDeclarations
+{
 bit_16                                 len;
 string_ptr                             temp;
 EndDeclarations
@@ -277,7 +277,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 match_pattern(string_ptr pattern, string_ptr s)
-BeginDeclarations
+{
 bit_16                                 i;
 bit_16                                 n_searches;
 byte_ptr                               source;
@@ -324,7 +324,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 byte *near_string(string_ptr s)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  far_move(temp_near_string, String(s), Length(s)+1);
@@ -337,7 +337,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr paste_string(string_ptr dest, bit_16 at, string_ptr s)
-BeginDeclarations
+{
 bit_16                                 length_inserted_string;
 bit_16                                 length_string_to_right;
 bit_16                                 length_string;
@@ -377,7 +377,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_16 reverse_index_string(string_ptr s, bit_16 from, string_ptr pattern)
-BeginDeclarations
+{
 bit_16                                 i;
 bit_16                                 iteration_count;
 bit_16                                 len;
@@ -415,7 +415,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr string(byte_ptr s)
-BeginDeclarations
+{
 bit_16                                 len;
 EndDeclarations
 BeginCode
@@ -438,7 +438,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr substr(string_ptr s, bit_16 at, bit_16 len)
-BeginDeclarations
+{
 bit_16                                 string_length;
 EndDeclarations
 BeginCode
@@ -470,7 +470,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 string_ptr trunc_string(string_ptr s, bit_16 at)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  if ( Length(s) NotGreaterThan at+1

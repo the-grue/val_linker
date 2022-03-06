@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void process_object_modules()
-BeginDeclarations
+{
 file_info_ptr                          obj_file;
 EndDeclarations
 BeginCode

@@ -9,7 +9,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_32 get_time(void)
-BeginDeclarations
+{
 bit_32                                 hhmmsscc;
 EndDeclarations
 BeginCode
@@ -30,7 +30,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 char_ptr elapsed_time(bit_32 start_time, bit_32 stop_time)
-BeginDeclarations
+{
  bit_16                                hh;
  bit_16                                mm;
  bit_16                                ss;

@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void make_EXE_header()
-BeginDeclarations
+{
 bit_16                                 checksum;
 bit_32                                 image_size;
 lseg_ptr                               lseg;
@@ -76,7 +76,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void write_executable_image()
-BeginDeclarations
+{
 bit_32                                 data_index;
 bit_32                                 gap;
 bit_32                                 partial_length;
@@ -218,7 +218,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void write_gap(bit_32 length)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  while ( length Exceeds 0

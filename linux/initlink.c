@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void primary_linker_initialization(byte *program_directory)
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 
@@ -156,7 +156,7 @@ process.  After user input is processed, this procedure is called and that
 initialization occurs. */
 
 void secondary_linker_initialization()
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
 

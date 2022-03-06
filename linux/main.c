@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void main(bit_16 argc, byte *argv[])
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  primary_linker_initialization(argv[0]);   link_step++;

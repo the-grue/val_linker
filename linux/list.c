@@ -7,7 +7,7 @@
   +-------------------------------------------------------------------------+*/
 void ListDelete(Generic_Element_ptr       elem,
                 Generic_Element_list far *lst)
-BeginDeclarations
+{
 #define Elem                           (*elem)
 #define Lst                            (*lst)
 Generic_Element_ptr                    current;
@@ -55,7 +55,7 @@ void ListInsert(Generic_Element_ptr       elem,
                 bit_16                    type_insert,
                 Generic_Element_ptr       aftr,
                 Generic_Element_list far *lst)
-BeginDeclarations
+{
 #define Elem                           (*elem)
 #define Aftr                           (*aftr)
 #define Lst                            (*lst)
@@ -118,7 +118,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void ListPop(Generic_Element_list far *lst,
              Generic_Element_ptr      *elem)
-BeginDeclarations
+{
 #define Elem                           (*elem)
 #define Lst                            (*lst)
 EndDeclarations

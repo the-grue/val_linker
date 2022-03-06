@@ -9,7 +9,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void DOS_error(char_ptr format, ... )
-BeginDeclarations
+{
 va_list                                argptr;
 bit_16                                 error_number;
 EndDeclarations
@@ -38,7 +38,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void DOS_int21(char_ptr format, ... )
-BeginDeclarations
+{
 va_list                                argptr;
 bit_16                                 error_number;
 EndDeclarations
@@ -67,7 +67,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void linker_error(unsigned severity, char_ptr format, ...)
-BeginDeclarations
+{
 va_list                                argptr;
 EndDeclarations
 BeginCode
@@ -88,7 +88,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void linker_message(char_ptr format, ...)
-BeginDeclarations
+{
 va_list                                argptr;
 static char                            flag = 0;
 EndDeclarations
@@ -107,7 +107,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void print(char_ptr format, ...)
-BeginDeclarations
+{
 va_list                                argptr;
 bit_16                                 len;
 EndDeclarations

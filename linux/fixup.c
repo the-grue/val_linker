@@ -6,7 +6,7 @@
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void fixup_FIXUPP_record()
-BeginDeclarations
+{
 byte_ptr                               byte_location;
 int_32                                 IP_distance_to_target;
 bit_16                                 fbval;
@@ -144,7 +144,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void fixup_FORREF_record()
-BeginDeclarations
+{
 bit_16                                 len;
 lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
@@ -202,7 +202,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void fixup_LEDATA_record()
-BeginDeclarations
+{
 lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 EndDeclarations
@@ -220,7 +220,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void fixup_LIDATA_IDB()
-BeginDeclarations
+{
 bit_16                                 block_count;
 bit_8                                 *content;
 bit_16                                 i;
@@ -260,7 +260,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void fixup_LIDATA_record()
-BeginDeclarations
+{
 lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 EndDeclarations
@@ -284,7 +284,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_32 frame()
-BeginDeclarations
+{
 bit_32                                 frame_address;
 group_entry_ptr                        grp;
 #define Grp                            (*grp)
@@ -369,7 +369,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 void pass_two()
-BeginDeclarations
+{
 EndDeclarations
 BeginCode
  fixup_start_time = Now;
@@ -428,7 +428,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_32 public_frame_address(public_entry_ptr pub)
-BeginDeclarations
+{
 bit_32                                 address;
 #define Pub                            (*pub)
 segment_entry_ptr                      seg;
@@ -481,7 +481,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_32 public_target_address(public_entry_ptr pub)
-BeginDeclarations
+{
 bit_32                                 address;
 #define Pub                            (*pub)
 segment_entry_ptr                      seg;
@@ -523,7 +523,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_32 segment_offset(lseg_ptr lseg, bit_16 offset)
-BeginDeclarations
+{
 #define Lseg                           (*lseg)
 EndDeclarations
 BeginCode
@@ -537,7 +537,7 @@ EndCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 bit_32 target()
-BeginDeclarations
+{
 group_entry_ptr                        grp;
 #define Grp                            (*grp)
 lseg_ptr                               lseg;
