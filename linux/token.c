@@ -11,11 +11,11 @@ void complete_a_filename_token()
 
  copy_string(token, next_token);
  scan_out_token();
- if ( token_type Is switch_end_token_type
+ if ( token_type == switch_end_token_type
   ) {
    concat_string(token, next_token);
    scan_out_token();
-   if ( token_type Is filename_token_type
+   if ( token_type == filename_token_type
     ) {
      concat_string(token, next_token);
      scan_out_token();
@@ -33,7 +33,7 @@ void eat_white_space()
 {
 
 
- while ( token_break_char Is ' '
+ while ( token_break_char == ' '
   ) {
    token_get_char();
   };
@@ -75,12 +75,12 @@ token_stack_ptr                        source_element;
  while(1)
   {
    required = (required) && (List.first == 0);
-   if ( token_type Is text_token_type
+   if ( token_type == text_token_type
     ) {
      linker_error(8, "Input syntax error:  \"%Fs\" out of place.\n",
                      String(next_token));
     };
-   if ( token_type Is indirect_file_token_type
+   if ( token_type == indirect_file_token_type
     ) {
      scan_out_token();
      if ( token_type != filename_token_type
@@ -98,31 +98,31 @@ token_stack_ptr                        source_element;
      scan_out_token();
      continue;
     };
-   if ( token_type Is switch_token_type
+   if ( token_type == switch_token_type
     ) {
      process_switch();
      continue;
     };
-   if ( token_type Is continuation_token_type
+   if ( token_type == continuation_token_type
     ) {
      scan_out_token();
-     if ( token_type Is line_end_token_type
+     if ( token_type == line_end_token_type
       ) {
        scan_out_token();
       };
      continue;
     };
-   if ( token_type Is filename_token_type
+   if ( token_type == filename_token_type
     ) {
      complete_a_filename_token();
      more_tokens = True;
      return;
     };
-   if ( ((token_type Is end_of_command_line_token_type)  &&
+   if ( ((token_type == end_of_command_line_token_type)  &&
        (List.first == 0))                            ||
       ((required)                                      &&
-       ((token_type Is separator_token_type)           ||
-        (token_type Is line_end_token_type)))
+       ((token_type == separator_token_type)           ||
+        (token_type == line_end_token_type)))
     ) {
      if ( (*token_stack.first).source_file != stdin
       ) {
@@ -144,10 +144,10 @@ token_stack_ptr                        source_element;
     };
    if ( List.first == 0
     ) {
-     if ( (token_type Is separator_token_type)  ||
-        (token_type Is terminator_token_type)
+     if ( (token_type == separator_token_type)  ||
+        (token_type == terminator_token_type)
       ) {
-       if ( prompting_for Is 2
+       if ( prompting_for == 2
         ) {
          if ( comfile.val != 0
           ) {
@@ -167,20 +167,20 @@ token_stack_ptr                        source_element;
        return;
       };
     } else {
-     if ( (token_type Is separator_token_type)           ||
-        (token_type Is terminator_token_type)          ||
-        (token_type Is end_of_command_line_token_type)
+     if ( (token_type == separator_token_type)           ||
+        (token_type == terminator_token_type)          ||
+        (token_type == end_of_command_line_token_type)
       ) {
        copy_string(token, null_string);
        more_tokens = False;
        return;
      };
     };
-   if ( token_type Is line_end_token_type
+   if ( token_type == line_end_token_type
     ) {
      if ( List.first == 0
       ) {
-       if ( prompting_for Is 2
+       if ( prompting_for == 2
         ) {
          if ( comfile.val != 0
           ) {
@@ -199,7 +199,7 @@ token_stack_ptr                        source_element;
       } else {
        copy_string(token, null_string);
       };
-     if ( (*token_stack.first).source_file Is stdin
+     if ( (*token_stack.first).source_file == stdin
       ) {
        Pop token_stack InTo source_element EndPop;
        Push source_element OnTo token_stack_free_list EndPush;
@@ -225,7 +225,7 @@ FILE                                  *infile;
 
 
  infile = fopen((char *)near_string(fn), "r");
- if ( infile Is NULL
+ if ( infile == NULL
   ) {
    linker_error(8, "Could not open file \"%Fs\" for input.\n",
                    String(fn));
@@ -367,7 +367,7 @@ bit_16                                 paren_count;
    case '\n':
     prompt_next_stdin = True;
     concat_char_to_string(next_token, token_break_char);
-    if ( token_stack.first Is token_stack.last
+    if ( token_stack.first == token_stack.last
      ) {
       token_type       = end_of_command_line_token_type;
      } else {
@@ -415,16 +415,16 @@ bit_16                                 paren_count;
        ) {
         concat_char_to_string(next_token, token_break_char);
        } else {
-        if ( (*token_stack.first).source_file Is stdin
+        if ( (*token_stack.first).source_file == stdin
          ) {
           linker_message("continue parenthesized text:  ");
          };
        };
-      if ( token_break_char Is '('
+      if ( token_break_char == '('
        ) {
         paren_count++;
        };
-      if ( token_break_char Is ')'
+      if ( token_break_char == ')'
        ) {
         paren_count--;
        };
@@ -444,8 +444,8 @@ bit_16                                 paren_count;
           (token_break_char != '\n')
      ) {
       concat_char_to_string(next_token, token_break_char);
-      if ( (Length(next_token) Is 2) && (String(next_token)[0] Is '0') &&
-         ((String(next_token)[1] Is 'x') || (String(next_token)[1] Is 'X'))
+      if ( (Length(next_token) == 2) && (String(next_token)[0] == '0') &&
+         ((String(next_token)[1] == 'x') || (String(next_token)[1] == 'X'))
        ) {
         token_is_hex_number = True;
        } else {
@@ -503,7 +503,7 @@ FILE                                  *help_file;
    while ( fgets(CharPtr(object_file_element), MAX_ELEMENT_SIZE, help_file) 
          != 0
     ) {
-     if ( *CharPtr(object_file_element) Is '\f'
+     if ( *CharPtr(object_file_element) == '\f'
        ) {
         linker_message("Press [RETURN] to continue...");
         gets(CharPtr(object_file_element));
@@ -623,7 +623,7 @@ token_stack_ptr                        tos;
 
  while(1)
   {
-   if ( ((*token_stack.first).source_file Is stdin) &&
+   if ( ((*token_stack.first).source_file == stdin) &&
       (prompt_next_stdin)
     ) {
      linker_message("continue:  ");
@@ -642,7 +642,7 @@ token_stack_ptr                        tos;
        token_break_char = String(Tos_string)[Tos.token_string_index++];
        break;
       } else {
-       if ( token_stack.first Is token_stack.last
+       if ( token_stack.first == token_stack.last
         ) {
          token_break_char = '\n';
          return;
@@ -654,7 +654,7 @@ token_stack_ptr                        tos;
       };
     } else { /* Input is from a file */
      c = fgetc(Tos.source_file);
-     if ( c Is EOF
+     if ( c == EOF
       ) {
        if ( Tos.source_file != stdin
         ) {
@@ -670,11 +670,11 @@ token_stack_ptr                        tos;
       };
     };
   };
- if ( token_break_char Is '\r'
+ if ( token_break_char == '\r'
   ) {
    token_break_char = '\n';
   };
- if ( token_break_char Is '\t'
+ if ( token_break_char == '\t'
   ) {
    token_break_char = ' ';
   };

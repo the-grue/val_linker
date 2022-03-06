@@ -45,7 +45,7 @@ bit_16                                 error_number;
 
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  if ( (outregs.x.cflag) &&
-    (! ((inregs.h.al  Is 0x41) && (outregs.x.ax Is 2)))
+    (! ((inregs.h.al  == 0x41) && (outregs.x.ax == 2)))
   ) {
    error_number = outregs.x.ax;
    if ( error_number > 58
@@ -119,7 +119,7 @@ bit_16                                 len;
   ) {
    return;
   };
- if ( object_file_element[len-1] Is '\n'
+ if ( object_file_element[len-1] == '\n'
   ) {
    object_file_element[len-1] = '\000';
    strcat(CharPtr(object_file_element), "\r\n");

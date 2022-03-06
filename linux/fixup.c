@@ -43,7 +43,7 @@ bit_16 far                            *word_location;
    location_address = (*temp_file_header.lseg).address +
                       Bit_32(temp_file_header.offset) +
                       1L;
-   if ( fixup.location_type Is offset_location
+   if ( fixup.location_type == offset_location
     ) {
      location_address++;
     };
@@ -100,8 +100,8 @@ bit_16 far                            *word_location;
    foval          = target_address - frame_address;
    if ( (frame_absolute == 0)                     &&
       (exefile == 0)                            &&
-      ((fixup.location_type Is base_location)      ||
-       (fixup.location_type Is pointer_location))
+      ((fixup.location_type == base_location)      ||
+       (fixup.location_type == pointer_location))
     ) {  /* Count the relocation items we should not be getting. */
      n_relocation_items++;
     };
@@ -300,7 +300,7 @@ segment_entry_ptr                      seg;
   ) {
    case 0:  /* Frame is segment relative */
     lseg           = (lseg_ptr) fixup.frame_referent;
-    frame_absolute = Lseg.align Is absolute_segment;
+    frame_absolute = Lseg.align == absolute_segment;
     seg            = Lseg.segment;
     frame_address  = Seg.address;
     break;
@@ -308,7 +308,7 @@ segment_entry_ptr                      seg;
     grp            = (group_entry_ptr) fixup.frame_referent;
     seg            = Grp.first_segment;
     lseg           = Seg.lsegs.first;
-    frame_absolute = Lseg.align Is absolute_segment;
+    frame_absolute = Lseg.align == absolute_segment;
     frame_address  = Seg.address;
     break;
    case 2:  /* Frame is relative to external */
@@ -322,7 +322,7 @@ segment_entry_ptr                      seg;
    case 4:  /* Frame is segment containing location */
     lseg           = temp_file_header.lseg;
     seg            = Lseg.segment;
-    frame_absolute = Lseg.align Is absolute_segment;
+    frame_absolute = Lseg.align == absolute_segment;
     frame_address  = Seg.address;
     break;
    case 5:  /* Frame is defined by target */
@@ -331,14 +331,14 @@ segment_entry_ptr                      seg;
       case 0:  /* Target is segment relative */
        lseg           = (lseg_ptr) fixup.target_referent;
        seg            = Lseg.segment;
-       frame_absolute = Lseg.align Is absolute_segment;
+       frame_absolute = Lseg.align == absolute_segment;
        frame_address  = Seg.address;
        break;
       case 1:  /* Target is group relative */
        grp = (group_entry_ptr) fixup.target_referent;
        seg            = Grp.first_segment;
        lseg           = Seg.lsegs.first;
-       frame_absolute = Lseg.align Is absolute_segment;
+       frame_absolute = Lseg.align == absolute_segment;
        frame_address  = Seg.address;
        break;
       case 2:  /* Target is relative to an external */
@@ -460,12 +460,12 @@ segment_entry_ptr                      seg;
        frame_absolute = True;
        address        = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
       } else {
-       frame_absolute = (*Pub.Internal.lseg).align Is absolute_segment;
+       frame_absolute = (*Pub.Internal.lseg).align == absolute_segment;
        address        = (*(*Pub.Internal.lseg).segment).address;
       };
     } else {
      frame_absolute = 
-               (*(*(*Pub.Internal.group).first_segment).lsegs.first).align Is
+               (*(*(*Pub.Internal.group).first_segment).lsegs.first).align ==
                absolute_segment;
      address        = (*(*Pub.Internal.group).first_segment).address;
     };

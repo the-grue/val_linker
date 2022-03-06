@@ -95,7 +95,7 @@ public_entry_ptr                       pub;
                        current_record_offset,
                        element_type);
     };
-   if ( Pub.type_entry Is unused
+   if ( Pub.type_entry == unused
     ) {
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry             = expected_type;
@@ -113,7 +113,7 @@ public_entry_ptr                       pub;
        break;
      };
     } else {
-     if ( Pub.type_entry Is expected_type
+     if ( Pub.type_entry == expected_type
       ) {
        if ( (element_size              * element_count)              > 
           (Pub.Communal.element_size * Pub.Communal.element_count)
@@ -122,8 +122,8 @@ public_entry_ptr                       pub;
          Pub.Communal.element_count = element_count;
         };
       } else {
-       if ( (Pub.type_entry Is near_communal) ||
-          (Pub.type_entry Is far_communal)
+       if ( (Pub.type_entry == near_communal) ||
+          (Pub.type_entry == far_communal)
         ) {
          linker_error(4, "Translator error:\n"
                          "\tModule:  \"%Fs\"\n"
@@ -323,12 +323,12 @@ public_entry_ptr                       pub;
    obj_ptr.b8 += len;
    obj_name_length();  /* Eat the type index. */
    externals[++n_externals] = pub;
-   if ( Pub.type_entry Is unused
+   if ( Pub.type_entry == unused
     ) {
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
     } else {
-     if ( (Pub.type_entry Is public_in_library) &&
+     if ( (Pub.type_entry == public_in_library) &&
         (! Pub.Library.requested)
       ) {
        library_request_count++;
@@ -528,9 +528,9 @@ bit_16                                 thread_number;
  fixup.external_error_detected = False;
 
  if ( (fixup.mode == 0) &&
-                             ((fixup.location_type Is base_location)    ||
-                              (fixup.location_type Is pointer_location) ||
-                              (fixup.location_type Is hibyte_location))
+                             ((fixup.location_type == base_location)    ||
+                              (fixup.location_type == pointer_location) ||
+                              (fixup.location_type == hibyte_location))
   ) { /* Undefined fixup action */
    linker_error(4, "Possible translator error:\n"
                    "\tModule:  \"%Fs\"\n"
@@ -543,10 +543,10 @@ bit_16                                 thread_number;
                    current_record_offset);
   };
 
- if ( last_LxDATA_record_type Is LEDATA_record
+ if ( last_LxDATA_record_type == LEDATA_record
   ) {
-   if ( ((fixup.location_type Is base_location)     ||
-       (fixup.location_type Is pointer_location)) &&
+   if ( ((fixup.location_type == base_location)     ||
+       (fixup.location_type == pointer_location)) &&
       (exefile != 0)
     ) { /* Base and pointer locations will require a relocation item
             in the EXE header */
@@ -650,8 +650,8 @@ bit_16                                 repeat_count;
                        LIDATA_offset + fixup_index - LIDATA_index,
                        BytePtr(Addr(fixup)),
                        sizeof(fixup));
-       if ( ((fixup.location_type Is base_location)     ||
-           (fixup.location_type Is pointer_location)) &&
+       if ( ((fixup.location_type == base_location)     ||
+           (fixup.location_type == pointer_location)) &&
           (exefile != 0)
         ) { /* Base and pointer locations will require a relocation item
                 in the EXE header */
@@ -784,7 +784,7 @@ segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 
 
- if ( combine Is stack_combine
+ if ( combine == stack_combine
   ) {
    length += AlignmentGap(length, 1L); /* Stacks should be an integral
                                           number of words. */
@@ -825,7 +825,7 @@ segment_entry_ptr                      seg;
      Lseg.align = align;
     };
   };
- if ( Seg.combine Is stack_combine
+ if ( Seg.combine == stack_combine
   ) {
    if ( ! stack_segment_found
     ) {
@@ -1153,16 +1153,16 @@ bit_8                                  element_size;
   ) {
    return(Bit_32(element_size));
   } else {
-   if ( element_size Is 129
+   if ( element_size == 129
     ) {
      return(Bit_32(*obj_ptr.b16++));
     } else {
-     if ( element_size Is 132
+     if ( element_size == 132
       ) {
        obj_ptr.b8--;
        return((*obj_ptr.b32++) And 0x00FFFFFFL);
       } else {
-       if ( element_size Is 136
+       if ( element_size == 136
         ) {
          return(*obj_ptr.b32++);
         } else {
@@ -1603,7 +1603,7 @@ public_entry_ptr                       pub;
    obj_ptr.b8 += len;
    obj_name_length();  /* Eat the type index. */
    externals[++n_externals] = pub;
-   if ( Pub.type_entry Is unused
+   if ( Pub.type_entry == unused
     ) {
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
@@ -1648,7 +1648,7 @@ bit_16                                 segment_index;
     };
    pub = lookup_public(len, obj_ptr.b8, tmodule_number);
    obj_ptr.b8 += len;
-   if ( Pub.type_entry Is internal
+   if ( Pub.type_entry == internal
     ) {
      linker_error(4, "Duplicate definition of public \"%Fs\".\n"
                      "\tDefinition in module \"%Fs\" of file \"%Fs\" "
@@ -1658,7 +1658,7 @@ bit_16                                 segment_index;
      obj_ptr.b16++;      /* Eat offset. */
      obj_name_length();  /* Eat type index. */
     } else {
-     if ( Pub.type_entry Is unused
+     if ( Pub.type_entry == unused
       ) {
        Insert pub AtEnd InList external_list EndInsert;
       };
@@ -1750,8 +1750,8 @@ void obj_next_record()
  do
   {
    file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
-   while ( (Current_record_header.rec_typ Is LINNUM_record) ||
-         ((Current_record_header.rec_typ Is COMENT_record) &&
+   while ( (Current_record_header.rec_typ == LINNUM_record) ||
+         ((Current_record_header.rec_typ == COMENT_record) &&
           (Current_record_header.rec_len > MAX_OBJECT_FILE_READ_SIZE))
     ) {
      file_position(Bit_32(infile.byte_position) +
@@ -1836,7 +1836,7 @@ bit_16                                 segment_index;
     };
    pub = lookup_public(len, obj_ptr.b8, 0);
    obj_ptr.b8 += len;
-   if ( Pub.type_entry Is internal
+   if ( Pub.type_entry == internal
     ) {
      linker_error(4, "Duplicate definition of public \"%Fs\".\n"
                      "\tDefinition in module \"%Fs\" of file \"%Fs\" "
@@ -1846,11 +1846,11 @@ bit_16                                 segment_index;
      obj_ptr.b16++;      /* Eat offset. */
      obj_name_length();  /* Eat type index. */
     } else {
-     if ( Pub.type_entry Is unused
+     if ( Pub.type_entry == unused
       ) {
        Insert pub AtEnd InList external_list EndInsert;
       };
-     if ( (Pub.type_entry Is public_in_library) &&
+     if ( (Pub.type_entry == public_in_library) &&
         (Pub.Library.requested)
       ) {
        library_request_count--;
@@ -1894,7 +1894,7 @@ lname_entry_ptr                        segment_lname;
   };
  acbp    = *obj_ptr.acbp++;
  align   = Bit_8(acbp.a);
- if ( align Is absolute_segment
+ if ( align == absolute_segment
   ) {
    address  = (Bit_32(*obj_ptr.b16++) ShiftedLeft 4L);  /* Frame */
    address += Bit_32(*obj_ptr.b8++);                    /* Offset */
@@ -1914,11 +1914,11 @@ lname_entry_ptr                        segment_lname;
                     align);
   };
  combine = Bit_8(acbp.c);
- if ( (combine Is 4) || (combine Is 7)
+ if ( (combine == 4) || (combine == 7)
   ) { /* Treat combine types 4 and 7 the same as 2. */
    combine = public_combine;
   };
- if ( (combine Is 1) || (combine Is 3)
+ if ( (combine == 1) || (combine == 3)
   ) { /* This is a translator error. */
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"

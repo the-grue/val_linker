@@ -58,9 +58,9 @@ ListTypeOf(Generic_Element);
 /* Logical operators */
 /*#define AndIf                &&
 #define OrIf                 ||
-#define Not                  !*/
+#define Not                  !
 #define Is                   ==
-/*#define IsNot                !=
+#define IsNot                !=
 #define IsEqualTo            ==
 #define Equals               ==
 #define IsNotEqualTo         !=

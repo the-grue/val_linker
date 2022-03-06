@@ -19,18 +19,18 @@ Generic_Element_ptr                    prior;
  prior = Null;
  TraverseList(Lst, current)
   BeginTraverse
-   if ( current Is elem
+   if ( current == elem
     ) {
-     if ( prior Is Null
+     if ( prior == Null
       ) {
        First(Lst) = Elem.next;
-       if ( First(Lst) Is Null
+       if ( First(Lst) == Null
         ) {
          Last(Lst) = Null;
         };
       } else {
        Prior.next = Elem.next;
-       if ( Last(Lst) Is elem
+       if ( Last(Lst) == elem
         ) {
          Last(Lst) = prior;
         };

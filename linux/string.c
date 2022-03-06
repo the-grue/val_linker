@@ -283,10 +283,10 @@ bit_16                                 n_searches;
 byte_ptr                               source;
 
 
- if ( FirstCharIn(pattern) Is '*'
+ if ( FirstCharIn(pattern) == '*'
   ) {
    cut_string(pattern, 0, 1);
-   if ( LastCharIn(pattern) Is '*'
+   if ( LastCharIn(pattern) == '*'
     ) { /* We must perform exhaustive search */
      cut_string(pattern, 0, Length(pattern)-1);
      if ( Length(pattern) > Length(s)

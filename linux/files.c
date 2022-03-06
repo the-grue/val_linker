@@ -13,7 +13,7 @@ string_ptr add_extension_to_file(string_ptr fn, string_ptr ext)
   ) {  /* AUX:, CON:, or PRN: */
    return(fn);
   };
- if ( index_string(fn,0,dot_string) Is 0xFFFF
+ if ( index_string(fn,0,dot_string) == 0xFFFF
   ) {
    concat_string(fn,ext);
   };
@@ -625,7 +625,7 @@ bit_16                                 right;
      cut_string(fn, left, 3);
      right = left;
      left  = reverse_index_string(fn, right-1, backslash_string);
-     if ( left Is 0xffff
+     if ( left == 0xffff
       ) {
        return(null_string);
       };

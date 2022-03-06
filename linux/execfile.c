@@ -158,7 +158,7 @@ segment_entry_ptr                      seg;
  next_available_address = address_base;
  TraverseList(segment_list, seg)
   BeginTraverse
-   if ((*Seg.lsegs.first).align Is absolute_segment) continue;
+   if ((*Seg.lsegs.first).align == absolute_segment) continue;
    if (Seg.address >= highest_uninitialized_byte) break;
    TraverseList(Seg.lsegs, lseg)
     BeginTraverse

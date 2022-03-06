@@ -128,7 +128,7 @@ bit_16 far_match (byte_ptr pattern, byte_ptr s, bit_16 len)
 /* The following assembly code is the equivalent of the following C code:
  while ( len > 0
   ) {
-   if ( *pattern Is '*'
+   if ( *pattern == '*'
     ) {
      return(True);
     };

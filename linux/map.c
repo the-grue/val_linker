@@ -311,7 +311,7 @@ char                                   ascii[20];
    far_set(BytePtr(ascii), 0, 20);
    for ( i=0; i<16; i++
     ) {
-     if ( i Is 8
+     if ( i == 8
       ) {
        print(" :");
        strcat(ascii, " : ");

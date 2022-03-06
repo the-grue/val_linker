@@ -34,8 +34,8 @@ public_entry_ptr                       pub;
  Active_segment.highest_uninitialized_byte = 0L;
  TraverseList(Active_segment.lsegs, lseg)
   BeginTraverse
-   if (Lseg.align Is absolute_segment) continue;
-   if ( Active_segment.combine Is common_combine
+   if (Lseg.align == absolute_segment) continue;
+   if ( Active_segment.combine == common_combine
     ) {  /* Finally, we know how big the common area is, so allocate
              memory for it.  */
      Lseg.data = allocate_memory(Addr(static_pool), Lseg.length);
@@ -68,14 +68,14 @@ public_entry_ptr                       pub;
   };
  if ( (DOSSEG.val != 0) && 
     (Active_segment.owning_group != 0) &&
-    ((*Active_segment.owning_group).group_name Is DGROUP_lname)
+    ((*Active_segment.owning_group).group_name == DGROUP_lname)
   ) {
    if ( (edata_segment == 0) &&
-      (Active_segment.class_name Is BSS_lname)
+      (Active_segment.class_name == BSS_lname)
     ) {
      edata_segment = active_segment;
      pub = lookup_public(6, (byte *) "_edata", 0);
-     if ( (Pub.type_entry Is external) || (Pub.type_entry Is unused)
+     if ( (Pub.type_entry == external) || (Pub.type_entry == unused)
       ) {
        Pub.type_entry      = internal;
        Pub.Internal.group  = Active_segment.owning_group;
@@ -89,11 +89,11 @@ public_entry_ptr                       pub;
       };
     };
    if ( (end_segment == 0) &&
-      (Active_segment.class_name Is STACK_lname)
+      (Active_segment.class_name == STACK_lname)
     ) {
      end_segment = active_segment;
      pub = lookup_public(4, (byte *) "_end", 0);
-     if ( (Pub.type_entry Is external) || (Pub.type_entry Is unused)
+     if ( (Pub.type_entry == external) || (Pub.type_entry == unused)
       ) {
        Pub.type_entry      = internal;
        Pub.Internal.group  = Active_segment.owning_group;
@@ -121,7 +121,7 @@ void get_order_token()
 {
 
 
- while ( token_break_char Is ' '
+ while ( token_break_char == ' '
   ) {
    order_token_get_char();
   };
@@ -135,7 +135,7 @@ void get_order_token()
     };
    lowercase_string(token);
   } else {
-   if ( token_break_char Is '['
+   if ( token_break_char == '['
     ) {
      while ( token_break_char != ']'
       ) {
@@ -196,10 +196,10 @@ byte_ptr                               start_of_expression;
      order_expression_char_ptr = start_of_expression;
      token_break_char = ' ';
      if ( codeview_information_present &&
-        (((Active_segment.segment_name Is codeview_segment_TYPES) &&
-          (Active_segment.class_name Is codeview_class_DEBTYP)) ||
-         ((Active_segment.segment_name Is codeview_segment_SYMBOLS) &&
-          (Active_segment.class_name Is codeview_class_DEBSYM)))
+        (((Active_segment.segment_name == codeview_segment_TYPES) &&
+          (Active_segment.class_name == codeview_class_DEBTYP)) ||
+         ((Active_segment.segment_name == codeview_segment_SYMBOLS) &&
+          (Active_segment.class_name == codeview_class_DEBSYM)))
       ) { /* Eat the codeview segment */
       } else { /* Process all non-codeview segments */
        if ( order_expression()
@@ -635,7 +635,7 @@ void order_token_get_char()
 {
 
 
- if ( token_break_char Is '\000'
+ if ( token_break_char == '\000'
   ) {
    linker_error(8, "Expression syntax error:\n"
                    "\t\"%Fs\"\n",

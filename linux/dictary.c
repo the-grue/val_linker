@@ -81,7 +81,7 @@ group_entry_ptr                        prior;
  prior       = Null;
  while ( group_entry != 0
   ) {
-   if ( group_lname Is Group_entry.group_name
+   if ( group_lname == Group_entry.group_name
     ) {
      if ( prior != 0
       ) {  /* Move group to beginning of list */
@@ -129,7 +129,7 @@ lname_entry_ptr                        prior;
  prior       = Null;
  while ( lname_entry != 0
   ) {
-   if ( len Is Lname_entry.length
+   if ( len == Lname_entry.length
     ) {
      if ( far_compare(sym, Lname_entry.symbol, len) == 0
       ) {
@@ -178,10 +178,10 @@ public_entry_ptr                       prior;
  prior     = Null;
  while ( pub_entry != 0
   ) {
-   if ( len Is Pub_entry.length
+   if ( len == Pub_entry.length
     ) {
      if ( (far_compare(sym, Pub_entry.symbol, len) == 0) &&
-        (module Is Pub_entry.module)
+        (module == Pub_entry.module)
       ) {
        if ( prior != 0
         ) {  /* Move public to beginning of list */
@@ -237,9 +237,9 @@ segment_entry_ptr                      prior;
    prior         = Null;
    while ( segment_entry != 0
     ) {
-     if ( (segment_lname       Is Segment_entry.segment_name) &&
-        (class_lname         Is Segment_entry.class_name)   &&
-        (combine             Is Segment_entry.combine)
+     if ( (segment_lname       == Segment_entry.segment_name) &&
+        (class_lname         == Segment_entry.class_name)   &&
+        (combine             == Segment_entry.combine)
       ) {
        if ( prior != 0
         ) {  /* Move segment to beginning of list */
