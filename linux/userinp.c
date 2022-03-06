@@ -179,7 +179,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  scan_out_token();
- Repeat
+ do
   {
    get_filename_token(required, list);
    if ( Length(token) Exceeds 0
@@ -214,7 +214,7 @@ file_info_ptr                          file_entry;
 EndDeclarations
 BeginCode
  scan_out_token();
- Repeat
+ do
   {
    get_filename_token(required, list);
    if ( Length(token) Exceeds 0

@@ -1747,7 +1747,7 @@ void obj_next_record()
 BeginDeclarations
 EndDeclarations
 BeginCode
- Repeat
+ do
   {
    file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
    while ( (Current_record_header.rec_typ Is LINNUM_record) OrIf
