@@ -158,15 +158,15 @@ BeginCode
  next_available_address = address_base;
  TraverseList(segment_list, seg)
   BeginTraverse
-   LoopIf((*Seg.lsegs.first).align Is absolute_segment);
+   if ((*Seg.lsegs.first).align Is absolute_segment) continue;
    ExitIf(Seg.address NotLessThan highest_uninitialized_byte);
    TraverseList(Seg.lsegs, lseg)
     BeginTraverse
      ExitIf(Lseg.address NotLessThan highest_uninitialized_byte);
      if ( Lseg.address LessThan next_available_address
       ) {
-       LoopIf((Lseg.address+Lseg.length) NotGreaterThan 
-              next_available_address);
+       if ((Lseg.address+Lseg.length) NotGreaterThan 
+              next_available_address) continue;
        data_index     = next_available_address - Lseg.address;
        partial_length = Lseg.length - data_index;
        if ( Seg.combine IsNot blank_common_combine

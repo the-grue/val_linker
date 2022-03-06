@@ -68,14 +68,14 @@ BeginCode
    n_publics_to_sort = 0;
    TraverseList(external_list, pub)
     BeginTraverse
-     LoopIf(Pub.type_entry IsNot internal);
+     if (Pub.type_entry IsNot internal) continue;
      public_sort_array[n_publics_to_sort++] = pub;
     EndTraverse;
    TraverseList(lib_file_list, file)
     BeginTraverse
      TraverseList(File.external_list, pub)
       BeginTraverse
-       LoopIf(Pub.type_entry IsNot internal);
+       if (Pub.type_entry IsNot internal) continue;
        public_sort_array[n_publics_to_sort++] = pub;
       EndTraverse;
     EndTraverse;
@@ -161,7 +161,7 @@ BeginCode
       ) {
        TraverseList(Seg.lsegs, lseg)
         BeginTraverse
-         LoopIf(Lseg.length IsZero);
+         if (Lseg.length IsZero) continue;
          print("\n");
          print("File(%Fs) Next Uninitialized Byte(%05lX)\n",
                (*Lseg.file).filename,

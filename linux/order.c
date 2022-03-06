@@ -34,7 +34,7 @@ BeginCode
  Active_segment.highest_uninitialized_byte = 0L;
  TraverseList(Active_segment.lsegs, lseg)
   BeginTraverse
-   LoopIf(Lseg.align Is absolute_segment);
+   if (Lseg.align Is absolute_segment) continue;
    if ( Active_segment.combine Is common_combine
     ) {  /* Finally, we know how big the common area is, so allocate
              memory for it.  */
@@ -483,7 +483,7 @@ BeginCode
    length = 0L;
    For pub=near_communals; pub IsNotNull; pub=Pub.Communal.next_communal
     BeginFor
-     LoopIf(Pub.type_entry IsNot near_communal);
+     if (Pub.type_entry IsNot near_communal) continue;
      length += Pub.Communal.element_size;
     EndFor;
    if ( length Exceeds 65536L
@@ -506,7 +506,7 @@ BeginCode
    For pub=near_communals; pub IsNotNull; pub=next_communal
     BeginFor
      next_communal        = Pub.Communal.next_communal;
-     LoopIf(Pub.type_entry IsNot near_communal);
+     if (Pub.type_entry IsNot near_communal) continue;
      size                 = Bit_16(Pub.Communal.element_size);
      Pub.type_entry       = internal;
      Pub.Internal.group   = group;
@@ -530,7 +530,7 @@ BeginCode
  For pub=far_communals; pub IsNotNull; pub=next_communal
   BeginFor
    next_communal = Pub.Communal.next_communal;
-   LoopIf(Pub.type_entry IsNot far_communal); 
+   if (Pub.type_entry IsNot far_communal) continue; 
    length = Pub.Communal.element_size * Pub.Communal.element_count;
    if ( length Exceeds 65536L
     ) {

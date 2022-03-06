@@ -42,8 +42,8 @@ BeginCode
    Lib_file.pass_count++;
    TraverseList(Lib_file.external_list, pub)
     BeginTraverse
-     LoopIf((Pub.type_entry IsNot public_in_library) OrIf
-            (Not Pub.Library.requested));
+     if ((Pub.type_entry IsNot public_in_library) OrIf
+            (Not Pub.Library.requested)) continue;
      pos = Bit_32(Pub.Library.page) * Bit_32(Lib_file.page_size);
      file_position(pos);
      Lib_file.module_count++;
@@ -152,7 +152,7 @@ BeginCode
     BeginFor
      symbol_index =
       Directory_page.offset_to_symbol[entry_number] ShiftedLeft 1;
-     LoopIf(symbol_index IsZero);
+     if (symbol_index IsZero) continue;
      symbol = (library_symbol_entry_ptr)
               Addr(Directory_page.offset_to_symbol[symbol_index]);
      symbol_in_page = (bit_16 *)

@@ -14,7 +14,7 @@
 #define ExitLoop             break
 #define ContinueLoop         continue*/
 #define ExitIf(cond)         if (cond) break
-#define LoopIf(cond)         if (cond) continue
+/*#define LoopIf(cond)         if (cond) continue*/
 
 #define Repeat               do
 #define BeginRepeat          {
