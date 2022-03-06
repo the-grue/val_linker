@@ -35,7 +35,7 @@ BeginCode
          Last(Lst) = prior;
         };
       };
-     ExitLoop;
+     break;
     };
    prior = current;
   EndTraverse;

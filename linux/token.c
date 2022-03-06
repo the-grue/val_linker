@@ -640,7 +640,7 @@ BeginCode
      if ( Tos.token_string_index LessThan Length(Tos_string)
       ) {
        token_break_char = String(Tos_string)[Tos.token_string_index++];
-       ExitLoop;
+       break;
       } else {
        if ( token_stack.first Is token_stack.last
         ) {
@@ -663,10 +663,10 @@ BeginCode
        Pop token_stack InTo tos EndPop;
        token_break_char = Tos.break_char;
        Push tos OnTo token_stack_free_list EndPush;
-       ExitLoop;
+       break;
       } else {
        token_break_char = Byte(c);
-       ExitLoop;
+       break;
       };
     };
   EndLoop;

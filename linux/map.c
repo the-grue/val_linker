@@ -369,7 +369,7 @@ BeginCode
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
-       ExitLoop;
+       break;
       };
      j--;
     };
@@ -382,7 +382,7 @@ BeginCode
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
-       ExitLoop;
+       break;
       };
      i++;
     };
@@ -425,7 +425,7 @@ BeginCode
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
-       ExitLoop;
+       break;
       };
      j--;
     };
@@ -439,7 +439,7 @@ BeginCode
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
-       ExitLoop;
+       break;
       };
      i++;
     };
