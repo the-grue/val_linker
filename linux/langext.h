@@ -8,12 +8,7 @@
 
 /* Block basic C commands */
 
-/*#define BeginDeclarations    {
-#define EndDeclarations
-#define BeginCode
-#define EndCode              }*/
-
-#define Type                 typedef
+/*#define Type                 typedef*/
 
 #define Structure           struct
 #define BeginStructure      {
@@ -37,15 +32,15 @@ Structure exp##_list_struct \
   exp##_ptr                            first; \
   exp##_ptr                            last; \
  EndStructure; \
-Type Structure exp##_list_struct       exp##_list
+typedef Structure exp##_list_struct       exp##_list
 
 Structure Generic_Element_struct
  BeginStructure
   Structure Generic_Element_struct far   *next;
  EndStructure;
 
-Type Structure Generic_Element_struct  Generic_Element_type;
-Type Generic_Element_type far         *Generic_Element_ptr;
+typedef Structure Generic_Element_struct  Generic_Element_type;
+typedef Generic_Element_type far         *Generic_Element_ptr;
 
 ListTypeOf(Generic_Element);
 
@@ -128,17 +123,17 @@ ListTypeOf(Generic_Element);
 #define True                 1
 
 /* Some helpful types */
-Type unsigned char           bit_8;
-Type unsigned int            bit_16;
-Type unsigned long           bit_32;
-Type unsigned char           byte;
-Type byte far               *byte_ptr;
-Type void far               *far_ptr;
-Type signed char             int_8;
-Type signed int              int_16;
-Type signed long             int_32;
-Type void  /* near */       *near_ptr;
-Type char  /* near */       *char_ptr;
+typedef unsigned char           bit_8;
+typedef unsigned int            bit_16;
+typedef unsigned long           bit_32;
+typedef unsigned char           byte;
+typedef byte far               *byte_ptr;
+typedef void far               *far_ptr;
+typedef signed char             int_8;
+typedef signed int              int_16;
+typedef signed long             int_32;
+typedef void  /* near */       *near_ptr;
+typedef char  /* near */       *char_ptr;
 
 Structure string_struct
  BeginStructure
@@ -147,8 +142,8 @@ Structure string_struct
   byte                       text[1];
  EndStructure;
 
-Type Structure string_struct string_type;
-Type string_type far        *string_ptr;
+typedef Structure string_struct string_type;
+typedef string_type far        *string_ptr;
 
 #define String(str)          ((byte_ptr) ((*str).text))
 #define Length(str)          (*str).length

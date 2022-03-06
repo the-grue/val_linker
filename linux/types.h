@@ -1,113 +1,113 @@
 /*                                 TYPES.H                                 */
 
-Type
+typedef
  Structure acbp_struct                       acbp_type;
-Type acbp_type                              *acbp_ptr;
-Type
+typedef acbp_type                              *acbp_ptr;
+typedef
  Structure bit_16_switch_struct              bit_16_switch_type;
-Type bit_16_switch_type                     *bit_16_switch_ptr;
-Type
+typedef bit_16_switch_type                     *bit_16_switch_ptr;
+typedef
  Structure boolean_switch_struct             boolean_switch_type;
-Type boolean_switch_type                    *boolean_switch_ptr;
-Type
+typedef boolean_switch_type                    *boolean_switch_ptr;
+typedef
  Enumeration combine_enum                    combine_type;
-Type
+typedef
  Structure communal_entry_struct             communal_entry_type;
-Type
+typedef
  Structure DTA_struct                        DTA_type;
-Type DTA_type far                           *DTA_ptr;
-Type
+typedef DTA_type far                           *DTA_ptr;
+typedef
  Union entry_information_union               entry_information_type;
-Type
+typedef
  Structure EXE_header_struct                 EXE_header_type;
-Type EXE_header_type far                    *EXE_header_ptr;
-Type
+typedef EXE_header_type far                    *EXE_header_ptr;
+typedef
  Structure external_entry_struct             external_entry_type;
-Type
+typedef
  Structure file_info_struct                  file_info_type;
-Type file_info_type far                     *file_info_ptr;
-Type
+typedef file_info_type far                     *file_info_ptr;
+typedef
  Structure file_struct                       file_type;
-Type file_type                              *file_ptr;
-Type
+typedef file_type                              *file_ptr;
+typedef
  Structure FIX_DAT_struct                    FIX_DAT_type;
-Type FIX_DAT_type                           *FIX_DAT_ptr;
-Type
+typedef FIX_DAT_type                           *FIX_DAT_ptr;
+typedef
  Structure fixup_struct                      fixup_type;
-Type
+typedef
  Structure group_entry_struct                group_entry_type;
-Type group_entry_type far                   *group_entry_ptr;
-Type group_entry_ptr far                    *group_entry_ptr_array;
-Type
+typedef group_entry_type far                   *group_entry_ptr;
+typedef group_entry_ptr far                    *group_entry_ptr_array;
+typedef
  Structure internal_entry_struct             internal_entry_type;
-Type
+typedef
  Structure library_directory_struct          library_directory_type;
-Type library_directory_type                 *library_directory_ptr;
-Type
+typedef library_directory_type                 *library_directory_ptr;
+typedef
  Structure library_entry_struct              library_entry_type;
-Type
+typedef
  Structure library_file_header_struct        library_file_header_type;
-Type library_file_header_type               *library_file_header_ptr;
-Type
+typedef library_file_header_type               *library_file_header_ptr;
+typedef
  Structure library_symbol_entry_struct       library_symbol_entry_type;
-Type library_symbol_entry_type              *library_symbol_entry_ptr;
-Type
+typedef library_symbol_entry_type              *library_symbol_entry_ptr;
+typedef
  Structure lname_entry_struct                lname_entry_type;
-Type lname_entry_type far                   *lname_entry_ptr;
-Type lname_entry_ptr far                    *lname_entry_ptr_array;
-Type
+typedef lname_entry_type far                   *lname_entry_ptr;
+typedef lname_entry_ptr far                    *lname_entry_ptr_array;
+typedef
  Enumeration loc_enum                        loc_type;
-Type
+typedef
  Structure LOCAT_struct                      LOCAT_type;
-Type LOCAT_type                             *LOCAT_ptr;
-Type
+typedef LOCAT_type                             *LOCAT_ptr;
+typedef
  Structure lseg_struct                       lseg_type;
-Type lseg_type far                          *lseg_ptr;
-Type lseg_ptr far                           *lseg_ptr_array;
-Type
+typedef lseg_type far                          *lseg_ptr;
+typedef lseg_ptr far                           *lseg_ptr_array;
+typedef
  Structure memory_descriptor_struct          memory_descriptor_type;
-Type memory_descriptor_type far             *memory_descriptor_ptr;
-Type
+typedef memory_descriptor_type far             *memory_descriptor_ptr;
+typedef
  Structure MOD_TYP_struct                    MOD_TYP_type;
-Type MOD_TYP_type                           *MOD_TYP_ptr;
-Type
+typedef MOD_TYP_type                           *MOD_TYP_ptr;
+typedef
  Union obj_ptr_union                         obj_ptr_type;
-Type
+typedef
  Structure obj_record_header_struct          obj_record_header_type;
-Type obj_record_header_type                 *obj_record_header_ptr;
-Type
+typedef obj_record_header_type                 *obj_record_header_ptr;
+typedef
  Enumeration obj_mod_rec_type_enum           object_module_record_types;
-Type
+typedef
  Enumeration public_entry_class_enum         public_entry_class_type;
-Type
+typedef
  Structure public_entry_struct               public_entry_type;
-Type public_entry_type far                  *public_entry_ptr;
-Type public_entry_ptr far                   *public_entry_ptr_array;
-Type
+typedef public_entry_type far                  *public_entry_ptr;
+typedef public_entry_ptr far                   *public_entry_ptr_array;
+typedef
  Structure pool_descriptor_struct            pool_descriptor_type;
-Type pool_descriptor_type                   *pool_descriptor_ptr;
-Type
+typedef pool_descriptor_type                   *pool_descriptor_ptr;
+typedef
  Structure segment_entry_struct              segment_entry_type;
-Type segment_entry_type far                 *segment_entry_ptr;
-Type segment_entry_ptr far                  *segment_entry_ptr_array;
-Type
+typedef segment_entry_type far                 *segment_entry_ptr;
+typedef segment_entry_ptr far                  *segment_entry_ptr_array;
+typedef
  Structure switch_table_struct               switch_table_type;
-Type switch_table_type                      *switch_table_ptr;
-Type
+typedef switch_table_type                      *switch_table_ptr;
+typedef
 Structure temp_file_header_struct            temp_file_header_type;
-Type
+typedef
  Structure text_switch_struct                text_switch_type;
-Type text_switch_type                       *text_switch_ptr;
-Type
+typedef text_switch_type                       *text_switch_ptr;
+typedef
  Structure thread_struct                     thread_type;
-Type
+typedef
  Structure TRD_DAT_struct                    TRD_DAT_type;
-Type TRD_DAT_type                           *TRD_DAT_ptr;
-Type
+typedef TRD_DAT_type                           *TRD_DAT_ptr;
+typedef
  Enumeration token_class_enum                token_class_type;
-Type
+typedef
  Structure token_stack_struct                token_stack_type;
-Type token_stack_type far                   *token_stack_ptr;
+typedef token_stack_type far                   *token_stack_ptr;
 
 Structure acbp_struct
  BeginStructure
