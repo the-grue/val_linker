@@ -1,115 +1,115 @@
 /*                                 TYPES.H                                 */
 
 typedef
- Structure acbp_struct                       acbp_type;
+ struct acbp_struct                       acbp_type;
 typedef acbp_type                              *acbp_ptr;
 typedef
- Structure bit_16_switch_struct              bit_16_switch_type;
+ struct bit_16_switch_struct              bit_16_switch_type;
 typedef bit_16_switch_type                     *bit_16_switch_ptr;
 typedef
- Structure boolean_switch_struct             boolean_switch_type;
+ struct boolean_switch_struct             boolean_switch_type;
 typedef boolean_switch_type                    *boolean_switch_ptr;
 typedef
  Enumeration combine_enum                    combine_type;
 typedef
- Structure communal_entry_struct             communal_entry_type;
+ struct communal_entry_struct             communal_entry_type;
 typedef
- Structure DTA_struct                        DTA_type;
+ struct DTA_struct                        DTA_type;
 typedef DTA_type far                           *DTA_ptr;
 typedef
  Union entry_information_union               entry_information_type;
 typedef
- Structure EXE_header_struct                 EXE_header_type;
+ struct EXE_header_struct                 EXE_header_type;
 typedef EXE_header_type far                    *EXE_header_ptr;
 typedef
- Structure external_entry_struct             external_entry_type;
+ struct external_entry_struct             external_entry_type;
 typedef
- Structure file_info_struct                  file_info_type;
+ struct file_info_struct                  file_info_type;
 typedef file_info_type far                     *file_info_ptr;
 typedef
- Structure file_struct                       file_type;
+ struct file_struct                       file_type;
 typedef file_type                              *file_ptr;
 typedef
- Structure FIX_DAT_struct                    FIX_DAT_type;
+ struct FIX_DAT_struct                    FIX_DAT_type;
 typedef FIX_DAT_type                           *FIX_DAT_ptr;
 typedef
- Structure fixup_struct                      fixup_type;
+ struct fixup_struct                      fixup_type;
 typedef
- Structure group_entry_struct                group_entry_type;
+ struct group_entry_struct                group_entry_type;
 typedef group_entry_type far                   *group_entry_ptr;
 typedef group_entry_ptr far                    *group_entry_ptr_array;
 typedef
- Structure internal_entry_struct             internal_entry_type;
+ struct internal_entry_struct             internal_entry_type;
 typedef
- Structure library_directory_struct          library_directory_type;
+ struct library_directory_struct          library_directory_type;
 typedef library_directory_type                 *library_directory_ptr;
 typedef
- Structure library_entry_struct              library_entry_type;
+ struct library_entry_struct              library_entry_type;
 typedef
- Structure library_file_header_struct        library_file_header_type;
+ struct library_file_header_struct        library_file_header_type;
 typedef library_file_header_type               *library_file_header_ptr;
 typedef
- Structure library_symbol_entry_struct       library_symbol_entry_type;
+ struct library_symbol_entry_struct       library_symbol_entry_type;
 typedef library_symbol_entry_type              *library_symbol_entry_ptr;
 typedef
- Structure lname_entry_struct                lname_entry_type;
+ struct lname_entry_struct                lname_entry_type;
 typedef lname_entry_type far                   *lname_entry_ptr;
 typedef lname_entry_ptr far                    *lname_entry_ptr_array;
 typedef
  Enumeration loc_enum                        loc_type;
 typedef
- Structure LOCAT_struct                      LOCAT_type;
+ struct LOCAT_struct                      LOCAT_type;
 typedef LOCAT_type                             *LOCAT_ptr;
 typedef
- Structure lseg_struct                       lseg_type;
+ struct lseg_struct                       lseg_type;
 typedef lseg_type far                          *lseg_ptr;
 typedef lseg_ptr far                           *lseg_ptr_array;
 typedef
- Structure memory_descriptor_struct          memory_descriptor_type;
+ struct memory_descriptor_struct          memory_descriptor_type;
 typedef memory_descriptor_type far             *memory_descriptor_ptr;
 typedef
- Structure MOD_TYP_struct                    MOD_TYP_type;
+ struct MOD_TYP_struct                    MOD_TYP_type;
 typedef MOD_TYP_type                           *MOD_TYP_ptr;
 typedef
  Union obj_ptr_union                         obj_ptr_type;
 typedef
- Structure obj_record_header_struct          obj_record_header_type;
+ struct obj_record_header_struct          obj_record_header_type;
 typedef obj_record_header_type                 *obj_record_header_ptr;
 typedef
  Enumeration obj_mod_rec_type_enum           object_module_record_types;
 typedef
  Enumeration public_entry_class_enum         public_entry_class_type;
 typedef
- Structure public_entry_struct               public_entry_type;
+ struct public_entry_struct               public_entry_type;
 typedef public_entry_type far                  *public_entry_ptr;
 typedef public_entry_ptr far                   *public_entry_ptr_array;
 typedef
- Structure pool_descriptor_struct            pool_descriptor_type;
+ struct pool_descriptor_struct            pool_descriptor_type;
 typedef pool_descriptor_type                   *pool_descriptor_ptr;
 typedef
- Structure segment_entry_struct              segment_entry_type;
+ struct segment_entry_struct              segment_entry_type;
 typedef segment_entry_type far                 *segment_entry_ptr;
 typedef segment_entry_ptr far                  *segment_entry_ptr_array;
 typedef
- Structure switch_table_struct               switch_table_type;
+ struct switch_table_struct               switch_table_type;
 typedef switch_table_type                      *switch_table_ptr;
 typedef
-Structure temp_file_header_struct            temp_file_header_type;
+struct temp_file_header_struct            temp_file_header_type;
 typedef
- Structure text_switch_struct                text_switch_type;
+ struct text_switch_struct                text_switch_type;
 typedef text_switch_type                       *text_switch_ptr;
 typedef
- Structure thread_struct                     thread_type;
+ struct thread_struct                     thread_type;
 typedef
- Structure TRD_DAT_struct                    TRD_DAT_type;
+ struct TRD_DAT_struct                    TRD_DAT_type;
 typedef TRD_DAT_type                           *TRD_DAT_ptr;
 typedef
  Enumeration token_class_enum                token_class_type;
 typedef
- Structure token_stack_struct                token_stack_type;
+ struct token_stack_struct                token_stack_type;
 typedef token_stack_type far                   *token_stack_ptr;
 
-Structure acbp_struct
+struct acbp_struct
  {
   unsigned                             p:1;
   unsigned                             b:1;
@@ -127,7 +127,7 @@ Enumeration align_enum
   dword_aligned
  EndEnumeration;
 
-Structure bit_16_switch_struct
+struct bit_16_switch_struct
  {
   bit_16                               val;
   bit_16                               min;
@@ -136,7 +136,7 @@ Structure bit_16_switch_struct
   bit_16                               set;
  };
 
-Structure boolean_switch_struct
+struct boolean_switch_struct
  {
   bit_16                               val;
  };
@@ -150,7 +150,7 @@ Enumeration combine_enum
   blank_common_combine                 = 9
  EndEnumeration;
 
-Structure DTA_struct
+struct DTA_struct
  {
   byte                                 DOS_reserved[21];
   bit_8                                attribute;
@@ -161,7 +161,7 @@ Structure DTA_struct
   byte                                 filler[85];
  };
 
-Structure EXE_header_struct
+struct EXE_header_struct
  {
   bit_16                               signature;
   bit_16                               image_length_MOD_512;
@@ -181,12 +181,12 @@ Structure EXE_header_struct
   bit_32                               relocation_table[1];
  };
 
-Structure external_entry_struct
+struct external_entry_struct
  {
   bit_16                               reserved;
  };
 
-Structure internal_entry_struct
+struct internal_entry_struct
  {
   group_entry_ptr                      group;
   lseg_ptr                             lseg;
@@ -194,14 +194,14 @@ Structure internal_entry_struct
   bit_16                               offset;
  };
 
-Structure library_entry_struct
+struct library_entry_struct
  {
   file_info_ptr                        lib_file;
   bit_16                               page;
   bit_8                                requested;
  };
 
-Structure communal_entry_struct
+struct communal_entry_struct
  {
   public_entry_ptr                     next_communal;
   bit_32                               element_size;
@@ -226,7 +226,7 @@ Enumeration public_entry_class_enum
   near_communal
  EndEnumeration;
 
-Structure public_entry_struct
+struct public_entry_struct
  {
   public_entry_ptr                     next;
   public_entry_ptr                     next_congruent;
@@ -243,7 +243,7 @@ Structure public_entry_struct
 
 ListTypeOf(public_entry);
 
-Structure file_info_struct
+struct file_info_struct
  {
   file_info_ptr                        next;
   bit_8                                attribute;
@@ -260,7 +260,7 @@ Structure file_info_struct
 
 ListTypeOf(file_info);
 
-Structure file_struct
+struct file_struct
  {
   file_info_ptr                        file_info;
   bit_16                               file_handle;
@@ -275,7 +275,7 @@ Structure file_struct
   bit_16                               byte_position;
  };
 
-Structure FIX_DAT_struct
+struct FIX_DAT_struct
  {
   unsigned                             targt:2;
   unsigned                             p:1;
@@ -284,7 +284,7 @@ Structure FIX_DAT_struct
   unsigned                             f:1;
  };
 
-Structure fixup_struct
+struct fixup_struct
  {
   void far                            *frame_referent;
   void far                            *target_referent;
@@ -297,7 +297,7 @@ Structure fixup_struct
   unsigned                             reserved:6;
  };
 
-Structure group_entry_struct
+struct group_entry_struct
  {
   group_entry_ptr                      next;
   group_entry_ptr                      next_congruent;
@@ -307,13 +307,13 @@ Structure group_entry_struct
 
 ListTypeOf(group_entry);
 
-Structure library_directory_struct
+struct library_directory_struct
  {
   bit_8                                offset_to_symbol[38];
   byte                                 symbol_area[474];
  };
 
-Structure library_file_header_struct
+struct library_file_header_struct
  {
   bit_8                                flag;
   bit_16                               page_size;
@@ -321,13 +321,13 @@ Structure library_file_header_struct
   bit_16                               n_directory_blocks;
  };
 
- Structure library_symbol_entry_struct
+ struct library_symbol_entry_struct
   {
    bit_8                               length_of_symbol;
    byte                                symbol[1];
   };
 
-Structure lname_entry_struct
+struct lname_entry_struct
  {
   lname_entry_ptr                      next_congruent;
   bit_16                               lname_checksum;
@@ -335,7 +335,7 @@ Structure lname_entry_struct
   byte                                 symbol[1];
  };
 
-Structure LOCAT_struct
+struct LOCAT_struct
  {
   unsigned                             data_record_offset:10;
   unsigned                             loc:3;
@@ -353,7 +353,7 @@ Enumeration loc_enum
   hibyte_location
  EndEnumeration;
 
-Structure lseg_struct
+struct lseg_struct
  {
   lseg_ptr                             next;
   segment_entry_ptr                    segment;
@@ -368,7 +368,7 @@ Structure lseg_struct
 
 ListTypeOf(lseg);
 
-Structure memory_descriptor_struct
+struct memory_descriptor_struct
  {
   memory_descriptor_ptr                next;
   byte_ptr                             chunk;
@@ -377,7 +377,7 @@ Structure memory_descriptor_struct
   byte_ptr                             unused_base;
  };
 
-Structure MOD_TYP_struct
+struct MOD_TYP_struct
  {
   unsigned                             l:1;
   unsigned                             zeros:5;
@@ -417,14 +417,14 @@ Enumeration obj_mod_rec_type_enum
   MODPUB_record                        = 0xb6
  EndEnumeration;
 
-Structure obj_record_header_struct
+struct obj_record_header_struct
  {
   bit_8                                rec_typ;
   bit_16                               rec_len;
   byte                                 variant_part[1];
  };
 
-Structure pool_descriptor_struct
+struct pool_descriptor_struct
  {
   memory_descriptor_ptr                memory_descriptor_list;
   char_ptr                             pool_id;
@@ -432,7 +432,7 @@ Structure pool_descriptor_struct
   bit_32                               used_bytes;
  };
 
-Structure segment_entry_struct
+struct segment_entry_struct
  {
   segment_entry_ptr                    next;
   segment_entry_ptr                    next_congruent;
@@ -448,7 +448,7 @@ Structure segment_entry_struct
 
 ListTypeOf(segment_entry);
 
-Structure switch_table_struct
+struct switch_table_struct
  {
   bit_8                                min_length;
   char                                *abbr_name;
@@ -457,7 +457,7 @@ Structure switch_table_struct
   void                  (*switch_processor)(switch_table_ptr current_switch);
  };
 
-Structure temp_file_header_struct
+struct temp_file_header_struct
  {
   bit_8                                rec_typ;
   bit_16                               rec_len;
@@ -465,12 +465,12 @@ Structure temp_file_header_struct
   bit_16                               offset;
  };
 
-Structure text_switch_struct
+struct text_switch_struct
  {
   string_ptr                           val;
  };
 
-Structure thread_struct
+struct thread_struct
  {
   bit_8                                method;
   void far                            *referent;
@@ -492,7 +492,7 @@ Enumeration token_class_enum
   terminator_token_type
  EndEnumeration;
 
-Structure token_stack_struct
+struct token_stack_struct
  {
   token_stack_ptr                      next;
   FILE                                *source_file;
@@ -503,7 +503,7 @@ Structure token_stack_struct
 
 ListTypeOf(token_stack);
 
-Structure TRD_DAT_struct
+struct TRD_DAT_struct
  {
   unsigned                             thred:2;
   unsigned                             method:3;

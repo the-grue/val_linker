@@ -8,8 +8,8 @@
 
 /* Block basic C commands */
 
-#define Structure           struct
-/*#define BeginStructure      {
+/*#define Structure           struct
+#define BeginStructure      {
 #define EndStructure        }*/
 
 #define Union               union
@@ -25,19 +25,19 @@
 /* Linked List commands */
 
 #define ListTypeOf(exp) \
-Structure exp##_list_struct \
+struct exp##_list_struct \
  { \
   exp##_ptr                            first; \
   exp##_ptr                            last; \
  }; \
-typedef Structure exp##_list_struct       exp##_list
+typedef struct exp##_list_struct       exp##_list
 
-Structure Generic_Element_struct
+struct Generic_Element_struct
  {
-  Structure Generic_Element_struct far   *next;
+  struct Generic_Element_struct far   *next;
  };
 
-typedef Structure Generic_Element_struct  Generic_Element_type;
+typedef struct Generic_Element_struct  Generic_Element_type;
 typedef Generic_Element_type far         *Generic_Element_ptr;
 
 ListTypeOf(Generic_Element);
@@ -133,14 +133,14 @@ typedef signed long             int_32;
 typedef void  /* near */       *near_ptr;
 typedef char  /* near */       *char_ptr;
 
-Structure string_struct
+struct string_struct
  {
   bit_16                     max_length;
   bit_16                     length;
   byte                       text[1];
  };
 
-typedef Structure string_struct string_type;
+typedef struct string_struct string_type;
 typedef string_type far        *string_ptr;
 
 #define String(str)          ((byte_ptr) ((*str).text))
