@@ -38,7 +38,7 @@ char_ptr elapsed_time(bit_32 start_time, bit_32 stop_time)
  bit_32                                t;
 
 
- if ( start_time Exceeds stop_time
+ if ( start_time > stop_time
   ) { /* We passed midnight and must add 24 hours to stop time */
    stop_time += 8640000L;
   };

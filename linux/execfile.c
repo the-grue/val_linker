@@ -183,7 +183,7 @@ segment_entry_ptr                      seg;
          write_gap(gap);
          next_available_address += gap;
         };
-       if ( (Lseg.address + Lseg.length) Exceeds highest_uninitialized_byte
+       if ( (Lseg.address + Lseg.length) > highest_uninitialized_byte
         ) {
          partial_length = (Lseg.address + Lseg.length) - 
                           highest_uninitialized_byte;
@@ -221,9 +221,9 @@ void write_gap(bit_32 length)
 {
 
 
- while ( length Exceeds 0
+ while ( length > 0
   ) {
-   if ( length Exceeds Bit_32(MAX_ELEMENT_SIZE)
+   if ( length > Bit_32(MAX_ELEMENT_SIZE)
     ) {
      file_write(BytePtr(object_file_element), Bit_32(MAX_ELEMENT_SIZE));
      length -= Bit_32(MAX_ELEMENT_SIZE);

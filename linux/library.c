@@ -11,7 +11,7 @@ file_info_ptr                          current_lib_file_info;
 
 
  library_processing_start_time = Now;
- while ( library_request_count Exceeds 0
+ while ( library_request_count > 0
   ) {
    TraverseList(lib_file_list, current_lib_file_info)
     BeginTraverse
@@ -36,7 +36,7 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 
 
- while ( Lib_file.request_count Exceeds 0
+ while ( Lib_file.request_count > 0
   ) {
    file_open_for_read(lib_file);
    Lib_file.pass_count++;
@@ -197,7 +197,7 @@ bit_16                                *symbol_in_page;
     };
   };
  file_close_for_read();
- if ( symbol_count Exceeds 0
+ if ( symbol_count > 0
   ) {
    sort_directory(0, symbol_count-1);
    public_array = public_sort_array;
@@ -297,7 +297,7 @@ public_entry_ptr                       temp;
      i++;
     };
   };
-  if ( i Exceeds 0
+  if ( i > 0
    ) {
     sort_directory(left, i-1);
    };

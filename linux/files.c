@@ -184,7 +184,7 @@ void file_close_for_read()
 #define File                           infile
 
 
- if ( File.file_handle Exceeds 4
+ if ( File.file_handle > 4
   ) {  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
    inregs.x.bx = File.file_handle;
@@ -207,7 +207,7 @@ void file_close_for_write()
 #define File                           outfile
 
 
- if ( File.bytes_in_buffer Exceeds 0
+ if ( File.bytes_in_buffer > 0
   ) {
    inregs.h.ah = 0x40;               /* Write */
    inregs.x.bx = File.file_handle;
@@ -217,7 +217,7 @@ void file_close_for_write()
    DOS_int21("Trouble writing file \"%Fs\" at byte %lu.\n",
              (*File.file_info).filename, File.next_buffer_position);
   };
- if ( File.file_handle Exceeds 4
+ if ( File.file_handle > 4
   ) {  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
    inregs.x.bx = File.file_handle;
@@ -282,7 +282,7 @@ void file_IO_limit(bit_16 limit)
 #define File                           infile
 
 
- if ( (limit IsZero) OrIf (limit Exceeds File.buffer_size)
+ if ( (limit IsZero) OrIf (limit > File.buffer_size)
   ) {
    File.IO_limit = File.buffer_size;
   } else {
@@ -457,11 +457,11 @@ void file_read(byte_ptr into, bit_16 length)
 #define File                           infile
 
 
- while ( length Exceeds 0
+ while ( length > 0
   ) {
-   if ( length Exceeds File.bytes_left_in_buffer
+   if ( length > File.bytes_left_in_buffer
     ) {
-     if ( File.bytes_left_in_buffer Exceeds 0
+     if ( File.bytes_left_in_buffer > 0
       ) {
        far_move(into, File.current_byte, File.bytes_left_in_buffer);
        length -= File.bytes_left_in_buffer;
@@ -506,9 +506,9 @@ void file_write(byte_ptr from, bit_32 length)
 #define File                           outfile
 
 
- while ( length Exceeds 0L
+ while ( length > 0L
   ) {
-   if ( length Exceeds Bit_32(File.bytes_left_in_buffer)
+   if ( length > Bit_32(File.bytes_left_in_buffer)
     ) {
      far_move(File.current_byte, from, File.bytes_left_in_buffer);
      length               -= Bit_32(File.bytes_left_in_buffer);

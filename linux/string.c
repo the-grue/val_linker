@@ -76,7 +76,7 @@ string_ptr concat_string(string_ptr dest, string_ptr source)
 bit_16                                 temp;
 
 
- if ( (Length(source) + Length(dest)) Exceeds MaxLength(dest)
+ if ( (Length(source) + Length(dest)) > MaxLength(dest)
   ) {
    linker_error(8,"Destination string to small (%u bytes) to hold "
                   "concatination of:\n"
@@ -101,7 +101,7 @@ string_ptr concat_char_to_string(string_ptr dest, byte c)
 {
 
 
- if ( (Length(dest) + 1) Exceeds MaxLength(dest)
+ if ( (Length(dest) + 1) > MaxLength(dest)
   ) {
    linker_error(8,"Destination string to small (%u bytes) to add \"%c\" "
                   "to string:\n"
@@ -123,7 +123,7 @@ string_ptr copy_string (string_ptr dest, string_ptr source)
 {
 
 
- if ( Length(source) Exceeds MaxLength(dest)
+ if ( Length(source) > MaxLength(dest)
   ) {
    linker_error(8,"Destination string to small (%u bytes) to hold:\n"
                   "\t\"%Fs\" (%u bytes)\n",
@@ -196,7 +196,7 @@ bit_16                                 i;
  vsprintf((char_ptr) temp_near_string, format, argptr);
  copy_string(s, string(temp_near_string));
  i = Length(s);
- while ( i Exceeds 3
+ while ( i > 3
   ) {
    i -= 3;
    paste_string(s, i, comma_string);
@@ -289,7 +289,7 @@ byte_ptr                               source;
    if ( LastCharIn(pattern) Is '*'
     ) { /* We must perform exhaustive search */
      cut_string(pattern, 0, Length(pattern)-1);
-     if ( Length(pattern) Exceeds Length(s)
+     if ( Length(pattern) > Length(s)
       ) {
        return(False);
       };
@@ -303,7 +303,7 @@ byte_ptr                               source;
         };
       };
     } else { /* We must match only the tail */
-     if ( Length(pattern) Exceeds Length(s)
+     if ( Length(pattern) > Length(s)
       ) {
        return(False);
       } else {
@@ -345,7 +345,7 @@ bit_16                                 length_string;
 
  length_string          = Length(dest);
  length_inserted_string = Length(s);
- if ( (length_string + length_inserted_string) Exceeds MaxLength(dest)
+ if ( (length_string + length_inserted_string) > MaxLength(dest)
   ) {
    linker_error(8,"Destination string too small (%u bytes) to insert:\n"
                   "\t\"%Fs\" (%u bytes) into\n"
@@ -358,7 +358,7 @@ bit_16                                 length_string;
   ) {
    return(dest);
   };
- if ( at Exceeds length_string
+ if ( at > length_string
   ) {
    at = length_string;
   };
@@ -393,7 +393,7 @@ bit_16                                 pattern_length;
   ) {
    return(0xFFFF);
   };
- if ( from Exceeds (len - pattern_length)
+ if ( from > (len - pattern_length)
   ) {
    from = len - pattern_length;
   };
@@ -420,7 +420,7 @@ bit_16                                 len;
 
 
  len  = far_index(s, 0);
- if ( len Exceeds MaxLength(temp_string)
+ if ( len > MaxLength(temp_string)
   ) {
    linker_error(8,"Destination string too small (%u bytes) to hold:\n"
                   "\t\"%s\" (%u bytes)\n",
@@ -451,11 +451,11 @@ bit_16                                 string_length;
   ) {
    at = string_length - 1;
   };
- if ( len Exceeds Bit_16(string_length - at)
+ if ( len > Bit_16(string_length - at)
   ) {
    len = string_length - at;
   };
- if ( len Exceeds MaxLength(temp_string)
+ if ( len > MaxLength(temp_string)
   ) {
    linker_error(8,"Destination string too small in SUBSTR operation\n");
   };

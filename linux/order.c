@@ -486,7 +486,7 @@ bit_16                                 size;
      if (Pub.type_entry IsNot near_communal) continue;
      length += Pub.Communal.element_size;
     };
-   if ( length Exceeds 65536L
+   if ( length > 65536L
     ) {
      linker_error(8, "Near communal size exceeds 64K by %lu bytes.\n",
                      length-65536L);
@@ -532,13 +532,13 @@ bit_16                                 size;
    next_communal = Pub.Communal.next_communal;
    if (Pub.type_entry IsNot far_communal) continue; 
    length = Pub.Communal.element_size * Pub.Communal.element_count;
-   if ( length Exceeds 65536L
+   if ( length > 65536L
     ) {
      Pub.Communal.next_communal = huge_communals;
      huge_communals             = pub;
      continue;
     };
-   if ( (lseg IsNull) OrIf ((length + Bit_32(offset)) Exceeds 65536L)
+   if ( (lseg IsNull) OrIf ((length + Bit_32(offset)) > 65536L)
     ) {
      lseg = obj_generate_segment(FAR_BSS_lname,
                                  FAR_BSS_lname,
@@ -581,7 +581,7 @@ bit_16                                 size;
                                exe_file_list.first,
                                0L,             /* not absolute segment */
                                0L);
-   if ( Pub.Communal.element_size Exceeds 65536L
+   if ( Pub.Communal.element_size > 65536L
     ) {
      linker_error(4, "Communal \"%Fs\" has element size exceeding 64K.\n",
                      Pub.symbol);

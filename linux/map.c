@@ -33,7 +33,7 @@ bit_32                                 stop_address;
  TraverseList(segment_list, seg)
   BeginTraverse
    stop_address = Seg.address+Seg.length;
-   if ( Seg.length Exceeds 0L
+   if ( Seg.length > 0L
     ) {
      stop_address--;
     };
@@ -79,7 +79,7 @@ bit_32                                 stop_address;
        public_sort_array[n_publics_to_sort++] = pub;
       EndTraverse;
     EndTraverse;
-   if ( n_publics_to_sort Exceeds 0
+   if ( n_publics_to_sort > 0
     ) {
      sort_publics_by_name(0, n_publics_to_sort-1);
      print("\n");
@@ -131,7 +131,7 @@ bit_32                                 stop_address;
     };
   };
 
- if ( detail_level.val Exceeds 0
+ if ( detail_level.val > 0
   ) {
    print("\n");
    print("Next Uninitialized Byte(%05lX), EXE header Relocation Items(%u)\n",
@@ -157,7 +157,7 @@ bit_32                                 stop_address;
            Seg.address,
            Seg.length,
            Seg.highest_uninitialized_byte);
-     if ( detail_level.val Exceeds 1
+     if ( detail_level.val > 1
       ) {
        TraverseList(Seg.lsegs, lseg)
         BeginTraverse
@@ -171,7 +171,7 @@ bit_32                                 stop_address;
                Lseg.address,
                Lseg.length,
                align_text[Lseg.align]);
-         if ( (detail_level.val Exceeds 2)             AndIf 
+         if ( (detail_level.val > 2)             AndIf 
             (Lseg.align IsNot absolute_segment)      AndIf
             (Seg.combine IsNot blank_common_combine)
           ) {
@@ -180,13 +180,13 @@ bit_32                                 stop_address;
         EndTraverse;
       EndTraverse;
     };
-   if ( (detail_level.val Exceeds 3) AndIf (exefile IsTrue)
+   if ( (detail_level.val > 3) AndIf (exefile IsTrue)
     ) {
      print("\n");
      print("EXE file header:\n");
      map_memory(BytePtr(exe_header), 0L, exe_header_size);
     };
-   if ( detail_level.val Exceeds 4
+   if ( detail_level.val > 4
     ) {
      last_location_lseg = Null;
      print("\n");
@@ -305,7 +305,7 @@ char                                   ascii[20];
 
 
  line_address = address & 0xFFFF0L;
- while ( length Exceeds 0
+ while ( length > 0
   ) {
    print("%05X: ", line_address);
    far_set(BytePtr(ascii), 0, 20);
@@ -364,7 +364,7 @@ public_entry_ptr                       temp;
     ) {
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
-                    (*public_sort_array[i]).length+1) Exceeds 0
+                    (*public_sort_array[i]).length+1) > 0
       ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
@@ -377,7 +377,7 @@ public_entry_ptr                       temp;
     ) {
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
-                    (*public_sort_array[i]).length+1) Exceeds 0
+                    (*public_sort_array[i]).length+1) > 0
       ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
@@ -387,7 +387,7 @@ public_entry_ptr                       temp;
      i++;
     };
   };
-  if ( i Exceeds 0
+  if ( i > 0
    ) {
     sort_publics_by_name(left, i-1);
    };
@@ -419,7 +419,7 @@ public_entry_ptr                       temp;
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
-        (public_target_address(public_sort_array[i]) Exceeds
+        (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
       ) {
        temp                 = public_sort_array[i];
@@ -433,7 +433,7 @@ public_entry_ptr                       temp;
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
-        (public_target_address(public_sort_array[i]) Exceeds
+        (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
       ) {
        temp                 = public_sort_array[i];
@@ -444,7 +444,7 @@ public_entry_ptr                       temp;
      i++;
     };
   };
-  if ( i Exceeds 0
+  if ( i > 0
    ) {
     sort_publics_by_value(left, i-1);
    };

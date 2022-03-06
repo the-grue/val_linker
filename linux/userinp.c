@@ -66,7 +66,7 @@ token_stack_ptr                        source_element;
   +-------------------------------------------------------------------------+*/
  for ( i=1; i<argc; i++
   ) {
-   if ( i Exceeds 1
+   if ( i > 1
     ) {
      concat_string(parm_string, space_string);
     };
@@ -138,7 +138,7 @@ token_stack_ptr                        source_element;
  process_user_output_file(Addr(lst_file_list),
                           False);
  if ( (First(lst_file_list) IsNull)                 AndIf
-    ((map.set IsTrue) OrIf (detail_level.val Exceeds 0))
+    ((map.set IsTrue) OrIf (detail_level.val > 0))
   ) {
    copy_string(token, string((*(exe_file_list.first)).filename));
    change_extension(token, lst_extension_string);
@@ -182,7 +182,7 @@ void process_user_input_files(file_info_list *list,
  do
   {
    get_filename_token(required, list);
-   if ( Length(token) Exceeds 0
+   if ( Length(token) > 0
     ) {
      process_filename(token);
       if ( index_string(token, 0, colon_string) IsNot 1
@@ -217,7 +217,7 @@ file_info_ptr                          file_entry;
  do
   {
    get_filename_token(required, list);
-   if ( Length(token) Exceeds 0
+   if ( Length(token) > 0
     ) {
      process_filename(token);
      add_extension_to_file(token,default_extension);

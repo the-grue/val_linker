@@ -115,7 +115,7 @@ public_entry_ptr                       pub;
     } else {
      if ( Pub.type_entry Is expected_type
       ) {
-       if ( (element_size              * element_count)              Exceeds 
+       if ( (element_size              * element_count)              > 
           (Pub.Communal.element_size * Pub.Communal.element_count)
         ) { /* We need the largest common */
          Pub.Communal.element_size  = element_size;
@@ -751,7 +751,7 @@ bit_16                                 segment_index;
   };
  segment_index = obj_index_segment();
  len           = Current_record_header.rec_len - 2;
- if ( segment_index Exceeds 127
+ if ( segment_index > 127
   ) {
    len--;
   };
@@ -815,12 +815,12 @@ segment_entry_ptr                      seg;
    Insert lseg AtEnd InList Seg.lsegs EndInsert;
   } else {  /* Not the first occurrence of this common */
    lseg = Seg.lsegs.first;
-   if ( length Exceeds Seg.length
+   if ( length > Seg.length
     ) {  /* Expand common block to be big enough to hold this entry. */
      Seg.length  =
      Lseg.length = length;
     };
-   if ( align Exceeds Lseg.align
+   if ( align > Lseg.align
     ) {  /* Align to largest boundary. */
      Lseg.align = align;
     };
@@ -833,7 +833,7 @@ segment_entry_ptr                      seg;
      largest_stack_seg_length = Seg.length;
      stack_segment_found      = True;
     } else {
-     if ( Seg.length Exceeds largest_stack_seg_length
+     if ( Seg.length > largest_stack_seg_length
       ) {
        largest_stack_seg        = seg;
        largest_stack_seg_length = Seg.length;
@@ -939,7 +939,7 @@ bit_16                                 index;
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
-   if ( index Exceeds n_externals
+   if ( index > n_externals
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -972,7 +972,7 @@ bit_16                                 index;
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
-   if ( index Exceeds n_groups
+   if ( index > n_groups
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1005,7 +1005,7 @@ bit_16                                 index;
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
-   if ( index Exceeds n_lnames
+   if ( index > n_lnames
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1038,7 +1038,7 @@ bit_16                                 index;
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
-   if ( index Exceeds n_segments
+   if ( index > n_segments
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1206,14 +1206,14 @@ bit_16                                 segment_index;
  last_LxDATA_lseg        =
  lseg                    = snames[segment_index];
  len                     = Current_record_header.rec_len - 4;
- if ( segment_index Exceeds 127
+ if ( segment_index > 127
   ) {
    len--;
   };
  last_LxDATA_offset =
  offset             = *obj_ptr.b16++;
  next_byte          = Bit_32(offset) + Bit_32(len);
- if ( next_byte Exceeds Lseg.length
+ if ( next_byte > Lseg.length
   ) {
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1224,7 +1224,7 @@ bit_16                                 segment_index;
                     (*infile.file_info).filename,
                     current_record_offset);
   };
- if ( next_byte Exceeds Lseg.highest_uninitialized_byte
+ if ( next_byte > Lseg.highest_uninitialized_byte
   ) {
    Lseg.highest_uninitialized_byte = next_byte;
   };
@@ -1270,7 +1270,7 @@ bit_16                                 segment_index;
  last_LxDATA_offset      = *obj_ptr.b16++;
  LIDATA_length           = obj_LIDATA_length();
  next_byte               = last_LxDATA_offset + LIDATA_length;
- if ( next_byte Exceeds last_LxDATA_Lseg.length
+ if ( next_byte > last_LxDATA_Lseg.length
   ) {
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1281,7 +1281,7 @@ bit_16                                 segment_index;
                     (*infile.file_info).filename,
                     current_record_offset);
   };
- if ( next_byte Exceeds last_LxDATA_Lseg.highest_uninitialized_byte
+ if ( next_byte > last_LxDATA_Lseg.highest_uninitialized_byte
   ) {
    last_LxDATA_Lseg.highest_uninitialized_byte = next_byte;
   };
@@ -1294,7 +1294,7 @@ bit_16                                 segment_index;
   } else {  /* We must save the initialization data out to the tmp file until
            later when we know the length. */
    len                     = Current_record_header.rec_len - 4;
-   if ( segment_index Exceeds 127
+   if ( segment_index > 127
     ) {
      len--;
     };
@@ -1752,7 +1752,7 @@ void obj_next_record()
    file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
    while ( (Current_record_header.rec_typ Is LINNUM_record) OrIf
          ((Current_record_header.rec_typ Is COMENT_record) AndIf
-          (Current_record_header.rec_len Exceeds MAX_OBJECT_FILE_READ_SIZE))
+          (Current_record_header.rec_len > MAX_OBJECT_FILE_READ_SIZE))
     ) {
      file_position(Bit_32(infile.byte_position) +
                    infile.start_of_buffer_position +
@@ -1762,7 +1762,7 @@ void obj_next_record()
    current_record_offset = Bit_32(infile.byte_position) +
                            infile.start_of_buffer_position -
                            Bit_32(sizeof(obj_record_header_type)-1);
-   if ( Current_record_header.rec_len Exceeds MAX_OBJECT_FILE_READ_SIZE
+   if ( Current_record_header.rec_len > MAX_OBJECT_FILE_READ_SIZE
     ) {
      linker_error(12, "Probable invalid OBJ format "
                       "or possible translator error:\n"
@@ -1901,7 +1901,7 @@ lname_entry_ptr                        segment_lname;
   } else {
    address = 0L;
   };
- if ( align Exceeds dword_aligned
+ if ( align > dword_aligned
   ) {
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -2156,7 +2156,7 @@ void write_temp_file(bit_8           rec_typ,
  temp_file_header.offset        = offset;
  file_write(BytePtr(Addr(temp_file_header)), 
             Bit_32(sizeof(temp_file_header)));
- if ( len Exceeds 0
+ if ( len > 0
   ) {
    file_write(data, Bit_32(len));
   };

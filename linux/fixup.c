@@ -21,7 +21,7 @@ bit_16 far                            *word_location;
  frame_address  = frame();
  target_address = target();
  if ( ((target_address < frame_address) OrIf
-     (target_address Exceeds (frame_address + 65535L))) AndIf
+     (target_address > (frame_address + 65535L))) AndIf
     (fixup.frame_method IsNot 6) AndIf (frame_absolute IsFalse)
   ) {
    linker_error(4, "Fixup error:\n"
@@ -48,7 +48,7 @@ bit_16 far                            *word_location;
      location_address++;
     };
    if ( (location_address < frame_address) OrIf
-      (location_address Exceeds (frame_address + 65535L)) OrIf
+      (location_address > (frame_address + 65535L)) OrIf
       (frame_absolute IsTrue)
     ) {
      linker_error(4, "Fixup error:\n"

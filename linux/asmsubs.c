@@ -126,7 +126,7 @@ bit_16 far_match (byte_ptr pattern, byte_ptr s, bit_16 len)
 
 
 /* The following assembly code is the equivalent of the following C code:
- while ( len Exceeds 0
+ while ( len > 0
   ) {
    if ( *pattern Is '*'
     ) {
@@ -311,7 +311,7 @@ byte                                   temp[33];
  *delta_block    =
  *starting_entry =
  *delta_entry    = 0;
- while ( len-- Exceeds 0
+ while ( len-- > 0
   ) {
    c = (Bit_16(*beg_str++) And 0xFF) Or 0x20;
    *starting_block = c Xor ((*starting_block ShiftedLeft   2)  Or

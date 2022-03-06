@@ -201,7 +201,7 @@ memory_descriptor_ptr                  desc;
    desc = (memory_descriptor_ptr) 
            allocate_memory(Addr(static_pool),
                            Bit_32(sizeof(memory_descriptor_type)));
-   if ( far_memory_size Exceeds 65536L
+   if ( far_memory_size > 65536L
     ) {
      size_this_chunk                  = 65536L;
     } else {

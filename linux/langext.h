@@ -67,8 +67,8 @@ ListTypeOf(Generic_Element);
 /*#define LessThan             <
 #define NotLessThan          >=
 #define LessThanOrEqualTo    <=
-#define GreaterThan          >*/
-#define Exceeds              >
+#define GreaterThan          >
+#define Exceeds              >*/
 #define Positive             > 0
 #define Negative             < 0
 #define IsZero               == 0

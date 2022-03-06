@@ -17,7 +17,7 @@ bit_16                                 error_number;
  if ( outregs.x.cflag
   ) {
    error_number = outregs.x.ax;
-   if ( error_number Exceeds 58
+   if ( error_number > 58
     ) {
      error_number = 59;
     };
@@ -48,7 +48,7 @@ bit_16                                 error_number;
     (Not ((inregs.h.al  Is 0x41) AndIf (outregs.x.ax Is 2)))
   ) {
    error_number = outregs.x.ax;
-   if ( error_number Exceeds 58
+   if ( error_number > 58
     ) {
      error_number = 59;
     };
@@ -74,7 +74,7 @@ va_list                                argptr;
  fprintf(stdout,"\nLinker Error (Severity %d)\n",severity);
  va_start(argptr,format);
  vfprintf(stdout,format,argptr);
- if ( severity Exceeds 7
+ if ( severity > 7
   ) {
    end_linker(severity);
   } else {
