@@ -292,7 +292,7 @@ void scan_bit_16_switch(switch_table_ptr current_switch)
  copy_string(token, next_token);
   if ( (Not token_is_number)                                OrIf
      (token_numeric_value <    Affected_thing.min) OrIf
-     (token_numeric_value GreaterThan Affected_thing.max)
+     (token_numeric_value > Affected_thing.max)
    ) {
    linker_error(8,"Syntax error:  Switch \"%s\" requires a numeric value\n"
                   "               between %u and %u\n",
@@ -332,7 +332,7 @@ void scan_opt_bit_16(switch_table_ptr current_switch)
  copy_string(token, next_token);
   if ( (Not token_is_number)                                OrIf
      (token_numeric_value <    Affected_thing.min) OrIf
-     (token_numeric_value GreaterThan Affected_thing.max)
+     (token_numeric_value > Affected_thing.max)
    ) {
    linker_error(8,"Syntax error:  Switch \"%s\" requires a numeric value\n"
                   "               between %u and %u\n",

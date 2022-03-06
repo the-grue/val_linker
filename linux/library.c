@@ -274,7 +274,7 @@ public_entry_ptr                       temp;
   ) {
    while ( i < j
     ) {
-     if ( (*public_sort_array[i]).Library.page GreaterThan
+     if ( (*public_sort_array[i]).Library.page >
         (*public_sort_array[j]).Library.page
       ) {
        temp                 = public_sort_array[i];
@@ -286,7 +286,7 @@ public_entry_ptr                       temp;
     };
    while ( i < j
     ) {
-     if ( (*public_sort_array[i]).Library.page GreaterThan
+     if ( (*public_sort_array[i]).Library.page >
         (*public_sort_array[j]).Library.page
       ) {
        temp                 = public_sort_array[i];

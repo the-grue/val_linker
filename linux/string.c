@@ -41,7 +41,7 @@ bit_16                                 right_len;
   ) {
    return(-1);
   };
- if ( left_len GreaterThan right_len
+ if ( left_len > right_len
   ) {
    return(1);
   };
