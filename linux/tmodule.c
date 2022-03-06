@@ -547,7 +547,7 @@ bit_16                                 thread_number;
   ) {
    if ( ((fixup.location_type Is base_location)     OrIf
        (fixup.location_type Is pointer_location)) AndIf
-      (exefile IsTrue)
+      (exefile != 0)
     ) { /* Base and pointer locations will require a relocation item
             in the EXE header */
      n_relocation_items++;
@@ -652,7 +652,7 @@ bit_16                                 repeat_count;
                        sizeof(fixup));
        if ( ((fixup.location_type Is base_location)     OrIf
            (fixup.location_type Is pointer_location)) AndIf
-          (exefile IsTrue)
+          (exefile != 0)
         ) { /* Base and pointer locations will require a relocation item
                 in the EXE header */
          n_relocation_items++;
@@ -1429,7 +1429,7 @@ bit_16                                 thread_number;
                    current_record_offset);
   };
 
- if ( start_address_found IsTrue
+ if ( start_address_found != 0
   ) {
    linker_error(4, "Multiple start address encountered.  The start address\n"
                    "in module \"%Fs\" of file \"%Fs\" has been ignored.\n",
@@ -1779,7 +1779,7 @@ void obj_next_record()
     };
    file_read(Current_record_header.variant_part, 
              Current_record_header.rec_len);
-   if ( (objchecksum.val IsTrue) AndIf
+   if ( (objchecksum.val != 0) AndIf
       (Bit_8(checksum(Current_record_header.rec_len +
                       sizeof(obj_record_header_type)-1,
                      (byte *) current_record_header)) IsNotZero)

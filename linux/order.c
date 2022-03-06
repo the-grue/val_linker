@@ -66,7 +66,7 @@ public_entry_ptr                       pub;
   ) {
    (*Active_segment.owning_group).first_segment = active_segment;
   };
- if ( (DOSSEG.val IsTrue) AndIf 
+ if ( (DOSSEG.val != 0) AndIf 
     (Active_segment.owning_group IsNotNull) AndIf
     ((*Active_segment.owning_group).group_name Is DGROUP_lname)
   ) {
@@ -395,7 +395,7 @@ bit_16                                 size;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( comfile.val IsTrue
+ if ( comfile.val != 0
   ) {
    address_base = 0x100L;
   } else {
@@ -416,7 +416,7 @@ bit_16                                 size;
 
  if ( ordering.val IsNull
   ) {
-   if ( DOSSEG.val IsTrue
+   if ( DOSSEG.val != 0
     ) {
      ordering.val = duplicate_string(Addr(static_pool),
       string((byte *) ("(seg[*code]|seg[*CODE], "
@@ -443,7 +443,7 @@ bit_16                                 size;
 
  if ( exefile == 0
   ) {
-   if ( stack_segment_found IsTrue
+   if ( stack_segment_found != 0
     ) {
      linker_error(4, "Stack segment found for a non .EXE file.\n");
     };
@@ -453,7 +453,7 @@ bit_16                                 size;
     ) {
      linker_error(4, "No stack segment for .EXE file.\n");
     } else {
-     if ( (stack.set IsTrue) AndIf 
+     if ( (stack.set != 0) AndIf 
         (Bit_16(Largest_stack_seg.length) < stack.val)
       ) {
        obj_generate_segment(generated_lname,

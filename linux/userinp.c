@@ -104,12 +104,12 @@ token_stack_ptr                        source_element;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( comfile.val IsTrue
+ if ( comfile.val != 0
   ) {
    default_extension = com_extension_string;
    default_prompt = "COM file[%Fs]:  ";
   } else {
-   if ( sysfile.val IsTrue
+   if ( sysfile.val != 0
     ) {
      default_extension = sys_extension_string;
      default_prompt = "SYS file[%Fs]:  ";
@@ -138,7 +138,7 @@ token_stack_ptr                        source_element;
  process_user_output_file(Addr(lst_file_list),
                           False);
  if ( (First(lst_file_list) IsNull)                 AndIf
-    ((map.set IsTrue) OrIf (detail_level.val > 0))
+    ((map.set != 0) OrIf (detail_level.val > 0))
   ) {
    copy_string(token, string((*(exe_file_list.first)).filename));
    change_extension(token, lst_extension_string);

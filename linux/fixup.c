@@ -49,7 +49,7 @@ bit_16 far                            *word_location;
     };
    if ( (location_address < frame_address) OrIf
       (location_address > (frame_address + 65535L)) OrIf
-      (frame_absolute IsTrue)
+      (frame_absolute != 0)
     ) {
      linker_error(4, "Fixup error:\n"
                      "\t Module:  \"%Fs\"\n"
@@ -115,7 +115,7 @@ bit_16 far                            *word_location;
       break;
      case base_location:
       *word_location += fbval;
-      if ( exefile IsTrue
+      if ( exefile != 0
        ) {
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset);
@@ -124,7 +124,7 @@ bit_16 far                            *word_location;
      case pointer_location:
       *word_location++ += Bit_16(foval);
       *word_location   += fbval;
-      if ( exefile IsTrue
+      if ( exefile != 0
        ) {
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset+2);
@@ -378,12 +378,12 @@ void pass_two()
   |      First, we will figure out how long the EXE header will be.         |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( exefile IsTrue
+ if ( exefile != 0
   ) {
    exe_header_size  = Bit_32(sizeof(EXE_header_type)) - 
                       Bit_32(sizeof(bit_32)) + 
                      (Bit_32(sizeof(bit_32)) * Bit_32(n_relocation_items));
-   if ( align_exe_header.val IsTrue
+   if ( align_exe_header.val != 0
     ) {
      exe_header_size += AlignmentGap(exe_header_size, 0xFL);
     } else {

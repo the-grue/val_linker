@@ -45,7 +45,7 @@ bit_32                                 stop_address;
          (*Seg.class_name).symbol);
   EndTraverse;
 
- if ( map.set IsTrue
+ if ( map.set != 0
   ) {
    if ( First(group_list) IsNotNull
     ) {
@@ -123,7 +123,7 @@ bit_32                                 stop_address;
 
 
    print("\n");
-   if ( start_address_found IsTrue
+   if ( start_address_found != 0
     ) {
      print("Program entry point at %04X:%04X\n",
             initial_CS,
@@ -180,7 +180,7 @@ bit_32                                 stop_address;
         EndTraverse;
       EndTraverse;
     };
-   if ( (detail_level.val > 3) AndIf (exefile IsTrue)
+   if ( (detail_level.val > 3) AndIf (exefile != 0)
     ) {
      print("\n");
      print("EXE file header:\n");

@@ -27,7 +27,7 @@ segment_entry_ptr                      seg;
  Exe_header.min_paragraphs_above = Bit_16((n_uninitialized_bytes + 
                   AlignmentGap(n_uninitialized_bytes, 0xFL)) ShiftedRight 4L);
  Exe_header.max_paragraphs_above = CPARMAXALLOC.val;
- if ( stack_segment_found IsTrue
+ if ( stack_segment_found != 0
   ) {
    Exe_header.initial_SS = CanonicFrame(Largest_stack_seg.address);
    Exe_header.initial_SP = Bit_16(largest_stack_seg_length +
@@ -46,7 +46,7 @@ segment_entry_ptr                      seg;
   |    Run a checksum on all the bytes in the soon-to-exist EXE file.       |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( exechecksum.val IsTrue
+ if ( exechecksum.val != 0
   ) {
    checksum = word_checksum(Bit_16(exe_header_size), 0, BytePtr(exe_header));
    TraverseList(segment_list, seg)
@@ -92,18 +92,18 @@ segment_entry_ptr                      seg;
   |                         Validate start address.                         |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( start_address_found IsTrue
+ if ( start_address_found != 0
   ) {
    fixup                 = start_address;
    initial_CS            = CanonicFrame(frame());
    initial_IP            = Bit_16(target() - frame());
-   if ( (comfile.val IsTrue)      AndIf 
+   if ( (comfile.val != 0)      AndIf 
       (initial_CS IsNotZero)    AndIf 
       (initial_IP IsNot 0x0100)
     ) {  /* COM file start address must be 0000:0100 */
       linker_error(4, "Start address for COM file is not 0000:0100.\n");
     } else {
-     if ( (sysfile.val IsTrue)   AndIf
+     if ( (sysfile.val != 0)   AndIf
         (initial_CS IsNotZero) AndIf 
         (initial_IP IsNotZero)
       ) {  /* SYS file start address must be 0000:0000 */
@@ -120,29 +120,29 @@ segment_entry_ptr                      seg;
   |                        Validate stack segment.                          |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( (comfile.val IsTrue) AndIf (stack_segment_found IsTrue)
+ if ( (comfile.val != 0) AndIf (stack_segment_found != 0)
   ) {  /* COM file should not have a stack segment. */
     linker_error(4, "COM file should not have a stack segment.\n");
   } else {
-   if ( (sysfile.val IsTrue) AndIf (stack_segment_found IsTrue)
+   if ( (sysfile.val != 0) AndIf (stack_segment_found != 0)
     ) {  /* SYS file should not have a stack segment. */
       linker_error(4, "SYS file should not have a stack segment.\n");
     } else {
-     if ( (exefile IsTrue) AndIf (stack_segment_found == 0)
+     if ( (exefile != 0) AndIf (stack_segment_found == 0)
       ) {  /* EXE file should have a stack segment. */
        linker_error(4, "EXE file should have a stack segment.\n");
       };
     };
   };
  
- if ( pause.val IsTrue
+ if ( pause.val != 0
   ) {
    printf("About to write \"%Fs\".\n", (*exe_file_list.first).filename);
    printf("Press [RETURN] key to continue.\n");
    gets(CharPtr(object_file_element));
   };
  file_open_for_write(exe_file_list.first);
- if ( exefile IsTrue
+ if ( exefile != 0
   ) {
    make_EXE_header();
   };

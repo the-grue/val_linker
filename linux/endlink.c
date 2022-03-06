@@ -9,7 +9,7 @@ void end_linker(bit_16 return_code)
 {
 
 
- if ( statistics.val IsTrue
+ if ( statistics.val != 0
   ) {
    linker_statistics();
   };

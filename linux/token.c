@@ -149,11 +149,11 @@ token_stack_ptr                        source_element;
       ) {
        if ( prompting_for Is 2
         ) {
-         if ( comfile.val IsTrue
+         if ( comfile.val != 0
           ) {
            default_extension = com_extension_string;
           } else {
-           if ( sysfile.val IsTrue
+           if ( sysfile.val != 0
             ) {
              default_extension = sys_extension_string;
             } else {
@@ -182,11 +182,11 @@ token_stack_ptr                        source_element;
       ) {
        if ( prompting_for Is 2
         ) {
-         if ( comfile.val IsTrue
+         if ( comfile.val != 0
           ) {
            default_extension = com_extension_string;
           } else {
-           if ( sysfile.val IsTrue
+           if ( sysfile.val != 0
             ) {
              default_extension = sys_extension_string;
             } else {

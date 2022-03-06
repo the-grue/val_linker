@@ -251,7 +251,7 @@ void secondary_linker_initialization()
  c_common_lname  = lookup_lname(8, (byte *) "c_common");
  generated_lname = lookup_lname(11 ,(byte *) "(generated)");
  none_lname      = lookup_lname(6,  (byte *) "(none)");
- if ( case_ignore.val IsTrue
+ if ( case_ignore.val != 0
   ) {
    BSS_lname                = lookup_lname(3, (byte *) "bss");
    DGROUP_lname             = lookup_lname(6, (byte *) "dgroup");
