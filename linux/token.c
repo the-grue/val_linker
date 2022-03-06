@@ -449,7 +449,7 @@ bit_16                                 paren_count;
        ) {
         token_is_hex_number = True;
        } else {
-        if ( token_is_hex_number IsFalse
+        if ( token_is_hex_number == 0
          ) {
           token_is_number = token_is_number AndIf
                             isdigit(token_break_char);

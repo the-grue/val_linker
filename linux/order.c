@@ -441,15 +441,15 @@ bit_16                                 size;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( exefile IsFalse
+ if ( exefile == 0
   ) {
    if ( stack_segment_found IsTrue
     ) {
      linker_error(4, "Stack segment found for a non .EXE file.\n");
     };
   } else {
-   if ( (stack_segment_found IsFalse) AndIf
-      (stack.set           IsFalse)
+   if ( (stack_segment_found == 0) AndIf
+      (stack.set           == 0)
     ) {
      linker_error(4, "No stack segment for .EXE file.\n");
     } else {

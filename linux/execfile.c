@@ -128,7 +128,7 @@ segment_entry_ptr                      seg;
     ) {  /* SYS file should not have a stack segment. */
       linker_error(4, "SYS file should not have a stack segment.\n");
     } else {
-     if ( (exefile IsTrue) AndIf (stack_segment_found IsFalse)
+     if ( (exefile IsTrue) AndIf (stack_segment_found == 0)
       ) {  /* EXE file should have a stack segment. */
        linker_error(4, "EXE file should have a stack segment.\n");
       };

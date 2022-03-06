@@ -273,6 +273,6 @@ void secondary_linker_initialization()
    codeview_segment_SYMBOLS = lookup_lname(9, (byte *) "$$SYMBOLS");
    codeview_segment_TYPES   = lookup_lname(7, (byte *) "$$TYPES");
   };
- exefile = (comfile.val IsFalse) AndIf (sysfile.val IsFalse);
+ exefile = (comfile.val == 0) AndIf (sysfile.val == 0);
  return;
 }

@@ -61,9 +61,9 @@ ListTypeOf(Generic_Element);
 #define Not                  !
 #define Is                   ==
 #define IsNot                !=
-#define IsEqualTo            ==
+/*#define IsEqualTo            ==
 #define Equals               ==
-/*#define IsNotEqualTo         !=
+#define IsNotEqualTo         !=
 #define LessThan             <
 #define NotLessThan          >=
 #define LessThanOrEqualTo    <=
@@ -78,8 +78,8 @@ ListTypeOf(Generic_Element);
 #define IsNotEmpty           != 0
 #define IsNotZero            != 0
 #define IsTrue               != 0
-#define IsFalse              == 0
-/*#define NotGreaterThan       <=
+/*#define IsFalse              == 0
+#define NotGreaterThan       <=
 #define GreaterThanOrEqualTo >=*/
 #define IsIdentifier(x)      (((x>='A') && (x<='Z')) || \
                               ((x>='a') && (x<='z')) || \
