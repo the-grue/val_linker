@@ -352,7 +352,7 @@ bit_16                                 j;
 public_entry_ptr                       temp;
 
 
- if ( left NotLessThan right
+ if ( left >= right
   ) {
    return;
   };
@@ -407,7 +407,7 @@ bit_16                                 j;
 public_entry_ptr                       temp;
 
 
- if ( left NotLessThan right
+ if ( left >= right
   ) {
    return;
   };

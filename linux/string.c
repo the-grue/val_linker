@@ -447,7 +447,7 @@ bit_16                                 string_length;
   ) {
    return(null_string);
   };
- if ( at NotLessThan string_length
+ if ( at >= string_length
   ) {
    at = string_length - 1;
   };

@@ -51,10 +51,10 @@ segment_entry_ptr                      seg;
    checksum = word_checksum(Bit_16(exe_header_size), 0, BytePtr(exe_header));
    TraverseList(segment_list, seg)
     BeginTraverse
-     if (Seg.address NotLessThan highest_uninitialized_byte) break;
+     if (Seg.address >= highest_uninitialized_byte) break;
      TraverseList(Seg.lsegs, lseg)
       BeginTraverse
-       if (Lseg.address NotLessThan highest_uninitialized_byte) break;
+       if (Lseg.address >= highest_uninitialized_byte) break;
        checksum += word_checksum(Bit_16(Lseg.length), 
                                  Bit_16(Lseg.address),
                                  Lseg.data);
@@ -159,10 +159,10 @@ segment_entry_ptr                      seg;
  TraverseList(segment_list, seg)
   BeginTraverse
    if ((*Seg.lsegs.first).align Is absolute_segment) continue;
-   if (Seg.address NotLessThan highest_uninitialized_byte) break;
+   if (Seg.address >= highest_uninitialized_byte) break;
    TraverseList(Seg.lsegs, lseg)
     BeginTraverse
-     if (Lseg.address NotLessThan highest_uninitialized_byte) break;
+     if (Lseg.address >= highest_uninitialized_byte) break;
      if ( Lseg.address LessThan next_available_address
       ) {
        if ((Lseg.address+Lseg.length) <= 

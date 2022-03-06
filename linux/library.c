@@ -183,7 +183,7 @@ bit_16                                *symbol_in_page;
        Pub.Library.page      = Symbol_in_page;
        Pub.Library.lib_file  = lib_file;
        Pub.Library.requested = False;
-       if ( symbol_count NotLessThan MAX_PUBLICS_IN_LIBRARY
+       if ( symbol_count >= MAX_PUBLICS_IN_LIBRARY
         ) {
          linker_error(8,"Limitation of not more than %u public symbols in "
                         "a library\n"
@@ -264,7 +264,7 @@ bit_16                                 j;
 public_entry_ptr                       temp;
 
 
- if ( left NotLessThan right
+ if ( left >= right
   ) {
    return;
   };

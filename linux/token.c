@@ -255,7 +255,7 @@ switch_table_ptr                       current_switch;
      Current_switch.switch_processor(current_switch);
      return;
     };
-   if ( (Length(token) NotLessThan Current_switch.min_length) AndIf
+   if ( (Length(token) >= Current_switch.min_length) AndIf
       (far_compare(String(token), (byte *) Current_switch.full_name,
         Length(token)) IsZero)
     ) {

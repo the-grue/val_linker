@@ -46,7 +46,7 @@ memory_descriptor_ptr                  prior;
  desc  = free_pool.memory_descriptor_list;
  while ( desc IsNotNull
   ) {
-   if ( Desc.available NotLessThan size
+   if ( Desc.available >= size
     ) {
      if ( prior IsNull
       ) {

@@ -48,7 +48,7 @@ public_entry_ptr                       pub;
   };
  while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
-   if ( n_externals NotLessThan max_externals.val
+   if ( n_externals >= max_externals.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -300,7 +300,7 @@ public_entry_ptr                       pub;
   };
  while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
-   if ( n_externals NotLessThan max_externals.val
+   if ( n_externals >= max_externals.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -642,7 +642,7 @@ bit_16                                 repeat_count;
      obj_ptr.b8   = content;
      LIDATA_index = old_index;
      len          = Bit_16(*obj_ptr.b8++);  LIDATA_index += sizeof(bit_8);
-     if ( (fixup_index NotLessThan LIDATA_index)        AndIf
+     if ( (fixup_index >= LIDATA_index)        AndIf
         (fixup_index LessThan   (LIDATA_index + len))
       ) {
        write_temp_file(Current_record_header.rec_typ,
@@ -868,7 +868,7 @@ bit_16                                 segment_index;
   };
  group_index         = obj_index_LNAME();
  group               = lookup_group(lnames[group_index]);
- if ( n_groups NotLessThan max_groups.val
+ if ( n_groups >= max_groups.val
   ) {
    linker_error(12, "Internal limit exceeded:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1361,7 +1361,7 @@ bit_16 obj_LNAMES()
   };
  while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
-   if ( n_lnames NotLessThan max_lnames.val
+   if ( n_lnames >= max_lnames.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1580,7 +1580,7 @@ public_entry_ptr                       pub;
   };
  while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
-   if ( n_externals NotLessThan max_externals.val
+   if ( n_externals >= max_externals.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1958,7 +1958,7 @@ lname_entry_ptr                        segment_lname;
                              infile.file_info,
                              address,
                              length);
- if ( n_segments NotLessThan max_segments.val
+ if ( n_segments >= max_segments.val
   ) {
    linker_error(12, "Internal limit exceeded:\n"
                     "\tModule:  \"%Fs\"\n"
