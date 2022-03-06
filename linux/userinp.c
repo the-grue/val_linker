@@ -53,7 +53,7 @@ token_stack_ptr                        source_element;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  env_var = (byte *) getenv("LINK");
- if ( env_var IsNull
+ if ( env_var == 0
   ) {
    env_var = (byte *) "";
   };
@@ -137,7 +137,7 @@ token_stack_ptr                        source_element;
  prompting_for     = 3;
  process_user_output_file(Addr(lst_file_list),
                           False);
- if ( (First(lst_file_list) IsNull)                 AndIf
+ if ( (First(lst_file_list) == 0)                 AndIf
     ((map.set != 0) OrIf (detail_level.val > 0))
   ) {
    copy_string(token, string((*(exe_file_list.first)).filename));
@@ -221,7 +221,7 @@ file_info_ptr                          file_entry;
     ) {
      process_filename(token);
      add_extension_to_file(token,default_extension);
-     if ( List.first IsNull
+     if ( List.first == 0
       ) {
        file_entry = (file_info_ptr)
                      allocate_memory(Addr(static_pool),

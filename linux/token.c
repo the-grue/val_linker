@@ -50,7 +50,7 @@ token_stack_ptr                        elem;
 
 
  Pop token_stack_free_list InTo elem EndPop;
- if ( elem IsNull
+ if ( elem == 0
   ) {
    elem = (token_stack_ptr) 
            allocate_memory(Addr(static_pool),
@@ -74,7 +74,7 @@ token_stack_ptr                        source_element;
 
  while(1)
   {
-   required = (required) AndIf (List.first IsNull);
+   required = (required) AndIf (List.first == 0);
    if ( token_type Is text_token_type
     ) {
      linker_error(8, "Input syntax error:  \"%Fs\" out of place.\n",
@@ -119,7 +119,7 @@ token_stack_ptr                        source_element;
      return;
     };
    if ( ((token_type Is end_of_command_line_token_type)  AndIf
-       (List.first IsNull))                            OrIf
+       (List.first == 0))                            OrIf
       ((required)                                      AndIf
        ((token_type Is separator_token_type)           OrIf
         (token_type Is line_end_token_type)))
@@ -142,7 +142,7 @@ token_stack_ptr                        source_element;
      scan_out_token();
      continue;
     };
-   if ( List.first IsNull
+   if ( List.first == 0
     ) {
      if ( (token_type Is separator_token_type)  OrIf
         (token_type Is terminator_token_type)
@@ -178,7 +178,7 @@ token_stack_ptr                        source_element;
     };
    if ( token_type Is line_end_token_type
     ) {
-     if ( List.first IsNull
+     if ( List.first == 0
       ) {
        if ( prompting_for Is 2
         ) {
@@ -496,7 +496,7 @@ FILE                                  *help_file;
 
  Affected_thing.val = True;
  help_file = fopen(CharPtr(near_string(help_filename)), "r");
- if ( help_file IsNull
+ if ( help_file == 0
   ) {
    printf("Could not open help file \"%Fs\".\n", String(help_filename));
   } else {
@@ -630,12 +630,12 @@ token_stack_ptr                        tos;
      prompt_next_stdin = False;
     };
    tos = token_stack.first;
-   if ( tos IsNull
+   if ( tos == 0
     ) {
      token_break_char = ';';
      return;
     };
-   if ( Tos.source_file IsNull
+   if ( Tos.source_file == 0
     ) { /* Input is from a string */
      if ( Tos.token_string_index < Length(Tos_string)
       ) {

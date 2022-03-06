@@ -62,7 +62,7 @@ public_entry_ptr                       pub;
     (*Active_segment.lsegs.first).address;
   };
  if ( (Active_segment.owning_group != 0) AndIf
-    ((*Active_segment.owning_group).first_segment IsNull)
+    ((*Active_segment.owning_group).first_segment == 0)
   ) {
    (*Active_segment.owning_group).first_segment = active_segment;
   };
@@ -70,7 +70,7 @@ public_entry_ptr                       pub;
     (Active_segment.owning_group != 0) AndIf
     ((*Active_segment.owning_group).group_name Is DGROUP_lname)
   ) {
-   if ( (edata_segment IsNull) AndIf
+   if ( (edata_segment == 0) AndIf
       (Active_segment.class_name Is BSS_lname)
     ) {
      edata_segment = active_segment;
@@ -88,7 +88,7 @@ public_entry_ptr                       pub;
                        "because it was explicitly defined.\n");
       };
     };
-   if ( (end_segment IsNull) AndIf
+   if ( (end_segment == 0) AndIf
       (Active_segment.class_name Is STACK_lname)
     ) {
      end_segment = active_segment;
@@ -187,7 +187,7 @@ byte_ptr                               start_of_expression;
  start_of_expression++;
  while ( *start_of_expression IsNot '\000'
   ) {
-   if (segment_list.first IsNull) break;
+   if (segment_list.first == 0) break;
    First(segments_unordered_list) =
    Last(segments_unordered_list)  = Null;
    while ( segment_list.first != 0
@@ -337,7 +337,7 @@ bit_16                                 operand;
     };
    cut_string(token, 0, 1);
    group = Active_segment.owning_group;
-   if ( group IsNull
+   if ( group == 0
     ) {
      operand = False;
     } else {
@@ -414,7 +414,7 @@ bit_16                                 size;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( ordering.val IsNull
+ if ( ordering.val == 0
   ) {
    if ( DOSSEG.val != 0
     ) {
@@ -538,7 +538,7 @@ bit_16                                 size;
      huge_communals             = pub;
      continue;
     };
-   if ( (lseg IsNull) OrIf ((length + Bit_32(offset)) > 65536L)
+   if ( (lseg == 0) OrIf ((length + Bit_32(offset)) > 65536L)
     ) {
      lseg = obj_generate_segment(FAR_BSS_lname,
                                  FAR_BSS_lname,

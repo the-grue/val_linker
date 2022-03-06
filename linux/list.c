@@ -71,7 +71,7 @@ void ListInsert(Generic_Element_ptr       elem,
    case 0:
     Elem.next  = Aftr.next;
     Aftr.next  = elem;
-    if ( Elem.next IsNull
+    if ( Elem.next == 0
      ) {
       Last(Lst) = elem;
      };
@@ -82,7 +82,7 @@ void ListInsert(Generic_Element_ptr       elem,
   |                                                                         |
   +-------------------------------------------------------------------------+*/
    case 1:
-    if ( Last(Lst) IsNull
+    if ( Last(Lst) == 0
      ) {
       First(Lst) = elem;
      } else {
@@ -99,7 +99,7 @@ void ListInsert(Generic_Element_ptr       elem,
    case 2:
     Elem.next  = First(Lst);
     First(Lst) = elem;
-    if ( Last(Lst) IsNull
+    if ( Last(Lst) == 0
      ) {
       Last(Lst) = elem;
      };
@@ -123,14 +123,14 @@ void ListPop(Generic_Element_list far *lst,
 #define Lst                            (*lst)
 
 
- if ( First(Lst) IsNull
+ if ( First(Lst) == 0
   ) {
    Elem = Null;
    return;
   };
  Elem       = First(Lst);
  First(Lst) = (*Elem).next;
- if ( First(Lst) IsNull
+ if ( First(Lst) == 0
   ) {
    Last(Lst) = Null;
   };

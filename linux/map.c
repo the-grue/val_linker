@@ -23,7 +23,7 @@ bit_32                                 stop_address;
 
 
  map_start_time = Now;
- if ( lst_file_list.first IsNull
+ if ( lst_file_list.first == 0
   ) {  /*  No map file to be created. */
    return;
   };
@@ -92,7 +92,7 @@ bit_32                                 stop_address;
              CanonicFrame(public_frame_address(pub)),
              Bit_16(public_target_address(pub) -
                     public_frame_address(pub)));
-       if ( Pub.Internal.lseg IsNull
+       if ( Pub.Internal.lseg == 0
         ) {
          print("Abs  ");
         } else {
@@ -111,7 +111,7 @@ bit_32                                 stop_address;
              CanonicFrame(public_frame_address(pub)),
              Bit_16(public_target_address(pub) -
                     public_frame_address(pub)));
-       if ( Pub.Internal.lseg IsNull
+       if ( Pub.Internal.lseg == 0
         ) {
          print("Abs  ");
         } else {
@@ -417,7 +417,7 @@ public_entry_ptr                       temp;
   ) {
    while ( i < j
     ) {
-     if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
+     if ( (((*public_sort_array[i]).Internal.lseg == 0) AndIf
          ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
@@ -431,7 +431,7 @@ public_entry_ptr                       temp;
     };
    while ( i < j
     ) {
-     if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
+     if ( (((*public_sort_array[i]).Internal.lseg == 0) AndIf
          ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))

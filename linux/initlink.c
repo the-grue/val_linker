@@ -178,7 +178,7 @@ void secondary_linker_initialization()
  outfile.buffer             = outfile_buffer;
  outfile.buffer_size        = buffer_size.val;
 
- if ( temp_filename.val IsNull
+ if ( temp_filename.val == 0
   ) {
    temp_file = (file_info_ptr)
                 allocate_memory(Addr(static_pool),

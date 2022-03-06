@@ -48,7 +48,7 @@ memory_descriptor_ptr                  prior;
   ) {
    if ( Desc.available >= size
     ) {
-     if ( prior IsNull
+     if ( prior == 0
       ) {
        free_pool.memory_descriptor_list  = Desc.next;
       } else {

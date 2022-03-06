@@ -453,9 +453,9 @@ segment_entry_ptr                      seg;
     };
    address = 0L;
   } else {
-   if ( Pub.Internal.group IsNull
+   if ( Pub.Internal.group == 0
     ) {
-     if ( Pub.Internal.lseg IsNull
+     if ( Pub.Internal.lseg == 0
       ) {
        frame_absolute = True;
        address        = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
@@ -505,7 +505,7 @@ segment_entry_ptr                      seg;
     };
    address = 0L;
   } else {
-   if ( Pub.Internal.lseg IsNull
+   if ( Pub.Internal.lseg == 0
     ) {
      address = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
     } else {

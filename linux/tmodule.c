@@ -790,7 +790,7 @@ segment_entry_ptr                      seg;
                                           number of words. */
   };
  seg             = lookup_segment(segment_lname, class_lname, combine);
- if ( (combine IsNot common_combine) OrIf (Seg.lsegs.first IsNull)
+ if ( (combine IsNot common_combine) OrIf (Seg.lsegs.first == 0)
   ) {
    Seg.address   = address;
    Seg.length   += length;
@@ -900,7 +900,7 @@ bit_16                                 segment_index;
    segment_index = obj_index_segment();
    lseg          = snames[segment_index];
    seg           = Lseg.segment;
-   if ( Seg.owning_group IsNull
+   if ( Seg.owning_group == 0
     ) {
      Seg.owning_group = group;
     } else {
