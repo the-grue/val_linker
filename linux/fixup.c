@@ -181,7 +181,7 @@ BeginCode
       *((bit_32 far *) Addr(Lseg.data[offset])) += *obj_ptr.b32++;
      EndWhile;
     break;
-   Otherwise:
+   default:
     linker_error(4, "Translator error:\n"
                     "\t Module:  \"%Fs\"\n"
                     "\t   File:  \"%Fs\"\n"
@@ -412,7 +412,7 @@ BeginCode
      case LIDATA_record:
       fixup_LIDATA_record();
       break;
-     Otherwise:
+     default:
       linker_error(16, "Internal logic error:  Invalid temp file record.\n");
       break;
     EndCase;

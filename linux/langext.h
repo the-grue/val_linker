@@ -10,8 +10,8 @@
 
 /*#define Using                switch (
 #define BeginCase            ) {
-#define When                 case*/
-#define Otherwise            default
+#define When                 case
+#define Otherwise            default*/
 #define EndCase              }
 
 #define Loop                 while(1)

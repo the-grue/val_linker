@@ -431,7 +431,7 @@ BeginCode
      EndWhile;
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
-   Otherwise:
+   default:
     token_is_number     = True;
     token_numeric_value = 0;
     While (token_break_char IsNot ',')  AndIf

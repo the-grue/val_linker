@@ -84,7 +84,7 @@ BeginCode
       element_size  = obj_leaf_descriptor();
       element_count = 1L;
       break;
-     Otherwise:
+     default:
       linker_error(12, "Translator error:\n"
                        "\tModule:  \"%Fs\"\n"
                        "\t  File:  \"%Fs\"\n"
@@ -168,7 +168,7 @@ BeginCode
    case 161:
     codeview_information_present = True;
     break;
-   Otherwise:
+   default:
     break;
   EndCase;
  return(True);
@@ -449,7 +449,7 @@ BeginCode
      case 3:
       fixup.frame_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
-     Otherwise:
+     default:
       fixup.frame_referent = Null;
       break;
     EndCase;
@@ -702,7 +702,7 @@ BeginCode
      case 3:
       target_thread[thread].referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
-     Otherwise:
+     default:
       target_thread[thread].referent = Null;
       break;
     EndCase;
@@ -726,7 +726,7 @@ BeginCode
      case 3:
       frame_thread[thread].referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
-     Otherwise:
+     default:
       frame_thread[thread].referent = Null;
       break;
     EndCase;
@@ -1474,7 +1474,7 @@ BeginCode
      case 3:
       start_address.frame_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
-     Otherwise:
+     default:
       start_address.frame_referent = Null;
       break;
     EndCase;
