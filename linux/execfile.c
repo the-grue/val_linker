@@ -63,7 +63,7 @@ segment_entry_ptr                      seg;
   } else {
    checksum = 0xFFFF;
   };
- Exe_header.checksum = Complement checksum;
+ Exe_header.checksum = ~ checksum;
  file_write(BytePtr(exe_header), exe_header_size);
  return;
 }
