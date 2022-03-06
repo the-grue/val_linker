@@ -634,8 +634,8 @@ BeginCode
      For j=0; j<block_count; j++
       ) {
        obj_fixup_LIDATA_IDB();
-      EndFor;
-    EndFor;
+      };
+    };
   } else {  /* Handle non-recursive case:  Content is data. */
    For i=0; i<repeat_count; i++
     ) {
@@ -659,7 +659,7 @@ BeginCode
         };
       };
      LIDATA_offset += len;
-    EndFor;
+    };
    obj_ptr.b8    += len;
    LIDATA_index  += len;
   };
@@ -1080,8 +1080,8 @@ BeginCode
      For j=0; j<block_count; j++
       ) {
        obj_iterated_data_block();
-      EndFor;
-    EndFor;
+      };
+    };
   } else {  /* Handle non-recursive case:  Content is data. */
    len = Bit_16(*obj_ptr.b8++);
    For i=0; i<repeat_count; i++
@@ -1089,7 +1089,7 @@ BeginCode
      far_move(Addr(last_LxDATA_Lseg.data[LIDATA_offset]), 
               obj_ptr.b8, len);
      LIDATA_offset += len;
-    EndFor;
+    };
    obj_ptr.b8 += len;
   };
  return;
@@ -1129,7 +1129,7 @@ BeginCode
    For i=0; i<block_count; i++
     ) {
      length     += Bit_32(repeat_count) * obj_iterated_data_block_length();
-    EndFor;
+    };
   } else {  /* Handle non-recursive case:  Content is data. */
    len         = Bit_16(*obj_ptr.b8++);
    obj_ptr.b8 += len;

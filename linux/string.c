@@ -234,7 +234,7 @@ BeginCode
     ) {
      return(i);
     };
-  EndFor;
+  };
  return(0xFFFF);
 EndCode
 
@@ -301,7 +301,7 @@ BeginCode
         ) {
          return(True);
         };
-      EndFor;
+      };
     } else { /* We must match only the tail */
      if ( Length(pattern) Exceeds Length(s)
       ) {
@@ -405,7 +405,7 @@ BeginCode
     ) {
      return(from);
     };
-  EndFor;
+  };
  return(0xFFFF);
 EndCode
 

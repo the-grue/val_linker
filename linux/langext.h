@@ -9,8 +9,8 @@
 /* Block basic C commands */
 
 #define For                  for (
-/*#define BeginFor             ) {*/
-#define EndFor               }
+/*#define BeginFor             ) {
+#define EndFor               }*/
 
 #define BeginDeclarations    {
 #define EndDeclarations

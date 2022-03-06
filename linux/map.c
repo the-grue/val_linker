@@ -99,7 +99,7 @@ BeginCode
          print("     ");
         };
        print("%Fs\n", Pub.symbol);
-      EndFor;
+      };
      sort_publics_by_value(0, n_publics_to_sort-1);
      print("\n");
      print("  Address         Publics by Value\n");
@@ -118,7 +118,7 @@ BeginCode
          print("     ");
         };
        print("%Fs\n", Pub.symbol);
-      EndFor;
+      };
     };
 
 
@@ -334,7 +334,7 @@ BeginCode
        address++;
        length--;
       };
-    EndFor;
+    };
    print("  %s\n", ascii);
   };
  return;

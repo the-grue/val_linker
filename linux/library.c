@@ -194,8 +194,8 @@ BeginCode
        *public_array++ = pub;
        symbol_count++;
       };
-    EndFor;
-  EndFor;
+    };
+  };
  file_close_for_read();
  if ( symbol_count Exceeds 0
   ) {
@@ -204,7 +204,7 @@ BeginCode
    For entry_number=0; entry_number LessThan symbol_count; entry_number++
     ) {
      Insert *public_array++ AtEnd InList Lib_file.external_list EndInsert;
-    EndFor;
+    };
   };
  return;
 EndCode

@@ -26,7 +26,7 @@ BeginCode
  For i=0; i LessThan len; i++
   ) {
    sum += sym[i];
-  EndFor;
+  };
  return(sum); */
 
  asm            mov     si,sym
@@ -97,7 +97,7 @@ BeginCode
 /* The following assembly code is the equivalent of the following C code:
  For i=0; (*dest++ IsNotEqualTo c) AndIf (i IsNotEqualTo 0xFFFF); i++
   ) {
-  EndFor;
+  };
  return(i); */
 
  asm            xor     cx,cx
@@ -400,7 +400,7 @@ EndDeclarations
      word.low_byte = *data++;
     };
    sum += *word_ptr;
-  EndFor;
+  };
  return(sum); */
 
  asm            xor     ax,ax

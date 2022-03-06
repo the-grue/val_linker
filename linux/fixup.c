@@ -240,15 +240,15 @@ BeginCode
      For j=0; j<block_count; j++
       ) {
        fixup_LIDATA_IDB();
-      EndFor;
-    EndFor;
+      };
+    };
   } else {  /* Handle non-recursive case:  Content is data. */
    len = Bit_16(*obj_ptr.b8++);
    For i=0; i<repeat_count; i++
     ) {
      far_move(lseg_data_ptr, obj_ptr.b8, len);
      lseg_data_ptr += len;
-    EndFor;
+    };
    obj_ptr.b8 += len;
   };
  return;

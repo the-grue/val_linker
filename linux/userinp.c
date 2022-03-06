@@ -71,7 +71,7 @@ BeginCode
      concat_string(parm_string, space_string);
     };
    concat_string(parm_string, string(BytePtr(argv[i])));
-  EndFor;
+  };
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |             Start input processing with the parm line.                  |

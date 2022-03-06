@@ -485,7 +485,7 @@ BeginCode
     ) {
      if (Pub.type_entry IsNot near_communal) continue;
      length += Pub.Communal.element_size;
-    EndFor;
+    };
    if ( length Exceeds 65536L
     ) {
      linker_error(8, "Near communal size exceeds 64K by %lu bytes.\n",
@@ -514,7 +514,7 @@ BeginCode
      Pub.Internal.offset  = offset;
      Pub.Internal.frame   = 0;
      offset              += size;
-    EndFor;
+    };
   };
  
 /*+-------------------------------------------------------------------------+
@@ -559,7 +559,7 @@ BeginCode
    Lseg.highest_uninitialized_byte += length;
    Lseg.length                     += length;
    (*Lseg.segment).length          += length;
-  EndFor;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -598,7 +598,7 @@ BeginCode
    Lseg.highest_uninitialized_byte += length;
    Lseg.length                     += length;
    (*Lseg.segment).length          += length;
-  EndFor;
+  };
 
  return;
 EndCode
