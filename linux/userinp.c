@@ -180,7 +180,7 @@ EndDeclarations
 BeginCode
  scan_out_token();
  Repeat
-  BeginRepeat
+  {
    get_filename_token(required, list);
    if ( Length(token) Exceeds 0
     ) {
@@ -215,7 +215,7 @@ EndDeclarations
 BeginCode
  scan_out_token();
  Repeat
-  BeginRepeat
+  {
    get_filename_token(required, list);
    if ( Length(token) Exceeds 0
     ) {

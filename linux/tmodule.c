@@ -1748,7 +1748,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  Repeat
-  BeginRepeat
+  {
    file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
    while ( (Current_record_header.rec_typ Is LINNUM_record) OrIf
          ((Current_record_header.rec_typ Is COMENT_record) AndIf

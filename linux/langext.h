@@ -8,16 +8,8 @@
 
 /* Block basic C commands */
 
-/*#define Loop                 while(1)
-#define BeginLoop            {
-#define EndLoop              }
-#define ExitLoop             break
-#define ContinueLoop         continue
-#define ExitIf(cond)         if (cond) break
-#define LoopIf(cond)         if (cond) continue*/
-
 #define Repeat               do
-#define BeginRepeat          {
+/*#define BeginRepeat          {*/
 #define RepeatIf             } while ((
 #define Until                } while (!(
 #define EndRepeat            ))
