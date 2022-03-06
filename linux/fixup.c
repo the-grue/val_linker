@@ -136,7 +136,7 @@ bit_16 far                            *word_location;
     };
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -193,7 +193,7 @@ bit_8                                  size;
     break;
   };
  return;
-EndCode
+}
 #undef Lseg
 
 /*+-------------------------------------------------------------------------+
@@ -211,7 +211,7 @@ lseg_ptr                               lseg;
  lseg_data_ptr = Addr(Lseg.data[temp_file_header.offset]);
  file_read(lseg_data_ptr, temp_file_header.rec_len);
  return;
-EndCode
+}
 #undef Lseg
 
 /*+-------------------------------------------------------------------------+
@@ -252,7 +252,7 @@ bit_16                                 repeat_count;
    obj_ptr.b8 += len;
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -275,7 +275,7 @@ lseg_ptr                               lseg;
    fixup_LIDATA_IDB();
   };
  return;
-EndCode
+}
 #undef Lseg
 
 /*+-------------------------------------------------------------------------+
@@ -357,7 +357,7 @@ segment_entry_ptr                      seg;
     break;
   };
  return(frame_address & 0xFFFFFFF0L);
-EndCode
+}
 #undef Grp
 #undef Lseg
 #undef Pub
@@ -420,7 +420,7 @@ void pass_two()
   };
  file_close_for_read();
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -471,7 +471,7 @@ segment_entry_ptr                      seg;
     };
   };
  return(address);
-EndCode
+}
 #undef Pub
 #undef Seg
 
@@ -513,7 +513,7 @@ segment_entry_ptr                      seg;
     };
   };
  return(address + Bit_32(Pub.Internal.offset));
-EndCode
+}
 #undef Pub
 #undef Seg
 
@@ -528,7 +528,7 @@ bit_32 segment_offset(lseg_ptr lseg, bit_16 offset)
 
 
  return ((Frame(lseg) ShiftedLeft 12L) Or (Bit_32(offset) + Target(lseg)));
-EndCode
+}
 #undef Lseg
 
 /*+-------------------------------------------------------------------------+
@@ -569,7 +569,7 @@ bit_32                                 target_address;
     break;
   };
  return(target_address);
-EndCode
+}
 #undef Grp
 #undef Lseg
 #undef Pub

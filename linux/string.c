@@ -17,7 +17,7 @@ string_ptr                             temp;
  Temp.length     = 0;
  Temp.text[0]    = '\000';
  return(temp);
-EndCode
+}
 #undef Temp
 
 /*+-------------------------------------------------------------------------+
@@ -46,7 +46,7 @@ bit_16                                 right_len;
    return(1);
   };
  return(far_compare(String(left), String(right), left_len));
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -64,7 +64,7 @@ bit_16                                 left_len;
    return(0);
   };
  return(far_compare(String(left), String(right), left_len));
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -90,7 +90,7 @@ bit_16                                 temp;
  far_move(Addr(String(dest)[Length(dest)]), String(source), temp + 1);
  Length(dest) += temp;
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -112,7 +112,7 @@ string_ptr concat_char_to_string(string_ptr dest, byte c)
  String(dest)[Length(dest)++] = c;
  String(dest)[Length(dest)]   = '\000';
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -133,7 +133,7 @@ string_ptr copy_string (string_ptr dest, string_ptr source)
  Length(dest) = Length(source);
  far_move(String(dest), String(source), Length(source)+1);
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -159,7 +159,7 @@ bit_16                                 string_length;
  length_to_right  = string_length - (at+len);
  far_move(Addr(String(s)[at]), Addr(String(s)[at+len]), length_to_right+1);
  return(s);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -178,7 +178,7 @@ string_ptr                             temp;
  Temp.max_length = Length(s);
  copy_string(temp, s);
  return(temp);
-EndCode
+}
 #undef Temp
 
 /*+-------------------------------------------------------------------------+
@@ -202,7 +202,7 @@ bit_16                                 i;
    paste_string(s, i, comma_string);
   };
  return(s);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -236,7 +236,7 @@ bit_16                                 pattern_length;
     };
   };
  return(0xFFFF);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -249,7 +249,7 @@ string_ptr lowercase_string(string_ptr s)
 
  far_to_lower(String(s), Length(s));
  return(s);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -269,7 +269,7 @@ string_ptr                             temp;
  MaxLength(temp) = len++;
  far_move(String(temp), BytePtr(s), len);
  return(temp);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -316,7 +316,7 @@ byte_ptr                               source;
    return(far_match(String(pattern), String(s), Length(pattern)));
   };
  return(False);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -329,7 +329,7 @@ byte *near_string(string_ptr s)
 
  far_move(temp_near_string, String(s), Length(s)+1);
  return(temp_near_string);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -369,7 +369,7 @@ bit_16                                 length_string;
  far_move(Addr(String(dest)[at]), String(s), length_inserted_string);
  Length(dest) += length_inserted_string;
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -407,7 +407,7 @@ bit_16                                 pattern_length;
     };
   };
  return(0xFFFF);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -430,7 +430,7 @@ bit_16                                 len;
  far_move(String(temp_string), s, len+1);
  Length(temp_string) = len;
  return(temp_string);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -462,7 +462,7 @@ bit_16                                 string_length;
  far_move(String(temp_string), Addr(String(s)[at]), len+1);
  Length(temp_string) = len;
  return(temp_string);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -480,4 +480,4 @@ string_ptr trunc_string(string_ptr s, bit_16 at)
  Length(s)     = at;
  String(s)[at] = '\000';
  return(s);
-EndCode
+}

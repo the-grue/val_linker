@@ -21,7 +21,7 @@ bit_32                                 hhmmsscc;
             Bit_32(outregs.h.cl)  *   6000L +
             Bit_32(outregs.h.ch)  * 360000L;
  return(hhmmsscc);
-EndCode
+}
 
 
 /*+-------------------------------------------------------------------------+
@@ -57,4 +57,4 @@ char_ptr elapsed_time(bit_32 start_time, bit_32 stop_time)
     sprintf(time_array,"%u.%02u",ss,cc);
  };
  return(time_array);
-EndCode
+}

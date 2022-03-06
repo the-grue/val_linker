@@ -163,7 +163,7 @@ token_stack_ptr                        source_element;
  process_user_input_files(Addr(lib_file_list),
                           False);
  return;
-EndCode
+}
 #undef File_entry
 #undef Source_element
 
@@ -197,7 +197,7 @@ void process_user_input_files(file_info_list *list,
    } while (( more_tokens
   ));
  return;
-EndCode
+}
 #undef List
 
 /*+-------------------------------------------------------------------------+
@@ -234,6 +234,6 @@ file_info_ptr                          file_entry;
    } while (( more_tokens
   ));
  return;
-EndCode
+}
 #undef File_entry
 #undef List

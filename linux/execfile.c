@@ -66,7 +66,7 @@ segment_entry_ptr                      seg;
  Exe_header.checksum = Complement checksum;
  file_write(BytePtr(exe_header), exe_header_size);
  return;
-EndCode
+}
 #undef Lseg
 #undef Seg
 
@@ -208,7 +208,7 @@ segment_entry_ptr                      seg;
   EndTraverse;
  file_close_for_write();
  return;
-EndCode
+}
 #undef Lseg
 #undef Seg
 
@@ -233,4 +233,4 @@ void write_gap(bit_32 length)
     };
   };
  return;
-EndCode
+}

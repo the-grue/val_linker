@@ -40,7 +40,7 @@ Generic_Element_ptr                    prior;
    prior = current;
   EndTraverse;
  return;
-EndCode
+}
 #undef Elem
 #undef Lst
 #undef Current
@@ -106,7 +106,7 @@ void ListInsert(Generic_Element_ptr       elem,
     break;
   };
  return;
-EndCode
+}
 #undef Elem
 #undef Aftr
 #undef Lst
@@ -135,6 +135,6 @@ void ListPop(Generic_Element_list far *lst,
    Last(Lst) = Null;
   };
  return;
-EndCode
+}
 #undef Elem
 #undef Lst

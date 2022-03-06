@@ -39,7 +39,7 @@ hash_loop:
  asm            inc     si
  asm            loop    hash_loop
  return(_AX);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -82,7 +82,7 @@ left_less_than_right:
  return(-1);
 left_greater_than_right:
  return(1);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -114,7 +114,7 @@ search_done:
  asm            mov     i,cx
 
  return(i);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -163,7 +163,7 @@ succeeded:
 failed:
  asm            pop     ds
  return(False);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -189,7 +189,7 @@ byte_ptr far_move (byte_ptr dest, byte_ptr source, bit_16 len)
  asm            pop     ds
 
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -221,7 +221,7 @@ byte_ptr far_move_left (byte_ptr dest, byte_ptr source, bit_16 len)
  asm            pop     ds
 
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -247,7 +247,7 @@ byte_ptr far_set (byte_ptr dest, byte source, bit_16 len)
  asm    rep     stosb
 
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -279,7 +279,7 @@ next_byte:
  asm            loop    lower_case_loop
 
  return(dest);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -367,7 +367,7 @@ down_loop:
  asm            mov     di,starting_entry
  asm            mov     [di],dx
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -429,4 +429,4 @@ at_end_of_sum:
  asm            adc     ah,0
 checksum_done:
  return(_AX);
-EndCode
+}

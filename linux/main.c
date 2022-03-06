@@ -21,4 +21,4 @@ void main(bit_16 argc, byte *argv[])
  link_map();
  file_delete(temp_file);
  end_linker(0);
-EndCode
+}

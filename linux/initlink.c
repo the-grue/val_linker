@@ -142,7 +142,7 @@ void primary_linker_initialization(byte *program_directory)
  process_filename(help_filename);
  change_extension(help_filename, help_extension_string);
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -275,4 +275,4 @@ void secondary_linker_initialization()
   };
  exefile = (comfile.val IsFalse) AndIf (sysfile.val IsFalse);
  return;
-EndCode
+}

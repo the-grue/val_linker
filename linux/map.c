@@ -285,7 +285,7 @@ bit_32                                 stop_address;
   };
  file_close_for_write();
  return;
-EndCode
+}
 #undef File
 #undef Grp
 #undef Pub
@@ -338,7 +338,7 @@ char                                   ascii[20];
    print("  %s\n", ascii);
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -393,7 +393,7 @@ public_entry_ptr                       temp;
    };
  sort_publics_by_name(i+1,  right);
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -450,7 +450,7 @@ public_entry_ptr                       temp;
    };
  sort_publics_by_value(i+1,  right);
  return;
-EndCode
+}
 
 /*
  Start  Stop   Length Name                   Class

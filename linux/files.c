@@ -18,7 +18,7 @@ string_ptr add_extension_to_file(string_ptr fn, string_ptr ext)
    concat_string(fn,ext);
   };
 return(fn);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -73,7 +73,7 @@ bit_16                                 rc;
    rc = continue_file_search();
   };
  return;
-EndCode
+}
 #undef File_entry
 #undef File_list
 
@@ -89,7 +89,7 @@ string_ptr change_extension(string_ptr  fn, string_ptr ext)
  trunc_string(fn, reverse_index_string(fn,0xFFFF,dot_string));
  concat_string(fn, ext);
  return(fn);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -124,7 +124,7 @@ bit_16                                 rc;
    concat_string(current_filename, string((*DTA).filename));
   };
  return(rc);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -150,7 +150,7 @@ string_ptr default_directory(string_ptr drive, string_ptr directory)
    concat_string(directory,backslash_string);
   };
  return(directory);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -170,7 +170,7 @@ string_ptr                             drive;
 /* DOS_int21("Failed to get current drive.\n");*/
  *String(drive) = (char) (outregs.h.al + 'a');
  return(drive);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -192,7 +192,7 @@ void file_close_for_read()
              (*File.file_info).filename);
   };
  return;
-EndCode
+}
 #undef File
 
 /*+-------------------------------------------------------------------------+
@@ -225,7 +225,7 @@ void file_close_for_write()
              (*File.file_info).filename);
   };
  return;
-EndCode
+}
 #undef File
 
 /*+-------------------------------------------------------------------------+
@@ -249,7 +249,7 @@ bit_16                                 rc;
  rc = (bit_16) intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  set_DTA_address(old_DTA);
  return(rc IsZero);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -269,7 +269,7 @@ void file_delete(file_info_ptr file_info)
  DOS_int21("Trouble deleting file \"%Fs\".\n",
            File_info.filename);
  return;
-EndCode
+}
 #undef File_info
 
 /*+-------------------------------------------------------------------------+
@@ -289,7 +289,7 @@ void file_IO_limit(bit_16 limit)
    File.IO_limit = limit;
   };
  return;
-EndCode
+}
 #undef File
 
 /*+-------------------------------------------------------------------------+
@@ -346,7 +346,7 @@ void file_open_for_read(file_info_ptr file_info)
            File_info.filename);
  File.file_handle = outregs.x.ax;
  return;
-EndCode
+}
 #undef File
 #undef File_info
 
@@ -404,7 +404,7 @@ void file_open_for_write(file_info_ptr file_info)
            File_info.filename);
  File.file_handle = outregs.x.ax;
  return;
-EndCode
+}
 #undef File
 #undef File_info
 
@@ -442,7 +442,7 @@ void file_position(bit_32 position)
    File.current_byte               = File.buffer;
   };
  return;
-EndCode
+}
 #undef File
 
 /*+-------------------------------------------------------------------------+
@@ -491,7 +491,7 @@ void file_read(byte_ptr into, bit_16 length)
     };
   };
  return;
-EndCode
+}
 #undef File
 
 /*+-------------------------------------------------------------------------+
@@ -539,7 +539,7 @@ void file_write(byte_ptr from, bit_32 length)
     };
   };
  return;
-EndCode
+}
 #undef File
 
 /*+-------------------------------------------------------------------------+
@@ -558,7 +558,7 @@ DTA_ptr                                DTA_address;
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  DTA_address = (DTA_ptr) MakeFarPtr(segregs.es, outregs.x.bx);
  return(DTA_address);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -644,7 +644,7 @@ bit_16                                 right;
    right = index_string(fn, left+1, backslash_string);
   };
  return(fn);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -662,7 +662,7 @@ void set_DTA_address(DTA_ptr DTA_address)
  inregs.x.dx = Offset(DTA_address);
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -709,4 +709,4 @@ bit_16                                 rc;
    concat_string(current_filename, string((*DTA).filename));
   };
  return(rc);
-EndCode
+}

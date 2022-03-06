@@ -28,7 +28,7 @@ bit_16                                 error_number;
    end_linker(16);
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -59,7 +59,7 @@ bit_16                                 error_number;
    end_linker(16);
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -80,7 +80,7 @@ va_list                                argptr;
   } else {
    return;
   };
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -99,7 +99,7 @@ static char                            flag = 0;
  va_start(argptr,format);
  vfprintf(stdout,format,argptr);
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -127,4 +127,4 @@ bit_16                                 len;
   };
  file_write(BytePtr(object_file_element), Bit_32(len));
  return;
-EndCode
+}

@@ -10,8 +10,8 @@
 
 /*#define BeginDeclarations    {
 #define EndDeclarations
-#define BeginCode*/
-#define EndCode              }
+#define BeginCode
+#define EndCode              }*/
 
 #define Type                 typedef
 

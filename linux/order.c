@@ -108,7 +108,7 @@ public_entry_ptr                       pub;
     };
   };
  return;
-EndCode
+}
 #undef Lseg
 #undef Pub
 
@@ -153,7 +153,7 @@ void get_order_token()
     };
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -230,7 +230,7 @@ byte_ptr                               start_of_expression;
   };
  segment_list = segments_ordered_list;
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -252,7 +252,7 @@ bit_16                                 left_operand;
    left_operand |= order_term();
   };
  return(left_operand);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -274,7 +274,7 @@ bit_16                                 unary_not;
    unary_not ^= True;
   };
  return(unary_not ^ order_primary());
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -366,7 +366,7 @@ bit_16                                 operand;
                  "\t\"%Fs\"\n",
                  String(ordering.val));
  return(False);
-EndCode
+}
 #undef Group
 
 /*+-------------------------------------------------------------------------+
@@ -601,7 +601,7 @@ bit_16                                 size;
   };
 
  return;
-EndCode
+}
 #undef Pub
 #undef Lseg
 
@@ -624,7 +624,7 @@ bit_16                                 left_operand;
    left_operand &= order_factor();
   };
  return(left_operand);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -643,4 +643,4 @@ void order_token_get_char()
   };
  token_break_char = *order_expression_char_ptr++;
  return;
-EndCode
+}

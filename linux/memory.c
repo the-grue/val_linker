@@ -69,7 +69,7 @@ memory_descriptor_ptr                  prior;
                  "\tvirtualized fixup processing.\n",
                  Pool.pool_id);
  return(desc); /* To kill warning */
-EndCode
+}
 #undef Pool
 #undef Desc
 #undef Prior
@@ -127,7 +127,7 @@ byte_ptr                               element;
  Desc.unused_base            += Bit_16(size);
  Desc.available              -= size;
  return(element);
-EndCode
+}
 #undef Pool
 #undef Desc
 #undef Prev
@@ -224,7 +224,7 @@ memory_descriptor_ptr                  desc;
  dynamic_pool.pool_size              =
  dynamic_pool.used_bytes             = 0L;
  return;
-EndCode
+}
 #undef Desc
 
 /*+-------------------------------------------------------------------------+
@@ -256,6 +256,6 @@ memory_descriptor_ptr                  next;
  Pool.pool_size              =
  Pool.used_bytes             = 0L;
  return;
-EndCode
+}
 #undef Pool
 #undef Desc

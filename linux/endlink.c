@@ -14,7 +14,7 @@ void end_linker(bit_16 return_code)
    linker_statistics();
   };
  exit(return_code);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -193,5 +193,5 @@ file_info_ptr                          file;
                 elapsed_time(0L, total_time));
 
  return;
-EndCode
+}
 #undef File

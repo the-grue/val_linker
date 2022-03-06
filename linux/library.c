@@ -21,7 +21,7 @@ file_info_ptr                          current_lib_file_info;
  write_temp_file(0, Null, 0, 0, 0);
  file_close_for_write();
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -66,7 +66,7 @@ public_entry_ptr                       pub;
    file_close_for_read();
   };
  return;
-EndCode
+}
 #undef Lib_file
 #undef Pub
 
@@ -92,7 +92,7 @@ file_info_ptr                          current_lib_file_info;
   EndTraverse;
  release_pool(Addr(dynamic_pool));
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -207,7 +207,7 @@ bit_16                                *symbol_in_page;
     };
   };
  return;
-EndCode
+}
 #undef Pub
 #undef Lib_file
 #undef Lib_hdr
@@ -303,4 +303,4 @@ public_entry_ptr                       temp;
    };
  sort_directory(i+1,  right);
  return;
-EndCode
+}

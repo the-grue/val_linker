@@ -19,4 +19,4 @@ file_info_ptr                          obj_file;
    file_close_for_read();
   EndTraverse;
  return;
-EndCode
+}

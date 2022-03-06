@@ -22,7 +22,7 @@ void complete_a_filename_token()
     };
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -37,7 +37,7 @@ void eat_white_space()
   ) {
    token_get_char();
   };
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -57,7 +57,7 @@ token_stack_ptr                        elem;
                            Bit_32(sizeof(token_stack_type)));
   };
  return(elem);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -210,7 +210,7 @@ token_stack_ptr                        source_element;
     };
   };
  return;
-EndCode
+}
 #undef List
 #undef Source_element
 
@@ -231,7 +231,7 @@ FILE                                  *infile;
                    String(fn));
   };
  return(infile);
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -267,7 +267,7 @@ switch_table_ptr                       current_switch;
  linker_error(8,"Syntax error:  \"%Fs\" is an unknown switch.\n",
                 String(token));
  return;
-EndCode
+}
 #undef Current_switch
 
 /*+-------------------------------------------------------------------------+
@@ -305,7 +305,7 @@ void scan_bit_16_switch(switch_table_ptr current_switch)
  scan_out_token();
  copy_string(token, next_token);
  return;
-EndCode
+}
 #undef Current_switch
 #undef Affected_thing
 
@@ -344,7 +344,7 @@ void scan_opt_bit_16(switch_table_ptr current_switch)
  scan_out_token();
  copy_string(token, next_token);
  return;
-EndCode
+}
 #undef Current_switch
 #undef Affected_thing
 
@@ -481,7 +481,7 @@ bit_16                                 paren_count;
     break;
   };
  return;
-EndCode
+}
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -515,7 +515,7 @@ FILE                                  *help_file;
   };
  exit(0);
  return;
-EndCode
+}
 #undef Affected_thing
 
 /*+-------------------------------------------------------------------------+
@@ -533,7 +533,7 @@ void scan_reset_bit_16(switch_table_ptr current_switch)
  Affected_thing.set = False;
  Affected_thing.val = Affected_thing.def;
  return;
-EndCode
+}
 #undef Affected_thing
 
 /*+-------------------------------------------------------------------------+
@@ -551,7 +551,7 @@ void scan_reset_switch(switch_table_ptr current_switch)
  scan_out_token();
  copy_string(token, next_token);
  return;
-EndCode
+}
 #undef Current_switch
 #undef Affected_thing
 
@@ -570,7 +570,7 @@ void scan_set_switch(switch_table_ptr current_switch)
  scan_out_token();
  copy_string(token, next_token);
  return;
-EndCode
+}
 #undef Current_switch
 #undef Affected_thing
 
@@ -604,7 +604,7 @@ void scan_text_switch(switch_table_ptr current_switch)
  scan_out_token();
  copy_string(token, next_token);
  return;
-EndCode
+}
 #undef Affected_thing
 #undef Current_switch
 
@@ -679,6 +679,6 @@ token_stack_ptr                        tos;
    token_break_char = ' ';
   };
  return;
-EndCode
+}
 #undef Tos
 #undef Tos_string

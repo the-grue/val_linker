@@ -103,7 +103,7 @@ group_entry_ptr                        prior;
  group_hash_table[hash_val] = group_entry;
  Group_entry.first_segment  = Null;
  return(group_entry);
-EndCode
+}
 #undef Group_lname
 #undef Group_entry
 #undef Prior
@@ -155,7 +155,7 @@ lname_entry_ptr                        prior;
  Lname_entry.next_congruent = lname_hash_table[hash_val];
  lname_hash_table[hash_val] = lname_entry;
  return(lname_entry);
-EndCode
+}
 #undef Lname_entry
 #undef Prior
 
@@ -206,7 +206,7 @@ public_entry_ptr                       prior;
  Pub_entry.next_congruent    = public_hash_table[hash_val];
  public_hash_table[hash_val] = pub_entry;
  return(pub_entry);
-EndCode
+}
 #undef Pub_entry
 #undef Prior
 
@@ -268,7 +268,7 @@ segment_entry_ptr                      prior;
  Segment_entry.next_congruent = segment_hash_table[hash_val];
  segment_hash_table[hash_val] = segment_entry;
  return(segment_entry);
-EndCode
+}
 #undef Segment_lname
 #undef Segment_class_lname
 #undef Segment_entry
