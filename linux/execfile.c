@@ -221,7 +221,7 @@ void write_gap(bit_32 length)
 BeginDeclarations
 EndDeclarations
 BeginCode
- While length Exceeds 0
+ while ( length Exceeds 0
   ) {
    if ( length Exceeds Bit_32(MAX_ELEMENT_SIZE)
     ) {

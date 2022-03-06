@@ -11,7 +11,7 @@ file_info_ptr                          current_lib_file_info;
 EndDeclarations
 BeginCode
  library_processing_start_time = Now;
- While library_request_count Exceeds 0
+ while ( library_request_count Exceeds 0
   ) {
    TraverseList(lib_file_list, current_lib_file_info)
     BeginTraverse
@@ -36,7 +36,7 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 EndDeclarations
 BeginCode
- While Lib_file.request_count Exceeds 0
+ while ( Lib_file.request_count Exceeds 0
   ) {
    file_open_for_read(lib_file);
    Lib_file.pass_count++;
@@ -270,9 +270,9 @@ BeginCode
   };
  i = left;
  j = right;
- While i LessThan j
+ while ( i LessThan j
   ) {
-   While i LessThan j
+   while ( i LessThan j
     ) {
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
@@ -284,7 +284,7 @@ BeginCode
       };
      j--;
     };
-   While i LessThan j
+   while ( i LessThan j
     ) {
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page

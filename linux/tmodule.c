@@ -46,7 +46,7 @@ BeginCode
   ) {
    return(False);
   };
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    if ( n_externals NotLessThan max_externals.val
     ) {
@@ -207,7 +207,7 @@ BeginCode
   ) {
    return(False);
   };
- While obj_FIXUPP()
+ while ( obj_FIXUPP()
   ) {
   };
  return(True);
@@ -298,7 +298,7 @@ BeginCode
   ) {
    return(False);
   };
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    if ( n_externals NotLessThan max_externals.val
     ) {
@@ -356,7 +356,7 @@ BeginCode
    return(False);
   };
  FIXUPP_contains_only_threads = True;
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    if ( (*obj_ptr.TRD_DAT).type_fixupp_record IsZero
     ) {
@@ -597,7 +597,7 @@ BeginCode
     [Last_LIDATA_record_header.rec_len-1]);
  obj_index_segment();
  obj_ptr.b16++;
- While obj_ptr.b8 IsNot end_of_last_LIDATA_record.b8
+ while ( obj_ptr.b8 IsNot end_of_last_LIDATA_record.b8
   ) {
    obj_fixup_LIDATA_IDB();
   };
@@ -882,7 +882,7 @@ BeginCode
                     max_groups.val);
   };
  gnames[++n_groups]  = group;
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    if ( *obj_ptr.b8++ IsNot 0xFF
     ) {
@@ -1287,7 +1287,7 @@ BeginCode
   };
  if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
   ) {
-   While obj_ptr.b8 IsNot end_of_record.b8
+   while ( obj_ptr.b8 IsNot end_of_record.b8
    ) {
    obj_iterated_data_block();
    };
@@ -1321,7 +1321,7 @@ EndDeclarations
 BeginCode
  start  = obj_ptr.b8;
  length = 0L;
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    length += obj_iterated_data_block_length();
   };
@@ -1359,7 +1359,7 @@ BeginCode
   ) {
    return(False);
   };
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    if ( n_lnames NotLessThan max_lnames.val
     ) {
@@ -1578,7 +1578,7 @@ BeginCode
   ) {
    return(False);
   };
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    if ( n_externals NotLessThan max_externals.val
     ) {
@@ -1639,7 +1639,7 @@ BeginCode
   ) {
    frame = *obj_ptr.b16++;
   };
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    len = obj_name_length();
    if ( case_ignore.val
@@ -1750,7 +1750,7 @@ BeginCode
  Repeat
   BeginRepeat
    file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
-   While (Current_record_header.rec_typ Is LINNUM_record) OrIf
+   while ( (Current_record_header.rec_typ Is LINNUM_record) OrIf
          ((Current_record_header.rec_typ Is COMENT_record) AndIf
           (Current_record_header.rec_len Exceeds MAX_OBJECT_FILE_READ_SIZE))
     ) {
@@ -1827,7 +1827,7 @@ BeginCode
   ) {
    frame = *obj_ptr.b16++;
   };
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    len = obj_name_length();
    if ( case_ignore.val
@@ -1991,10 +1991,10 @@ bit_16 obj_seg_grp()
 BeginDeclarations
 EndDeclarations
 BeginCode
- While obj_LNAMES() OrIf obj_SEGDEF() OrIf obj_EXTDEF()
+ while ( obj_LNAMES() OrIf obj_SEGDEF() OrIf obj_EXTDEF()
   ) {
   };
- While obj_TYPDEF() OrIf obj_EXTDEF() OrIf obj_GRPDEF()
+ while ( obj_TYPDEF() OrIf obj_EXTDEF() OrIf obj_GRPDEF()
   ) {
   };
  return(True);
@@ -2103,7 +2103,7 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset);
   };
- While obj_component()
+ while ( obj_component()
   ) {
   };
  if ( Not obj_modtail()

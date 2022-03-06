@@ -121,14 +121,14 @@ void get_order_token()
 BeginDeclarations
 EndDeclarations
 BeginCode
- While token_break_char Is ' '
+ while ( token_break_char Is ' '
   ) {
    order_token_get_char();
   };
  copy_string(token, null_string);
  if ( IsIdentifier(token_break_char)
   ) {
-   While IsIdentifier(token_break_char)
+   while ( IsIdentifier(token_break_char)
     ) {
      concat_char_to_string(token, token_break_char);
      order_token_get_char();
@@ -137,7 +137,7 @@ BeginCode
   } else {
    if ( token_break_char Is '['
     ) {
-     While token_break_char IsNot ']'
+     while ( token_break_char IsNot ']'
       ) {
        concat_char_to_string(token, token_break_char);
        order_token_get_char();
@@ -185,12 +185,12 @@ BeginCode
  highest_uninitialized_byte = 0L;
  start_of_expression = String(ordering.val);
  start_of_expression++;
- While *start_of_expression IsNot '\000'
+ while ( *start_of_expression IsNot '\000'
   ) {
    ExitIf(segment_list.first IsNull);
    First(segments_unordered_list) =
    Last(segments_unordered_list)  = Null;
-   While segment_list.first IsNotNull
+   while ( segment_list.first IsNotNull
     ) {
      Pop segment_list InTo active_segment EndPop;
      order_expression_char_ptr = start_of_expression;
@@ -222,7 +222,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- While segment_list.first IsNotNull
+ while ( segment_list.first IsNotNull
   ) {
    Pop segment_list InTo active_segment EndPop;
    Insert active_segment AtEnd InList segments_ordered_list EndInsert;
@@ -244,7 +244,7 @@ EndDeclarations
 BeginCode
  get_order_token();
  left_operand = order_term();
- While TokenIs(or_string)   OrIf
+ while ( TokenIs(or_string)   OrIf
        TokenIs(plus_string) OrIf
        TokenIs(bar_string)
   ) {
@@ -265,7 +265,7 @@ bit_16                                 unary_not;
 EndDeclarations
 BeginCode
  unary_not = False;
- While TokenIs(exclamation_string) OrIf
+ while ( TokenIs(exclamation_string) OrIf
        TokenIs(tilde_string)       OrIf
        TokenIs(minus_string)       OrIf
        TokenIs(not_string)
@@ -616,7 +616,7 @@ bit_16                                 left_operand;
 EndDeclarations
 BeginCode
  left_operand = order_factor();
- While TokenIs(and_string)       OrIf
+ while ( TokenIs(and_string)       OrIf
        TokenIs(star_string)      OrIf
        TokenIs(ampersand_string)
   ) {

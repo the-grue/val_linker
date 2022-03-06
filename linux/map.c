@@ -193,7 +193,7 @@ BeginCode
      print("Fixups:\n");
      file_open_for_read(temp_file);
      file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
-     While temp_file_header.rec_typ IsNotZero
+     while ( temp_file_header.rec_typ IsNotZero
       ) {
        if ( temp_file_header.rec_typ IsNot FIXUPP_record
         ) {
@@ -305,7 +305,7 @@ char                                   ascii[20];
 EndDeclarations
 BeginCode
  line_address = address & 0xFFFF0L;
- While length Exceeds 0
+ while ( length Exceeds 0
   ) {
    print("%05X: ", line_address);
    far_set(BytePtr(ascii), 0, 20);
@@ -358,9 +358,9 @@ BeginCode
   };
  i = left;
  j = right;
- While i LessThan j
+ while ( i LessThan j
   ) {
-   While i LessThan j
+   while ( i LessThan j
     ) {
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
@@ -373,7 +373,7 @@ BeginCode
       };
      j--;
     };
-   While i LessThan j
+   while ( i LessThan j
     ) {
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
@@ -413,9 +413,9 @@ BeginCode
   };
  i = left;
  j = right;
- While i LessThan j
+ while ( i LessThan j
   ) {
-   While i LessThan j
+   while ( i LessThan j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
@@ -429,7 +429,7 @@ BeginCode
       };
      j--;
     };
-   While i LessThan j
+   while ( i LessThan j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf

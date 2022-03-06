@@ -161,21 +161,21 @@ BeginCode
  switch ( size
   ) {
    case 0:
-    While obj_ptr.b8 IsNot end_of_record.b8
+    while ( obj_ptr.b8 IsNot end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       Lseg.data[offset] += *obj_ptr.b8++;
      };
     break;
    case 1:
-    While obj_ptr.b8 IsNot end_of_record.b8
+    while ( obj_ptr.b8 IsNot end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       *((bit_16 far *) Addr(Lseg.data[offset])) += *obj_ptr.b16++;
      };
     break;
    case 2:
-    While obj_ptr.b8 IsNot end_of_record.b8
+    while ( obj_ptr.b8 IsNot end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       *((bit_32 far *) Addr(Lseg.data[offset])) += *obj_ptr.b32++;
@@ -270,7 +270,7 @@ BeginCode
  file_read(BytePtr(object_file_element), temp_file_header.rec_len);
  obj_ptr.b8       = object_file_element;
  end_of_record.b8 = Addr(obj_ptr.b8[temp_file_header.rec_len]);
- While obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
    fixup_LIDATA_IDB();
   };
@@ -396,7 +396,7 @@ BeginCode
   };
  file_open_for_read(temp_file);
  file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
- While temp_file_header.rec_typ IsNotZero
+ while ( temp_file_header.rec_typ IsNotZero
   ) {
    switch ( temp_file_header.rec_typ
     ) {

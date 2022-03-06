@@ -196,7 +196,7 @@ BeginCode
  vsprintf((char_ptr) temp_near_string, format, argptr);
  copy_string(s, string(temp_near_string));
  i = Length(s);
- While i Exceeds 3
+ while ( i Exceeds 3
   ) {
    i -= 3;
    paste_string(s, i, comma_string);

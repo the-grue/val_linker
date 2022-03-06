@@ -33,7 +33,7 @@ void eat_white_space()
 BeginDeclarations
 EndDeclarations
 BeginCode
- While token_break_char Is ' '
+ while ( token_break_char Is ' '
   ) {
    token_get_char();
   };
@@ -248,7 +248,7 @@ BeginCode
  scan_out_token();
  copy_string(token, next_token);
  lowercase_string(token);
- While Current_switch.full_name IsNotNull
+ while ( Current_switch.full_name IsNotNull
   ) {
    if ( compare_string(token, string((byte *)Current_switch.abbr_name)) IsZero
     ) {
@@ -408,7 +408,7 @@ BeginCode
     paren_count = 1;
     token_type  = text_token_type;
     concat_char_to_string(next_token, token_break_char);
-    While paren_count IsNotZero
+    while ( paren_count IsNotZero
      ) {
       token_get_char();
       if ( token_break_char IsNot '\n'
@@ -434,7 +434,7 @@ BeginCode
    default:
     token_is_number     = True;
     token_numeric_value = 0;
-    While (token_break_char IsNot ',')  AndIf
+    while ( (token_break_char IsNot ',')  AndIf
           (token_break_char IsNot ';')  AndIf
           (token_break_char IsNot '+')  AndIf
           (token_break_char IsNot '/')  AndIf
@@ -500,7 +500,7 @@ BeginCode
   ) {
    printf("Could not open help file \"%Fs\".\n", String(help_filename));
   } else {
-   While fgets(CharPtr(object_file_element), MAX_ELEMENT_SIZE, help_file) 
+   while ( fgets(CharPtr(object_file_element), MAX_ELEMENT_SIZE, help_file) 
          IsNotNull
     ) {
      if ( *CharPtr(object_file_element) Is '\f'

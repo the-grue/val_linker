@@ -79,7 +79,7 @@ BeginCode
  hash_val    = Group_lname.lname_checksum Mod group_table_hash_size.val;
  group_entry = group_hash_table[hash_val];
  prior       = Null;
- While group_entry IsNotNull
+ while ( group_entry IsNotNull
   ) {
    if ( group_lname Is Group_entry.group_name
     ) {
@@ -127,7 +127,7 @@ BeginCode
  hash_val    = charsum Mod lname_table_hash_size.val;
  lname_entry = lname_hash_table[hash_val];
  prior       = Null;
- While lname_entry IsNotNull
+ while ( lname_entry IsNotNull
   ) {
    if ( len Is Lname_entry.length
     ) {
@@ -176,7 +176,7 @@ BeginCode
  hash_val  = checksum(len, sym) Mod public_table_hash_size.val;
  pub_entry = public_hash_table[hash_val];
  prior     = Null;
- While pub_entry IsNotNull
+ while ( pub_entry IsNotNull
   ) {
    if ( len Is Pub_entry.length
     ) {
@@ -235,7 +235,7 @@ BeginCode
  if ( (combine IsNotZero) AndIf (combine IsNot blank_common_combine)
   ) {  /* All non-zero combine types except blank common will be combined. */
    prior         = Null;
-   While segment_entry IsNotNull
+   while ( segment_entry IsNotNull
     ) {
      if ( (segment_lname       Is Segment_entry.segment_name) AndIf
         (class_lname         Is Segment_entry.class_name)   AndIf

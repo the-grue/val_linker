@@ -44,7 +44,7 @@ BeginCode
                   "\t\"%Fs\"\n",
                   String(fn));
   };
- While rc IsZero
+ while ( rc IsZero
   ) {
    compare_len = Length(current_filename) + 1;
    already_in_list = 0;
@@ -457,7 +457,7 @@ BeginDeclarations
 #define File                           infile
 EndDeclarations
 BeginCode
- While length Exceeds 0
+ while ( length Exceeds 0
   ) {
    if ( length Exceeds File.bytes_left_in_buffer
     ) {
@@ -506,7 +506,7 @@ BeginDeclarations
 #define File                           outfile
 EndDeclarations
 BeginCode
- While length Exceeds 0L
+ while ( length Exceeds 0L
   ) {
    if ( length Exceeds Bit_32(File.bytes_left_in_buffer)
     ) {
@@ -618,7 +618,7 @@ BeginCode
   +-------------------------------------------------------------------------+*/
  left  = index_string(fn, -1, backslash_string);
  right = index_string(fn, left+1, backslash_string);
- While right IsNot 0xffff
+ while ( right IsNot 0xffff
   ) {
    if ( compare_string(substr(fn,left,4), backslash_dot_dot_string) IsZero
     ) {

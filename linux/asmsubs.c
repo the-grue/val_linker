@@ -51,7 +51,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
- While len-- IsNotZero
+ while ( len-- IsNotZero
   ) {
    if ( *left IsNotEqualTo *right
     ) {
@@ -126,7 +126,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
- While len Exceeds 0
+ while ( len Exceeds 0
   ) {
    if ( *pattern Is '*'
     ) {
@@ -175,7 +175,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
- While len-- IsNotZero
+ while ( len-- IsNotZero
   ) {
    *dest++ = *source++;
   }; */
@@ -203,7 +203,7 @@ BeginCode
 /* The following assembly code is the equivalent of the following C code:
  dest   += len - 1;
  source += len - 1;
- While len-- IsNotZero
+ while ( len-- IsNotZero
   ) {
    *dest-- = *source--;
   }; */
@@ -233,7 +233,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
- While len-- IsNotZero
+ while ( len-- IsNotZero
   ) {
    *dest++ = source;
   }; */
@@ -259,7 +259,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
- While len-- IsNotZero
+ while ( len-- IsNotZero
   ) {
    tolower(*dest++);
   }; */
@@ -311,7 +311,7 @@ BeginCode
  *delta_block    =
  *starting_entry =
  *delta_entry    = 0;
- While len-- Exceeds 0
+ while ( len-- Exceeds 0
   ) {
    c = (Bit_16(*beg_str++) And 0xFF) Or 0x20;
    *starting_block = c Xor ((*starting_block ShiftedLeft   2)  Or

@@ -22,8 +22,8 @@
 #define ExitIf(cond)         if (cond) break
 #define LoopIf(cond)         if (cond) continue
 
-#define While                while (
-/*#define BeginWhile           ) {
+/*#define While                while (
+#define BeginWhile           ) {
 #define EndWhile             }*/
 
 #define Repeat               do

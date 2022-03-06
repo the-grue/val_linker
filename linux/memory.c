@@ -44,7 +44,7 @@ EndDeclarations
 BeginCode
  prior = Null;
  desc  = free_pool.memory_descriptor_list;
- While desc IsNotNull
+ while ( desc IsNotNull
   ) {
    if ( Desc.available NotLessThan size
     ) {
@@ -97,7 +97,7 @@ BeginCode
 
  prev = NULL;
  desc = Pool.memory_descriptor_list;
- While desc IsNotNull
+ while ( desc IsNotNull
   ) {
    if ( size NotGreaterThan Desc.available
     ) { /* We can take the element from this chunk */
@@ -196,7 +196,7 @@ BeginCode
  free_pool.pool_size                  =
  free_pool.used_bytes                 = 0L;
  free_pool.memory_descriptor_list     = NULL;
- While far_memory_size IsNotZero
+ while ( far_memory_size IsNotZero
   ) {
    desc = (memory_descriptor_ptr) 
            allocate_memory(Addr(static_pool),
@@ -242,7 +242,7 @@ memory_descriptor_ptr                  next;
 EndDeclarations
 BeginCode
  desc  = Pool.memory_descriptor_list;
- While desc IsNotNull
+ while ( desc IsNotNull
   ) {
    Desc.available                    = Desc.size;
    Desc.unused_base                  = Desc.chunk;
