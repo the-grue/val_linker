@@ -1160,7 +1160,7 @@ bit_8                                  element_size;
      if ( element_size == 132
       ) {
        obj_ptr.b8--;
-       return((*obj_ptr.b32++) And 0x00FFFFFFL);
+       return((*obj_ptr.b32++) & 0x00FFFFFFL);
       } else {
        if ( element_size == 136
         ) {

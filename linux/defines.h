@@ -9,7 +9,7 @@
 /* The following string must be one more than TEMP_STRING_LENGTH */
 #define TEMP_STRING_SIZE               257
 
-#define AlignmentGap(exp, bound)       (-(exp And bound) And bound)
+#define AlignmentGap(exp, bound)       (-(exp & bound) & bound)
 #define CanonicFrame(exp)              ((bit_16) (exp >> 4L))
 #define Frame(exp)                     ((bit_32) ((*(*exp).segment).address & \
                                                   0xFFFFFFF0L))

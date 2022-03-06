@@ -56,38 +56,13 @@ ListTypeOf(Generic_Element);
 /* Make operations less cryptic */
 
 /* Logical operators */
-/*#define AndIf                &&
-#define OrIf                 ||
-#define Not                  !
-#define Is                   ==
-#define IsNot                !=
-#define IsEqualTo            ==
-#define Equals               ==
-#define IsNotEqualTo         !=
-#define LessThan             <
-#define NotLessThan          >=
-#define LessThanOrEqualTo    <=
-#define GreaterThan          >
-#define Exceeds              >
-#define Positive             > 0
-#define Negative             < 0
-#define IsZero               == 0
-#define IsNull               == 0
-#define IsNotNull            != 0
-#define IsEmpty              == 0
-#define IsNotEmpty           != 0
-#define IsNotZero            != 0
-#define IsTrue               != 0
-#define IsFalse              == 0
-#define NotGreaterThan       <=
-#define GreaterThanOrEqualTo >=*/
 #define IsIdentifier(x)      (((x>='A') && (x<='Z')) || \
                               ((x>='a') && (x<='z')) || \
                                (x=='_'))
 #define IsNumber(x)          ((x>='0') && (x<='9'))
 
 /* Bitwise operators */
-#define And                  &
+/*#define And                  &*/
 #define Or                   |
 #define Xor                  ^
 #define Complement           ~
