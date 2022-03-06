@@ -42,7 +42,7 @@ public_entry_ptr                       pub;
    Lib_file.pass_count++;
    TraverseList(Lib_file.external_list, pub)
     BeginTraverse
-     if ((Pub.type_entry != public_in_library) OrIf
+     if ((Pub.type_entry != public_in_library) ||
             (Not Pub.Library.requested)) continue;
      pos = Bit_32(Pub.Library.page) * Bit_32(Lib_file.page_size);
      file_position(pos);

@@ -122,7 +122,7 @@ public_entry_ptr                       pub;
          Pub.Communal.element_count = element_count;
         };
       } else {
-       if ( (Pub.type_entry Is near_communal) OrIf
+       if ( (Pub.type_entry Is near_communal) ||
           (Pub.type_entry Is far_communal)
         ) {
          linker_error(4, "Translator error:\n"
@@ -185,7 +185,7 @@ bit_16 obj_component()
 {
 
 
- if ( obj_data() OrIf obj_debug_record()
+ if ( obj_data() || obj_debug_record()
   ) {
    return(True);
   };
@@ -229,14 +229,14 @@ bit_16 obj_data()
 {
 
 
- if ( obj_content_def() OrIf
-    obj_thread_def()  OrIf
-    obj_TYPDEF()      OrIf
-    obj_PUBDEF()      OrIf
-    obj_EXTDEF()      OrIf
-    obj_FORREF()      OrIf
-    obj_COMDEF()      OrIf
-    obj_MODEXT()      OrIf
+ if ( obj_content_def() ||
+    obj_thread_def()  ||
+    obj_TYPDEF()      ||
+    obj_PUBDEF()      ||
+    obj_EXTDEF()      ||
+    obj_FORREF()      ||
+    obj_COMDEF()      ||
+    obj_MODEXT()      ||
     obj_MODPUB()
   ) {
    return(True);
@@ -256,7 +256,7 @@ bit_16 obj_data_record()
 {
 
 
- if ( obj_LIDATA() OrIf obj_LEDATA()
+ if ( obj_LIDATA() || obj_LEDATA()
   ) {
    return(True);
   };
@@ -528,8 +528,8 @@ bit_16                                 thread_number;
  fixup.external_error_detected = False;
 
  if ( (fixup.mode == 0) &&
-                             ((fixup.location_type Is base_location)    OrIf
-                              (fixup.location_type Is pointer_location) OrIf
+                             ((fixup.location_type Is base_location)    ||
+                              (fixup.location_type Is pointer_location) ||
                               (fixup.location_type Is hibyte_location))
   ) { /* Undefined fixup action */
    linker_error(4, "Possible translator error:\n"
@@ -545,7 +545,7 @@ bit_16                                 thread_number;
 
  if ( last_LxDATA_record_type Is LEDATA_record
   ) {
-   if ( ((fixup.location_type Is base_location)     OrIf
+   if ( ((fixup.location_type Is base_location)     ||
        (fixup.location_type Is pointer_location)) &&
       (exefile != 0)
     ) { /* Base and pointer locations will require a relocation item
@@ -650,7 +650,7 @@ bit_16                                 repeat_count;
                        LIDATA_offset + fixup_index - LIDATA_index,
                        BytePtr(Addr(fixup)),
                        sizeof(fixup));
-       if ( ((fixup.location_type Is base_location)     OrIf
+       if ( ((fixup.location_type Is base_location)     ||
            (fixup.location_type Is pointer_location)) &&
           (exefile != 0)
         ) { /* Base and pointer locations will require a relocation item
@@ -790,7 +790,7 @@ segment_entry_ptr                      seg;
                                           number of words. */
   };
  seg             = lookup_segment(segment_lname, class_lname, combine);
- if ( (combine != common_combine) OrIf (Seg.lsegs.first == 0)
+ if ( (combine != common_combine) || (Seg.lsegs.first == 0)
   ) {
    Seg.address   = address;
    Seg.length   += length;
@@ -1750,7 +1750,7 @@ void obj_next_record()
  do
   {
    file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
-   while ( (Current_record_header.rec_typ Is LINNUM_record) OrIf
+   while ( (Current_record_header.rec_typ Is LINNUM_record) ||
          ((Current_record_header.rec_typ Is COMENT_record) &&
           (Current_record_header.rec_len > MAX_OBJECT_FILE_READ_SIZE))
     ) {
@@ -1914,11 +1914,11 @@ lname_entry_ptr                        segment_lname;
                     align);
   };
  combine = Bit_8(acbp.c);
- if ( (combine Is 4) OrIf (combine Is 7)
+ if ( (combine Is 4) || (combine Is 7)
   ) { /* Treat combine types 4 and 7 the same as 2. */
    combine = public_combine;
   };
- if ( (combine Is 1) OrIf (combine Is 3)
+ if ( (combine Is 1) || (combine Is 3)
   ) { /* This is a translator error. */
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1991,10 +1991,10 @@ bit_16 obj_seg_grp()
 {
 
 
- while ( obj_LNAMES() OrIf obj_SEGDEF() OrIf obj_EXTDEF()
+ while ( obj_LNAMES() || obj_SEGDEF() || obj_EXTDEF()
   ) {
   };
- while ( obj_TYPDEF() OrIf obj_EXTDEF() OrIf obj_GRPDEF()
+ while ( obj_TYPDEF() || obj_EXTDEF() || obj_GRPDEF()
   ) {
   };
  return(True);

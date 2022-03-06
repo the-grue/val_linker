@@ -282,7 +282,7 @@ void file_IO_limit(bit_16 limit)
 #define File                           infile
 
 
- if ( (limit == 0) OrIf (limit > File.buffer_size)
+ if ( (limit == 0) || (limit > File.buffer_size)
   ) {
    File.IO_limit = File.buffer_size;
   } else {

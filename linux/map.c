@@ -316,7 +316,7 @@ char                                   ascii[20];
        print(" :");
        strcat(ascii, " : ");
       };
-     if ( (line_address < address) OrIf (length == 0)
+     if ( (line_address < address) || (length == 0)
       ) {
        print(" ..");
        ascii[strlen(ascii)] = ' ';
@@ -418,7 +418,7 @@ public_entry_ptr                       temp;
    while ( i < j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg == 0) &&
-         ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
+         ((*public_sort_array[j]).Internal.lseg != 0)) ||
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
       ) {
@@ -432,7 +432,7 @@ public_entry_ptr                       temp;
    while ( i < j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg == 0) &&
-         ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
+         ((*public_sort_array[j]).Internal.lseg != 0)) ||
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
       ) {

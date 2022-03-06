@@ -119,9 +119,9 @@ token_stack_ptr                        source_element;
      return;
     };
    if ( ((token_type Is end_of_command_line_token_type)  &&
-       (List.first == 0))                            OrIf
+       (List.first == 0))                            ||
       ((required)                                      &&
-       ((token_type Is separator_token_type)           OrIf
+       ((token_type Is separator_token_type)           ||
         (token_type Is line_end_token_type)))
     ) {
      if ( (*token_stack.first).source_file != stdin
@@ -144,7 +144,7 @@ token_stack_ptr                        source_element;
     };
    if ( List.first == 0
     ) {
-     if ( (token_type Is separator_token_type)  OrIf
+     if ( (token_type Is separator_token_type)  ||
         (token_type Is terminator_token_type)
       ) {
        if ( prompting_for Is 2
@@ -167,8 +167,8 @@ token_stack_ptr                        source_element;
        return;
       };
     } else {
-     if ( (token_type Is separator_token_type)           OrIf
-        (token_type Is terminator_token_type)          OrIf
+     if ( (token_type Is separator_token_type)           ||
+        (token_type Is terminator_token_type)          ||
         (token_type Is end_of_command_line_token_type)
       ) {
        copy_string(token, null_string);
@@ -290,8 +290,8 @@ void scan_bit_16_switch(switch_table_ptr current_switch)
   };
  scan_out_token();
  copy_string(token, next_token);
-  if ( (Not token_is_number)                                OrIf
-     (token_numeric_value <    Affected_thing.min) OrIf
+  if ( (Not token_is_number)                                ||
+     (token_numeric_value <    Affected_thing.min) ||
      (token_numeric_value > Affected_thing.max)
    ) {
    linker_error(8,"Syntax error:  Switch \"%s\" requires a numeric value\n"
@@ -330,8 +330,8 @@ void scan_opt_bit_16(switch_table_ptr current_switch)
   };
  scan_out_token();
  copy_string(token, next_token);
-  if ( (Not token_is_number)                                OrIf
-     (token_numeric_value <    Affected_thing.min) OrIf
+  if ( (Not token_is_number)                                ||
+     (token_numeric_value <    Affected_thing.min) ||
      (token_numeric_value > Affected_thing.max)
    ) {
    linker_error(8,"Syntax error:  Switch \"%s\" requires a numeric value\n"
@@ -445,7 +445,7 @@ bit_16                                 paren_count;
      ) {
       concat_char_to_string(next_token, token_break_char);
       if ( (Length(next_token) Is 2) && (String(next_token)[0] Is '0') &&
-         ((String(next_token)[1] Is 'x') OrIf (String(next_token)[1] Is 'X'))
+         ((String(next_token)[1] Is 'x') || (String(next_token)[1] Is 'X'))
        ) {
         token_is_hex_number = True;
        } else {

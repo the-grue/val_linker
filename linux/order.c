@@ -75,7 +75,7 @@ public_entry_ptr                       pub;
     ) {
      edata_segment = active_segment;
      pub = lookup_public(6, (byte *) "_edata", 0);
-     if ( (Pub.type_entry Is external) OrIf (Pub.type_entry Is unused)
+     if ( (Pub.type_entry Is external) || (Pub.type_entry Is unused)
       ) {
        Pub.type_entry      = internal;
        Pub.Internal.group  = Active_segment.owning_group;
@@ -93,7 +93,7 @@ public_entry_ptr                       pub;
     ) {
      end_segment = active_segment;
      pub = lookup_public(4, (byte *) "_end", 0);
-     if ( (Pub.type_entry Is external) OrIf (Pub.type_entry Is unused)
+     if ( (Pub.type_entry Is external) || (Pub.type_entry Is unused)
       ) {
        Pub.type_entry      = internal;
        Pub.Internal.group  = Active_segment.owning_group;
@@ -197,7 +197,7 @@ byte_ptr                               start_of_expression;
      token_break_char = ' ';
      if ( codeview_information_present &&
         (((Active_segment.segment_name Is codeview_segment_TYPES) &&
-          (Active_segment.class_name Is codeview_class_DEBTYP)) OrIf
+          (Active_segment.class_name Is codeview_class_DEBTYP)) ||
          ((Active_segment.segment_name Is codeview_segment_SYMBOLS) &&
           (Active_segment.class_name Is codeview_class_DEBSYM)))
       ) { /* Eat the codeview segment */
@@ -244,8 +244,8 @@ bit_16                                 left_operand;
 
  get_order_token();
  left_operand = order_term();
- while ( TokenIs(or_string)   OrIf
-       TokenIs(plus_string) OrIf
+ while ( TokenIs(or_string)   ||
+       TokenIs(plus_string) ||
        TokenIs(bar_string)
   ) {
    get_order_token();
@@ -265,9 +265,9 @@ bit_16                                 unary_not;
 
 
  unary_not = False;
- while ( TokenIs(exclamation_string) OrIf
-       TokenIs(tilde_string)       OrIf
-       TokenIs(minus_string)       OrIf
+ while ( TokenIs(exclamation_string) ||
+       TokenIs(tilde_string)       ||
+       TokenIs(minus_string)       ||
        TokenIs(not_string)
   ) {
    get_order_token();
@@ -538,7 +538,7 @@ bit_16                                 size;
      huge_communals             = pub;
      continue;
     };
-   if ( (lseg == 0) OrIf ((length + Bit_32(offset)) > 65536L)
+   if ( (lseg == 0) || ((length + Bit_32(offset)) > 65536L)
     ) {
      lseg = obj_generate_segment(FAR_BSS_lname,
                                  FAR_BSS_lname,
@@ -616,8 +616,8 @@ bit_16                                 left_operand;
 
 
  left_operand = order_factor();
- while ( TokenIs(and_string)       OrIf
-       TokenIs(star_string)      OrIf
+ while ( TokenIs(and_string)       ||
+       TokenIs(star_string)      ||
        TokenIs(ampersand_string)
   ) {
    get_order_token();

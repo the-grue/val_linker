@@ -20,7 +20,7 @@ bit_16 far                            *word_location;
  file_read(BytePtr(Addr(fixup)), sizeof(fixup));
  frame_address  = frame();
  target_address = target();
- if ( ((target_address < frame_address) OrIf
+ if ( ((target_address < frame_address) ||
      (target_address > (frame_address + 65535L))) &&
     (fixup.frame_method != 6) && (frame_absolute == 0)
   ) {
@@ -47,8 +47,8 @@ bit_16 far                            *word_location;
     ) {
      location_address++;
     };
-   if ( (location_address < frame_address) OrIf
-      (location_address > (frame_address + 65535L)) OrIf
+   if ( (location_address < frame_address) ||
+      (location_address > (frame_address + 65535L)) ||
       (frame_absolute != 0)
     ) {
      linker_error(4, "Fixup error:\n"
@@ -70,7 +70,7 @@ bit_16 far                            *word_location;
                          1L;
       IP_distance_to_target = Int_32(target_address) -
                               Int_32(location_address);
-      if ( (IP_distance_to_target < -128L) OrIf
+      if ( (IP_distance_to_target < -128L) ||
          (IP_distance_to_target > 127L)
        ) {
         linker_error(4, "Byte self-relative fixup error:\n"
@@ -100,7 +100,7 @@ bit_16 far                            *word_location;
    foval          = target_address - frame_address;
    if ( (frame_absolute == 0)                     &&
       (exefile == 0)                            &&
-      ((fixup.location_type Is base_location)      OrIf
+      ((fixup.location_type Is base_location)      ||
        (fixup.location_type Is pointer_location))
     ) {  /* Count the relocation items we should not be getting. */
      n_relocation_items++;
