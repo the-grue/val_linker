@@ -214,7 +214,7 @@ Union entry_information_union
   external_entry_type                  external_type;
   internal_entry_type                  internal_type;
   communal_entry_type                  communal_type;
- EndUnion;
+ };
 
 Enumeration public_entry_class_enum
  BeginEnumeration
@@ -394,7 +394,7 @@ Union obj_ptr_union
   LOCAT_ptr                            LOCAT;
   MOD_TYP_ptr                          MOD_TYP;
   TRD_DAT_ptr                          TRD_DAT;
- EndUnion;
+ };
 
 Enumeration obj_mod_rec_type_enum
  BeginEnumeration
