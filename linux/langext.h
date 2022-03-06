@@ -63,8 +63,8 @@ ListTypeOf(Generic_Element);
 
 /* Some other operators */
 /*#define Addr(exp)            &(exp)
-#define Mod                  %*/
-#define ShiftedLeft          <<
+#define Mod                  %
+#define ShiftedLeft          <<*/
 #define ShiftedRight         >>
 
 /* Some useful constants */

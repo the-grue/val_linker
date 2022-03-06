@@ -32,7 +32,7 @@ segment_entry_ptr                      seg;
    Exe_header.initial_SS = CanonicFrame(Largest_stack_seg.address);
    Exe_header.initial_SP = Bit_16(largest_stack_seg_length +
                            Largest_stack_seg.address -
-                            (Bit_32(Exe_header.initial_SS) ShiftedLeft 4L));
+                            (Bit_32(Exe_header.initial_SS) << 4L));
   } else {
    Exe_header.initial_SS = 0;
    Exe_header.initial_SP = 0;

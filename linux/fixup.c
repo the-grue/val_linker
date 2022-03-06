@@ -458,7 +458,7 @@ segment_entry_ptr                      seg;
      if ( Pub.Internal.lseg == 0
       ) {
        frame_absolute = True;
-       address        = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
+       address        = (Bit_32(Pub.Internal.frame) << 4);
       } else {
        frame_absolute = (*Pub.Internal.lseg).align == absolute_segment;
        address        = (*(*Pub.Internal.lseg).segment).address;
@@ -507,7 +507,7 @@ segment_entry_ptr                      seg;
   } else {
    if ( Pub.Internal.lseg == 0
     ) {
-     address = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
+     address = (Bit_32(Pub.Internal.frame) << 4);
     } else {
      address = (*Pub.Internal.lseg).address;
     };
@@ -527,7 +527,7 @@ bit_32 segment_offset(lseg_ptr lseg, bit_16 offset)
 #define Lseg                           (*lseg)
 
 
- return ((Frame(lseg) ShiftedLeft 12L) | (Bit_32(offset) + Target(lseg)));
+ return ((Frame(lseg) << 12L) | (Bit_32(offset) + Target(lseg)));
 }
 #undef Lseg
 

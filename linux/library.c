@@ -151,7 +151,7 @@ bit_16                                *symbol_in_page;
    for ( entry_number=0; entry_number < 37; entry_number++
     ) {
      symbol_index =
-      Directory_page.offset_to_symbol[entry_number] ShiftedLeft 1;
+      Directory_page.offset_to_symbol[entry_number] << 1;
      if (symbol_index == 0) continue;
      symbol = (library_symbol_entry_ptr)
               &(Directory_page.offset_to_symbol[symbol_index]);

@@ -164,7 +164,7 @@ memory_descriptor_ptr                  desc;
  DOS_int21("Problem allocating memory above heap.\n");
 
  far_memory      = (byte huge *) MakeFarPtr(outregs.x.ax,0);
- far_memory_size = Bit_32(inregs.x.bx) ShiftedLeft 4;
+ far_memory_size = Bit_32(inregs.x.bx) << 4;
  if ( far_memory_size < 65536L
   ) {
    linker_error(8,"Too little memory above heap.\n"

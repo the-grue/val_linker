@@ -448,7 +448,7 @@ bit_16                                 thread_number;
       break;
      case 3:
       fixup.frame_referent =
-       (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
+       (void far *) (Bit_32(*obj_ptr.b16++) << 4);
      default:
       fixup.frame_referent = Null;
       break;
@@ -496,7 +496,7 @@ bit_16                                 thread_number;
       break;
      case 3:
       fixup.target_referent =
-       (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
+       (void far *) (Bit_32(*obj_ptr.b16++) << 4);
       break;
     };
   } else {  /* Target is specified by a thread */
@@ -701,7 +701,7 @@ TRD_DAT_type                           TRD_DAT;
       break;
      case 3:
       target_thread[thread].referent =
-       (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
+       (void far *) (Bit_32(*obj_ptr.b16++) << 4);
      default:
       target_thread[thread].referent = Null;
       break;
@@ -725,7 +725,7 @@ TRD_DAT_type                           TRD_DAT;
       break;
      case 3:
       frame_thread[thread].referent =
-       (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
+       (void far *) (Bit_32(*obj_ptr.b16++) << 4);
      default:
       frame_thread[thread].referent = Null;
       break;
@@ -936,7 +936,7 @@ bit_16                                 index;
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
-   index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
+   index = (Bit_16(*obj_ptr.b8++ - 128) << 8) +
            Bit_16(*obj_ptr.b8++);
   };
    if ( index > n_externals
@@ -969,7 +969,7 @@ bit_16                                 index;
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
-   index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
+   index = (Bit_16(*obj_ptr.b8++ - 128) << 8) +
            Bit_16(*obj_ptr.b8++);
   };
    if ( index > n_groups
@@ -1002,7 +1002,7 @@ bit_16                                 index;
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
-   index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
+   index = (Bit_16(*obj_ptr.b8++ - 128) << 8) +
            Bit_16(*obj_ptr.b8++);
   };
    if ( index > n_lnames
@@ -1035,7 +1035,7 @@ bit_16                                 index;
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
-   index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
+   index = (Bit_16(*obj_ptr.b8++ - 128) << 8) +
            Bit_16(*obj_ptr.b8++);
   };
    if ( index > n_segments
@@ -1473,7 +1473,7 @@ bit_16                                 thread_number;
       break;
      case 3:
       start_address.frame_referent =
-       (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
+       (void far *) (Bit_32(*obj_ptr.b16++) << 4);
      default:
       start_address.frame_referent = Null;
       break;
@@ -1523,7 +1523,7 @@ bit_16                                 thread_number;
       break;
      case 3:
       start_address.target_referent =
-       (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
+       (void far *) (Bit_32(*obj_ptr.b16++) << 4);
       break;
     };
   } else {  /* Target is specified by a thread */
@@ -1733,7 +1733,7 @@ bit_16 obj_name_length()
   ) {
    return(Bit_16(*obj_ptr.b8++));
   } else {
-   return((Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
+   return((Bit_16(*obj_ptr.b8++ - 128) << 8) +
           (Bit_16(*obj_ptr.b8++)));
   };
 }
@@ -1896,7 +1896,7 @@ lname_entry_ptr                        segment_lname;
  align   = Bit_8(acbp.a);
  if ( align == absolute_segment
   ) {
-   address  = (Bit_32(*obj_ptr.b16++) ShiftedLeft 4L);  /* Frame */
+   address  = (Bit_32(*obj_ptr.b16++) << 4L);  /* Frame */
    address += Bit_32(*obj_ptr.b8++);                    /* Offset */
   } else {
    address = 0L;
