@@ -201,7 +201,7 @@ BeginCode
                        infile.start_of_buffer_position +
                        Bit_32(temp_file_header.rec_len));
          file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
-         ContinueLoop;
+         continue;
         } else {
          file_read(BytePtr(Addr(fixup)), temp_file_header.rec_len);
         };

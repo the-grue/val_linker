@@ -96,12 +96,12 @@ BeginCode
      Push source_element OnTo token_stack EndPush;
      token_break_char                  = ' ';
      scan_out_token();
-     ContinueLoop;
+     continue;
     };
    if ( token_type Is switch_token_type
     ) {
      process_switch();
-     ContinueLoop;
+     continue;
     };
    if ( token_type Is continuation_token_type
     ) {
@@ -110,7 +110,7 @@ BeginCode
       ) {
        scan_out_token();
       };
-     ContinueLoop;
+     continue;
     };
    if ( token_type Is filename_token_type
     ) {
@@ -140,7 +140,7 @@ BeginCode
        default_prompt    = Null;
       };
      scan_out_token();
-     ContinueLoop;
+     continue;
     };
    if ( List.first IsNull
     ) {
@@ -649,7 +649,7 @@ BeginCode
         } else {
          Pop token_stack InTo tos EndPop;
          Push tos OnTo token_stack_free_list EndPush;
-         ContinueLoop;
+         continue;
         };
       };
     } else { /* Input is from a file */

@@ -536,7 +536,7 @@ BeginCode
     ) {
      Pub.Communal.next_communal = huge_communals;
      huge_communals             = pub;
-     ContinueLoop;
+     continue;
     };
    if ( (lseg IsNull) OrIf ((length + Bit_32(offset)) Exceeds 65536L)
     ) {

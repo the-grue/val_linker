@@ -8,23 +8,13 @@
 
 /* Block basic C commands */
 
-/*#define Using                switch (
-#define BeginCase            ) {
-#define When                 case
-#define Otherwise            default
-#define EndCase              }*/
-
 #define Loop                 while(1)
 #define BeginLoop            {
 #define EndLoop              }
 #define ExitLoop             break
-#define ContinueLoop         continue
+/*#define ContinueLoop         continue*/
 #define ExitIf(cond)         if (cond) break
 #define LoopIf(cond)         if (cond) continue
-
-/*#define While                while (
-#define BeginWhile           ) {
-#define EndWhile             }*/
 
 #define Repeat               do
 #define BeginRepeat          {

@@ -631,13 +631,13 @@ BeginCode
       };
      cut_string(fn, left, right-left);
      right = index_string(fn, left+1, backslash_string);
-     ContinueLoop;
+     continue;
     } else {
      if ( compare_string(substr(fn,left,3), backslash_dot_string) IsZero
       ) {
        cut_string(fn, left, 2);
        right = index_string(fn, left+1, backslash_string);
-       ContinueLoop;
+       continue;
       };
     };
    left  = right;
