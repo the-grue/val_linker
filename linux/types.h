@@ -118,7 +118,7 @@ struct acbp_struct
  };
 
 Enumeration align_enum
- BeginEnumeration
+ {
   absolute_segment,
   byte_aligned,
   word_aligned,
@@ -142,7 +142,7 @@ struct boolean_switch_struct
  };
 
 Enumeration combine_enum
- BeginEnumeration
+ {
   private_combine                      = 0,
   public_combine                       = 2,
   stack_combine                        = 5,
@@ -217,7 +217,7 @@ union entry_information_union
  };
 
 Enumeration public_entry_class_enum
- BeginEnumeration
+ {
   unused,
   public_in_library,
   external,
@@ -345,7 +345,7 @@ struct LOCAT_struct
  };
 
 Enumeration loc_enum
- BeginEnumeration
+ {
   lobyte_location,
   offset_location,
   base_location,
@@ -397,7 +397,7 @@ union obj_ptr_union
  };
 
 Enumeration obj_mod_rec_type_enum
- BeginEnumeration
+ {
   THEADR_record                        = 0x80,
   COMENT_record                        = 0x88,
   MODEND_record                        = 0x8a,
@@ -478,7 +478,7 @@ struct thread_struct
  };
 
 Enumeration token_class_enum
- BeginEnumeration
+ {
   continuation_token_type,
   end_of_command_line_token_type,
   filename_token_type,
