@@ -50,7 +50,7 @@ BeginCode
  if ( hh IsNotZero
   Then
    sprintf(time_array,"%u:%02u:%02u.%02u",hh,mm,ss,cc);
-  ElseIf mm IsNotZero
+  } else if ( mm IsNotZero
    Then
     sprintf(time_array,"%u:%02u.%02u",mm,ss,cc);
    Else

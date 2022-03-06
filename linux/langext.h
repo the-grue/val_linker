@@ -11,8 +11,8 @@
 /*#define If                   if (*/
 #define Then                 ) {
 #define Else                 } else {
-#define ElseIf               } else if (
-/*#define EndIf                }*/
+/*#define ElseIf               } else if (
+#define EndIf                }*/
 
 #define Using                switch (
 #define BeginCase            ) {
