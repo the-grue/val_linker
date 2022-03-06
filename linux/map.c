@@ -224,36 +224,36 @@ BeginCode
        print("\t\tFrame(");
        switch ( fixup.frame_method
         ) {
-         When 0:
+         case 0:
           lseg = (lseg_ptr) fixup.frame_referent;
           seg  = Lseg.segment;
           print("Seg(%Fs)", (*Seg.segment_name).symbol);
           break;
-         When 1:
+         case 1:
           grp = (group_entry_ptr) fixup.frame_referent;
           print("Grp(%Fs)", (*Grp.group_name).symbol);
           break;
-         When 2:
+         case 2:
           pub = (public_entry_ptr) fixup.frame_referent;
           print("Ext(%Fs)", Pub.symbol);
           break;
-         When 3:
+         case 3:
           print("Abs(%04lX)", ((bit_32)(fixup.frame_referent)));
           break;
-         When 4:
+         case 4:
           print("Location");
           break;
-         When 5:
+         case 5:
           print("Target");
           break;
-         When 6:
+         case 6:
           print("None");
           break;
         EndCase;
        print(") Target(");
        switch ( fixup.target_method
         ) {
-         When 0:
+         case 0:
           lseg = (lseg_ptr) fixup.target_referent;
           seg  = Lseg.segment;
           print("Seg(%Fs)+%04lX",
@@ -261,19 +261,19 @@ BeginCode
                 Bit_32(fixup.target_offset) +
                  (Lseg.address - Seg.address));
           break;
-         When 1:
+         case 1:
           grp = (group_entry_ptr) fixup.target_referent;
           print("Grp(%Fs)+%04lX",
                 (*Grp.group_name).symbol,
                 Bit_32(fixup.target_offset));
           break;
-         When 2:
+         case 2:
           pub = (public_entry_ptr) fixup.target_referent;
           print("Ext(%Fs)+%04lX",
                 Pub.symbol,
                 Bit_32(fixup.target_offset));
           break;
-         When 3:
+         case 3:
           print("Abs(%04lX)", ((bit_32)(fixup.target_referent)));
           break;
         EndCase;

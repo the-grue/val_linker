@@ -74,12 +74,12 @@ BeginCode
    element_type  = *obj_ptr.b8++;
    switch ( element_type
     ) {
-     When 0x61:
+     case 0x61:
       expected_type = far_communal;
       element_count = obj_leaf_descriptor();
       element_size  = obj_leaf_descriptor();
       break;
-     When 0x62:
+     case 0x62:
       expected_type = near_communal;
       element_size  = obj_leaf_descriptor();
       element_count = 1L;
@@ -103,11 +103,11 @@ BeginCode
      Pub.Communal.element_count = element_count;
      switch ( element_type
      ) {
-      When 0x61:
+      case 0x61:
        Pub.Communal.next_communal = far_communals;
        far_communals              = pub;
        break;
-      When 0x62:
+      case 0x62:
        Pub.Communal.next_communal = near_communals;
        near_communals             = pub;
        break;
@@ -162,10 +162,10 @@ BeginCode
  comment_class = *obj_ptr.b8++;
  switch ( comment_class
   ) {
-   When 158:
+   case 158:
     DOSSEG.val = True;
     break;
-   When 161:
+   case 161:
     codeview_information_present = True;
     break;
    Otherwise:
@@ -437,16 +437,16 @@ BeginCode
    fixup.frame_method   = frame_method;
    switch ( frame_method
     ) {
-     When 0:
+     case 0:
       fixup.frame_referent = (void far *) snames[obj_index_segment()];
       break;
-     When 1:
+     case 1:
       fixup.frame_referent = (void far *) gnames[obj_index_group()];
       break;
-     When 2:
+     case 2:
       fixup.frame_referent = (void far *) externals[obj_index_external()];
       break;
-     When 3:
+     case 3:
       fixup.frame_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
      Otherwise:
@@ -484,17 +484,17 @@ BeginCode
    fixup.target_method = target_method;
    switch ( target_method
     ) {
-     When 0:  /* Target is the segment referenced by the index */
+     case 0:  /* Target is the segment referenced by the index */
       fixup.target_referent = (void far *) snames[obj_index_segment()];
       break;
-     When 1:  /* Target is the lowest seg in the group referenced 
+     case 1:  /* Target is the lowest seg in the group referenced 
                  by the index */
       fixup.target_referent = (void far *) gnames[obj_index_group()];
       break;
-     When 2:
+     case 2:
       fixup.target_referent = (void far *) externals[obj_index_external()];
       break;
-     When 3:
+     case 3:
       fixup.target_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
       break;
@@ -687,19 +687,19 @@ BeginCode
    target_thread[thread].thread_defined = True;
    switch ( method
     ) {
-     When 0:
+     case 0:
       target_thread[thread].referent =
        (void far *) snames[obj_index_segment()];
       break;
-     When 1:
+     case 1:
       target_thread[thread].referent =
        (void far *) gnames[obj_index_group()];
       break;
-     When 2:
+     case 2:
       target_thread[thread].referent =
        (void far *) externals[obj_index_external()];
       break;
-     When 3:
+     case 3:
       target_thread[thread].referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
      Otherwise:
@@ -711,19 +711,19 @@ BeginCode
    frame_thread[thread].thread_defined = True;
    switch ( method
     ) {
-     When 0:
+     case 0:
       frame_thread[thread].referent =
        (void far *) snames[obj_index_segment()];
       break;
-     When 1:
+     case 1:
       frame_thread[thread].referent =
        (void far *) gnames[obj_index_group()];
       break;
-     When 2:
+     case 2:
       frame_thread[thread].referent =
        (void far *) externals[obj_index_external()];
       break;
-     When 3:
+     case 3:
       frame_thread[thread].referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
      Otherwise:
@@ -1459,19 +1459,19 @@ BeginCode
    start_address.frame_method   = frame_method;
    switch ( frame_method
     ) {
-     When 0:
+     case 0:
       start_address.frame_referent =
        (void far *) snames[obj_index_segment()];
       break;
-     When 1:
+     case 1:
       start_address.frame_referent =
        (void far *) gnames[obj_index_group()];
       break;
-     When 2:
+     case 2:
       start_address.frame_referent =
        (void far *) externals[obj_index_external()];
       break;
-     When 3:
+     case 3:
       start_address.frame_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
      Otherwise:
@@ -1509,19 +1509,19 @@ BeginCode
    start_address.target_method = target_method;
    switch ( target_method
     ) {
-     When 0:
+     case 0:
       start_address.target_referent =
        (void far *) snames[obj_index_segment()];
       break;
-     When 1:
+     case 1:
       start_address.target_referent =
        (void far *) gnames[obj_index_group()];
       break;
-     When 2:
+     case 2:
       start_address.target_referent =
        (void far *) externals[obj_index_external()];
       break;
-     When 3:
+     case 3:
       start_address.target_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
       break;

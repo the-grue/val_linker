@@ -68,7 +68,7 @@ BeginCode
   |  Handle:   Insert ptr After aftr InList lst EndInsert;                  |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
-   When 0:
+   case 0:
     Elem.next  = Aftr.next;
     Aftr.next  = elem;
     if ( Elem.next IsNull
@@ -81,7 +81,7 @@ BeginCode
   |  Handle:   Insert ptr AtEnd InList lst EndInsert;                       |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
-   When 1:
+   case 1:
     if ( Last(Lst) IsNull
      ) {
       First(Lst) = elem;
@@ -96,7 +96,7 @@ BeginCode
   |  Handle:   Insert ptr AtBeginning InList lst EndInsert;                 |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
-   When 2:
+   case 2:
     Elem.next  = First(Lst);
     First(Lst) = elem;
     if ( Last(Lst) IsNull

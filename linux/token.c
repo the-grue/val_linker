@@ -364,7 +364,7 @@ BeginCode
  token_is_number     = False;
  switch ( token_break_char
   ) {
-   When '\n':
+   case '\n':
     prompt_next_stdin = True;
     concat_char_to_string(next_token, token_break_char);
     if ( token_stack.first Is token_stack.last
@@ -375,36 +375,36 @@ BeginCode
      };
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
-   When ',':
+   case ',':
     concat_char_to_string(next_token, token_break_char);
     token_type       = separator_token_type;
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
-   When ';':
+   case ';':
     concat_char_to_string(next_token, token_break_char);
     token_type       = terminator_token_type;
     break;
-   When '+':
+   case '+':
     concat_char_to_string(next_token, token_break_char);
     token_type       = continuation_token_type;
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
-   When '/':
+   case '/':
     concat_char_to_string(next_token, token_break_char);
     token_type       = switch_token_type;
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
-   When ':':
+   case ':':
     concat_char_to_string(next_token, token_break_char);
     token_type       = switch_end_token_type;
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
-   When '@':
+   case '@':
     concat_char_to_string(next_token, token_break_char);
     token_type       = indirect_file_token_type;
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
-   When '(':
+   case '(':
     paren_count = 1;
     token_type  = text_token_type;
     concat_char_to_string(next_token, token_break_char);

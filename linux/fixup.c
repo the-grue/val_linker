@@ -64,7 +64,7 @@ BeginCode
     };
    switch ( fixup.location_type
     ) {
-     When lobyte_location:
+     case lobyte_location:
       location_address = (*temp_file_header.lseg).address +
                          Bit_32(temp_file_header.offset) +
                          1L;
@@ -86,13 +86,13 @@ BeginCode
        };
       *byte_location += Bit_8(IP_distance_to_target);
       break;
-     When offset_location:
+     case offset_location:
       IP_distance_to_target = target_address - location_address;
       *word_location += Bit_16(IP_distance_to_target);
       break;
-     When base_location:       /* Undefined action */
-     When pointer_location:    /* Undefined action */
-     When hibyte_location:     /* Undefined action */
+     case base_location:       /* Undefined action */
+     case pointer_location:    /* Undefined action */
+     case hibyte_location:     /* Undefined action */
       break;
     EndCase;
   } else { /* Segment-relative fixup */
@@ -107,13 +107,13 @@ BeginCode
     };
    switch ( fixup.location_type
     ) {
-     When lobyte_location:
+     case lobyte_location:
       *byte_location += Bit_8(foval);
       break;
-     When offset_location:
+     case offset_location:
       *word_location += Bit_16(foval);
       break;
-     When base_location:
+     case base_location:
       *word_location += fbval;
       if ( exefile IsTrue
        ) {
@@ -121,7 +121,7 @@ BeginCode
          segment_offset(temp_file_header.lseg, temp_file_header.offset);
        };
       break;
-     When pointer_location:
+     case pointer_location:
       *word_location++ += Bit_16(foval);
       *word_location   += fbval;
       if ( exefile IsTrue
@@ -130,7 +130,7 @@ BeginCode
          segment_offset(temp_file_header.lseg, temp_file_header.offset+2);
        };
       break;
-     When hibyte_location:
+     case hibyte_location:
       *byte_location += Bit_8(foval ShiftedRight 8);
       break;
     EndCase;
@@ -160,21 +160,21 @@ BeginCode
  size             = *obj_ptr.b8++;
  switch ( size
   ) {
-   When 0:
+   case 0:
     While obj_ptr.b8 IsNot end_of_record.b8
      BeginWhile
       offset = *obj_ptr.b16++;
       Lseg.data[offset] += *obj_ptr.b8++;
      EndWhile;
     break;
-   When 1:
+   case 1:
     While obj_ptr.b8 IsNot end_of_record.b8
      BeginWhile
       offset = *obj_ptr.b16++;
       *((bit_16 far *) Addr(Lseg.data[offset])) += *obj_ptr.b16++;
      EndWhile;
     break;
-   When 2:
+   case 2:
     While obj_ptr.b8 IsNot end_of_record.b8
      BeginWhile
       offset = *obj_ptr.b16++;
@@ -298,60 +298,60 @@ EndDeclarations
 BeginCode
  switch ( fixup.frame_method
   ) {
-   When 0:  /* Frame is segment relative */
+   case 0:  /* Frame is segment relative */
     lseg           = (lseg_ptr) fixup.frame_referent;
     frame_absolute = Lseg.align Is absolute_segment;
     seg            = Lseg.segment;
     frame_address  = Seg.address;
     break;
-   When 1:  /* Frame is group relative */
+   case 1:  /* Frame is group relative */
     grp            = (group_entry_ptr) fixup.frame_referent;
     seg            = Grp.first_segment;
     lseg           = Seg.lsegs.first;
     frame_absolute = Lseg.align Is absolute_segment;
     frame_address  = Seg.address;
     break;
-   When 2:  /* Frame is relative to external */
+   case 2:  /* Frame is relative to external */
     pub = (public_entry_ptr) fixup.frame_referent;
     frame_address = public_frame_address(pub);
     break;
-   When 3:  /* Frame is absolute */
+   case 3:  /* Frame is absolute */
     frame_absolute = True;
     frame_address  = Bit_32(fixup.frame_referent);
     break;
-   When 4:  /* Frame is segment containing location */
+   case 4:  /* Frame is segment containing location */
     lseg           = temp_file_header.lseg;
     seg            = Lseg.segment;
     frame_absolute = Lseg.align Is absolute_segment;
     frame_address  = Seg.address;
     break;
-   When 5:  /* Frame is defined by target */
+   case 5:  /* Frame is defined by target */
     switch ( fixup.target_method
      ) {
-      When 0:  /* Target is segment relative */
+      case 0:  /* Target is segment relative */
        lseg           = (lseg_ptr) fixup.target_referent;
        seg            = Lseg.segment;
        frame_absolute = Lseg.align Is absolute_segment;
        frame_address  = Seg.address;
        break;
-      When 1:  /* Target is group relative */
+      case 1:  /* Target is group relative */
        grp = (group_entry_ptr) fixup.target_referent;
        seg            = Grp.first_segment;
        lseg           = Seg.lsegs.first;
        frame_absolute = Lseg.align Is absolute_segment;
        frame_address  = Seg.address;
        break;
-      When 2:  /* Target is relative to an external */
+      case 2:  /* Target is relative to an external */
        pub = (public_entry_ptr) fixup.target_referent;
        frame_address = public_frame_address(pub);
        break;
-      When 3:  /* Target is absolute */
+      case 3:  /* Target is absolute */
        frame_absolute = True;
        frame_address  = Bit_32(fixup.target_referent);
        break;
      EndCase;
     break;
-   When 6:  /* No frame */
+   case 6:  /* No frame */
     frame_absolute = False;
     frame_address = 0L;
     break;
@@ -400,16 +400,16 @@ BeginCode
   BeginWhile
    switch ( temp_file_header.rec_typ
     ) {
-     When FIXUPP_record:
+     case FIXUPP_record:
       fixup_FIXUPP_record();
       break;
-     When FORREF_record:
+     case FORREF_record:
       fixup_FORREF_record();
       break;
-     When LEDATA_record:
+     case LEDATA_record:
       fixup_LEDATA_record();
       break;
-     When LIDATA_record:
+     case LIDATA_record:
       fixup_LIDATA_record();
       break;
      Otherwise:
@@ -549,21 +549,21 @@ EndDeclarations
 BeginCode
  switch ( fixup.target_method
   ) {
-   When 0:  /* Target is segment relative */
+   case 0:  /* Target is segment relative */
     lseg = (lseg_ptr) fixup.target_referent;
     target_address = Lseg.address + Bit_32(fixup.target_offset);
     break;
-   When 1:  /* Target is group relative */
+   case 1:  /* Target is group relative */
     grp = (group_entry_ptr) fixup.target_referent;
     target_address = (*Grp.first_segment).address +
                       Bit_32(fixup.target_offset);
     break;
-   When 2:  /* Target is relative to an external */
+   case 2:  /* Target is relative to an external */
     pub = (public_entry_ptr) fixup.target_referent;
     target_address = public_target_address(pub) +
                       Bit_32(fixup.target_offset);
     break;
-   When 3:  /* Target is absolute */
+   case 3:  /* Target is absolute */
     target_address = Bit_32(fixup.target_referent) +
                       Bit_32(fixup.target_offset);
     break;
