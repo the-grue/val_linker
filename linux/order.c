@@ -587,7 +587,7 @@ bit_16                                 size;
                      Pub.symbol);
      offset = 0;
     } else {
-     offset = Bit_16(65536L Mod Pub.Communal.element_size);
+     offset = Bit_16(65536L % Pub.Communal.element_size);
     };
    length                          += Bit_32(offset);
    Pub.type_entry                   = internal;

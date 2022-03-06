@@ -43,9 +43,9 @@ char_ptr elapsed_time(bit_32 start_time, bit_32 stop_time)
    stop_time += 8640000L;
   };
  t   = stop_time - start_time;
- cc  = Bit_16(t Mod 100L);                     t /= 100L;
- ss  = Bit_16(t Mod 60L);                      t /= 60L;
- mm  = Bit_16(t Mod 60L);                      t /= 60L;
+ cc  = Bit_16(t % 100L);                     t /= 100L;
+ ss  = Bit_16(t % 60L);                      t /= 60L;
+ mm  = Bit_16(t % 60L);                      t /= 60L;
  hh  = Bit_16(t);
  if ( hh != 0
   ) {

@@ -76,7 +76,7 @@ group_entry_ptr                        prior;
 #define Prior                          (*prior)
 
 
- hash_val    = Group_lname.lname_checksum Mod group_table_hash_size.val;
+ hash_val    = Group_lname.lname_checksum % group_table_hash_size.val;
  group_entry = group_hash_table[hash_val];
  prior       = Null;
  while ( group_entry != 0
@@ -124,7 +124,7 @@ lname_entry_ptr                        prior;
 
 
  charsum     = checksum(len, sym);
- hash_val    = charsum Mod lname_table_hash_size.val;
+ hash_val    = charsum % lname_table_hash_size.val;
  lname_entry = lname_hash_table[hash_val];
  prior       = Null;
  while ( lname_entry != 0
@@ -173,7 +173,7 @@ public_entry_ptr                       prior;
 #define Prior                          (*prior)
 
 
- hash_val  = checksum(len, sym) Mod public_table_hash_size.val;
+ hash_val  = checksum(len, sym) % public_table_hash_size.val;
  pub_entry = public_hash_table[hash_val];
  prior     = Null;
  while ( pub_entry != 0
@@ -230,7 +230,7 @@ segment_entry_ptr                      prior;
 
  hash_val      = (Segment_lname.lname_checksum +
                   Class_lname.lname_checksum)
-                 Mod segment_table_hash_size.val;
+                 % segment_table_hash_size.val;
  segment_entry = segment_hash_table[hash_val];
  if ( (combine != 0) && (combine != blank_common_combine)
   ) {  /* All non-zero combine types except blank common will be combined. */

@@ -62,8 +62,8 @@ ListTypeOf(Generic_Element);
 #define IsNumber(x)          ((x>='0') && (x<='9'))
 
 /* Some other operators */
-/*#define Addr(exp)            &(exp)*/
-#define Mod                  %
+/*#define Addr(exp)            &(exp)
+#define Mod                  %*/
 #define ShiftedLeft          <<
 #define ShiftedRight         >>
 

@@ -18,7 +18,7 @@ segment_entry_ptr                      seg;
 
  image_size                      = exe_header_size+highest_uninitialized_byte;
  Exe_header.signature            = 0x5A4D;
- Exe_header.image_length_MOD_512 = Bit_16(image_size Mod 512L);
+ Exe_header.image_length_MOD_512 = Bit_16(image_size % 512L);
  Exe_header.image_length_DIV_512 = Bit_16(image_size / 512L) + 1;
  Exe_header.n_header_paragraphs  = Bit_16(exe_header_size ShiftedRight 4L);
  n_uninitialized_bytes           = (*segment_list.last).address + 
