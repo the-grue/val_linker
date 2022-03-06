@@ -8,7 +8,7 @@
 void complete_a_filename_token()
 {
 
-BeginCode
+
  copy_string(token, next_token);
  scan_out_token();
  if ( token_type Is switch_end_token_type
@@ -32,7 +32,7 @@ EndCode
 void eat_white_space()
 {
 
-BeginCode
+
  while ( token_break_char Is ' '
   ) {
    token_get_char();
@@ -48,7 +48,7 @@ token_stack_ptr get_free_token_source_element()
 {
 token_stack_ptr                        elem;
 
-BeginCode
+
  Pop token_stack_free_list InTo elem EndPop;
  if ( elem IsNull
   ) {
@@ -71,7 +71,7 @@ void get_filename_token(bit_16            required,
 token_stack_ptr                        source_element;
 #define Source_element                 (*source_element)
 
-BeginCode
+
  while(1)
   {
    required = (required) AndIf (List.first IsNull);
@@ -223,7 +223,7 @@ FILE *input_open(string_ptr fn)
 {
 FILE                                  *infile;
 
-BeginCode
+
  infile = fopen((char *)near_string(fn), "r");
  if ( infile Is NULL
   ) {
@@ -243,7 +243,7 @@ void process_switch()
 switch_table_ptr                       current_switch;
 #define Current_switch                 (*current_switch)
 
-BeginCode
+
  current_switch = switch_table;
  scan_out_token();
  copy_string(token, next_token);
@@ -280,7 +280,7 @@ void scan_bit_16_switch(switch_table_ptr current_switch)
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((bit_16_switch_ptr)(*current_switch).affected_thing))
 
-BeginCode
+
  scan_out_token();
  copy_string(token, next_token);
  if ( token_type IsNot switch_end_token_type
@@ -319,7 +319,7 @@ void scan_opt_bit_16(switch_table_ptr current_switch)
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((bit_16_switch_ptr)(*current_switch).affected_thing))
 
-BeginCode
+
  scan_out_token();
  copy_string(token, next_token);
  Affected_thing.set = True;
@@ -357,7 +357,7 @@ void scan_out_token()
 {
 bit_16                                 paren_count;
 
-BeginCode
+
  eat_white_space();
  copy_string(next_token, null_string);
  token_is_hex_number =
@@ -493,7 +493,7 @@ void scan_help_switch(switch_table_ptr current_switch)
 #define Affected_thing (*((boolean_switch_ptr)(*current_switch).affected_thing))
 FILE                                  *help_file;
 
-BeginCode
+
  Affected_thing.val = True;
  help_file = fopen(CharPtr(near_string(help_filename)), "r");
  if ( help_file IsNull
@@ -527,7 +527,7 @@ void scan_reset_bit_16(switch_table_ptr current_switch)
 {
 #define Affected_thing (*((bit_16_switch_ptr)(*current_switch).affected_thing))
 
-BeginCode
+
  scan_out_token();
  copy_string(token, next_token);
  Affected_thing.set = False;
@@ -546,7 +546,7 @@ void scan_reset_switch(switch_table_ptr current_switch)
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((boolean_switch_ptr)(*current_switch).affected_thing))
 
-BeginCode
+
  Affected_thing.val = False;
  scan_out_token();
  copy_string(token, next_token);
@@ -565,7 +565,7 @@ void scan_set_switch(switch_table_ptr current_switch)
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((boolean_switch_ptr)(*current_switch).affected_thing))
 
-BeginCode
+
  Affected_thing.val = True;
  scan_out_token();
  copy_string(token, next_token);
@@ -584,7 +584,7 @@ void scan_text_switch(switch_table_ptr current_switch)
 #define Current_switch                 (*current_switch)
 #define Affected_thing (*((text_switch_ptr)(*current_switch).affected_thing))
 
-BeginCode
+
  scan_out_token();
  copy_string(token, next_token);
  if ( token_type IsNot switch_end_token_type
@@ -620,7 +620,7 @@ token_stack_ptr                        tos;
 #define Tos                            (*tos)
 #define Tos_string                     (*tos).token_string
 
-BeginCode
+
  while(1)
   {
    if ( ((*token_stack.first).source_file Is stdin) AndIf

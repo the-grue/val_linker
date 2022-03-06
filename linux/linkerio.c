@@ -13,7 +13,7 @@ void DOS_error(char_ptr format, ... )
 va_list                                argptr;
 bit_16                                 error_number;
 
-BeginCode
+
  if ( outregs.x.cflag
   ) {
    error_number = outregs.x.ax;
@@ -42,7 +42,7 @@ void DOS_int21(char_ptr format, ... )
 va_list                                argptr;
 bit_16                                 error_number;
 
-BeginCode
+
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  if ( (outregs.x.cflag) AndIf
     (Not ((inregs.h.al  Is 0x41) AndIf (outregs.x.ax Is 2)))
@@ -70,7 +70,7 @@ void linker_error(unsigned severity, char_ptr format, ...)
 {
 va_list                                argptr;
 
-BeginCode
+
  fprintf(stdout,"\nLinker Error (Severity %d)\n",severity);
  va_start(argptr,format);
  vfprintf(stdout,format,argptr);
@@ -92,7 +92,7 @@ void linker_message(char_ptr format, ...)
 va_list                                argptr;
 static char                            flag = 0;
 
-BeginCode
+
  if(!flag) { /* Issue Signon message */
   flag = -1;
   fprintf(stdout,"VAL 8086 linker - %s\n",__DATE__); }
@@ -111,7 +111,7 @@ void print(char_ptr format, ...)
 va_list                                argptr;
 bit_16                                 len;
 
-BeginCode
+
  va_start(argptr,format);
  vsprintf(CharPtr(object_file_element), format, argptr);
  len = strlen(CharPtr(object_file_element));

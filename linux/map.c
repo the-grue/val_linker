@@ -21,7 +21,7 @@ segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 bit_32                                 stop_address;
 
-BeginCode
+
  map_start_time = Now;
  if ( lst_file_list.first IsNull
   ) {  /*  No map file to be created. */
@@ -303,7 +303,7 @@ bit_16                                 i;
 bit_32                                 line_address;
 char                                   ascii[20];
 
-BeginCode
+
  line_address = address & 0xFFFF0L;
  while ( length Exceeds 0
   ) {
@@ -351,7 +351,7 @@ bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;
 
-BeginCode
+
  if ( left NotLessThan right
   ) {
    return;
@@ -406,7 +406,7 @@ bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;
 
-BeginCode
+
  if ( left NotLessThan right
   ) {
    return;

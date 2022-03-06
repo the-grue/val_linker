@@ -9,7 +9,7 @@ void process_libraries()
 {
 file_info_ptr                          current_lib_file_info;
 
-BeginCode
+
  library_processing_start_time = Now;
  while ( library_request_count Exceeds 0
   ) {
@@ -35,7 +35,7 @@ bit_32                                 pos;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
 
-BeginCode
+
  while ( Lib_file.request_count Exceeds 0
   ) {
    file_open_for_read(lib_file);
@@ -79,7 +79,7 @@ void process_library_directories()
 {
 file_info_ptr                          current_lib_file_info;
 
-BeginCode
+
  library_directory_start_time = Now;
  public_sort_array = (public_entry_ptr_array)
                        allocate_memory
@@ -119,7 +119,7 @@ bit_16                                 symbol_index;
 bit_16                                *symbol_in_page;
 #define Symbol_in_page                 (*symbol_in_page)
 
-BeginCode
+
  lib_hdr = (library_file_header_ptr) object_file_element;
  file_open_for_read(lib_file);
  file_IO_limit(sizeof(library_file_header_type));
@@ -263,7 +263,7 @@ bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;
 
-BeginCode
+
  if ( left NotLessThan right
   ) {
    return;

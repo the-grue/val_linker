@@ -9,8 +9,8 @@
 /* Block basic C commands */
 
 /*#define BeginDeclarations    {
-#define EndDeclarations*/
-#define BeginCode
+#define EndDeclarations
+#define BeginCode*/
 #define EndCode              }
 
 #define Type                 typedef

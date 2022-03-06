@@ -14,7 +14,7 @@ file_info_ptr                          file_entry;
 token_stack_ptr                        source_element;
 #define Source_element                 (*source_element)
 
-BeginCode
+
 
  user_input_start_time = Now;
 
@@ -177,7 +177,7 @@ void process_user_input_files(file_info_list *list,
 {
 #define List                           (*list)
 
-BeginCode
+
  scan_out_token();
  do
   {
@@ -212,7 +212,7 @@ file_info_ptr                          file_entry;
 #define File_entry                     (*file_entry)
 #define List                           (*list)
 
-BeginCode
+
  scan_out_token();
  do
   {

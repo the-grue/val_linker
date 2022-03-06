@@ -8,7 +8,7 @@
 void end_linker(bit_16 return_code)
 {
 
-BeginCode
+
  if ( statistics.val IsTrue
   ) {
    linker_statistics();
@@ -26,7 +26,7 @@ void linker_statistics()
 file_info_ptr                          file;
 #define File                           (*file)
 
-BeginCode
+
  statistics_start_time = Now;
  statistics.val        = False;  /* Prevent recursive call. */
 /*+-------------------------------------------------------------------------+

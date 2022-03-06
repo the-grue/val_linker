@@ -12,7 +12,7 @@ bit_32 get_time(void)
 {
 bit_32                                 hhmmsscc;
 
-BeginCode
+
  inregs.h.ah = 0x2C;                   /* Get time function */
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
 /* DOS_int21("Failed to get the system time.\n");*/
@@ -37,7 +37,7 @@ char_ptr elapsed_time(bit_32 start_time, bit_32 stop_time)
  bit_16                                cc;
  bit_32                                t;
 
-BeginCode
+
  if ( start_time Exceeds stop_time
   ) { /* We passed midnight and must add 24 hours to stop time */
    stop_time += 8640000L;

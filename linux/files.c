@@ -8,7 +8,7 @@
 string_ptr add_extension_to_file(string_ptr fn, string_ptr ext)
 {
 
-BeginCode
+
  if ( index_string(fn,0,colon_string) IsNot 1
   ) {  /* AUX:, CON:, or PRN: */
    return(fn);
@@ -35,7 +35,7 @@ file_info_ptr                          file_entry;
 #define File_list                      (*file_list)
 bit_16                                 rc;
 
-BeginCode
+
  matched_file = String(current_filename);
  rc = start_file_search(fn, 0);
  if ( rc IsNotZero
@@ -85,7 +85,7 @@ EndCode
 string_ptr change_extension(string_ptr  fn, string_ptr ext)
 {
 
-BeginCode
+
  trunc_string(fn, reverse_index_string(fn,0xFFFF,dot_string));
  concat_string(fn, ext);
  return(fn);
@@ -102,7 +102,7 @@ bit_16 continue_file_search()
 {
 bit_16                                 rc;
 
-BeginCode
+
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |                         Set up a new DTA                                |
@@ -136,7 +136,7 @@ EndCode
 string_ptr default_directory(string_ptr drive, string_ptr directory)
 {
 
-BeginCode
+
  inregs.h.ah = 0x47;                   /* Get current directory*/
  inregs.h.dl = *String(drive) - 'a' + 1;
  inregs.x.si = Offset(String(directory)) + 1;
@@ -163,7 +163,7 @@ string_ptr default_drive()
 {
 string_ptr                             drive;
 
-BeginCode
+
  drive = make_constant_string(Addr(static_pool), (byte *) " :");
  inregs.h.ah = 0x19;                   /* Report current drive */
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
@@ -183,7 +183,7 @@ void file_close_for_read()
 {
 #define File                           infile
 
-BeginCode
+
  if ( File.file_handle Exceeds 4
   ) {  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
@@ -206,7 +206,7 @@ void file_close_for_write()
 {
 #define File                           outfile
 
-BeginCode
+
  if ( File.bytes_in_buffer Exceeds 0
   ) {
    inregs.h.ah = 0x40;               /* Write */
@@ -239,7 +239,7 @@ bit_16 file_exists(string_ptr fn, bit_16 attr)
 {
 bit_16                                 rc;
 
-BeginCode
+
  old_DTA = get_DTA_address();
  set_DTA_address(DTA);
  inregs.h.ah = 0x4E;                   /* Start file search */
@@ -262,7 +262,7 @@ void file_delete(file_info_ptr file_info)
 {
 #define File_info                      (*file_info)
 
-BeginCode
+
  inregs.h.ah = 0x41;                   /* Delete file */
  inregs.x.dx = Offset(File_info.filename);
  segregs.ds  = Segment(File_info.filename);
@@ -281,7 +281,7 @@ void file_IO_limit(bit_16 limit)
 {
 #define File                           infile
 
-BeginCode
+
  if ( (limit IsZero) OrIf (limit Exceeds File.buffer_size)
   ) {
    File.IO_limit = File.buffer_size;
@@ -304,7 +304,7 @@ void file_open_for_read(file_info_ptr file_info)
 #define File                           infile
 #define File_info                      (*file_info)
 
-BeginCode
+
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |                    Initialize the data structure                        |
@@ -362,7 +362,7 @@ void file_open_for_write(file_info_ptr file_info)
 #define File                           outfile
 #define File_info                      (*file_info)
 
-BeginCode
+
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |                    Initialize the data structure                        |
@@ -419,7 +419,7 @@ void file_position(bit_32 position)
 {
 #define File                           infile
 
-BeginCode
+
  if ( (position NotLessThan File.start_of_buffer_position) AndIf
     (position LessThan    File.next_buffer_position)
   ) {
@@ -456,7 +456,7 @@ void file_read(byte_ptr into, bit_16 length)
 {
 #define File                           infile
 
-BeginCode
+
  while ( length Exceeds 0
   ) {
    if ( length Exceeds File.bytes_left_in_buffer
@@ -505,7 +505,7 @@ void file_write(byte_ptr from, bit_32 length)
 {
 #define File                           outfile
 
-BeginCode
+
  while ( length Exceeds 0L
   ) {
    if ( length Exceeds Bit_32(File.bytes_left_in_buffer)
@@ -553,7 +553,7 @@ DTA_ptr get_DTA_address()
 {
 DTA_ptr                                DTA_address;
 
-BeginCode
+
  inregs.h.ah = 0x2F;                   /* Get DTA address */
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  DTA_address = (DTA_ptr) MakeFarPtr(segregs.es, outregs.x.bx);
@@ -570,7 +570,7 @@ string_ptr process_filename(string_ptr fn)
 bit_16                                 left;
 bit_16                                 right;
 
-BeginCode
+
  lowercase_string(fn);
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -656,7 +656,7 @@ EndCode
 void set_DTA_address(DTA_ptr DTA_address)
 {
 
-BeginCode
+
  inregs.h.ah = 0x1A;                   /* Set DTA address */
  segregs.ds  = Segment(DTA_address);
  inregs.x.dx = Offset(DTA_address);
@@ -675,7 +675,7 @@ bit_16 start_file_search(string_ptr fn, bit_16 attr)
 {
 bit_16                                 rc;
 
-BeginCode
+
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |                         Set up a new DTA                                |

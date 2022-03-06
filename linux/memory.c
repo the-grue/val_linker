@@ -41,7 +41,7 @@ memory_descriptor_ptr                  desc;
 memory_descriptor_ptr                  prior;
 #define Prior                          (*prior)
 
-BeginCode
+
  prior = Null;
  desc  = free_pool.memory_descriptor_list;
  while ( desc IsNotNull
@@ -89,7 +89,7 @@ memory_descriptor_ptr                  desc;
 memory_descriptor_ptr                  prev;
 byte_ptr                               element;
 
-BeginCode
+
 
 /* Traverse the memory descriptor list and allocate the space from the
    first memory descriptor which has enough available space for the entire
@@ -149,7 +149,7 @@ bit_16                                 rc;
 memory_descriptor_ptr                  desc;
 #define Desc                           (*desc)
 
-BeginCode
+
 /* First step for PC-DOS is to gobble all free paragraphs above the heap.
    The variable "far_memory" will point to that area. */
 
@@ -240,7 +240,7 @@ memory_descriptor_ptr                  desc;
 #define Desc                           (*desc)
 memory_descriptor_ptr                  next;
 
-BeginCode
+
  desc  = Pool.memory_descriptor_list;
  while ( desc IsNotNull
   ) {

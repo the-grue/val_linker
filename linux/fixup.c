@@ -16,7 +16,7 @@ bit_32                                 location_address;
 bit_32                                 target_address;
 bit_16 far                            *word_location;
 
-BeginCode
+
  file_read(BytePtr(Addr(fixup)), sizeof(fixup));
  frame_address  = frame();
  target_address = target();
@@ -151,7 +151,7 @@ lseg_ptr                               lseg;
 bit_16                                 offset;
 bit_8                                  size;
 
-BeginCode
+
  lseg          = temp_file_header.lseg;
  len           = temp_file_header.rec_len;
  file_read(BytePtr(object_file_element), len);
@@ -206,7 +206,7 @@ void fixup_LEDATA_record()
 lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 
-BeginCode
+
  lseg          = temp_file_header.lseg;
  lseg_data_ptr = Addr(Lseg.data[temp_file_header.offset]);
  file_read(lseg_data_ptr, temp_file_header.rec_len);
@@ -228,7 +228,7 @@ bit_16                                 j;
 bit_16                                 len;
 bit_16                                 repeat_count;
 
-BeginCode
+
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
  if ( block_count IsNotZero
@@ -264,7 +264,7 @@ void fixup_LIDATA_record()
 lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 
-BeginCode
+
  lseg          = temp_file_header.lseg;
  lseg_data_ptr = Addr(Lseg.data[temp_file_header.offset]);
  file_read(BytePtr(object_file_element), temp_file_header.rec_len);
@@ -295,7 +295,7 @@ public_entry_ptr                       pub;
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 
-BeginCode
+
  switch ( fixup.frame_method
   ) {
    case 0:  /* Frame is segment relative */
@@ -371,7 +371,7 @@ EndCode
 void pass_two()
 {
 
-BeginCode
+
  fixup_start_time = Now;
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -434,7 +434,7 @@ bit_32                                 address;
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 
-BeginCode
+
  frame_absolute = False;
  if ( Pub.type_entry IsNot internal
   ) {
@@ -487,7 +487,7 @@ bit_32                                 address;
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 
-BeginCode
+
  if ( Pub.type_entry IsNot internal
   ) {
    seg = (*temp_file_header.lseg).segment;
@@ -526,7 +526,7 @@ bit_32 segment_offset(lseg_ptr lseg, bit_16 offset)
 {
 #define Lseg                           (*lseg)
 
-BeginCode
+
  return ((Frame(lseg) ShiftedLeft 12L) Or (Bit_32(offset) + Target(lseg)));
 EndCode
 #undef Lseg
@@ -546,7 +546,7 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 bit_32                                 target_address;
 
-BeginCode
+
  switch ( fixup.target_method
   ) {
    case 0:  /* Target is segment relative */

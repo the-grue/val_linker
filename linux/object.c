@@ -9,7 +9,7 @@ void process_object_modules()
 {
 file_info_ptr                          obj_file;
 
-BeginCode
+
  object_module_start_time = Now;
  file_open_for_write(temp_file);
  TraverseList(obj_file_list, obj_file)

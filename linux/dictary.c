@@ -75,7 +75,7 @@ group_entry_ptr                        group_entry;
 group_entry_ptr                        prior;
 #define Prior                          (*prior)
 
-BeginCode
+
  hash_val    = Group_lname.lname_checksum Mod group_table_hash_size.val;
  group_entry = group_hash_table[hash_val];
  prior       = Null;
@@ -122,7 +122,7 @@ lname_entry_ptr                        lname_entry;
 lname_entry_ptr                        prior;
 #define Prior                          (*prior)
 
-BeginCode
+
  charsum     = checksum(len, sym);
  hash_val    = charsum Mod lname_table_hash_size.val;
  lname_entry = lname_hash_table[hash_val];
@@ -172,7 +172,7 @@ public_entry_ptr                       pub_entry;
 public_entry_ptr                       prior;
 #define Prior                          (*prior)
 
-BeginCode
+
  hash_val  = checksum(len, sym) Mod public_table_hash_size.val;
  pub_entry = public_hash_table[hash_val];
  prior     = Null;
@@ -227,7 +227,7 @@ segment_entry_ptr                      segment_entry;
 segment_entry_ptr                      prior;
 #define Prior                          (*prior)
 
-BeginCode
+
  hash_val      = (Segment_lname.lname_checksum +
                   Class_lname.lname_checksum)
                  Mod segment_table_hash_size.val;

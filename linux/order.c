@@ -26,7 +26,7 @@ bit_32                                 mask;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
 
-BeginCode
+
  if ( (*Active_segment.lsegs.first).align IsZero
   ) { /* Don't align absolute segments */
    return;
@@ -120,7 +120,7 @@ EndCode
 void get_order_token()
 {
 
-BeginCode
+
  while ( token_break_char Is ' '
   ) {
    order_token_get_char();
@@ -164,7 +164,7 @@ void order_and_align_segments()
 {
 byte_ptr                               start_of_expression;
 
-BeginCode
+
  order_start_time = Now;
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -241,7 +241,7 @@ bit_16 order_expression()
 {
 bit_16                                 left_operand;
 
-BeginCode
+
  get_order_token();
  left_operand = order_term();
  while ( TokenIs(or_string)   OrIf
@@ -263,7 +263,7 @@ bit_16 order_factor()
 {
 bit_16                                 unary_not;
 
-BeginCode
+
  unary_not = False;
  while ( TokenIs(exclamation_string) OrIf
        TokenIs(tilde_string)       OrIf
@@ -287,7 +287,7 @@ group_entry_ptr                        group;
 #define Group                          (*group)
 bit_16                                 operand;
 
-BeginCode
+
  if ( TokenIs(true_string)
   ) {
    get_order_token();
@@ -386,7 +386,7 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 bit_16                                 size;
 
-BeginCode
+
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -614,7 +614,7 @@ bit_16 order_term()
 {
 bit_16                                 left_operand;
 
-BeginCode
+
  left_operand = order_factor();
  while ( TokenIs(and_string)       OrIf
        TokenIs(star_string)      OrIf
@@ -634,7 +634,7 @@ EndCode
 void order_token_get_char()
 {
 
-BeginCode
+
  if ( token_break_char Is '\000'
   ) {
    linker_error(8, "Expression syntax error:\n"
