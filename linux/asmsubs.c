@@ -60,8 +60,8 @@ BeginCode
        return(-1);
       Else
        return(1);
-      EndIf;
-    EndIf;
+      };
+    };
    left++;
    right++;
   EndWhile;
@@ -131,11 +131,11 @@ BeginCode
    if ( *pattern Is '*'
     Then
      return(True);
-    EndIf;
+    };
    if ( (*pattern IsNot '?') AndIf (*pattern IsNot *source)
     Then
      return(False);
-    EndIf;
+    };
    source++;
    pattern++;
   EndWhile;
@@ -398,7 +398,7 @@ EndDeclarations
      word.high_byte = *data++;
     Else
      word.low_byte = *data++;
-    EndIf;
+    };
    sum += *word_ptr;
   EndFor;
  return(sum); */

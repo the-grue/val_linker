@@ -26,7 +26,7 @@ BeginCode
  if ( lst_file_list.first IsNull
   Then  /*  No map file to be created. */
    return;
-  EndIf;
+  };
  file_open_for_write(lst_file_list.first);
  print("\n");
  print(" Start  Stop   Length Name                   Class\n");
@@ -36,7 +36,7 @@ BeginCode
    if ( Seg.length Exceeds 0L
     Then
      stop_address--;
-    EndIf;
+    };
    print(" %05lXH %05lXH %05lXH %-22Fs %-22Fs\n",
          Seg.address,
          stop_address,
@@ -58,7 +58,7 @@ BeginCode
              Bit_16((*Grp.first_segment).address & 0xFL),
              (*Grp.group_name).symbol);
       EndTraverse;
-    EndIf;
+    };
 
     public_sort_array = (public_entry_ptr_array)
                           allocate_memory
@@ -97,7 +97,7 @@ BeginCode
          print("Abs  ");
         Else
          print("     ");
-        EndIf;
+        };
        print("%Fs\n", Pub.symbol);
       EndFor;
      sort_publics_by_value(0, n_publics_to_sort-1);
@@ -116,10 +116,10 @@ BeginCode
          print("Abs  ");
         Else
          print("     ");
-        EndIf;
+        };
        print("%Fs\n", Pub.symbol);
       EndFor;
-    EndIf;
+    };
 
 
    print("\n");
@@ -128,8 +128,8 @@ BeginCode
      print("Program entry point at %04X:%04X\n",
             initial_CS,
             initial_IP);
-    EndIf;
-  EndIf;
+    };
+  };
 
  if ( detail_level.val Exceeds 0
   Then
@@ -150,7 +150,7 @@ BeginCode
       Then
        print(" Group(%Fs)",
              (*(*Seg.owning_group).group_name).symbol);
-      EndIf;
+      };
      print(" Combine(%s)\n",
            combine_text[Seg.combine]);
      print("\tStart(%05lX) Length(%05lX) Next Uninitialized Byte(%05lX)\n",
@@ -176,16 +176,16 @@ BeginCode
             (Seg.combine IsNot blank_common_combine)
           Then
            map_memory(Lseg.data, Lseg.address, Lseg.length);
-          EndIf;
+          };
         EndTraverse;
       EndTraverse;
-    EndIf;
+    };
    if ( (detail_level.val Exceeds 3) AndIf (exefile IsTrue)
     Then
      print("\n");
      print("EXE file header:\n");
      map_memory(BytePtr(exe_header), 0L, exe_header_size);
-    EndIf;
+    };
    if ( detail_level.val Exceeds 4
     Then
      last_location_lseg = Null;
@@ -204,7 +204,7 @@ BeginCode
          ContinueLoop;
         Else
          file_read(BytePtr(Addr(fixup)), temp_file_header.rec_len);
-        EndIf;
+        };
        if ( last_location_lseg IsNot temp_file_header.lseg
         Then
          lseg = temp_file_header.lseg;
@@ -214,7 +214,7 @@ BeginCode
                (*Lseg.file).filename,
                (*Lseg.tmodule).symbol,
                (*Seg.segment_name).symbol);
-        EndIf;
+        };
        last_location_lseg = temp_file_header.lseg;
        print("\tLocation(%05lX) Type(%s) Mode(%s)\n",
              (*temp_file_header.lseg).address +
@@ -281,8 +281,8 @@ BeginCode
        file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
       EndWhile;
      file_close_for_read();
-    EndIf;
-  EndIf;
+    };
+  };
  file_close_for_write();
  return;
 EndCode
@@ -315,7 +315,7 @@ BeginCode
       Then
        print(" :");
        strcat(ascii, " : ");
-      EndIf;
+      };
      if ( (line_address LessThan address) OrIf (length IsZero)
       Then
        print(" ..");
@@ -328,12 +328,12 @@ BeginCode
          ascii[strlen(ascii)] = (char) *data;
         Else
          ascii[strlen(ascii)] = '.';
-        EndIf;
+        };
        data++;
        line_address++;
        address++;
        length--;
-      EndIf;
+      };
     EndFor;
    print("  %s\n", ascii);
   EndWhile;
@@ -355,7 +355,7 @@ BeginCode
  if ( left NotLessThan right
   Then
    return;
-  EndIf;
+  };
  i = left;
  j = right;
  While i LessThan j
@@ -370,7 +370,7 @@ BeginCode
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
        ExitLoop;
-      EndIf;
+      };
      j--;
     EndWhile;
    While i LessThan j
@@ -383,14 +383,14 @@ BeginCode
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
        ExitLoop;
-      EndIf;
+      };
      i++;
     EndWhile;
   EndWhile;
   if ( i Exceeds 0
    Then
     sort_publics_by_name(left, i-1);
-   EndIf;
+   };
  sort_publics_by_name(i+1,  right);
  return;
 EndCode
@@ -410,7 +410,7 @@ BeginCode
  if ( left NotLessThan right
   Then
    return;
-  EndIf;
+  };
  i = left;
  j = right;
  While i LessThan j
@@ -426,7 +426,7 @@ BeginCode
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
        ExitLoop;
-      EndIf;
+      };
      j--;
     EndWhile;
    While i LessThan j
@@ -440,14 +440,14 @@ BeginCode
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
        ExitLoop;
-      EndIf;
+      };
      i++;
     EndWhile;
   EndWhile;
   if ( i Exceeds 0
    Then
     sort_publics_by_value(left, i-1);
-   EndIf;
+   };
  sort_publics_by_value(i+1,  right);
  return;
 EndCode

@@ -88,9 +88,9 @@ BeginCode
        Prior.next_congruent       = Group_entry.next_congruent;
        Group_entry.next_congruent = group_hash_table[hash_val];
        group_hash_table[hash_val] = group_entry;
-      EndIf;
+      };
      return(group_entry);
-    EndIf;
+    };
    prior       = group_entry;
    group_entry = Group_entry.next_congruent;
   EndWhile;
@@ -138,10 +138,10 @@ BeginCode
          Prior.next_congruent       = Lname_entry.next_congruent;
          Lname_entry.next_congruent = lname_hash_table[hash_val];
          lname_hash_table[hash_val] = lname_entry;
-        EndIf;
+        };
        return(lname_entry);
-      EndIf;
-    EndIf;
+      };
+    };
    prior       = lname_entry;
    lname_entry = Lname_entry.next_congruent;
   EndWhile;
@@ -188,10 +188,10 @@ BeginCode
          Prior.next_congruent        = Pub_entry.next_congruent;
          Pub_entry.next_congruent    = public_hash_table[hash_val];
          public_hash_table[hash_val] = pub_entry;
-        EndIf;
+        };
        return(pub_entry);
-      EndIf;
-    EndIf;
+      };
+    };
    prior     = pub_entry;
    pub_entry = Pub_entry.next_congruent;
   EndWhile;
@@ -246,13 +246,13 @@ BeginCode
          Prior.next_congruent         = Segment_entry.next_congruent;
          Segment_entry.next_congruent = segment_hash_table[hash_val];
          segment_hash_table[hash_val] = segment_entry;
-        EndIf;
+        };
        return(segment_entry);
-      EndIf;
+      };
      prior       = segment_entry;
      segment_entry = Segment_entry.next_congruent;
     EndWhile;
-  EndIf;
+  };
  segment_entry = (segment_entry_ptr)
                 allocate_memory(Addr(static_pool),
                                 Bit_32(sizeof(segment_entry_type)));

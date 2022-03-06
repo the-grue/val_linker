@@ -41,7 +41,7 @@ BeginCode
  if ( start_time Exceeds stop_time
   Then /* We passed midnight and must add 24 hours to stop time */
    stop_time += 8640000L;
-  EndIf;
+  };
  t   = stop_time - start_time;
  cc  = Bit_16(t Mod 100L);                     t /= 100L;
  ss  = Bit_16(t Mod 60L);                      t /= 60L;
@@ -55,6 +55,6 @@ BeginCode
     sprintf(time_array,"%u:%02u.%02u",mm,ss,cc);
    Else
     sprintf(time_array,"%u.%02u",ss,cc);
- EndIf;
+ };
  return(time_array);
 EndCode

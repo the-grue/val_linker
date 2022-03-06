@@ -34,7 +34,7 @@ BeginCode
                    (*(*temp_file_header.lseg).file).filename,
                 (*(*(*temp_file_header.lseg).segment).segment_name).symbol,
                    temp_file_header.offset);
-  EndIf;
+  };
  byte_location  = 
               Addr((*temp_file_header.lseg).data[temp_file_header.offset]);
  word_location  = (bit_16 far *) byte_location;
@@ -46,7 +46,7 @@ BeginCode
    if ( fixup.location_type Is offset_location
     Then
      location_address++;
-    EndIf;
+    };
    if ( (location_address LessThan frame_address) OrIf
       (location_address Exceeds (frame_address + 65535L)) OrIf
       (frame_absolute IsTrue)
@@ -61,7 +61,7 @@ BeginCode
                      (*(*temp_file_header.lseg).file).filename,
                  (*(*(*temp_file_header.lseg).segment).segment_name).symbol,
                      temp_file_header.offset);
-    EndIf;
+    };
    Using fixup.location_type
     BeginCase
      When lobyte_location:
@@ -83,7 +83,7 @@ BeginCode
                         (*(*temp_file_header.lseg).file).filename,
                 (*(*(*temp_file_header.lseg).segment).segment_name).symbol,
                         temp_file_header.offset);
-       EndIf;
+       };
       *byte_location += Bit_8(IP_distance_to_target);
       break;
      When offset_location:
@@ -104,7 +104,7 @@ BeginCode
        (fixup.location_type Is pointer_location))
     Then  /* Count the relocation items we should not be getting. */
      n_relocation_items++;
-    EndIf;
+    };
    Using fixup.location_type
     BeginCase
      When lobyte_location:
@@ -119,7 +119,7 @@ BeginCode
        Then
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset);
-       EndIf;
+       };
       break;
      When pointer_location:
       *word_location++ += Bit_16(foval);
@@ -128,13 +128,13 @@ BeginCode
        Then
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset+2);
-       EndIf;
+       };
       break;
      When hibyte_location:
       *byte_location += Bit_8(foval ShiftedRight 8);
       break;
     EndCase;
-  EndIf;
+  };
  return;
 EndCode
 
@@ -250,7 +250,7 @@ BeginCode
      lseg_data_ptr += len;
     EndFor;
    obj_ptr.b8 += len;
-  EndIf;
+  };
  return;
 EndCode
 
@@ -388,12 +388,12 @@ BeginCode
      exe_header_size += AlignmentGap(exe_header_size, 0xFL);
     Else
      exe_header_size += AlignmentGap(exe_header_size, 0x1FFL);
-    EndIf;
+    };
    exe_header       = (EXE_header_ptr)
                        allocate_memory(Addr(static_pool),
                                        exe_header_size);
    far_set(BytePtr(exe_header), 0, Bit_16(exe_header_size));
-  EndIf;
+  };
  file_open_for_read(temp_file);
  file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
  While temp_file_header.rec_typ IsNotZero
@@ -450,7 +450,7 @@ BeginCode
                      temp_file_header.offset,
                      (*Seg.segment_name).symbol);
      fixup.external_error_detected = True;
-    EndIf;
+    };
    address = 0L;
   Else
    if ( Pub.Internal.group IsNull
@@ -462,14 +462,14 @@ BeginCode
       Else
        frame_absolute = (*Pub.Internal.lseg).align Is absolute_segment;
        address        = (*(*Pub.Internal.lseg).segment).address;
-      EndIf;
+      };
     Else
      frame_absolute = 
                (*(*(*Pub.Internal.group).first_segment).lsegs.first).align Is
                absolute_segment;
      address        = (*(*Pub.Internal.group).first_segment).address;
-    EndIf;
-  EndIf;
+    };
+  };
  return(address);
 EndCode
 #undef Pub
@@ -502,7 +502,7 @@ BeginCode
                      temp_file_header.offset,
                      (*Seg.segment_name).symbol);
      fixup.external_error_detected = True;
-    EndIf;
+    };
    address = 0L;
   Else
    if ( Pub.Internal.lseg IsNull
@@ -510,8 +510,8 @@ BeginCode
      address = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
     Else
      address = (*Pub.Internal.lseg).address;
-    EndIf;
-  EndIf;
+    };
+  };
  return(address + Bit_32(Pub.Internal.offset));
 EndCode
 #undef Pub

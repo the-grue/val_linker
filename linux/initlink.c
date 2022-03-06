@@ -194,7 +194,7 @@ BeginCode
    far_move((*temp_file).filename, 
             String(temp_filename.val),
             Length(temp_filename.val));
-  EndIf;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -272,7 +272,7 @@ BeginCode
    codeview_class_DEBTYP    = lookup_lname(6, (byte *) "DEBTYP");
    codeview_segment_SYMBOLS = lookup_lname(9, (byte *) "$$SYMBOLS");
    codeview_segment_TYPES   = lookup_lname(7, (byte *) "$$TYPES");
-  EndIf;
+  };
  exefile = (comfile.val IsFalse) AndIf (sysfile.val IsFalse);
  return;
 EndCode

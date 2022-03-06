@@ -32,7 +32,7 @@ BeginCode
    concat_string(parm_string, at_string);
    concat_string(parm_string, default_filename);
    concat_string(parm_string, space_string);
-  EndIf;
+  };
  copy_string(token, default_filename);
  cut_string(token,
             0,
@@ -46,7 +46,7 @@ BeginCode
    concat_string(parm_string, at_string);
    concat_string(parm_string, token);
    concat_string(parm_string, space_string);
-  EndIf;
+  };
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |       concatenate the LINK environment variable into parm_string        |
@@ -56,7 +56,7 @@ BeginCode
  if ( env_var IsNull
   Then
    env_var = (byte *) "";
-  EndIf;
+  };
  concat_string(parm_string, string(BytePtr(env_var)));
  concat_string(parm_string, space_string);
 /*+-------------------------------------------------------------------------+
@@ -69,7 +69,7 @@ BeginCode
    if ( i Exceeds 1
     Then
      concat_string(parm_string, space_string);
-    EndIf;
+    };
    concat_string(parm_string, string(BytePtr(argv[i])));
   EndFor;
 /*+-------------------------------------------------------------------------+
@@ -116,8 +116,8 @@ BeginCode
     Else
      default_extension = exe_extension_string;
      default_prompt = "EXE file[%Fs]:  ";
-    EndIf;
-  EndIf;
+    };
+  };
 
  copy_string(default_filename, string((*(obj_file_list.first)).filename));
  change_extension(default_filename, default_extension);
@@ -148,7 +148,7 @@ BeginCode
                                  Bit_32(Length(token)));
    far_move(File_entry.filename, String(token), Length(token)+1);
    Insert file_entry AtEnd InList lst_file_list EndInsert;
-  EndIf;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -192,8 +192,8 @@ BeginCode
        Else
          add_extension_to_file(token,default_extension);
          add_files_to_list(list, token);
-       EndIf;
-    EndIf;
+       };
+    };
    RepeatIf more_tokens
   EndRepeat;
  return;
@@ -229,8 +229,8 @@ BeginCode
                                      Bit_32(Length(token)));
        far_move(File_entry.filename, String(token), Length(token)+1);
        Insert file_entry AtEnd InList List EndInsert;
-      EndIf;
-    EndIf;
+      };
+    };
    RepeatIf more_tokens
   EndRepeat;
  return;

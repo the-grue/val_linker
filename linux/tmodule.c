@@ -45,7 +45,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot COMDEF_record
   Then
    return(False);
-  EndIf;
+  };
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    if ( n_externals NotLessThan max_externals.val
@@ -61,12 +61,12 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       max_externals.val);
-    EndIf;
+    };
    len         = obj_name_length();
    if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
-    EndIf;
+    };
    pub         = lookup_public(len, obj_ptr.b8, 0);
    obj_ptr.b8 += len;
    obj_name_length();  /* Eat the type index. */
@@ -120,7 +120,7 @@ BeginCode
         Then /* We need the largest common */
          Pub.Communal.element_size  = element_size;
          Pub.Communal.element_count = element_count;
-        EndIf;
+        };
       Else
        if ( (Pub.type_entry Is near_communal) OrIf
           (Pub.type_entry Is far_communal)
@@ -135,9 +135,9 @@ BeginCode
                          (*infile.file_info).filename,
                          current_record_offset,
                          Pub.symbol);
-        EndIf;
-      EndIf;
-    EndIf;
+        };
+      };
+    };
   EndWhile;
  obj_next_record();
  return(True);
@@ -157,7 +157,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot COMENT_record
   Then
    return(False);
-  EndIf;
+  };
  obj_ptr.b8++;
  comment_class = *obj_ptr.b8++;
  Using comment_class
@@ -188,7 +188,7 @@ BeginCode
  if ( obj_data() OrIf obj_debug_record()
   Then
    return(True);
-  EndIf;
+  };
  return(False);
 EndCode
 
@@ -206,7 +206,7 @@ BeginCode
  if ( Not obj_data_record()
   Then
    return(False);
-  EndIf;
+  };
  While obj_FIXUPP()
   BeginWhile
   EndWhile;
@@ -240,7 +240,7 @@ BeginCode
     obj_MODPUB()
   Then
    return(True);
-  EndIf;
+  };
  return(False);
 EndCode
 
@@ -259,7 +259,7 @@ BeginCode
  if ( obj_LIDATA() OrIf obj_LEDATA()
   Then
    return(True);
-  EndIf;
+  };
  return(False);
 EndCode
 
@@ -278,7 +278,7 @@ BeginCode
  if ( obj_LINNUM()
   Then
    return(True);
-  EndIf;
+  };
  return(False);
 EndCode
 
@@ -297,7 +297,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot EXTDEF_record
   Then
    return(False);
-  EndIf;
+  };
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    if ( n_externals NotLessThan max_externals.val
@@ -313,12 +313,12 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       max_externals.val);
-    EndIf;
+    };
    len         = obj_name_length();
    if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
-    EndIf;
+    };
    pub         = lookup_public(len, obj_ptr.b8, 0);
    obj_ptr.b8 += len;
    obj_name_length();  /* Eat the type index. */
@@ -334,8 +334,8 @@ BeginCode
        library_request_count++;
        (*Pub.Library.lib_file).request_count++;
        Pub.Library.requested = True;
-      EndIf;
-    EndIf;
+      };
+    };
   EndWhile;
  obj_next_record();
  return(True);
@@ -354,7 +354,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot FIXUPP_record
   Then
    return(False);
-  EndIf;
+  };
  FIXUPP_contains_only_threads = True;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
@@ -364,7 +364,7 @@ BeginCode
     Else
      FIXUPP_contains_only_threads = False;
      obj_FIXUPP_fixup();
-    EndIf;
+    };
   EndWhile;
  obj_next_record();
  return(True);
@@ -467,10 +467,10 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       thread_number);
-    EndIf;
+    };
    fixup.frame_referent = frame_thread[thread_number].referent;
    fixup.frame_method   = frame_thread[thread_number].method;
-  EndIf;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -513,17 +513,17 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       thread_number);
-    EndIf;
+    };
    fixup.target_referent = target_thread[thread_number].referent;
    fixup.target_method   = target_thread[thread_number].method;
-  EndIf;
+  };
 
  if ( FIX_DAT.p IsZero
   Then  /* There is a target displacement */
    fixup.target_offset = *obj_ptr.b16++;
   Else  /* The target displacement is zero */
    fixup.target_offset = 0;
-  EndIf;
+  };
 
  fixup.external_error_detected = False;
 
@@ -541,7 +541,7 @@ BeginCode
                    (*tmodule_name).symbol,
                    (*infile.file_info).filename,
                    current_record_offset);
-  EndIf;
+  };
 
  if ( last_LxDATA_record_type Is LEDATA_record
   Then
@@ -551,7 +551,7 @@ BeginCode
     Then /* Base and pointer locations will require a relocation item
             in the EXE header */
      n_relocation_items++;
-    EndIf;
+    };
    write_temp_file(Current_record_header.rec_typ,
                    last_LxDATA_lseg,
                    last_LxDATA_offset + fixup_index,
@@ -571,8 +571,8 @@ BeginCode
                      current_record_offset);
     Else
      obj_fixup_LIDATA();
-    EndIf;
-  EndIf;
+    };
+  };
 
  return;
 EndCode
@@ -656,13 +656,13 @@ BeginCode
         Then /* Base and pointer locations will require a relocation item
                 in the EXE header */
          n_relocation_items++;
-        EndIf;
-      EndIf;
+        };
+      };
      LIDATA_offset += len;
     EndFor;
    obj_ptr.b8    += len;
    LIDATA_index  += len;
-  EndIf;
+  };
  return;
 EndCode
 
@@ -730,7 +730,7 @@ BeginCode
       frame_thread[thread].referent = Null;
       break;
     EndCase;
-  EndIf;
+  };
  return;
 EndCode
 
@@ -748,13 +748,13 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot FORREF_record
   Then
    return(False);
-  EndIf;
+  };
  segment_index = obj_index_segment();
  len           = Current_record_header.rec_len - 2;
  if ( segment_index Exceeds 127
   Then
    len--;
-  EndIf;
+  };
  write_temp_file(Current_record_header.rec_typ,
                  snames[segment_index],
                  0,
@@ -788,7 +788,7 @@ BeginCode
   Then
    length += AlignmentGap(length, 1L); /* Stacks should be an integral
                                           number of words. */
-  EndIf;
+  };
  seg             = lookup_segment(segment_lname, class_lname, combine);
  if ( (combine IsNot common_combine) OrIf (Seg.lsegs.first IsNull)
   Then
@@ -808,7 +808,7 @@ BeginCode
     Then  /* Don't allocate common data yet.  (We will wait until we
              know how long the common block will be.) */
      Lseg.data   = allocate_memory(Addr(static_pool), length);
-    EndIf;
+    };
 
    Lseg.highest_uninitialized_byte = 0L;
 
@@ -819,12 +819,12 @@ BeginCode
     Then  /* Expand common block to be big enough to hold this entry. */
      Seg.length  =
      Lseg.length = length;
-    EndIf;
+    };
    if ( align Exceeds Lseg.align
     Then  /* Align to largest boundary. */
      Lseg.align = align;
-    EndIf;
-  EndIf;
+    };
+  };
  if ( Seg.combine Is stack_combine
   Then
    if ( Not stack_segment_found
@@ -837,9 +837,9 @@ BeginCode
       Then
        largest_stack_seg        = seg;
        largest_stack_seg_length = Seg.length;
-      EndIf;
-    EndIf;
-  EndIf;
+      };
+    };
+  };
  return(lseg);
 EndCode
 #undef Lseg 
@@ -865,7 +865,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot GRPDEF_record
   Then
    return(False);
-  EndIf;
+  };
  group_index         = obj_index_LNAME();
  group               = lookup_group(lnames[group_index]);
  if ( n_groups NotLessThan max_groups.val
@@ -880,7 +880,7 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset,
                     max_groups.val);
-  EndIf;
+  };
  gnames[++n_groups]  = group;
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
@@ -896,7 +896,7 @@ BeginCode
                       (*tmodule_name).symbol,
                       (*infile.file_info).filename,
                       current_record_offset);
-    EndIf;
+    };
    segment_index = obj_index_segment();
    lseg          = snames[segment_index];
    seg           = Lseg.segment;
@@ -912,8 +912,8 @@ BeginCode
                        (*Seg.segment_name).symbol, (*Group.group_name).symbol,
                        (*(*Seg.owning_group).group_name).symbol,
                        (*Group.group_name).symbol);
-     EndIf;
-    EndIf;
+     };
+    };
   EndWhile;
  obj_next_record();
  return(True);
@@ -938,7 +938,7 @@ BeginCode
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
-  EndIf;
+  };
    if ( index Exceeds n_externals
     Then
      linker_error(12, "Translator error:\n"
@@ -951,7 +951,7 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       index, n_externals);
-    EndIf;
+    };
  return(index);
 EndCode
 
@@ -971,7 +971,7 @@ BeginCode
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
-  EndIf;
+  };
    if ( index Exceeds n_groups
     Then
      linker_error(12, "Translator error:\n"
@@ -984,7 +984,7 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       index, n_groups);
-    EndIf;
+    };
  return(index);
 EndCode
 
@@ -1004,7 +1004,7 @@ BeginCode
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
-  EndIf;
+  };
    if ( index Exceeds n_lnames
     Then
      linker_error(12, "Translator error:\n"
@@ -1017,7 +1017,7 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       index, n_lnames);
-    EndIf;
+    };
  return(index);
 EndCode
 
@@ -1037,7 +1037,7 @@ BeginCode
   Else
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
-  EndIf;
+  };
    if ( index Exceeds n_segments
     Then
      linker_error(12, "Translator error:\n"
@@ -1050,7 +1050,7 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       index, n_segments);
-    EndIf;
+    };
  return(index);
 EndCode
 
@@ -1091,7 +1091,7 @@ BeginCode
      LIDATA_offset += len;
     EndFor;
    obj_ptr.b8 += len;
-  EndIf;
+  };
  return;
 EndCode
 
@@ -1122,7 +1122,7 @@ BeginCode
                     (*tmodule_name).symbol,
                     (*infile.file_info).filename,
                     current_record_offset);
-  EndIf;
+  };
  length       = 0L;
  if ( block_count IsNotZero
   Then  /* Handle recursive case:  Content is iterated data block */
@@ -1134,7 +1134,7 @@ BeginCode
    len         = Bit_16(*obj_ptr.b8++);
    obj_ptr.b8 += len;
    length      = Bit_32(repeat_count) * Bit_32(len);
-  EndIf;
+  };
  return(length);
 EndCode
 
@@ -1175,10 +1175,10 @@ BeginCode
                         (*infile.file_info).filename,
                         current_record_offset,
                         element_size);
-        EndIf;
-      EndIf;
-    EndIf;
-  EndIf;
+        };
+      };
+    };
+  };
  return(0L);
 EndCode
 
@@ -1200,7 +1200,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot LEDATA_record
   Then
    return(False);
-  EndIf;
+  };
  last_LxDATA_record_type = Current_record_header.rec_typ;
  segment_index           = obj_index_segment();
  last_LxDATA_lseg        =
@@ -1209,7 +1209,7 @@ BeginCode
  if ( segment_index Exceeds 127
   Then
    len--;
-  EndIf;
+  };
  last_LxDATA_offset =
  offset             = *obj_ptr.b16++;
  next_byte          = Bit_32(offset) + Bit_32(len);
@@ -1223,11 +1223,11 @@ BeginCode
                     (*tmodule_name).symbol,
                     (*infile.file_info).filename,
                     current_record_offset);
-  EndIf;
+  };
  if ( next_byte Exceeds Lseg.highest_uninitialized_byte
   Then
    Lseg.highest_uninitialized_byte = next_byte;
-  EndIf;
+  };
  if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
   Then
    far_move(Addr(Lseg.data[offset]), obj_ptr.b8, len);
@@ -1238,7 +1238,7 @@ BeginCode
                    last_LxDATA_offset,
                    BytePtr(obj_ptr.b8),
                    len);
-  EndIf;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1259,7 +1259,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot LIDATA_record
   Then
    return(False);
-  EndIf;
+  };
  far_move(BytePtr(last_LIDATA_record), 
           BytePtr(object_file_element),
           Current_record_header.rec_len + sizeof(obj_record_header_type) - 1);
@@ -1280,11 +1280,11 @@ BeginCode
                     (*tmodule_name).symbol,
                     (*infile.file_info).filename,
                     current_record_offset);
-  EndIf;
+  };
  if ( next_byte Exceeds last_LxDATA_Lseg.highest_uninitialized_byte
   Then
    last_LxDATA_Lseg.highest_uninitialized_byte = next_byte;
-  EndIf;
+  };
  if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
   Then
    While obj_ptr.b8 IsNot end_of_record.b8
@@ -1297,13 +1297,13 @@ BeginCode
    if ( segment_index Exceeds 127
     Then
      len--;
-    EndIf;
+    };
    write_temp_file(Current_record_header.rec_typ,
                    last_LxDATA_lseg,
                    last_LxDATA_offset,
                    BytePtr(obj_ptr.b8),
                    len);
-  EndIf;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1341,7 +1341,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot LINNUM_record
   Then
    return(False);
-  EndIf;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1358,7 +1358,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot LNAMES_record
   Then
    return(False);
-  EndIf;
+  };
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    if ( n_lnames NotLessThan max_lnames.val
@@ -1373,7 +1373,7 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       max_lnames.val);
-    EndIf;
+    };
    lnames[++n_lnames] = obj_name();
   EndWhile;
  obj_next_record();
@@ -1397,7 +1397,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot MODEND_record
   Then
    return(False);
-  EndIf;
+  };
  MOD_TYP = *obj_ptr.MOD_TYP++;
 
  if ( MOD_TYP.zeros IsNotZero
@@ -1410,12 +1410,12 @@ BeginCode
                    (*tmodule_name).symbol,
                    (*infile.file_info).filename,
                    current_record_offset);
-  EndIf;
+  };
 
  if ( (MOD_TYP.mattr IsNot 1) AndIf (MOD_TYP.mattr IsNot 3)
   Then  /* We have no starting address */
    return(True);
-  EndIf;
+  };
 
  if ( MOD_TYP.l IsNot 1
   Then
@@ -1427,7 +1427,7 @@ BeginCode
                    (*tmodule_name).symbol,
                    (*infile.file_info).filename,
                    current_record_offset);
-  EndIf;
+  };
 
  if ( start_address_found IsTrue
   Then
@@ -1435,7 +1435,7 @@ BeginCode
                    "in module \"%Fs\" of file \"%Fs\" has been ignored.\n",
                    (*tmodule_name).symbol,
                    (*infile.file_info).filename);
-  EndIf;
+  };
 
  start_address_found = True;
 
@@ -1492,10 +1492,10 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       thread_number);
-    EndIf;
+    };
    start_address.frame_referent = frame_thread[thread_number].referent;
    start_address.frame_method   = frame_thread[thread_number].method;
-  EndIf;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -1540,10 +1540,10 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       thread_number);
-    EndIf;
+    };
    start_address.target_referent = target_thread[thread_number].referent;
    start_address.target_method   = target_thread[thread_number].method;
-  EndIf;
+  };
 
  if ( END_DAT.p IsZero
   Then  /* There is a target displacement */
@@ -1558,7 +1558,7 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset);
    start_address.target_offset = 0;
-  EndIf;
+  };
  return(True);
 EndCode
 
@@ -1577,7 +1577,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot MODEXT_record
   Then
    return(False);
-  EndIf;
+  };
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    if ( n_externals NotLessThan max_externals.val
@@ -1593,12 +1593,12 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       max_externals.val);
-    EndIf;
+    };
    len         = obj_name_length();
    if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
-    EndIf;
+    };
    pub         = lookup_public(len, obj_ptr.b8, tmodule_number);
    obj_ptr.b8 += len;
    obj_name_length();  /* Eat the type index. */
@@ -1607,7 +1607,7 @@ BeginCode
     Then
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
-    EndIf;
+    };
   EndWhile;
  obj_next_record();
  return(True);
@@ -1632,20 +1632,20 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot MODPUB_record
   Then
    return(False);
-  EndIf;
+  };
  group_index = obj_index_group();
  segment_index = obj_index_segment();
  if ( (segment_index IsZero) AndIf (group_index IsZero)
   Then
    frame = *obj_ptr.b16++;
-  EndIf;
+  };
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    len = obj_name_length();
    if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
-    EndIf;
+    };
    pub = lookup_public(len, obj_ptr.b8, tmodule_number);
    obj_ptr.b8 += len;
    if ( Pub.type_entry Is internal
@@ -1661,14 +1661,14 @@ BeginCode
      if ( Pub.type_entry Is unused
       Then
        Insert pub AtEnd InList external_list EndInsert;
-      EndIf;
+      };
      Pub.type_entry       = internal;
      Pub.Internal.group   = gnames[group_index];
      Pub.Internal.lseg    = snames[segment_index];
      Pub.Internal.frame   = frame;
      Pub.Internal.offset  = *obj_ptr.b16++;
      obj_name_length();  /* Eat type index. */
-    EndIf;
+    };
   EndWhile;
  obj_next_record();
  return(True);
@@ -1690,7 +1690,7 @@ BeginCode
  if ( obj_MODEND()
   Then
    return(True);
-  EndIf;
+  };
  return(False);
 EndCode
 
@@ -1713,10 +1713,10 @@ BeginCode
    if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
-    EndIf;
+    };
    name        = lookup_lname(len, obj_ptr.b8);
    obj_ptr.b8 += len;
-  EndIf;
+  };
  return(name);
 EndCode
 
@@ -1735,7 +1735,7 @@ BeginCode
   Else
    return((Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
           (Bit_16(*obj_ptr.b8++)));
-  EndIf;
+  };
 EndCode
 
 /*+-------------------------------------------------------------------------+
@@ -1776,7 +1776,7 @@ BeginCode
                       (*infile.file_info).filename,
                       current_record_offset,
                       MAX_OBJECT_FILE_READ_SIZE);
-    EndIf;
+    };
    file_read(Current_record_header.variant_part, 
              Current_record_header.rec_len);
    if ( (objchecksum.val IsTrue) AndIf
@@ -1792,7 +1792,7 @@ BeginCode
                       (*tmodule_name).symbol,
                       (*infile.file_info).filename,
                       current_record_offset);
-    EndIf;
+    };
    obj_ptr.b8 = Current_record_header.variant_part;
    end_of_record.b8 =
     (byte *)
@@ -1820,20 +1820,20 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot PUBDEF_record
   Then
    return(False);
-  EndIf;
+  };
  group_index = obj_index_group();
  segment_index = obj_index_segment();
  if ( (segment_index IsZero) AndIf (group_index IsZero)
   Then
    frame = *obj_ptr.b16++;
-  EndIf;
+  };
  While obj_ptr.b8 IsNot end_of_record.b8
   BeginWhile
    len = obj_name_length();
    if ( case_ignore.val
     Then
      far_to_lower(BytePtr(obj_ptr.b8), len);
-    EndIf;
+    };
    pub = lookup_public(len, obj_ptr.b8, 0);
    obj_ptr.b8 += len;
    if ( Pub.type_entry Is internal
@@ -1849,20 +1849,20 @@ BeginCode
      if ( Pub.type_entry Is unused
       Then
        Insert pub AtEnd InList external_list EndInsert;
-      EndIf;
+      };
      if ( (Pub.type_entry Is public_in_library) AndIf
         (Pub.Library.requested)
       Then
        library_request_count--;
        (*Pub.Library.lib_file).request_count--;
-      EndIf;
+      };
      Pub.type_entry       = internal;
      Pub.Internal.group   = gnames[group_index];
      Pub.Internal.lseg    = snames[segment_index];
      Pub.Internal.frame   = frame;
      Pub.Internal.offset  = *obj_ptr.b16++;
      obj_name_length();  /* Eat type index. */
-    EndIf;
+    };
   EndWhile;
  obj_next_record();
  return(True);
@@ -1891,7 +1891,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot SEGDEF_record
   Then
    return(False);
-  EndIf;
+  };
  acbp    = *obj_ptr.acbp++;
  align   = Bit_8(acbp.a);
  if ( align Is absolute_segment
@@ -1900,7 +1900,7 @@ BeginCode
    address += Bit_32(*obj_ptr.b8++);                    /* Offset */
   Else
    address = 0L;
-  EndIf;
+  };
  if ( align Exceeds dword_aligned
   Then
    linker_error(12, "Translator error:\n"
@@ -1912,12 +1912,12 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset,
                     align);
-  EndIf;
+  };
  combine = Bit_8(acbp.c);
  if ( (combine Is 4) OrIf (combine Is 7)
   Then /* Treat combine types 4 and 7 the same as 2. */
    combine = public_combine;
-  EndIf;
+  };
  if ( (combine Is 1) OrIf (combine Is 3)
   Then /* This is a translator error. */
    linker_error(12, "Translator error:\n"
@@ -1929,7 +1929,7 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset,
                     combine);
-  EndIf;
+  };
  length = Bit_32(*obj_ptr.b16++);
  if ( acbp.b IsNotZero
   Then
@@ -1944,9 +1944,9 @@ BeginCode
                       (*tmodule_name).symbol,
                       (*infile.file_info).filename,
                       current_record_offset);
-    EndIf;
+    };
    length = 65536L;
-  EndIf;
+  };
  segment_index         = obj_index_LNAME();
  segment_lname         = lnames[segment_index];
  class_lname           = lnames[obj_index_LNAME()];
@@ -1971,7 +1971,7 @@ BeginCode
                     (*infile.file_info).filename,
                     current_record_offset,
                     max_segments.val);
-  EndIf;
+  };
  snames[++n_segments]  = lseg;
 
  obj_next_record();
@@ -2012,7 +2012,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot THEADR_record
   Then
    return(False);
-  EndIf;
+  };
  tmodule_name = obj_name();
  obj_next_record();
  return(True);
@@ -2046,8 +2046,8 @@ BeginCode
                       (*tmodule_name).symbol,
                       (*infile.file_info).filename,
                       current_record_offset);
-    EndIf;
-  EndIf;
+    };
+  };
  return(False);
 EndCode
 
@@ -2091,7 +2091,7 @@ BeginCode
                     (*tmodule_name).symbol,
                     (*infile.file_info).filename,
                     current_record_offset);
-  EndIf;
+  };
  if ( Not obj_seg_grp()
   Then
    linker_error(12, "Translator error:\n"
@@ -2102,7 +2102,7 @@ BeginCode
                     (*tmodule_name).symbol,
                     (*infile.file_info).filename,
                     current_record_offset);
-  EndIf;
+  };
  While obj_component()
   BeginWhile
   EndWhile;
@@ -2116,7 +2116,7 @@ BeginCode
                     (*tmodule_name).symbol,
                     (*infile.file_info).filename,
                     current_record_offset);
-  EndIf;
+  };
  return(True);
 EndCode
 
@@ -2132,7 +2132,7 @@ BeginCode
  if ( Current_record_header.rec_typ IsNot TYPDEF_record
   Then
    return(False);
-  EndIf;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -2159,7 +2159,7 @@ BeginCode
  if ( len Exceeds 0
   Then
    file_write(data, Bit_32(len));
-  EndIf;
+  };
  return;
 EndCode
 

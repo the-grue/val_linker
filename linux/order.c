@@ -30,7 +30,7 @@ BeginCode
  if ( (*Active_segment.lsegs.first).align IsZero
   Then /* Don't align absolute segments */
    return;
-  EndIf;
+  };
  Active_segment.highest_uninitialized_byte = 0L;
  TraverseList(Active_segment.lsegs, lseg)
   BeginTraverse
@@ -39,7 +39,7 @@ BeginCode
     Then  /* Finally, we know how big the common area is, so allocate
              memory for it.  */
      Lseg.data = allocate_memory(Addr(static_pool), Lseg.length);
-    EndIf;
+    };
    mask                    = align_mask[Lseg.align];
    gap                     = AlignmentGap(next_available_address, mask);
    next_available_address += gap;
@@ -50,7 +50,7 @@ BeginCode
      highest_uninitialized_byte                =
      Active_segment.highest_uninitialized_byte =
       Lseg.address + Lseg.highest_uninitialized_byte;
-    EndIf;
+    };
   EndTraverse;
  Active_segment.address = (*Active_segment.lsegs.first).address;
  Active_segment.length  = (*Active_segment.lsegs.last).address +
@@ -60,12 +60,12 @@ BeginCode
   Then
    Active_segment.highest_uninitialized_byte =
     (*Active_segment.lsegs.first).address;
-  EndIf;
+  };
  if ( (Active_segment.owning_group IsNotNull) AndIf
     ((*Active_segment.owning_group).first_segment IsNull)
   Then
    (*Active_segment.owning_group).first_segment = active_segment;
-  EndIf;
+  };
  if ( (DOSSEG.val IsTrue) AndIf 
     (Active_segment.owning_group IsNotNull) AndIf
     ((*Active_segment.owning_group).group_name Is DGROUP_lname)
@@ -86,8 +86,8 @@ BeginCode
        linker_error(4, "Could not generate symbol \"_edata\" "
                        "when \"/DOSSEG\" set\n"
                        "because it was explicitly defined.\n");
-      EndIf;
-    EndIf;
+      };
+    };
    if ( (end_segment IsNull) AndIf
       (Active_segment.class_name Is STACK_lname)
     Then
@@ -104,9 +104,9 @@ BeginCode
        linker_error(4, "Could not generate symbol \"_end\" "
                        "when \"/DOSSEG\" set\n"
                        "because it was explicitly defined.\n");
-      EndIf;
-    EndIf;
-  EndIf;
+      };
+    };
+  };
  return;
 EndCode
 #undef Lseg
@@ -146,12 +146,12 @@ BeginCode
      if ( case_ignore.val
       Then
        lowercase_string(token);
-      EndIf;
+      };
     Else
      concat_char_to_string(token, token_break_char);
      order_token_get_char();
-    EndIf;
-  EndIf;
+    };
+  };
  return;
 EndCode
 
@@ -208,8 +208,8 @@ BeginCode
          align_active_segment();
         Else
          Insert active_segment AtEnd InList segments_unordered_list EndInsert;
-        EndIf;
-      EndIf;
+        };
+      };
     EndWhile;
    start_of_expression = order_expression_char_ptr;
    start_of_expression--;
@@ -292,12 +292,12 @@ BeginCode
   Then
    get_order_token();
    return(True);
-  EndIf;
+  };
  if ( TokenIs(false_string)
   Then
    get_order_token();
    return(False);
-  EndIf;
+  };
  if ( TokenIs(open_paren_string)
   Then
    operand = order_expression();
@@ -309,8 +309,8 @@ BeginCode
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
                      String(ordering.val));
-    EndIf;
-  EndIf;
+    };
+  };
  if ( TokenStartsWith(segment_string)
   Then
    get_order_token();
@@ -319,13 +319,13 @@ BeginCode
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
                      String(ordering.val));
-    EndIf;
+    };
    cut_string(token, 0, 1);
    operand = match_pattern(token,
                            string((*Active_segment.segment_name).symbol));
    get_order_token();
    return(operand);
-  EndIf;
+  };
  if ( TokenStartsWith(group_string)
   Then
    get_order_token();
@@ -334,7 +334,7 @@ BeginCode
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
                      String(ordering.val));
-    EndIf;
+    };
    cut_string(token, 0, 1);
    group = Active_segment.owning_group;
    if ( group IsNull
@@ -343,10 +343,10 @@ BeginCode
     Else
      operand =
       match_pattern(token, string((*Group.group_name).symbol));
-    EndIf;
+    };
    get_order_token();
    return(operand);
-  EndIf;
+  };
  if ( TokenStartsWith(class_string)
   Then
    get_order_token();
@@ -355,13 +355,13 @@ BeginCode
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
                      String(ordering.val));
-    EndIf;
+    };
    cut_string(token, 0, 1);
    operand = match_pattern(token,
                            string((*Active_segment.class_name).symbol));
    get_order_token();
    return(operand);
-  EndIf;
+  };
  linker_error(8, "Expression syntax error:\n"
                  "\t\"%Fs\"\n",
                  String(ordering.val));
@@ -400,7 +400,7 @@ BeginCode
    address_base = 0x100L;
   Else
    address_base = 0L;
-  EndIf;
+  };
  next_available_address = 0L;
 
 /*+-------------------------------------------------------------------------+
@@ -429,8 +429,8 @@ BeginCode
     Else
      ordering.val = duplicate_string(Addr(static_pool),
                                      string((byte *) ("(true)")));
-    EndIf;
-  EndIf;
+    };
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -446,7 +446,7 @@ BeginCode
    if ( stack_segment_found IsTrue
     Then
      linker_error(4, "Stack segment found for a non .EXE file.\n");
-    EndIf;
+    };
   Else
    if ( (stack_segment_found IsFalse) AndIf
       (stack.set           IsFalse)
@@ -464,9 +464,9 @@ BeginCode
                             exe_file_list.first,
                             0L,             /* not absolute segment */
                             Bit_32(stack.val));
-      EndIf;
-    EndIf;
-  EndIf;
+      };
+    };
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -490,7 +490,7 @@ BeginCode
     Then
      linker_error(8, "Near communal size exceeds 64K by %lu bytes.\n",
                      length-65536L);
-    EndIf;
+    };
    lseg = obj_generate_segment(c_common_lname,
                                BSS_lname,
                                blank_common_combine,
@@ -515,7 +515,7 @@ BeginCode
      Pub.Internal.frame   = 0;
      offset              += size;
     EndFor;
-  EndIf;
+  };
  
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -537,7 +537,7 @@ BeginCode
      Pub.Communal.next_communal = huge_communals;
      huge_communals             = pub;
      ContinueLoop;
-    EndIf;
+    };
    if ( (lseg IsNull) OrIf ((length + Bit_32(offset)) Exceeds 65536L)
     Then
      lseg = obj_generate_segment(FAR_BSS_lname,
@@ -549,7 +549,7 @@ BeginCode
                                  0L,             /* not absolute segment */
                                  0L);
      offset = 0;
-    EndIf;
+    };
    Pub.type_entry                   = internal;
    Pub.Internal.group               = Null;
    Pub.Internal.lseg                = lseg;
@@ -588,7 +588,7 @@ BeginCode
      offset = 0;
     Else
      offset = Bit_16(65536L Mod Pub.Communal.element_size);
-    EndIf;
+    };
    length                          += Bit_32(offset);
    Pub.type_entry                   = internal;
    Pub.Internal.group               = Null;
@@ -640,7 +640,7 @@ BeginCode
    linker_error(8, "Expression syntax error:\n"
                    "\t\"%Fs\"\n",
                    String(ordering.val));
-  EndIf;
+  };
  token_break_char = *order_expression_char_ptr++;
  return;
 EndCode

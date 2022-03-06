@@ -36,7 +36,7 @@ BeginCode
   Else
    Exe_header.initial_SS = 0;
    Exe_header.initial_SP = 0;
-  EndIf;
+  };
  Exe_header.initial_CS                 = initial_CS;
  Exe_header.initial_IP                 = initial_IP;
  Exe_header.offset_to_relocation_table = 0x1E;
@@ -62,7 +62,7 @@ BeginCode
     EndTraverse;
   Else
    checksum = 0xFFFF;
-  EndIf;
+  };
  Exe_header.checksum = Complement checksum;
  file_write(BytePtr(exe_header), exe_header_size);
  return;
@@ -108,13 +108,13 @@ BeginCode
         (initial_IP IsNotZero)
       Then  /* SYS file start address must be 0000:0000 */
         linker_error(4, "Start address for SYS file is not 0000:0000.\n");
-      EndIf;
-    EndIf;
+      };
+    };
   Else  /* No start address found. */
    linker_error(4,"No start address.\n");
    initial_CS = 0;
    initial_IP = 0;
-  EndIf;
+  };
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |                        Validate stack segment.                          |
@@ -131,21 +131,21 @@ BeginCode
      if ( (exefile IsTrue) AndIf (stack_segment_found IsFalse)
       Then  /* EXE file should have a stack segment. */
        linker_error(4, "EXE file should have a stack segment.\n");
-      EndIf;
-    EndIf;
-  EndIf;
+      };
+    };
+  };
  
  if ( pause.val IsTrue
   Then
    printf("About to write \"%Fs\".\n", (*exe_file_list.first).filename);
    printf("Press [RETURN] key to continue.\n");
    gets(CharPtr(object_file_element));
-  EndIf;
+  };
  file_open_for_write(exe_file_list.first);
  if ( exefile IsTrue
   Then
    make_EXE_header();
-  EndIf;
+  };
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |     Well, we have everything we need to write the executable image.     |
@@ -174,7 +174,7 @@ BeginCode
          file_write(Addr(Lseg.data[Bit_16(data_index)]), partial_length);
         Else
          write_gap(partial_length);
-        EndIf;
+        };
 		next_available_address += partial_length;
       Else
        gap = Lseg.address - next_available_address;
@@ -182,7 +182,7 @@ BeginCode
         Then
          write_gap(gap);
          next_available_address += gap;
-        EndIf;
+        };
        if ( (Lseg.address + Lseg.length) Exceeds highest_uninitialized_byte
         Then
          partial_length = (Lseg.address + Lseg.length) - 
@@ -192,7 +192,7 @@ BeginCode
            file_write(Lseg.data, partial_length);
           Else
            write_gap(partial_length);
-          EndIf;
+          };
           next_available_address += partial_length;
         Else
          if ( Seg.combine IsNot blank_common_combine
@@ -200,10 +200,10 @@ BeginCode
            file_write(Lseg.data, Lseg.length);
           Else
            write_gap(Lseg.length);
-          EndIf;
+          };
          next_available_address += Lseg.length;
-        EndIf;
-      EndIf;
+        };
+      };
     EndTraverse;
   EndTraverse;
  file_close_for_write();
@@ -230,7 +230,7 @@ BeginCode
     Else
      file_write(BytePtr(object_file_element), length);
      length = 0L;
-    EndIf;
+    };
   EndWhile;
  return;
 EndCode

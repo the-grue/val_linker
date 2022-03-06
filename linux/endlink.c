@@ -12,7 +12,7 @@ BeginCode
  if ( statistics.val IsTrue
   Then
    linker_statistics();
-  EndIf;
+  };
  exit(return_code);
 EndCode
 
@@ -57,7 +57,7 @@ BeginCode
                   Bit_16((100L*(static_pool.pool_size -
                                 static_pool.used_bytes)) /
                          static_pool.pool_size));
-  EndIf;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -75,7 +75,7 @@ BeginCode
      edit_number_string(temp_string, "%lu", File.file_size);
      linker_message("%8Fs  %Fs\n", String(temp_string), File.filename);
     EndTraverse;
-  EndIf;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -102,7 +102,7 @@ BeginCode
                     String(temp_string),
                     File.filename);
     EndTraverse;
-  EndIf;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -118,14 +118,14 @@ BeginCode
    linker_message("  Primary linker initialization time:%7s\n",
                   elapsed_time(linker_start_time,
                                user_input_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 1
   Then
    total_time += secondary_init_start_time - user_input_start_time;
    linker_message("                     User input time:%7s\n",
                   elapsed_time(user_input_start_time,
                                secondary_init_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 2
   Then
    total_time += library_directory_start_time -
@@ -133,56 +133,56 @@ BeginCode
    linker_message("Secondary linker initialization time:%7s\n",
                   elapsed_time(secondary_init_start_time,
                                library_directory_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 3
   Then
    total_time += object_module_start_time - library_directory_start_time;
    linker_message("   Library directory processing time:%7s\n",
                   elapsed_time(library_directory_start_time,
                                object_module_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 4
   Then
    total_time += library_processing_start_time - object_module_start_time;
    linker_message("       Object module processing time:%7s\n",
                   elapsed_time(object_module_start_time,
                                library_processing_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 5
   Then
    total_time += order_start_time - library_processing_start_time;
    linker_message("             Library processing time:%7s\n",
                   elapsed_time(library_processing_start_time,
                                order_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 6
   Then
    total_time += fixup_start_time - order_start_time;
    linker_message("  Segment ordering and aligning time:%7s\n",
                   elapsed_time(order_start_time,
                                fixup_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 7
   Then
    total_time += exec_image_start_time - fixup_start_time;
    linker_message("                          Fixup time:%7s\n",
                   elapsed_time(fixup_start_time,
                                exec_image_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 8
   Then
    total_time += map_start_time - exec_image_start_time;
    linker_message("         Executable image write time:%7s\n",
                   elapsed_time(exec_image_start_time,
                                map_start_time));
-  EndIf;
+  };
  if ( link_step Exceeds 9
   Then
    total_time += statistics_start_time - map_start_time;
    linker_message("                      Map write time:%7s\n",
                   elapsed_time(map_start_time,
                                statistics_start_time));
-  EndIf;
+  };
  linker_end_time = Now;
  total_time += linker_end_time - statistics_start_time;
  linker_message("           Statistics reporting time:%7s\n",

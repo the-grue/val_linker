@@ -12,7 +12,7 @@
 #define Then                 ) {
 #define Else                 } else {
 #define ElseIf               } else if (
-#define EndIf                }
+/*#define EndIf                }*/
 
 #define Using                switch (
 #define BeginCase            ) {

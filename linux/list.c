@@ -27,16 +27,16 @@ BeginCode
        if ( First(Lst) Is Null
         Then
          Last(Lst) = Null;
-        EndIf;
+        };
       Else
        Prior.next = Elem.next;
        if ( Last(Lst) Is elem
         Then
          Last(Lst) = prior;
-        EndIf;
-      EndIf;
+        };
+      };
      ExitLoop;
-    EndIf;
+    };
    prior = current;
   EndTraverse;
  return;
@@ -74,7 +74,7 @@ BeginCode
     if ( Elem.next IsNull
      Then
       Last(Lst) = elem;
-     EndIf;
+     };
     break;
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -87,7 +87,7 @@ BeginCode
       First(Lst) = elem;
      Else
       (*Last(Lst)).next = elem;
-     EndIf;
+     };
     Last(Lst)  = elem;
     Elem.next  = Null;
     break;
@@ -102,7 +102,7 @@ BeginCode
     if ( Last(Lst) IsNull
      Then
       Last(Lst) = elem;
-     EndIf;
+     };
     break;
   EndCase;
  return;
@@ -127,13 +127,13 @@ BeginCode
   Then
    Elem = Null;
    return;
-  EndIf;
+  };
  Elem       = First(Lst);
  First(Lst) = (*Elem).next;
  if ( First(Lst) IsNull
   Then
    Last(Lst) = Null;
-  EndIf;
+  };
  return;
 EndCode
 #undef Elem

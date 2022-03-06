@@ -53,14 +53,14 @@ BeginCode
        free_pool.memory_descriptor_list  = Desc.next;
       Else
        Prior.next                        = Desc.next;
-      EndIf;
+      };
      free_pool.pool_size              -= Desc.available;
      Pool.pool_size                   += Desc.available;
      Desc.next                         = Pool.memory_descriptor_list;
      Pool.memory_descriptor_list       = desc;
      far_set(Desc.chunk, 0, Bit_16(Desc.available));
      return(desc);
-    EndIf;
+    };
    prior = desc;
    Next(desc);
   EndWhile;
@@ -110,9 +110,9 @@ BeginCode
        Prev.next                   = Desc.next;
        Desc.next                   = Pool.memory_descriptor_list;
        Pool.memory_descriptor_list = desc;
-      EndIf;
+      };
      return(element);
-    EndIf;
+    };
    prev = desc;
    Next(desc);
   EndWhile;
@@ -159,7 +159,7 @@ BeginCode
  if ( (outregs.x.cflag IsFalse) OrIf (rc IsNot 8)
   Then
    DOS_error("Problem allocating memory above heap.\n");
-  EndIf;
+  };
  inregs.x.bx = outregs.x.bx;             /* Ask for the right amount this time*/
  DOS_int21("Problem allocating memory above heap.\n");
 
@@ -170,7 +170,7 @@ BeginCode
    linker_error(8,"Too little memory above heap.\n"
                  "\tTry running again with smaller buffersize and/or\n"
                  "\tvirtualized fixup processing.\n");
-  EndIf;
+  };
 
 /* Initialize the static pool with it's first chunk. This is a little
    tricky because the initial value of several data structures are
@@ -206,7 +206,7 @@ BeginCode
      size_this_chunk                  = 65536L;
     Else
      size_this_chunk                  = far_memory_size;
-    EndIf;
+    };
    Desc.chunk                         =
    Desc.unused_base                   = BytePtr(far_memory);
    Desc.size                          =

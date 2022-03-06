@@ -20,13 +20,13 @@ BeginCode
    if ( error_number Exceeds 58
     Then
      error_number = 59;
-    EndIf;
+    };
    fprintf(stdout,"\nDOS Error (Code %u): \"%s\"\n",
                   outregs.x.ax, DOS_error_text[error_number]);
    va_start(argptr,format);
    vfprintf(stdout,format,argptr);
    end_linker(16);
-  EndIf;
+  };
  return;
 EndCode
 
@@ -51,13 +51,13 @@ BeginCode
    if ( error_number Exceeds 58
     Then
      error_number = 59;
-    EndIf;
+    };
    fprintf(stdout,"\nDOS Error (Code %u): \"%s\"\n",
                   outregs.x.ax, DOS_error_text[error_number]);
    va_start(argptr,format);
    vfprintf(stdout,format,argptr);
    end_linker(16);
-  EndIf;
+  };
  return;
 EndCode
 
@@ -79,7 +79,7 @@ BeginCode
    end_linker(severity);
   Else
    return;
-  EndIf;
+  };
 EndCode
 
 /*+-------------------------------------------------------------------------+
@@ -118,13 +118,13 @@ BeginCode
  if ( len IsZero
   Then
    return;
-  EndIf;
+  };
  if ( object_file_element[len-1] Is '\n'
   Then
    object_file_element[len-1] = '\000';
    strcat(CharPtr(object_file_element), "\r\n");
    len++;
-  EndIf;
+  };
  file_write(BytePtr(object_file_element), Bit_32(len));
  return;
 EndCode

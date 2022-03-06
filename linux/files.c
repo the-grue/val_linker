@@ -12,11 +12,11 @@ BeginCode
  if ( index_string(fn,0,colon_string) IsNot 1
   Then  /* AUX:, CON:, or PRN: */
    return(fn);
-  EndIf;
+  };
  if ( index_string(fn,0,dot_string) Is 0xFFFF
   Then
    concat_string(fn,ext);
-  EndIf;
+  };
 return(fn);
 EndCode
 
@@ -43,7 +43,7 @@ BeginCode
    linker_error(4,"No matching files for file specification:\n"
                   "\t\"%Fs\"\n",
                   String(fn));
-  EndIf;
+  };
  While rc IsZero
   BeginWhile
    compare_len = Length(current_filename) + 1;
@@ -69,7 +69,7 @@ BeginCode
      File_entry.module_count    = 0;
      far_move(File_entry.filename, matched_file, compare_len);
      Insert file_entry AtEnd InList File_list EndInsert;
-    EndIf;
+    };
    rc = continue_file_search();
   EndWhile;
  return;
@@ -122,7 +122,7 @@ BeginCode
    far_to_lower((*DTA).filename, 12);
    copy_string(current_filename, current_path);
    concat_string(current_filename, string((*DTA).filename));
-  EndIf;
+  };
  return(rc);
 EndCode
 
@@ -148,7 +148,7 @@ BeginCode
  if ( LastCharIn(directory) IsNot '\\'
   Then
    concat_string(directory,backslash_string);
-  EndIf;
+  };
  return(directory);
 EndCode
 
@@ -190,7 +190,7 @@ BeginCode
    inregs.x.bx = File.file_handle;
    DOS_int21("Trouble closing \"%Fs\".\n",
              (*File.file_info).filename);
-  EndIf;
+  };
  return;
 EndCode
 #undef File
@@ -216,14 +216,14 @@ BeginCode
    segregs.ds  = Segment(File.buffer);
    DOS_int21("Trouble writing file \"%Fs\" at byte %lu.\n",
              (*File.file_info).filename, File.next_buffer_position);
-  EndIf;
+  };
  if ( File.file_handle Exceeds 4
   Then  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
    inregs.x.bx = File.file_handle;
    DOS_int21("Trouble closing \"%Fs\".\n",
              (*File.file_info).filename);
-  EndIf;
+  };
  return;
 EndCode
 #undef File
@@ -287,7 +287,7 @@ BeginCode
    File.IO_limit = File.buffer_size;
   Else
    File.IO_limit = limit;
-  EndIf;
+  };
  return;
 EndCode
 #undef File
@@ -327,17 +327,17 @@ BeginCode
   Then
    File.file_handle = 3;
    return;
-  EndIf;
+  };
  if ( compare_string(string(File_info.filename), device_CON) IsZero
   Then
    File.file_handle = 0;
    return;
-  EndIf;
+  };
  if ( compare_string(string(File_info.filename), device_PRN) IsZero
   Then
    File.file_handle = 4;
    return;
-  EndIf;
+  };
  inregs.h.ah = 0x3D;                   /* Open for read */
  inregs.h.al = 0x00;                   /* Access code */
  inregs.x.dx = Offset(File_info.filename);
@@ -385,17 +385,17 @@ BeginCode
   Then
    File.file_handle = 3;
    return;
-  EndIf;
+  };
  if ( compare_string(string(File_info.filename), device_CON) IsZero
   Then
    File.file_handle = 1;
    return;
-  EndIf;
+  };
  if ( compare_string(string(File_info.filename), device_PRN) IsZero
   Then
    File.file_handle = 4;
    return;
-  EndIf;
+  };
  inregs.h.ah = 0x3C;                   /* Open for write */
  inregs.x.cx = 0x00;                   /* File attribute */
  inregs.x.dx = Offset(File_info.filename);
@@ -440,7 +440,7 @@ BeginCode
    File.bytes_in_buffer            =
    File.bytes_left_in_buffer       = 0;
    File.current_byte               = File.buffer;
-  EndIf;
+  };
  return;
 EndCode
 #undef File
@@ -466,7 +466,7 @@ BeginCode
        far_move(into, File.current_byte, File.bytes_left_in_buffer);
        length -= File.bytes_left_in_buffer;
        into   += File.bytes_left_in_buffer;
-      EndIf;
+      };
      inregs.h.ah = 0x3F;               /* Read */
      inregs.x.bx = File.file_handle;
      inregs.x.cx = File.IO_limit;
@@ -488,7 +488,7 @@ BeginCode
      File.bytes_left_in_buffer -= length;
      File.byte_position        += length;
      length                     = 0;
-    EndIf;
+    };
   EndWhile;
  return;
 EndCode
@@ -536,7 +536,7 @@ BeginCode
      File.byte_position        += Bit_16(length);
      File.bytes_in_buffer      += Bit_16(length);
      length                     = 0;
-    EndIf;
+    };
   EndWhile;
  return;
 EndCode
@@ -581,17 +581,17 @@ BeginCode
   Then
    copy_string(fn, device_AUX);
    return(fn);
-  EndIf;
+  };
  if ( compare_string(substr(fn,0,4), device_CON) IsZero
   Then
    copy_string(fn, device_CON);
    return(fn);
-  EndIf;
+  };
  if ( compare_string(substr(fn,0,4), device_PRN) IsZero
   Then
    copy_string(fn, device_PRN);
    return(fn);               
-  EndIf;
+  };
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |                      Add drive designator if missing.                   |
@@ -600,7 +600,7 @@ BeginCode
  if ( compare_string(substr(fn,1,1), colon_string) IsNotZero
   Then
    paste_string(fn, 0, default_drive_string);
-  EndIf;
+  };
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |          Substitute current directory if not based from root.           |
@@ -610,7 +610,7 @@ BeginCode
   Then
    default_directory(fn, default_directory_string);
    paste_string(fn, 2, default_directory_string);
-  EndIf;
+  };
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |            Scan out all \. and \.. from filename.                       |
@@ -628,7 +628,7 @@ BeginCode
      if ( left Is 0xffff
       Then
        return(null_string);
-      EndIf;
+      };
      cut_string(fn, left, right-left);
      right = index_string(fn, left+1, backslash_string);
      ContinueLoop;
@@ -638,8 +638,8 @@ BeginCode
        cut_string(fn, left, 2);
        right = index_string(fn, left+1, backslash_string);
        ContinueLoop;
-      EndIf;
-    EndIf;
+      };
+    };
    left  = right;
    right = index_string(fn, left+1, backslash_string);
   EndWhile;
@@ -707,6 +707,6 @@ BeginCode
    far_to_lower((*DTA).filename, 12);
    copy_string(current_filename, current_path);
    concat_string(current_filename, string((*DTA).filename));
-  EndIf;
+  };
  return(rc);
 EndCode

@@ -61,7 +61,7 @@ BeginCode
                         (*tmodule_name).symbol,
                         pos,
                         Pub.symbol);
-      EndIf;
+      };
     EndTraverse;
    file_close_for_read();
   EndWhile;
@@ -132,7 +132,7 @@ BeginCode
    Delete lib_file FromList lib_file_list EndDelete;
    file_close_for_read();
    return;
-  EndIf;
+  };
  Lib_file.page_size            = Lib_hdr.page_size + 3;
  Lib_file.request_count        = 0;
  First(Lib_file.external_list) =
@@ -160,7 +160,7 @@ BeginCode
      if ( case_ignore.val
       Then
        far_to_lower(Symbol.symbol, Symbol.length_of_symbol);
-      EndIf;
+      };
      pub = lookup_public(Symbol.length_of_symbol, Symbol.symbol, 0);
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -190,10 +190,10 @@ BeginCode
                         "\texceeded for library \"%Fs\".\n",
                         MAX_PUBLICS_IN_LIBRARY,
                         Lib_file.filename);
-        EndIf;
+        };
        *public_array++ = pub;
        symbol_count++;
-      EndIf;
+      };
     EndFor;
   EndFor;
  file_close_for_read();
@@ -205,7 +205,7 @@ BeginCode
     BeginFor
      Insert *public_array++ AtEnd InList Lib_file.external_list EndInsert;
     EndFor;
-  EndIf;
+  };
  return;
 EndCode
 #undef Pub
@@ -267,7 +267,7 @@ BeginCode
  if ( left NotLessThan right
   Then
    return;
-  EndIf;
+  };
  i = left;
  j = right;
  While i LessThan j
@@ -281,7 +281,7 @@ BeginCode
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
        ExitLoop;
-      EndIf;
+      };
      j--;
     EndWhile;
    While i LessThan j
@@ -293,14 +293,14 @@ BeginCode
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
        ExitLoop;
-      EndIf;
+      };
      i++;
     EndWhile;
   EndWhile;
   if ( i Exceeds 0
    Then
     sort_directory(left, i-1);
-   EndIf;
+   };
  sort_directory(i+1,  right);
  return;
 EndCode

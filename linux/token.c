@@ -19,8 +19,8 @@ BeginCode
     Then
      concat_string(token, next_token);
      scan_out_token();
-    EndIf;
-  EndIf;
+    };
+  };
  return;
 EndCode
 
@@ -55,7 +55,7 @@ BeginCode
    elem = (token_stack_ptr) 
            allocate_memory(Addr(static_pool),
                            Bit_32(sizeof(token_stack_type)));
-  EndIf;
+  };
  return(elem);
 EndCode
 
@@ -79,14 +79,14 @@ BeginCode
     Then
      linker_error(8, "Input syntax error:  \"%Fs\" out of place.\n",
                      String(next_token));
-    EndIf;
+    };
    if ( token_type Is indirect_file_token_type
     Then
      scan_out_token();
      if ( token_type IsNot filename_token_type
       Then
        linker_error(8,"Input syntax error:  Expected filename after '@'.\n");
-      EndIf;
+      };
      complete_a_filename_token();
      source_element                    = get_free_token_source_element();
      Source_element.break_char         = token_break_char;
@@ -97,27 +97,27 @@ BeginCode
      token_break_char                  = ' ';
      scan_out_token();
      ContinueLoop;
-    EndIf;
+    };
    if ( token_type Is switch_token_type
     Then
      process_switch();
      ContinueLoop;
-    EndIf;
+    };
    if ( token_type Is continuation_token_type
     Then
      scan_out_token();
      if ( token_type Is line_end_token_type
       Then
        scan_out_token();
-      EndIf;
+      };
      ContinueLoop;
-    EndIf;
+    };
    if ( token_type Is filename_token_type
     Then
      complete_a_filename_token();
      more_tokens = True;
      return;
-    EndIf;
+    };
    if ( ((token_type Is end_of_command_line_token_type)  AndIf
        (List.first IsNull))                            OrIf
       ((required)                                      AndIf
@@ -132,16 +132,16 @@ BeginCode
        Source_element.token_string_index = 0;
        Push source_element OnTo token_stack EndPush;
        token_break_char                  = ' ';
-      EndIf;
+      };
      if ( default_prompt IsNotNull
       Then
        linker_message(default_prompt, String(default_filename));
        prompt_next_stdin = False;
        default_prompt    = Null;
-      EndIf;
+      };
      scan_out_token();
      ContinueLoop;
-    EndIf;
+    };
    if ( List.first IsNull
     Then
      if ( (token_type Is separator_token_type)  OrIf
@@ -158,14 +158,14 @@ BeginCode
              default_extension = sys_extension_string;
             Else
              default_extension = exe_extension_string;
-            EndIf;
-           EndIf;
+            };
+           };
          change_extension(default_filename, default_extension);
-        EndIf;
+        };
        copy_string(token, default_filename);
        more_tokens = False;
        return;
-      EndIf;
+      };
     Else
      if ( (token_type Is separator_token_type)           OrIf
         (token_type Is terminator_token_type)          OrIf
@@ -174,8 +174,8 @@ BeginCode
        copy_string(token, null_string);
        more_tokens = False;
        return;
-     EndIf;
-    EndIf;
+     };
+    };
    if ( token_type Is line_end_token_type
     Then
      if ( List.first IsNull
@@ -191,23 +191,23 @@ BeginCode
              default_extension = sys_extension_string;
             Else
              default_extension = exe_extension_string;
-            EndIf;
-           EndIf;
+            };
+           };
          change_extension(default_filename, default_extension);
-        EndIf;
+        };
        copy_string(token, default_filename);
       Else
        copy_string(token, null_string);
-      EndIf;
+      };
      if ( (*token_stack.first).source_file Is stdin
       Then
        Pop token_stack InTo source_element EndPop;
        Push source_element OnTo token_stack_free_list EndPush;
-      EndIf;
+      };
      prompt_next_stdin = False;
      more_tokens = False;
      return;
-    EndIf;
+    };
   EndLoop;
  return;
 EndCode
@@ -229,7 +229,7 @@ BeginCode
   Then
    linker_error(8, "Could not open file \"%Fs\" for input.\n",
                    String(fn));
-  EndIf;
+  };
  return(infile);
 EndCode
 
@@ -254,14 +254,14 @@ BeginCode
     Then
      Current_switch.switch_processor(current_switch);
      return;
-    EndIf;
+    };
    if ( (Length(token) NotLessThan Current_switch.min_length) AndIf
       (far_compare(String(token), (byte *) Current_switch.full_name,
         Length(token)) IsZero)
     Then
      Current_switch.switch_processor(current_switch);
      return;
-    EndIf;
+    };
    current_switch++;
   EndWhile;
  linker_error(8,"Syntax error:  \"%Fs\" is an unknown switch.\n",
@@ -287,7 +287,7 @@ BeginCode
   Then
    linker_error(8,"Syntax error:  \":\" did not follow switch \"%s\"\n",
                   Current_switch.full_name);
-  EndIf;
+  };
  scan_out_token();
  copy_string(token, next_token);
   if ( (Not token_is_number)                                OrIf
@@ -301,7 +301,7 @@ BeginCode
    Else
     Affected_thing.val = token_numeric_value;
     Affected_thing.set = True;
-   EndIf;
+   };
  scan_out_token();
  copy_string(token, next_token);
  return;
@@ -327,7 +327,7 @@ BeginCode
   Then
    Affected_thing.val = Affected_thing.def;
    return;
-  EndIf;
+  };
  scan_out_token();
  copy_string(token, next_token);
   if ( (Not token_is_number)                                OrIf
@@ -340,7 +340,7 @@ BeginCode
                   Affected_thing.min, Affected_thing.max);
    Else
     Affected_thing.val = token_numeric_value;
-   EndIf;
+   };
  scan_out_token();
  copy_string(token, next_token);
  return;
@@ -372,7 +372,7 @@ BeginCode
       token_type       = end_of_command_line_token_type;
      Else
       token_type       = line_end_token_type;
-     EndIf;
+     };
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
    When ',':
@@ -418,16 +418,16 @@ BeginCode
         if ( (*token_stack.first).source_file Is stdin
          Then
           linker_message("continue parenthesized text:  ");
-         EndIf;
-       EndIf;
+         };
+       };
       if ( token_break_char Is '('
        Then
         paren_count++;
-       EndIf;
+       };
       if ( token_break_char Is ')'
        Then
         paren_count--;
-       EndIf;
+       };
      EndWhile;
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
@@ -457,7 +457,7 @@ BeginCode
            Then
             token_numeric_value = (token_numeric_value * 10) +
                                   Bit_16(token_break_char - '0');
-           EndIf;
+           };
          Else
           token_is_hex_number =
           token_is_number     = token_is_number AndIf
@@ -471,10 +471,10 @@ BeginCode
              Else
               token_numeric_value = (token_numeric_value * 16) +
                                  Bit_16(toupper(token_break_char) - 'A' + 10);
-             EndIf;
-           EndIf;
-         EndIf;
-       EndIf;
+             };
+           };
+         };
+       };
       token_get_char();
      EndWhile;
     token_type = filename_token_type;
@@ -509,10 +509,10 @@ BeginCode
         gets(CharPtr(object_file_element));
        Else
         linker_message(CharPtr(object_file_element));
-      EndIf;
+      };
     EndWhile;
    fclose(help_file);
-  EndIf;
+  };
  exit(0);
  return;
 EndCode
@@ -591,7 +591,7 @@ BeginCode
   Then
    linker_error(8,"Syntax error:  \":\" did not follow switch \"%s\"\n",
                   Current_switch.full_name);
-  EndIf;
+  };
  scan_out_token();
  copy_string(token, next_token);
  if ( token_type IsNot text_token_type
@@ -599,7 +599,7 @@ BeginCode
    linker_error(8, "Syntax error:  Parenthesized text did not follow\n"
                    "\t\"%s\" switch.  Instead found \"%Fs\".\n",
                   Current_switch.full_name, String(token));
-  EndIf;
+  };
  Affected_thing.val = duplicate_string(Addr(static_pool), next_token);
  scan_out_token();
  copy_string(token, next_token);
@@ -628,13 +628,13 @@ BeginCode
     Then
      linker_message("continue:  ");
      prompt_next_stdin = False;
-    EndIf;
+    };
    tos = token_stack.first;
    if ( tos IsNull
     Then
      token_break_char = ';';
      return;
-    EndIf;
+    };
    if ( Tos.source_file IsNull
     Then /* Input is from a string */
      if ( Tos.token_string_index LessThan Length(Tos_string)
@@ -650,8 +650,8 @@ BeginCode
          Pop token_stack InTo tos EndPop;
          Push tos OnTo token_stack_free_list EndPush;
          ContinueLoop;
-        EndIf;
-      EndIf;
+        };
+      };
     Else /* Input is from a file */
      c = fgetc(Tos.source_file);
      if ( c Is EOF
@@ -659,7 +659,7 @@ BeginCode
        if ( Tos.source_file IsNot stdin
         Then
          fclose(Tos.source_file);
-        EndIf;
+        };
        Pop token_stack InTo tos EndPop;
        token_break_char = Tos.break_char;
        Push tos OnTo token_stack_free_list EndPush;
@@ -667,17 +667,17 @@ BeginCode
       Else
        token_break_char = Byte(c);
        ExitLoop;
-      EndIf;
-    EndIf;
+      };
+    };
   EndLoop;
  if ( token_break_char Is '\r'
   Then
    token_break_char = '\n';
-  EndIf;
+  };
  if ( token_break_char Is '\t'
   Then
    token_break_char = ' ';
-  EndIf;
+  };
  return;
 EndCode
 #undef Tos
