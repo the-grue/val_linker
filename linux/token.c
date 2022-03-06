@@ -74,7 +74,7 @@ token_stack_ptr                        source_element;
 
  while(1)
   {
-   required = (required) AndIf (List.first == 0);
+   required = (required) && (List.first == 0);
    if ( token_type Is text_token_type
     ) {
      linker_error(8, "Input syntax error:  \"%Fs\" out of place.\n",
@@ -118,9 +118,9 @@ token_stack_ptr                        source_element;
      more_tokens = True;
      return;
     };
-   if ( ((token_type Is end_of_command_line_token_type)  AndIf
+   if ( ((token_type Is end_of_command_line_token_type)  &&
        (List.first == 0))                            OrIf
-      ((required)                                      AndIf
+      ((required)                                      &&
        ((token_type Is separator_token_type)           OrIf
         (token_type Is line_end_token_type)))
     ) {
@@ -255,7 +255,7 @@ switch_table_ptr                       current_switch;
      Current_switch.switch_processor(current_switch);
      return;
     };
-   if ( (Length(token) >= Current_switch.min_length) AndIf
+   if ( (Length(token) >= Current_switch.min_length) &&
       (far_compare(String(token), (byte *) Current_switch.full_name,
         Length(token)) == 0)
     ) {
@@ -434,24 +434,24 @@ bit_16                                 paren_count;
    default:
     token_is_number     = True;
     token_numeric_value = 0;
-    while ( (token_break_char != ',')  AndIf
-          (token_break_char != ';')  AndIf
-          (token_break_char != '+')  AndIf
-          (token_break_char != '/')  AndIf
-          (token_break_char != '@')  AndIf
-          (token_break_char != ':')  AndIf
-          (token_break_char != ' ')  AndIf
+    while ( (token_break_char != ',')  &&
+          (token_break_char != ';')  &&
+          (token_break_char != '+')  &&
+          (token_break_char != '/')  &&
+          (token_break_char != '@')  &&
+          (token_break_char != ':')  &&
+          (token_break_char != ' ')  &&
           (token_break_char != '\n')
      ) {
       concat_char_to_string(next_token, token_break_char);
-      if ( (Length(next_token) Is 2) AndIf (String(next_token)[0] Is '0') AndIf
+      if ( (Length(next_token) Is 2) && (String(next_token)[0] Is '0') &&
          ((String(next_token)[1] Is 'x') OrIf (String(next_token)[1] Is 'X'))
        ) {
         token_is_hex_number = True;
        } else {
         if ( token_is_hex_number == 0
          ) {
-          token_is_number = token_is_number AndIf
+          token_is_number = token_is_number &&
                             isdigit(token_break_char);
           if ( token_is_number
            ) {
@@ -460,7 +460,7 @@ bit_16                                 paren_count;
            };
          } else {
           token_is_hex_number =
-          token_is_number     = token_is_number AndIf
+          token_is_number     = token_is_number &&
                                 isxdigit(token_break_char);
           if ( token_is_number
            ) {
@@ -623,7 +623,7 @@ token_stack_ptr                        tos;
 
  while(1)
   {
-   if ( ((*token_stack.first).source_file Is stdin) AndIf
+   if ( ((*token_stack.first).source_file Is stdin) &&
       (prompt_next_stdin)
     ) {
      linker_message("continue:  ");

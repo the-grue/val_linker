@@ -420,7 +420,7 @@ void file_position(bit_32 position)
 #define File                           infile
 
 
- if ( (position >= File.start_of_buffer_position) AndIf
+ if ( (position >= File.start_of_buffer_position) &&
     (position <    File.next_buffer_position)
   ) {
    File.byte_position        = Bit_16(position-File.start_of_buffer_position);

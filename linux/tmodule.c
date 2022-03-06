@@ -328,7 +328,7 @@ public_entry_ptr                       pub;
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
     } else {
-     if ( (Pub.type_entry Is public_in_library) AndIf
+     if ( (Pub.type_entry Is public_in_library) &&
         (Not Pub.Library.requested)
       ) {
        library_request_count++;
@@ -527,7 +527,7 @@ bit_16                                 thread_number;
 
  fixup.external_error_detected = False;
 
- if ( (fixup.mode == 0) AndIf
+ if ( (fixup.mode == 0) &&
                              ((fixup.location_type Is base_location)    OrIf
                               (fixup.location_type Is pointer_location) OrIf
                               (fixup.location_type Is hibyte_location))
@@ -546,7 +546,7 @@ bit_16                                 thread_number;
  if ( last_LxDATA_record_type Is LEDATA_record
   ) {
    if ( ((fixup.location_type Is base_location)     OrIf
-       (fixup.location_type Is pointer_location)) AndIf
+       (fixup.location_type Is pointer_location)) &&
       (exefile != 0)
     ) { /* Base and pointer locations will require a relocation item
             in the EXE header */
@@ -642,7 +642,7 @@ bit_16                                 repeat_count;
      obj_ptr.b8   = content;
      LIDATA_index = old_index;
      len          = Bit_16(*obj_ptr.b8++);  LIDATA_index += sizeof(bit_8);
-     if ( (fixup_index >= LIDATA_index)        AndIf
+     if ( (fixup_index >= LIDATA_index)        &&
         (fixup_index <   (LIDATA_index + len))
       ) {
        write_temp_file(Current_record_header.rec_typ,
@@ -651,7 +651,7 @@ bit_16                                 repeat_count;
                        BytePtr(Addr(fixup)),
                        sizeof(fixup));
        if ( ((fixup.location_type Is base_location)     OrIf
-           (fixup.location_type Is pointer_location)) AndIf
+           (fixup.location_type Is pointer_location)) &&
           (exefile != 0)
         ) { /* Base and pointer locations will require a relocation item
                 in the EXE header */
@@ -803,7 +803,7 @@ segment_entry_ptr                      seg;
    Lseg.address  = address;
    Lseg.length   = length;
    Lseg.align    = align;
-   if ( (combine != common_combine)      AndIf
+   if ( (combine != common_combine)      &&
       (combine != blank_common_combine)
     ) {  /* Don't allocate common data yet.  (We will wait until we
              know how long the common block will be.) */
@@ -1412,7 +1412,7 @@ bit_16                                 thread_number;
                    current_record_offset);
   };
 
- if ( (MOD_TYP.mattr != 1) AndIf (MOD_TYP.mattr != 3)
+ if ( (MOD_TYP.mattr != 1) && (MOD_TYP.mattr != 3)
   ) {  /* We have no starting address */
    return(True);
   };
@@ -1635,7 +1635,7 @@ bit_16                                 segment_index;
   };
  group_index = obj_index_group();
  segment_index = obj_index_segment();
- if ( (segment_index == 0) AndIf (group_index == 0)
+ if ( (segment_index == 0) && (group_index == 0)
   ) {
    frame = *obj_ptr.b16++;
   };
@@ -1751,7 +1751,7 @@ void obj_next_record()
   {
    file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
    while ( (Current_record_header.rec_typ Is LINNUM_record) OrIf
-         ((Current_record_header.rec_typ Is COMENT_record) AndIf
+         ((Current_record_header.rec_typ Is COMENT_record) &&
           (Current_record_header.rec_len > MAX_OBJECT_FILE_READ_SIZE))
     ) {
      file_position(Bit_32(infile.byte_position) +
@@ -1779,7 +1779,7 @@ void obj_next_record()
     };
    file_read(Current_record_header.variant_part, 
              Current_record_header.rec_len);
-   if ( (objchecksum.val != 0) AndIf
+   if ( (objchecksum.val != 0) &&
       (Bit_8(checksum(Current_record_header.rec_len +
                       sizeof(obj_record_header_type)-1,
                      (byte *) current_record_header)) != 0)
@@ -1823,7 +1823,7 @@ bit_16                                 segment_index;
   };
  group_index = obj_index_group();
  segment_index = obj_index_segment();
- if ( (segment_index == 0) AndIf (group_index == 0)
+ if ( (segment_index == 0) && (group_index == 0)
   ) {
    frame = *obj_ptr.b16++;
   };
@@ -1850,7 +1850,7 @@ bit_16                                 segment_index;
       ) {
        Insert pub AtEnd InList external_list EndInsert;
       };
-     if ( (Pub.type_entry Is public_in_library) AndIf
+     if ( (Pub.type_entry Is public_in_library) &&
         (Pub.Library.requested)
       ) {
        library_request_count--;

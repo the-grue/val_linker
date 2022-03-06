@@ -21,8 +21,8 @@ bit_16 far                            *word_location;
  frame_address  = frame();
  target_address = target();
  if ( ((target_address < frame_address) OrIf
-     (target_address > (frame_address + 65535L))) AndIf
-    (fixup.frame_method != 6) AndIf (frame_absolute == 0)
+     (target_address > (frame_address + 65535L))) &&
+    (fixup.frame_method != 6) && (frame_absolute == 0)
   ) {
    linker_error(4, "Fixup error:\n"
                    "\t Module:  \"%Fs\"\n"
@@ -98,8 +98,8 @@ bit_16 far                            *word_location;
   } else { /* Segment-relative fixup */
    fbval          = Bit_16(frame_address ShiftedRight 4);
    foval          = target_address - frame_address;
-   if ( (frame_absolute == 0)                     AndIf
-      (exefile == 0)                            AndIf
+   if ( (frame_absolute == 0)                     &&
+      (exefile == 0)                            &&
       ((fixup.location_type Is base_location)      OrIf
        (fixup.location_type Is pointer_location))
     ) {  /* Count the relocation items we should not be getting. */

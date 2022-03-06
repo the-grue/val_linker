@@ -97,14 +97,14 @@ segment_entry_ptr                      seg;
    fixup                 = start_address;
    initial_CS            = CanonicFrame(frame());
    initial_IP            = Bit_16(target() - frame());
-   if ( (comfile.val != 0)      AndIf 
-      (initial_CS != 0)    AndIf 
+   if ( (comfile.val != 0)      && 
+      (initial_CS != 0)    && 
       (initial_IP != 0x0100)
     ) {  /* COM file start address must be 0000:0100 */
       linker_error(4, "Start address for COM file is not 0000:0100.\n");
     } else {
-     if ( (sysfile.val != 0)   AndIf
-        (initial_CS != 0) AndIf 
+     if ( (sysfile.val != 0)   &&
+        (initial_CS != 0) && 
         (initial_IP != 0)
       ) {  /* SYS file start address must be 0000:0000 */
         linker_error(4, "Start address for SYS file is not 0000:0000.\n");
@@ -120,15 +120,15 @@ segment_entry_ptr                      seg;
   |                        Validate stack segment.                          |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( (comfile.val != 0) AndIf (stack_segment_found != 0)
+ if ( (comfile.val != 0) && (stack_segment_found != 0)
   ) {  /* COM file should not have a stack segment. */
     linker_error(4, "COM file should not have a stack segment.\n");
   } else {
-   if ( (sysfile.val != 0) AndIf (stack_segment_found != 0)
+   if ( (sysfile.val != 0) && (stack_segment_found != 0)
     ) {  /* SYS file should not have a stack segment. */
       linker_error(4, "SYS file should not have a stack segment.\n");
     } else {
-     if ( (exefile != 0) AndIf (stack_segment_found == 0)
+     if ( (exefile != 0) && (stack_segment_found == 0)
       ) {  /* EXE file should have a stack segment. */
        linker_error(4, "EXE file should have a stack segment.\n");
       };

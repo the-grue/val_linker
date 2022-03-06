@@ -61,16 +61,16 @@ public_entry_ptr                       pub;
    Active_segment.highest_uninitialized_byte =
     (*Active_segment.lsegs.first).address;
   };
- if ( (Active_segment.owning_group != 0) AndIf
+ if ( (Active_segment.owning_group != 0) &&
     ((*Active_segment.owning_group).first_segment == 0)
   ) {
    (*Active_segment.owning_group).first_segment = active_segment;
   };
- if ( (DOSSEG.val != 0) AndIf 
-    (Active_segment.owning_group != 0) AndIf
+ if ( (DOSSEG.val != 0) && 
+    (Active_segment.owning_group != 0) &&
     ((*Active_segment.owning_group).group_name Is DGROUP_lname)
   ) {
-   if ( (edata_segment == 0) AndIf
+   if ( (edata_segment == 0) &&
       (Active_segment.class_name Is BSS_lname)
     ) {
      edata_segment = active_segment;
@@ -88,7 +88,7 @@ public_entry_ptr                       pub;
                        "because it was explicitly defined.\n");
       };
     };
-   if ( (end_segment == 0) AndIf
+   if ( (end_segment == 0) &&
       (Active_segment.class_name Is STACK_lname)
     ) {
      end_segment = active_segment;
@@ -195,10 +195,10 @@ byte_ptr                               start_of_expression;
      Pop segment_list InTo active_segment EndPop;
      order_expression_char_ptr = start_of_expression;
      token_break_char = ' ';
-     if ( codeview_information_present AndIf
-        (((Active_segment.segment_name Is codeview_segment_TYPES) AndIf
+     if ( codeview_information_present &&
+        (((Active_segment.segment_name Is codeview_segment_TYPES) &&
           (Active_segment.class_name Is codeview_class_DEBTYP)) OrIf
-         ((Active_segment.segment_name Is codeview_segment_SYMBOLS) AndIf
+         ((Active_segment.segment_name Is codeview_segment_SYMBOLS) &&
           (Active_segment.class_name Is codeview_class_DEBSYM)))
       ) { /* Eat the codeview segment */
       } else { /* Process all non-codeview segments */
@@ -448,12 +448,12 @@ bit_16                                 size;
      linker_error(4, "Stack segment found for a non .EXE file.\n");
     };
   } else {
-   if ( (stack_segment_found == 0) AndIf
+   if ( (stack_segment_found == 0) &&
       (stack.set           == 0)
     ) {
      linker_error(4, "No stack segment for .EXE file.\n");
     } else {
-     if ( (stack.set != 0) AndIf 
+     if ( (stack.set != 0) && 
         (Bit_16(Largest_stack_seg.length) < stack.val)
       ) {
        obj_generate_segment(generated_lname,

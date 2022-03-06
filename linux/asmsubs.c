@@ -95,7 +95,7 @@ bit_16                                 i;
 
 
 /* The following assembly code is the equivalent of the following C code:
- for ( i=0; (*dest++ != c) AndIf (i != 0xFFFF); i++
+ for ( i=0; (*dest++ != c) && (i != 0xFFFF); i++
   ) {
   };
  return(i); */
@@ -132,7 +132,7 @@ bit_16 far_match (byte_ptr pattern, byte_ptr s, bit_16 len)
     ) {
      return(True);
     };
-   if ( (*pattern != '?') AndIf (*pattern != *source)
+   if ( (*pattern != '?') && (*pattern != *source)
     ) {
      return(False);
     };

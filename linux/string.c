@@ -33,7 +33,7 @@ bit_16                                 right_len;
 
  left_len  = Length(left);
  right_len = Length(right);
- if ( (left_len == 0) AndIf (right_len == 0)
+ if ( (left_len == 0) && (right_len == 0)
   ) {
    return(0);
   };

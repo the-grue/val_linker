@@ -180,7 +180,7 @@ public_entry_ptr                       prior;
   ) {
    if ( len Is Pub_entry.length
     ) {
-     if ( (far_compare(sym, Pub_entry.symbol, len) == 0) AndIf
+     if ( (far_compare(sym, Pub_entry.symbol, len) == 0) &&
         (module Is Pub_entry.module)
       ) {
        if ( prior != 0
@@ -232,13 +232,13 @@ segment_entry_ptr                      prior;
                   Class_lname.lname_checksum)
                  Mod segment_table_hash_size.val;
  segment_entry = segment_hash_table[hash_val];
- if ( (combine != 0) AndIf (combine != blank_common_combine)
+ if ( (combine != 0) && (combine != blank_common_combine)
   ) {  /* All non-zero combine types except blank common will be combined. */
    prior         = Null;
    while ( segment_entry != 0
     ) {
-     if ( (segment_lname       Is Segment_entry.segment_name) AndIf
-        (class_lname         Is Segment_entry.class_name)   AndIf
+     if ( (segment_lname       Is Segment_entry.segment_name) &&
+        (class_lname         Is Segment_entry.class_name)   &&
         (combine             Is Segment_entry.combine)
       ) {
        if ( prior != 0

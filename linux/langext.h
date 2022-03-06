@@ -56,7 +56,7 @@ ListTypeOf(Generic_Element);
 /* Make operations less cryptic */
 
 /* Logical operators */
-#define AndIf                &&
+/*#define AndIf                &&*/
 #define OrIf                 ||
 #define Not                  !
 #define Is                   ==
@@ -68,10 +68,10 @@ ListTypeOf(Generic_Element);
 #define NotLessThan          >=
 #define LessThanOrEqualTo    <=
 #define GreaterThan          >
-#define Exceeds              >*/
+#define Exceeds              >
 #define Positive             > 0
 #define Negative             < 0
-/*#define IsZero               == 0
+#define IsZero               == 0
 #define IsNull               == 0
 #define IsNotNull            != 0
 #define IsEmpty              == 0

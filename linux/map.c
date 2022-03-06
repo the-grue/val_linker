@@ -171,8 +171,8 @@ bit_32                                 stop_address;
                Lseg.address,
                Lseg.length,
                align_text[Lseg.align]);
-         if ( (detail_level.val > 2)             AndIf 
-            (Lseg.align != absolute_segment)      AndIf
+         if ( (detail_level.val > 2)             && 
+            (Lseg.align != absolute_segment)      &&
             (Seg.combine != blank_common_combine)
           ) {
            map_memory(Lseg.data, Lseg.address, Lseg.length);
@@ -180,7 +180,7 @@ bit_32                                 stop_address;
         EndTraverse;
       EndTraverse;
     };
-   if ( (detail_level.val > 3) AndIf (exefile != 0)
+   if ( (detail_level.val > 3) && (exefile != 0)
     ) {
      print("\n");
      print("EXE file header:\n");
@@ -417,7 +417,7 @@ public_entry_ptr                       temp;
   ) {
    while ( i < j
     ) {
-     if ( (((*public_sort_array[i]).Internal.lseg == 0) AndIf
+     if ( (((*public_sort_array[i]).Internal.lseg == 0) &&
          ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
@@ -431,7 +431,7 @@ public_entry_ptr                       temp;
     };
    while ( i < j
     ) {
-     if ( (((*public_sort_array[i]).Internal.lseg == 0) AndIf
+     if ( (((*public_sort_array[i]).Internal.lseg == 0) &&
          ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
