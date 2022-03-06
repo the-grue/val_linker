@@ -62,8 +62,8 @@ ListTypeOf(Generic_Element);
 #define IsNumber(x)          ((x>='0') && (x<='9'))
 
 /* Bitwise operators */
-/*#define And                  &*/
-#define Or                   |
+/*#define And                  &
+#define Or                   |*/
 #define Xor                  ^
 #define Complement           ~
 /* Some other operators */

@@ -527,7 +527,7 @@ bit_32 segment_offset(lseg_ptr lseg, bit_16 offset)
 #define Lseg                           (*lseg)
 
 
- return ((Frame(lseg) ShiftedLeft 12L) Or (Bit_32(offset) + Target(lseg)));
+ return ((Frame(lseg) ShiftedLeft 12L) | (Bit_32(offset) + Target(lseg)));
 }
 #undef Lseg
 
