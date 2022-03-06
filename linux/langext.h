@@ -5,15 +5,6 @@
    (Concerning taste there is not argument -- or
     Only fools argue where taste is concerned) */
 
-
-/* Block basic C commands */
-
-/*#define Enumeration         enum
-#define BeginEnumeration    {
-#define EndEnumeration      }*/
-
-/* Extended C commands */
-
 /* Linked List commands */
 
 #define ListTypeOf(exp) \
@@ -75,7 +66,7 @@ ListTypeOf(Generic_Element);
 #define IsNotEqualTo         !=
 #define LessThan             <
 #define NotLessThan          >=
-#define LessThanOrEqualTo    <=
+/*#define LessThanOrEqualTo    <=*/
 #define GreaterThan          >
 #define Exceeds              >
 #define Positive             > 0
@@ -88,8 +79,8 @@ ListTypeOf(Generic_Element);
 #define IsNotZero            != 0
 #define IsTrue               != 0
 #define IsFalse              == 0
-#define NotGreaterThan       <=
-#define GreaterThanOrEqualTo >=
+/*#define NotGreaterThan       <=
+#define GreaterThanOrEqualTo >=*/
 #define IsIdentifier(x)      (((x>='A') && (x<='Z')) || \
                               ((x>='a') && (x<='z')) || \
                                (x=='_'))

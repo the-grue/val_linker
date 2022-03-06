@@ -99,7 +99,7 @@ byte_ptr                               element;
  desc = Pool.memory_descriptor_list;
  while ( desc IsNotNull
   ) {
-   if ( size NotGreaterThan Desc.available
+   if ( size <= Desc.available
     ) { /* We can take the element from this chunk */
      Pool.used_bytes         += size;
      element                  = Desc.unused_base;

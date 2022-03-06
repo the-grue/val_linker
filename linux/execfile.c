@@ -165,7 +165,7 @@ segment_entry_ptr                      seg;
      if (Lseg.address NotLessThan highest_uninitialized_byte) break;
      if ( Lseg.address LessThan next_available_address
       ) {
-       if ((Lseg.address+Lseg.length) NotGreaterThan 
+       if ((Lseg.address+Lseg.length) <= 
               next_available_address) continue;
        data_index     = next_available_address - Lseg.address;
        partial_length = Lseg.length - data_index;

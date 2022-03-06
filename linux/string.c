@@ -147,7 +147,7 @@ bit_16                                 string_length;
 
 
  string_length = Length(s);
- if ( string_length NotGreaterThan at
+ if ( string_length <= at
   ) {
    return(s);
   };
@@ -473,7 +473,7 @@ string_ptr trunc_string(string_ptr s, bit_16 at)
 {
 
 
- if ( Length(s) NotGreaterThan at+1
+ if ( Length(s) <= at+1
   ) {
    return(s);
   };
