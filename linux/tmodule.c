@@ -72,7 +72,7 @@ BeginCode
    obj_name_length();  /* Eat the type index. */
    externals[++n_externals] = pub;
    element_type  = *obj_ptr.b8++;
-   Using element_type
+   switch ( element_type
     BeginCase
      When 0x61:
       expected_type = far_communal;
@@ -101,7 +101,7 @@ BeginCode
      Pub.type_entry             = expected_type;
      Pub.Communal.element_size  = element_size;
      Pub.Communal.element_count = element_count;
-     Using element_type
+     switch ( element_type
      BeginCase
       When 0x61:
        Pub.Communal.next_communal = far_communals;
@@ -160,7 +160,7 @@ BeginCode
   };
  obj_ptr.b8++;
  comment_class = *obj_ptr.b8++;
- Using comment_class
+ switch ( comment_class
   BeginCase
    When 158:
     DOSSEG.val = True;
@@ -435,7 +435,7 @@ BeginCode
   ) {  /* Frame is specified explicitly */
    frame_method         = FIX_DAT.frame;
    fixup.frame_method   = frame_method;
-   Using frame_method
+   switch ( frame_method
     BeginCase
      When 0:
       fixup.frame_referent = (void far *) snames[obj_index_segment()];
@@ -482,7 +482,7 @@ BeginCode
   ) {  /* Target is specified explicitly */
    target_method       = FIX_DAT.targt;
    fixup.target_method = target_method;
-   Using target_method
+   switch ( target_method
     BeginCase
      When 0:  /* Target is the segment referenced by the index */
       fixup.target_referent = (void far *) snames[obj_index_segment()];
@@ -685,7 +685,7 @@ BeginCode
   ) {  /* This is a target thread */
    target_thread[thread].method = Bit_8(method);
    target_thread[thread].thread_defined = True;
-   Using method
+   switch ( method
     BeginCase
      When 0:
       target_thread[thread].referent =
@@ -709,7 +709,7 @@ BeginCode
   } else {  /* This is a frame thread */
    frame_thread[thread].method = Bit_8(method);
    frame_thread[thread].thread_defined = True;
-   Using method
+   switch ( method
     BeginCase
      When 0:
       frame_thread[thread].referent =
@@ -1457,7 +1457,7 @@ BeginCode
   ) {  /* Frame is specified explicitly */
    frame_method                 = END_DAT.frame;
    start_address.frame_method   = frame_method;
-   Using frame_method
+   switch ( frame_method
     BeginCase
      When 0:
       start_address.frame_referent =
@@ -1507,7 +1507,7 @@ BeginCode
   ) {  /* Target is specified explicitly */
    target_method               = END_DAT.targt;
    start_address.target_method = target_method;
-   Using target_method
+   switch ( target_method
     BeginCase
      When 0:
       start_address.target_referent =

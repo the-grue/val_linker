@@ -362,7 +362,7 @@ BeginCode
  copy_string(next_token, null_string);
  token_is_hex_number =
  token_is_number     = False;
- Using token_break_char
+ switch ( token_break_char
   BeginCase
    When '\n':
     prompt_next_stdin = True;

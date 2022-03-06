@@ -62,7 +62,7 @@ BeginCode
                  (*(*(*temp_file_header.lseg).segment).segment_name).symbol,
                      temp_file_header.offset);
     };
-   Using fixup.location_type
+   switch ( fixup.location_type
     BeginCase
      When lobyte_location:
       location_address = (*temp_file_header.lseg).address +
@@ -105,7 +105,7 @@ BeginCode
     ) {  /* Count the relocation items we should not be getting. */
      n_relocation_items++;
     };
-   Using fixup.location_type
+   switch ( fixup.location_type
     BeginCase
      When lobyte_location:
       *byte_location += Bit_8(foval);
@@ -158,7 +158,7 @@ BeginCode
  obj_ptr.b8       = object_file_element;
  end_of_record.b8 = Addr(obj_ptr.b8[len]);
  size             = *obj_ptr.b8++;
- Using size
+ switch ( size
   BeginCase
    When 0:
     While obj_ptr.b8 IsNot end_of_record.b8
@@ -296,7 +296,7 @@ segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 EndDeclarations
 BeginCode
- Using fixup.frame_method
+ switch ( fixup.frame_method
   BeginCase
    When 0:  /* Frame is segment relative */
     lseg           = (lseg_ptr) fixup.frame_referent;
@@ -326,7 +326,7 @@ BeginCode
     frame_address  = Seg.address;
     break;
    When 5:  /* Frame is defined by target */
-    Using fixup.target_method
+    switch ( fixup.target_method
      BeginCase
       When 0:  /* Target is segment relative */
        lseg           = (lseg_ptr) fixup.target_referent;
@@ -398,7 +398,7 @@ BeginCode
  file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
  While temp_file_header.rec_typ IsNotZero
   BeginWhile
-   Using temp_file_header.rec_typ
+   switch ( temp_file_header.rec_typ
     BeginCase
      When FIXUPP_record:
       fixup_FIXUPP_record();
@@ -547,7 +547,7 @@ public_entry_ptr                       pub;
 bit_32                                 target_address;
 EndDeclarations
 BeginCode
- Using fixup.target_method
+ switch ( fixup.target_method
   BeginCase
    When 0:  /* Target is segment relative */
     lseg = (lseg_ptr) fixup.target_referent;

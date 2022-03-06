@@ -61,7 +61,7 @@ BeginDeclarations
 #define Lst                            (*lst)
 EndDeclarations
 BeginCode
- Using type_insert
+ switch ( type_insert
   BeginCase
 /*+-------------------------------------------------------------------------+
   |                                                                         |

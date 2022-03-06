@@ -8,13 +8,7 @@
 
 /* Block basic C commands */
 
-/*#define If                   if (
-#define Then                 ) { 
-#define Else                 } else {
-#define ElseIf               } else if (
-#define EndIf                }*/
-
-#define Using                switch (
+/*#define Using                switch (*/
 #define BeginCase            ) {
 #define When                 case
 #define Otherwise            default
