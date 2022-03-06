@@ -34,15 +34,15 @@ BeginCode
  left_len  = Length(left);
  right_len = Length(right);
  if ( (left_len IsZero) AndIf (right_len IsZero)
-  Then
+  ) {
    return(0);
   };
  if ( left_len LessThan right_len
-  Then
+  ) {
    return(-1);
   };
  if ( left_len GreaterThan right_len
-  Then
+  ) {
    return(1);
   };
  return(far_compare(String(left), String(right), left_len));
@@ -60,7 +60,7 @@ EndDeclarations
 BeginCode
  left_len = Length(left);
  if ( left_len IsZero
-  Then
+  ) {
    return(0);
   };
  return(far_compare(String(left), String(right), left_len));
@@ -77,7 +77,7 @@ bit_16                                 temp;
 EndDeclarations
 BeginCode
  if ( (Length(source) + Length(dest)) Exceeds MaxLength(dest)
-  Then
+  ) {
    linker_error(8,"Destination string to small (%u bytes) to hold "
                   "concatination of:\n"
                   "\t\"%Fs\" (%u bytes) and\n"
@@ -102,7 +102,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( (Length(dest) + 1) Exceeds MaxLength(dest)
-  Then
+  ) {
    linker_error(8,"Destination string to small (%u bytes) to add \"%c\" "
                   "to string:\n"
                   "\t\"%Fs\" (%u bytes)\n",
@@ -124,7 +124,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( Length(source) Exceeds MaxLength(dest)
-  Then
+  ) {
    linker_error(8,"Destination string to small (%u bytes) to hold:\n"
                   "\t\"%Fs\" (%u bytes)\n",
                   MaxLength(dest),
@@ -148,11 +148,11 @@ EndDeclarations
 BeginCode
  string_length = Length(s);
  if ( string_length NotGreaterThan at
-  Then
+  ) {
    return(s);
   };
  if ( string_length LessThan (at + len)
-  Then
+  ) {
    len = string_length - at;
   };
  Length(s)       -= len;
@@ -223,7 +223,7 @@ BeginCode
  pat            = String(pattern);
  len            = Length(s);
  if ( (len - from) LessThan pattern_length
-  Then
+  ) {
    return(0xFFFF);
   };
  iteration_count = len - pattern_length + 1;
@@ -231,7 +231,7 @@ BeginCode
  For i=from; i LessThan iteration_count; i++
   BeginFor
    if ( far_compare(left++, pat, pattern_length) IsZero
-    Then
+    ) {
      return(i);
     };
   EndFor;
@@ -284,13 +284,13 @@ byte_ptr                               source;
 EndDeclarations
 BeginCode
  if ( FirstCharIn(pattern) Is '*'
-  Then
+  ) {
    cut_string(pattern, 0, 1);
    if ( LastCharIn(pattern) Is '*'
-    Then /* We must perform exhaustive search */
+    ) { /* We must perform exhaustive search */
      cut_string(pattern, 0, Length(pattern)-1);
      if ( Length(pattern) Exceeds Length(s)
-      Then
+      ) {
        return(False);
       };
      n_searches = Length(s) - Length(pattern) + 1;
@@ -298,13 +298,13 @@ BeginCode
      For i=0; i<n_searches; i++
       BeginFor
        if ( far_match(String(pattern), source++, Length(pattern))
-        Then
+        ) {
          return(True);
         };
       EndFor;
     Else /* We must match only the tail */
      if ( Length(pattern) Exceeds Length(s)
-      Then
+      ) {
        return(False);
       Else
        return(far_match(String(pattern),
@@ -346,7 +346,7 @@ BeginCode
  length_string          = Length(dest);
  length_inserted_string = Length(s);
  if ( (length_string + length_inserted_string) Exceeds MaxLength(dest)
-  Then
+  ) {
    linker_error(8,"Destination string too small (%u bytes) to insert:\n"
                   "\t\"%Fs\" (%u bytes) into\n"
                   "\t\"%Fs\" (%u bytes)\n",
@@ -355,11 +355,11 @@ BeginCode
                   String(dest), length_string);
   };
  if ( length_inserted_string IsZero
-  Then
+  ) {
    return(dest);
   };
  if ( at Exceeds length_string
-  Then
+  ) {
    at = length_string;
   };
  length_string_to_right = length_string - at;
@@ -390,11 +390,11 @@ BeginCode
  len            = Length(s);
  pat            = String(pattern);
  if ( len LessThan pattern_length
-  Then
+  ) {
    return(0xFFFF);
   };
  if ( from Exceeds (len - pattern_length)
-  Then
+  ) {
    from = len - pattern_length;
   };
  iteration_count = from + 1;
@@ -402,7 +402,7 @@ BeginCode
  For i=0; i LessThan iteration_count; i++, from--
   BeginFor
    if ( far_compare(right--, pat, pattern_length) IsZero
-    Then
+    ) {
      return(from);
     };
   EndFor;
@@ -421,7 +421,7 @@ EndDeclarations
 BeginCode
  len  = far_index(s, 0);
  if ( len Exceeds MaxLength(temp_string)
-  Then
+  ) {
    linker_error(8,"Destination string too small (%u bytes) to hold:\n"
                   "\t\"%s\" (%u bytes)\n",
                   MaxLength(temp_string),
@@ -444,19 +444,19 @@ EndDeclarations
 BeginCode
  string_length = Length(s);
  if ( string_length IsZero
-  Then
+  ) {
    return(null_string);
   };
  if ( at NotLessThan string_length
-  Then
+  ) {
    at = string_length - 1;
   };
  if ( len Exceeds Bit_16(string_length - at)
-  Then
+  ) {
    len = string_length - at;
   };
  if ( len Exceeds MaxLength(temp_string)
-  Then
+  ) {
    linker_error(8,"Destination string too small in SUBSTR operation\n");
   };
  far_move(String(temp_string), Addr(String(s)[at]), len+1);
@@ -474,7 +474,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( Length(s) NotGreaterThan at+1
-  Then
+  ) {
    return(s);
   };
  Length(s)     = at;

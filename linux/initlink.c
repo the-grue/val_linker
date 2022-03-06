@@ -179,7 +179,7 @@ BeginCode
  outfile.buffer_size        = buffer_size.val;
 
  if ( temp_filename.val IsNull
-  Then
+  ) {
    temp_file = (file_info_ptr)
                 allocate_memory(Addr(static_pool),
                                 Bit_32(sizeof(file_info_type)) + 5L);
@@ -252,7 +252,7 @@ BeginCode
  generated_lname = lookup_lname(11 ,(byte *) "(generated)");
  none_lname      = lookup_lname(6,  (byte *) "(none)");
  if ( case_ignore.val IsTrue
-  Then
+  ) {
    BSS_lname                = lookup_lname(3, (byte *) "bss");
    DGROUP_lname             = lookup_lname(6, (byte *) "dgroup");
    FAR_BSS_lname            = lookup_lname(7, (byte *) "far_bss");

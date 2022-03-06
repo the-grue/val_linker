@@ -15,10 +15,10 @@ bit_16                                 error_number;
 EndDeclarations
 BeginCode
  if ( outregs.x.cflag
-  Then
+  ) {
    error_number = outregs.x.ax;
    if ( error_number Exceeds 58
-    Then
+    ) {
      error_number = 59;
     };
    fprintf(stdout,"\nDOS Error (Code %u): \"%s\"\n",
@@ -46,10 +46,10 @@ BeginCode
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  if ( (outregs.x.cflag) AndIf
     (Not ((inregs.h.al  Is 0x41) AndIf (outregs.x.ax Is 2)))
-  Then
+  ) {
    error_number = outregs.x.ax;
    if ( error_number Exceeds 58
-    Then
+    ) {
      error_number = 59;
     };
    fprintf(stdout,"\nDOS Error (Code %u): \"%s\"\n",
@@ -75,7 +75,7 @@ BeginCode
  va_start(argptr,format);
  vfprintf(stdout,format,argptr);
  if ( severity Exceeds 7
-  Then
+  ) {
    end_linker(severity);
   Else
    return;
@@ -116,11 +116,11 @@ BeginCode
  vsprintf(CharPtr(object_file_element), format, argptr);
  len = strlen(CharPtr(object_file_element));
  if ( len IsZero
-  Then
+  ) {
    return;
   };
  if ( object_file_element[len-1] Is '\n'
-  Then
+  ) {
    object_file_element[len-1] = '\000';
    strcat(CharPtr(object_file_element), "\r\n");
    len++;

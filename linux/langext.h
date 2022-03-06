@@ -8,8 +8,8 @@
 
 /* Block basic C commands */
 
-/*#define If                   if (*/
-#define Then                 ) {
+/*#define If                   if (
+#define Then                 ) { */
 #define Else                 } else {
 /*#define ElseIf               } else if (
 #define EndIf                }*/

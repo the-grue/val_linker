@@ -23,7 +23,7 @@ BeginCode
  if ( ((target_address LessThan frame_address) OrIf
      (target_address Exceeds (frame_address + 65535L))) AndIf
     (fixup.frame_method IsNot 6) AndIf (frame_absolute IsFalse)
-  Then
+  ) {
    linker_error(4, "Fixup error:\n"
                    "\t Module:  \"%Fs\"\n"
                    "\t   File:  \"%Fs\"\n"
@@ -39,18 +39,18 @@ BeginCode
               Addr((*temp_file_header.lseg).data[temp_file_header.offset]);
  word_location  = (bit_16 far *) byte_location;
  if ( fixup.mode IsZero
-  Then /* Self-relative fixup */
+  ) { /* Self-relative fixup */
    location_address = (*temp_file_header.lseg).address +
                       Bit_32(temp_file_header.offset) +
                       1L;
    if ( fixup.location_type Is offset_location
-    Then
+    ) {
      location_address++;
     };
    if ( (location_address LessThan frame_address) OrIf
       (location_address Exceeds (frame_address + 65535L)) OrIf
       (frame_absolute IsTrue)
-    Then
+    ) {
      linker_error(4, "Fixup error:\n"
                      "\t Module:  \"%Fs\"\n"
                      "\t   File:  \"%Fs\"\n"
@@ -72,7 +72,7 @@ BeginCode
                               Int_32(location_address);
       if ( (IP_distance_to_target < -128L) OrIf
          (IP_distance_to_target > 127L)
-       Then
+       ) {
         linker_error(4, "Byte self-relative fixup error:\n"
                         "\t Module:  \"%Fs\"\n"
                         "\t   File:  \"%Fs\"\n"
@@ -102,7 +102,7 @@ BeginCode
       (exefile IsFalse)                            AndIf
       ((fixup.location_type Is base_location)      OrIf
        (fixup.location_type Is pointer_location))
-    Then  /* Count the relocation items we should not be getting. */
+    ) {  /* Count the relocation items we should not be getting. */
      n_relocation_items++;
     };
    Using fixup.location_type
@@ -116,7 +116,7 @@ BeginCode
      When base_location:
       *word_location += fbval;
       if ( exefile IsTrue
-       Then
+       ) {
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset);
        };
@@ -125,7 +125,7 @@ BeginCode
       *word_location++ += Bit_16(foval);
       *word_location   += fbval;
       if ( exefile IsTrue
-       Then
+       ) {
         Exe_header.relocation_table[Exe_header.n_relocation_items++] =
          segment_offset(temp_file_header.lseg, temp_file_header.offset+2);
        };
@@ -232,7 +232,7 @@ BeginCode
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
  if ( block_count IsNotZero
-  Then  /* Handle recursive case:  Content is iterated data block */
+  ) {  /* Handle recursive case:  Content is iterated data block */
    content = obj_ptr.b8;
    For i=0; i<repeat_count; i++
     BeginFor
@@ -379,12 +379,12 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  if ( exefile IsTrue
-  Then
+  ) {
    exe_header_size  = Bit_32(sizeof(EXE_header_type)) - 
                       Bit_32(sizeof(bit_32)) + 
                      (Bit_32(sizeof(bit_32)) * Bit_32(n_relocation_items));
    if ( align_exe_header.val IsTrue
-    Then
+    ) {
      exe_header_size += AlignmentGap(exe_header_size, 0xFL);
     Else
      exe_header_size += AlignmentGap(exe_header_size, 0x1FFL);
@@ -437,10 +437,10 @@ EndDeclarations
 BeginCode
  frame_absolute = False;
  if ( Pub.type_entry IsNot internal
-  Then
+  ) {
    seg = (*temp_file_header.lseg).segment;
    if ( Not fixup.external_error_detected
-    Then
+    ) {
      linker_error(4, "\tModule \"%Fs\" in file \"%Fs\"\n"
                      "\treferences unresolved external \"%Fs\"\n"
                      "\tat offset %04XH in segment \"%Fs\".\n",
@@ -454,9 +454,9 @@ BeginCode
    address = 0L;
   Else
    if ( Pub.Internal.group IsNull
-    Then
+    ) {
      if ( Pub.Internal.lseg IsNull
-      Then
+      ) {
        frame_absolute = True;
        address        = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
       Else
@@ -489,10 +489,10 @@ segment_entry_ptr                      seg;
 EndDeclarations
 BeginCode
  if ( Pub.type_entry IsNot internal
-  Then
+  ) {
    seg = (*temp_file_header.lseg).segment;
    if ( Not fixup.external_error_detected
-    Then
+    ) {
      linker_error(4, "\tModule \"%Fs\" in file \"%Fs\"\n"
                      "\treferences unresolved external \"%Fs\"\n"
                      "\tat offset %04XH in segment \"%Fs\".\n",
@@ -506,7 +506,7 @@ BeginCode
    address = 0L;
   Else
    if ( Pub.Internal.lseg IsNull
-    Then
+    ) {
      address = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
     Else
      address = (*Pub.Internal.lseg).address;

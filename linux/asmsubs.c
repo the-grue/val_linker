@@ -54,9 +54,9 @@ BeginCode
  While len-- IsNotZero
   BeginWhile
    if ( *left IsNotEqualTo *right
-    Then
+    ) {
      if ( *left LessThan *right
-      Then
+      ) {
        return(-1);
       Else
        return(1);
@@ -129,11 +129,11 @@ BeginCode
  While len Exceeds 0
   BeginWhile
    if ( *pattern Is '*'
-    Then
+    ) {
      return(True);
     };
    if ( (*pattern IsNot '?') AndIf (*pattern IsNot *source)
-    Then
+    ) {
      return(False);
     };
    source++;
@@ -394,7 +394,7 @@ EndDeclarations
   BeginFor
    *word_ptr = 0;
    if ( (address-- And 1)
-    Then
+    ) {
      word.high_byte = *data++;
     Else
      word.low_byte = *data++;

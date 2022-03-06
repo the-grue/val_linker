@@ -10,7 +10,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( statistics.val IsTrue
-  Then
+  ) {
    linker_statistics();
   };
  exit(return_code);
@@ -35,7 +35,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  if ( link_step Exceeds 0
-  Then
+  ) {
    linker_message("\n"
                   "Memory Usage Statistics:\n"
                   "---Memory Pool---  --Size--  --Used--  --Free--  %%Free\n");
@@ -66,7 +66,7 @@ BeginCode
   +-------------------------------------------------------------------------+*/
 
  if ( (link_step Exceeds 4) AndIf (obj_file_list.first IsNotNull)
-  Then
+  ) {
    linker_message("\n"
                   "Object File Statistics:\n");
    linker_message("--Size--  -------------Object File-------------\n");
@@ -84,7 +84,7 @@ BeginCode
   +-------------------------------------------------------------------------+*/
 
  if ( (link_step Exceeds 4) AndIf (lib_file_list.first IsNotNull)
-  Then
+  ) {
    linker_message("\n"
                   "Library File Statistics:\n");
    linker_message("--Size--  Modules  Passes  "
@@ -113,21 +113,21 @@ BeginCode
  linker_message("\n"
                 "Time Usage Statistics:\n");
  if ( link_step Exceeds 0
-  Then
+  ) {
    total_time += user_input_start_time - linker_start_time;
    linker_message("  Primary linker initialization time:%7s\n",
                   elapsed_time(linker_start_time,
                                user_input_start_time));
   };
  if ( link_step Exceeds 1
-  Then
+  ) {
    total_time += secondary_init_start_time - user_input_start_time;
    linker_message("                     User input time:%7s\n",
                   elapsed_time(user_input_start_time,
                                secondary_init_start_time));
   };
  if ( link_step Exceeds 2
-  Then
+  ) {
    total_time += library_directory_start_time -
                  secondary_init_start_time;
    linker_message("Secondary linker initialization time:%7s\n",
@@ -135,49 +135,49 @@ BeginCode
                                library_directory_start_time));
   };
  if ( link_step Exceeds 3
-  Then
+  ) {
    total_time += object_module_start_time - library_directory_start_time;
    linker_message("   Library directory processing time:%7s\n",
                   elapsed_time(library_directory_start_time,
                                object_module_start_time));
   };
  if ( link_step Exceeds 4
-  Then
+  ) {
    total_time += library_processing_start_time - object_module_start_time;
    linker_message("       Object module processing time:%7s\n",
                   elapsed_time(object_module_start_time,
                                library_processing_start_time));
   };
  if ( link_step Exceeds 5
-  Then
+  ) {
    total_time += order_start_time - library_processing_start_time;
    linker_message("             Library processing time:%7s\n",
                   elapsed_time(library_processing_start_time,
                                order_start_time));
   };
  if ( link_step Exceeds 6
-  Then
+  ) {
    total_time += fixup_start_time - order_start_time;
    linker_message("  Segment ordering and aligning time:%7s\n",
                   elapsed_time(order_start_time,
                                fixup_start_time));
   };
  if ( link_step Exceeds 7
-  Then
+  ) {
    total_time += exec_image_start_time - fixup_start_time;
    linker_message("                          Fixup time:%7s\n",
                   elapsed_time(fixup_start_time,
                                exec_image_start_time));
   };
  if ( link_step Exceeds 8
-  Then
+  ) {
    total_time += map_start_time - exec_image_start_time;
    linker_message("         Executable image write time:%7s\n",
                   elapsed_time(exec_image_start_time,
                                map_start_time));
   };
  if ( link_step Exceeds 9
-  Then
+  ) {
    total_time += statistics_start_time - map_start_time;
    linker_message("                      Map write time:%7s\n",
                   elapsed_time(map_start_time,

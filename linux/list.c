@@ -20,18 +20,18 @@ BeginCode
  TraverseList(Lst, current)
   BeginTraverse
    if ( current Is elem
-    Then
+    ) {
      if ( prior Is Null
-      Then
+      ) {
        First(Lst) = Elem.next;
        if ( First(Lst) Is Null
-        Then
+        ) {
          Last(Lst) = Null;
         };
       Else
        Prior.next = Elem.next;
        if ( Last(Lst) Is elem
-        Then
+        ) {
          Last(Lst) = prior;
         };
       };
@@ -72,7 +72,7 @@ BeginCode
     Elem.next  = Aftr.next;
     Aftr.next  = elem;
     if ( Elem.next IsNull
-     Then
+     ) {
       Last(Lst) = elem;
      };
     break;
@@ -83,7 +83,7 @@ BeginCode
   +-------------------------------------------------------------------------+*/
    When 1:
     if ( Last(Lst) IsNull
-     Then
+     ) {
       First(Lst) = elem;
      Else
       (*Last(Lst)).next = elem;
@@ -100,7 +100,7 @@ BeginCode
     Elem.next  = First(Lst);
     First(Lst) = elem;
     if ( Last(Lst) IsNull
-     Then
+     ) {
       Last(Lst) = elem;
      };
     break;
@@ -124,14 +124,14 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( First(Lst) IsNull
-  Then
+  ) {
    Elem = Null;
    return;
   };
  Elem       = First(Lst);
  First(Lst) = (*Elem).next;
  if ( First(Lst) IsNull
-  Then
+  ) {
    Last(Lst) = Null;
   };
  return;

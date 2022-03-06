@@ -49,7 +49,7 @@ BeginCode
      Lib_file.module_count++;
      obj_tmodule();
      if ( Pub.type_entry IsNot internal
-      Then
+      ) {
        linker_error(12, "Library directory error:\n"
                         "\tLibrary:  \"%Fs\"\n"
                         "\t Module:  \"%Fs\"\n"
@@ -125,7 +125,7 @@ BeginCode
  file_IO_limit(sizeof(library_file_header_type));
  file_read(object_file_element, sizeof(library_file_header_type));
  if ( Lib_hdr.flag IsNot 0xF0
-  Then
+  ) {
    linker_error(4,"File \"%Fs\" is not in LIB file format.\n"
                   "\tThis file has been ignored.\n",
                   (*lib_file).filename);
@@ -158,7 +158,7 @@ BeginCode
      symbol_in_page = (bit_16 *)
                       Addr(Symbol.symbol[Symbol.length_of_symbol]);
      if ( case_ignore.val
-      Then
+      ) {
        far_to_lower(Symbol.symbol, Symbol.length_of_symbol);
       };
      pub = lookup_public(Symbol.length_of_symbol, Symbol.symbol, 0);
@@ -172,7 +172,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
      if ( Pub.type_entry IsNot unused
-      Then  /* Log the ambiguity. */
+      ) {  /* Log the ambiguity. */
        linker_error(4,"The symbol \"%Fs\" is defined in the libraries\n"
                       "\t\"%Fs\" and \"%Fs\".\n"
                       "\tThe latter has been ignored.\n",
@@ -184,7 +184,7 @@ BeginCode
        Pub.Library.lib_file  = lib_file;
        Pub.Library.requested = False;
        if ( symbol_count NotLessThan MAX_PUBLICS_IN_LIBRARY
-        Then
+        ) {
          linker_error(8,"Limitation of not more than %u public symbols in "
                         "a library\n"
                         "\texceeded for library \"%Fs\".\n",
@@ -198,7 +198,7 @@ BeginCode
   EndFor;
  file_close_for_read();
  if ( symbol_count Exceeds 0
-  Then
+  ) {
    sort_directory(0, symbol_count-1);
    public_array = public_sort_array;
    For entry_number=0; entry_number LessThan symbol_count; entry_number++
@@ -265,7 +265,7 @@ public_entry_ptr                       temp;
 EndDeclarations
 BeginCode
  if ( left NotLessThan right
-  Then
+  ) {
    return;
   };
  i = left;
@@ -276,7 +276,7 @@ BeginCode
     BeginWhile
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
-      Then
+      ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
@@ -288,7 +288,7 @@ BeginCode
     BeginWhile
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
-      Then
+      ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
@@ -298,7 +298,7 @@ BeginCode
     EndWhile;
   EndWhile;
   if ( i Exceeds 0
-   Then
+   ) {
     sort_directory(left, i-1);
    };
  sort_directory(i+1,  right);

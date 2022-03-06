@@ -10,11 +10,11 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( index_string(fn,0,colon_string) IsNot 1
-  Then  /* AUX:, CON:, or PRN: */
+  ) {  /* AUX:, CON:, or PRN: */
    return(fn);
   };
  if ( index_string(fn,0,dot_string) Is 0xFFFF
-  Then
+  ) {
    concat_string(fn,ext);
   };
 return(fn);
@@ -39,7 +39,7 @@ BeginCode
  matched_file = String(current_filename);
  rc = start_file_search(fn, 0);
  if ( rc IsNotZero
-  Then
+  ) {
    linker_error(4,"No matching files for file specification:\n"
                   "\t\"%Fs\"\n",
                   String(fn));
@@ -56,7 +56,7 @@ BeginCode
      ExitIf(already_in_list);
     EndTraverse;
    if ( Not already_in_list
-    Then
+    ) {
      file_entry = (file_info_ptr)
                    allocate_memory(Addr(static_pool),
                                    Bit_32(sizeof(file_info_type)) +
@@ -116,7 +116,7 @@ BeginCode
  rc = (bit_16) intdos(Addr(inregs), Addr(outregs));
  set_DTA_address(old_DTA);
  if ( rc IsNotZero
-  Then
+  ) {
    copy_string(current_filename, null_string);
   Else
    far_to_lower((*DTA).filename, 12);
@@ -146,7 +146,7 @@ BeginCode
  Length(directory) = far_index(String(directory), 0);
  far_to_lower(String(directory), Length(directory));
  if ( LastCharIn(directory) IsNot '\\'
-  Then
+  ) {
    concat_string(directory,backslash_string);
   };
  return(directory);
@@ -185,7 +185,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( File.file_handle Exceeds 4
-  Then  /* Only issue close if not one of the standard handles. */
+  ) {  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
    inregs.x.bx = File.file_handle;
    DOS_int21("Trouble closing \"%Fs\".\n",
@@ -208,7 +208,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( File.bytes_in_buffer Exceeds 0
-  Then
+  ) {
    inregs.h.ah = 0x40;               /* Write */
    inregs.x.bx = File.file_handle;
    inregs.x.cx = File.bytes_in_buffer;
@@ -218,7 +218,7 @@ BeginCode
              (*File.file_info).filename, File.next_buffer_position);
   };
  if ( File.file_handle Exceeds 4
-  Then  /* Only issue close if not one of the standard handles. */
+  ) {  /* Only issue close if not one of the standard handles. */
    inregs.h.ah = 0x3E;                   /* Close for read */
    inregs.x.bx = File.file_handle;
    DOS_int21("Trouble closing \"%Fs\".\n",
@@ -283,7 +283,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  if ( (limit IsZero) OrIf (limit Exceeds File.buffer_size)
-  Then
+  ) {
    File.IO_limit = File.buffer_size;
   Else
    File.IO_limit = limit;
@@ -324,17 +324,17 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  if ( compare_string(string(File_info.filename), device_AUX) IsZero
-  Then
+  ) {
    File.file_handle = 3;
    return;
   };
  if ( compare_string(string(File_info.filename), device_CON) IsZero
-  Then
+  ) {
    File.file_handle = 0;
    return;
   };
  if ( compare_string(string(File_info.filename), device_PRN) IsZero
-  Then
+  ) {
    File.file_handle = 4;
    return;
   };
@@ -382,17 +382,17 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  if ( compare_string(string(File_info.filename), device_AUX) IsZero
-  Then
+  ) {
    File.file_handle = 3;
    return;
   };
  if ( compare_string(string(File_info.filename), device_CON) IsZero
-  Then
+  ) {
    File.file_handle = 1;
    return;
   };
  if ( compare_string(string(File_info.filename), device_PRN) IsZero
-  Then
+  ) {
    File.file_handle = 4;
    return;
   };
@@ -422,7 +422,7 @@ EndDeclarations
 BeginCode
  if ( (position NotLessThan File.start_of_buffer_position) AndIf
     (position LessThan    File.next_buffer_position)
-  Then
+  ) {
    File.byte_position        = Bit_16(position-File.start_of_buffer_position);
    File.current_byte         = Addr(File.buffer[File.byte_position]);
    File.bytes_left_in_buffer = File.bytes_in_buffer - File.byte_position;
@@ -460,9 +460,9 @@ BeginCode
  While length Exceeds 0
   BeginWhile
    if ( length Exceeds File.bytes_left_in_buffer
-    Then
+    ) {
      if ( File.bytes_left_in_buffer Exceeds 0
-      Then
+      ) {
        far_move(into, File.current_byte, File.bytes_left_in_buffer);
        length -= File.bytes_left_in_buffer;
        into   += File.bytes_left_in_buffer;
@@ -509,7 +509,7 @@ BeginCode
  While length Exceeds 0L
   BeginWhile
    if ( length Exceeds Bit_32(File.bytes_left_in_buffer)
-    Then
+    ) {
      far_move(File.current_byte, from, File.bytes_left_in_buffer);
      length               -= Bit_32(File.bytes_left_in_buffer);
      from                 += File.bytes_left_in_buffer;
@@ -578,17 +578,17 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  if ( compare_string(substr(fn,0,4), device_AUX) IsZero
-  Then
+  ) {
    copy_string(fn, device_AUX);
    return(fn);
   };
  if ( compare_string(substr(fn,0,4), device_CON) IsZero
-  Then
+  ) {
    copy_string(fn, device_CON);
    return(fn);
   };
  if ( compare_string(substr(fn,0,4), device_PRN) IsZero
-  Then
+  ) {
    copy_string(fn, device_PRN);
    return(fn);               
   };
@@ -598,7 +598,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  if ( compare_string(substr(fn,1,1), colon_string) IsNotZero
-  Then
+  ) {
    paste_string(fn, 0, default_drive_string);
   };
 /*+-------------------------------------------------------------------------+
@@ -607,7 +607,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  if ( compare_string(substr(fn,2,1), backslash_string) IsNotZero
-  Then
+  ) {
    default_directory(fn, default_directory_string);
    paste_string(fn, 2, default_directory_string);
   };
@@ -621,12 +621,12 @@ BeginCode
  While right IsNot 0xffff
   BeginWhile
    if ( compare_string(substr(fn,left,4), backslash_dot_dot_string) IsZero
-    Then
+    ) {
      cut_string(fn, left, 3);
      right = left;
      left  = reverse_index_string(fn, right-1, backslash_string);
      if ( left Is 0xffff
-      Then
+      ) {
        return(null_string);
       };
      cut_string(fn, left, right-left);
@@ -634,7 +634,7 @@ BeginCode
      ContinueLoop;
     Else
      if ( compare_string(substr(fn,left,3), backslash_dot_string) IsZero
-      Then
+      ) {
        cut_string(fn, left, 2);
        right = index_string(fn, left+1, backslash_string);
        ContinueLoop;
@@ -701,7 +701,7 @@ BeginCode
  rc = (bit_16) intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  set_DTA_address(old_DTA);
  if ( rc IsNotZero
-  Then
+  ) {
    copy_string(current_filename, null_string);
   Else
    far_to_lower((*DTA).filename, 12);

@@ -24,7 +24,7 @@ EndDeclarations
 BeginCode
  map_start_time = Now;
  if ( lst_file_list.first IsNull
-  Then  /*  No map file to be created. */
+  ) {  /*  No map file to be created. */
    return;
   };
  file_open_for_write(lst_file_list.first);
@@ -34,7 +34,7 @@ BeginCode
   BeginTraverse
    stop_address = Seg.address+Seg.length;
    if ( Seg.length Exceeds 0L
-    Then
+    ) {
      stop_address--;
     };
    print(" %05lXH %05lXH %05lXH %-22Fs %-22Fs\n",
@@ -46,9 +46,9 @@ BeginCode
   EndTraverse;
 
  if ( map.set IsTrue
-  Then
+  ) {
    if ( First(group_list) IsNotNull
-    Then
+    ) {
      print("\n");
      print(" Origin   Group\n");
      TraverseList(group_list, grp)
@@ -80,7 +80,7 @@ BeginCode
       EndTraverse;
     EndTraverse;
    if ( n_publics_to_sort Exceeds 0
-    Then
+    ) {
      sort_publics_by_name(0, n_publics_to_sort-1);
      print("\n");
      print("  Address         Publics by Name\n");
@@ -93,7 +93,7 @@ BeginCode
              Bit_16(public_target_address(pub) -
                     public_frame_address(pub)));
        if ( Pub.Internal.lseg IsNull
-        Then
+        ) {
          print("Abs  ");
         Else
          print("     ");
@@ -112,7 +112,7 @@ BeginCode
              Bit_16(public_target_address(pub) -
                     public_frame_address(pub)));
        if ( Pub.Internal.lseg IsNull
-        Then
+        ) {
          print("Abs  ");
         Else
          print("     ");
@@ -124,7 +124,7 @@ BeginCode
 
    print("\n");
    if ( start_address_found IsTrue
-    Then
+    ) {
      print("Program entry point at %04X:%04X\n",
             initial_CS,
             initial_IP);
@@ -132,7 +132,7 @@ BeginCode
   };
 
  if ( detail_level.val Exceeds 0
-  Then
+  ) {
    print("\n");
    print("Next Uninitialized Byte(%05lX), EXE header Relocation Items(%u)\n",
          highest_uninitialized_byte,
@@ -147,7 +147,7 @@ BeginCode
            (*Seg.segment_name).symbol,
            (*Seg.class_name).symbol);
      if ( Seg.owning_group IsNotNull
-      Then
+      ) {
        print(" Group(%Fs)",
              (*(*Seg.owning_group).group_name).symbol);
       };
@@ -158,7 +158,7 @@ BeginCode
            Seg.length,
            Seg.highest_uninitialized_byte);
      if ( detail_level.val Exceeds 1
-      Then
+      ) {
        TraverseList(Seg.lsegs, lseg)
         BeginTraverse
          LoopIf(Lseg.length IsZero);
@@ -174,20 +174,20 @@ BeginCode
          if ( (detail_level.val Exceeds 2)             AndIf 
             (Lseg.align IsNot absolute_segment)      AndIf
             (Seg.combine IsNot blank_common_combine)
-          Then
+          ) {
            map_memory(Lseg.data, Lseg.address, Lseg.length);
           };
         EndTraverse;
       EndTraverse;
     };
    if ( (detail_level.val Exceeds 3) AndIf (exefile IsTrue)
-    Then
+    ) {
      print("\n");
      print("EXE file header:\n");
      map_memory(BytePtr(exe_header), 0L, exe_header_size);
     };
    if ( detail_level.val Exceeds 4
-    Then
+    ) {
      last_location_lseg = Null;
      print("\n");
      print("Fixups:\n");
@@ -196,7 +196,7 @@ BeginCode
      While temp_file_header.rec_typ IsNotZero
       BeginWhile
        if ( temp_file_header.rec_typ IsNot FIXUPP_record
-        Then
+        ) {
          file_position(Bit_32(infile.byte_position) +
                        infile.start_of_buffer_position +
                        Bit_32(temp_file_header.rec_len));
@@ -206,7 +206,7 @@ BeginCode
          file_read(BytePtr(Addr(fixup)), temp_file_header.rec_len);
         };
        if ( last_location_lseg IsNot temp_file_header.lseg
-        Then
+        ) {
          lseg = temp_file_header.lseg;
          seg  = Lseg.segment;
          print("\n");
@@ -312,19 +312,19 @@ BeginCode
    For i=0; i<16; i++
     BeginFor
      if ( i Is 8
-      Then
+      ) {
        print(" :");
        strcat(ascii, " : ");
       };
      if ( (line_address LessThan address) OrIf (length IsZero)
-      Then
+      ) {
        print(" ..");
        ascii[strlen(ascii)] = ' ';
        line_address++;
       Else
        print(" %02X", *data);
        if ( isprint(*data)
-        Then
+        ) {
          ascii[strlen(ascii)] = (char) *data;
         Else
          ascii[strlen(ascii)] = '.';
@@ -353,7 +353,7 @@ public_entry_ptr                       temp;
 EndDeclarations
 BeginCode
  if ( left NotLessThan right
-  Then
+  ) {
    return;
   };
  i = left;
@@ -365,7 +365,7 @@ BeginCode
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
                     (*public_sort_array[i]).length+1) Exceeds 0
-      Then
+      ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
@@ -378,7 +378,7 @@ BeginCode
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
                     (*public_sort_array[i]).length+1) Exceeds 0
-      Then
+      ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
@@ -388,7 +388,7 @@ BeginCode
     EndWhile;
   EndWhile;
   if ( i Exceeds 0
-   Then
+   ) {
     sort_publics_by_name(left, i-1);
    };
  sort_publics_by_name(i+1,  right);
@@ -408,7 +408,7 @@ public_entry_ptr                       temp;
 EndDeclarations
 BeginCode
  if ( left NotLessThan right
-  Then
+  ) {
    return;
   };
  i = left;
@@ -421,7 +421,7 @@ BeginCode
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
         (public_target_address(public_sort_array[i]) Exceeds
          public_target_address(public_sort_array[j]))
-      Then
+      ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
@@ -435,7 +435,7 @@ BeginCode
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
         (public_target_address(public_sort_array[i]) Exceeds
          public_target_address(public_sort_array[j]))
-      Then
+      ) {
        temp                 = public_sort_array[i];
        public_sort_array[i] = public_sort_array[j];
        public_sort_array[j] = temp;
@@ -445,7 +445,7 @@ BeginCode
     EndWhile;
   EndWhile;
   if ( i Exceeds 0
-   Then
+   ) {
     sort_publics_by_value(left, i-1);
    };
  sort_publics_by_value(i+1,  right);
