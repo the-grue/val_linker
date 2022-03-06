@@ -62,7 +62,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  switch ( type_insert
-  BeginCase
+  ) {
 /*+-------------------------------------------------------------------------+
   |                                                                         |
   |  Handle:   Insert ptr After aftr InList lst EndInsert;                  |

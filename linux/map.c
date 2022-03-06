@@ -223,7 +223,7 @@ BeginCode
              mode_text[fixup.mode]);
        print("\t\tFrame(");
        switch ( fixup.frame_method
-        BeginCase
+        ) {
          When 0:
           lseg = (lseg_ptr) fixup.frame_referent;
           seg  = Lseg.segment;
@@ -252,7 +252,7 @@ BeginCode
         EndCase;
        print(") Target(");
        switch ( fixup.target_method
-        BeginCase
+        ) {
          When 0:
           lseg = (lseg_ptr) fixup.target_referent;
           seg  = Lseg.segment;

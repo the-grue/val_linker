@@ -8,8 +8,8 @@
 
 /* Block basic C commands */
 
-/*#define Using                switch (*/
-#define BeginCase            ) {
+/*#define Using                switch (
+#define BeginCase            ) {*/
 #define When                 case
 #define Otherwise            default
 #define EndCase              }

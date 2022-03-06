@@ -63,7 +63,7 @@ BeginCode
                      temp_file_header.offset);
     };
    switch ( fixup.location_type
-    BeginCase
+    ) {
      When lobyte_location:
       location_address = (*temp_file_header.lseg).address +
                          Bit_32(temp_file_header.offset) +
@@ -106,7 +106,7 @@ BeginCode
      n_relocation_items++;
     };
    switch ( fixup.location_type
-    BeginCase
+    ) {
      When lobyte_location:
       *byte_location += Bit_8(foval);
       break;
@@ -159,7 +159,7 @@ BeginCode
  end_of_record.b8 = Addr(obj_ptr.b8[len]);
  size             = *obj_ptr.b8++;
  switch ( size
-  BeginCase
+  ) {
    When 0:
     While obj_ptr.b8 IsNot end_of_record.b8
      BeginWhile
@@ -297,7 +297,7 @@ segment_entry_ptr                      seg;
 EndDeclarations
 BeginCode
  switch ( fixup.frame_method
-  BeginCase
+  ) {
    When 0:  /* Frame is segment relative */
     lseg           = (lseg_ptr) fixup.frame_referent;
     frame_absolute = Lseg.align Is absolute_segment;
@@ -327,7 +327,7 @@ BeginCode
     break;
    When 5:  /* Frame is defined by target */
     switch ( fixup.target_method
-     BeginCase
+     ) {
       When 0:  /* Target is segment relative */
        lseg           = (lseg_ptr) fixup.target_referent;
        seg            = Lseg.segment;
@@ -399,7 +399,7 @@ BeginCode
  While temp_file_header.rec_typ IsNotZero
   BeginWhile
    switch ( temp_file_header.rec_typ
-    BeginCase
+    ) {
      When FIXUPP_record:
       fixup_FIXUPP_record();
       break;
@@ -548,7 +548,7 @@ bit_32                                 target_address;
 EndDeclarations
 BeginCode
  switch ( fixup.target_method
-  BeginCase
+  ) {
    When 0:  /* Target is segment relative */
     lseg = (lseg_ptr) fixup.target_referent;
     target_address = Lseg.address + Bit_32(fixup.target_offset);

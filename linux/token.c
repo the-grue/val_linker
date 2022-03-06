@@ -363,7 +363,7 @@ BeginCode
  token_is_hex_number =
  token_is_number     = False;
  switch ( token_break_char
-  BeginCase
+  ) {
    When '\n':
     prompt_next_stdin = True;
     concat_char_to_string(next_token, token_break_char);

@@ -73,7 +73,7 @@ BeginCode
    externals[++n_externals] = pub;
    element_type  = *obj_ptr.b8++;
    switch ( element_type
-    BeginCase
+    ) {
      When 0x61:
       expected_type = far_communal;
       element_count = obj_leaf_descriptor();
@@ -102,7 +102,7 @@ BeginCode
      Pub.Communal.element_size  = element_size;
      Pub.Communal.element_count = element_count;
      switch ( element_type
-     BeginCase
+     ) {
       When 0x61:
        Pub.Communal.next_communal = far_communals;
        far_communals              = pub;
@@ -161,7 +161,7 @@ BeginCode
  obj_ptr.b8++;
  comment_class = *obj_ptr.b8++;
  switch ( comment_class
-  BeginCase
+  ) {
    When 158:
     DOSSEG.val = True;
     break;
@@ -436,7 +436,7 @@ BeginCode
    frame_method         = FIX_DAT.frame;
    fixup.frame_method   = frame_method;
    switch ( frame_method
-    BeginCase
+    ) {
      When 0:
       fixup.frame_referent = (void far *) snames[obj_index_segment()];
       break;
@@ -483,7 +483,7 @@ BeginCode
    target_method       = FIX_DAT.targt;
    fixup.target_method = target_method;
    switch ( target_method
-    BeginCase
+    ) {
      When 0:  /* Target is the segment referenced by the index */
       fixup.target_referent = (void far *) snames[obj_index_segment()];
       break;
@@ -686,7 +686,7 @@ BeginCode
    target_thread[thread].method = Bit_8(method);
    target_thread[thread].thread_defined = True;
    switch ( method
-    BeginCase
+    ) {
      When 0:
       target_thread[thread].referent =
        (void far *) snames[obj_index_segment()];
@@ -710,7 +710,7 @@ BeginCode
    frame_thread[thread].method = Bit_8(method);
    frame_thread[thread].thread_defined = True;
    switch ( method
-    BeginCase
+    ) {
      When 0:
       frame_thread[thread].referent =
        (void far *) snames[obj_index_segment()];
@@ -1458,7 +1458,7 @@ BeginCode
    frame_method                 = END_DAT.frame;
    start_address.frame_method   = frame_method;
    switch ( frame_method
-    BeginCase
+    ) {
      When 0:
       start_address.frame_referent =
        (void far *) snames[obj_index_segment()];
@@ -1508,7 +1508,7 @@ BeginCode
    target_method               = END_DAT.targt;
    start_address.target_method = target_method;
    switch ( target_method
-    BeginCase
+    ) {
      When 0:
       start_address.target_referent =
        (void far *) snames[obj_index_segment()];
