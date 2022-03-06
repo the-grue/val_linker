@@ -10,7 +10,7 @@ typedef
  struct boolean_switch_struct             boolean_switch_type;
 typedef boolean_switch_type                    *boolean_switch_ptr;
 typedef
- Enumeration combine_enum                    combine_type;
+ enum combine_enum                    combine_type;
 typedef
  struct communal_entry_struct             communal_entry_type;
 typedef
@@ -56,7 +56,7 @@ typedef
 typedef lname_entry_type far                   *lname_entry_ptr;
 typedef lname_entry_ptr far                    *lname_entry_ptr_array;
 typedef
- Enumeration loc_enum                        loc_type;
+ enum loc_enum                        loc_type;
 typedef
  struct LOCAT_struct                      LOCAT_type;
 typedef LOCAT_type                             *LOCAT_ptr;
@@ -76,9 +76,9 @@ typedef
  struct obj_record_header_struct          obj_record_header_type;
 typedef obj_record_header_type                 *obj_record_header_ptr;
 typedef
- Enumeration obj_mod_rec_type_enum           object_module_record_types;
+ enum obj_mod_rec_type_enum           object_module_record_types;
 typedef
- Enumeration public_entry_class_enum         public_entry_class_type;
+ enum public_entry_class_enum         public_entry_class_type;
 typedef
  struct public_entry_struct               public_entry_type;
 typedef public_entry_type far                  *public_entry_ptr;
@@ -104,7 +104,7 @@ typedef
  struct TRD_DAT_struct                    TRD_DAT_type;
 typedef TRD_DAT_type                           *TRD_DAT_ptr;
 typedef
- Enumeration token_class_enum                token_class_type;
+ enum token_class_enum                token_class_type;
 typedef
  struct token_stack_struct                token_stack_type;
 typedef token_stack_type far                   *token_stack_ptr;
@@ -117,7 +117,7 @@ struct acbp_struct
   unsigned                             a:3;
  };
 
-Enumeration align_enum
+enum align_enum
  {
   absolute_segment,
   byte_aligned,
@@ -141,7 +141,7 @@ struct boolean_switch_struct
   bit_16                               val;
  };
 
-Enumeration combine_enum
+enum combine_enum
  {
   private_combine                      = 0,
   public_combine                       = 2,
@@ -216,7 +216,7 @@ union entry_information_union
   communal_entry_type                  communal_type;
  };
 
-Enumeration public_entry_class_enum
+enum public_entry_class_enum
  {
   unused,
   public_in_library,
@@ -344,7 +344,7 @@ struct LOCAT_struct
   unsigned                             type_fixupp_record:1;
  };
 
-Enumeration loc_enum
+enum loc_enum
  {
   lobyte_location,
   offset_location,
@@ -396,7 +396,7 @@ union obj_ptr_union
   TRD_DAT_ptr                          TRD_DAT;
  };
 
-Enumeration obj_mod_rec_type_enum
+enum obj_mod_rec_type_enum
  {
   THEADR_record                        = 0x80,
   COMENT_record                        = 0x88,
@@ -477,7 +477,7 @@ struct thread_struct
   bit_8                                thread_defined;
  };
 
-Enumeration token_class_enum
+enum token_class_enum
  {
   continuation_token_type,
   end_of_command_line_token_type,

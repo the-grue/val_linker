@@ -8,8 +8,8 @@
 
 /* Block basic C commands */
 
-#define Enumeration         enum
-/*#define BeginEnumeration    {
+/*#define Enumeration         enum
+#define BeginEnumeration    {
 #define EndEnumeration      }*/
 
 /* Extended C commands */
