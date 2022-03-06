@@ -8,12 +8,8 @@
 
 /* Block basic C commands */
 
-/*#define Structure           struct
-#define BeginStructure      {
-#define EndStructure        }*/
-
 #define Union               union
-#define BeginUnion          {
+/*#define BeginUnion          {*/
 #define EndUnion            }
 
 #define Enumeration         enum

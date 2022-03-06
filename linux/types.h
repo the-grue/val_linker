@@ -209,7 +209,7 @@ struct communal_entry_struct
  };
 
 Union entry_information_union
- BeginUnion
+ {
   library_entry_type                   library_type;
   external_entry_type                  external_type;
   internal_entry_type                  internal_type;
@@ -385,7 +385,7 @@ struct MOD_TYP_struct
  };
 
 Union obj_ptr_union
- BeginUnion
+ {
   bit_8                               *b8;
   bit_16                              *b16;
   bit_32                              *b32;
