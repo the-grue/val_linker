@@ -45,7 +45,7 @@ bit_16                                 error_number;
 
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  if ( (outregs.x.cflag) &&
-    (Not ((inregs.h.al  Is 0x41) && (outregs.x.ax Is 2)))
+    (! ((inregs.h.al  Is 0x41) && (outregs.x.ax Is 2)))
   ) {
    error_number = outregs.x.ax;
    if ( error_number > 58

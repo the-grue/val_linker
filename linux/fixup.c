@@ -439,7 +439,7 @@ segment_entry_ptr                      seg;
  if ( Pub.type_entry != internal
   ) {
    seg = (*temp_file_header.lseg).segment;
-   if ( Not fixup.external_error_detected
+   if ( ! fixup.external_error_detected
     ) {
      linker_error(4, "\tModule \"%Fs\" in file \"%Fs\"\n"
                      "\treferences unresolved external \"%Fs\"\n"
@@ -491,7 +491,7 @@ segment_entry_ptr                      seg;
  if ( Pub.type_entry != internal
   ) {
    seg = (*temp_file_header.lseg).segment;
-   if ( Not fixup.external_error_detected
+   if ( ! fixup.external_error_detected
     ) {
      linker_error(4, "\tModule \"%Fs\" in file \"%Fs\"\n"
                      "\treferences unresolved external \"%Fs\"\n"

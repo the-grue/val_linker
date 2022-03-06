@@ -55,7 +55,7 @@ bit_16                                 rc;
                        == 0;
      if (already_in_list) break;
     EndTraverse;
-   if ( Not already_in_list
+   if ( ! already_in_list
     ) {
      file_entry = (file_info_ptr)
                    allocate_memory(Addr(static_pool),

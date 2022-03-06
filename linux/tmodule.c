@@ -203,7 +203,7 @@ bit_16 obj_content_def()
 {
 
 
- if ( Not obj_data_record()
+ if ( ! obj_data_record()
   ) {
    return(False);
   };
@@ -329,7 +329,7 @@ public_entry_ptr                       pub;
      Pub.type_entry = external;
     } else {
      if ( (Pub.type_entry Is public_in_library) &&
-        (Not Pub.Library.requested)
+        (! Pub.Library.requested)
       ) {
        library_request_count++;
        (*Pub.Library.lib_file).request_count++;
@@ -455,7 +455,7 @@ bit_16                                 thread_number;
     };
   } else {  /* Frame is specified by a thread */
    thread_number        = FIX_DAT.frame;
-   if ( Not frame_thread[thread_number].thread_defined
+   if ( ! frame_thread[thread_number].thread_defined
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -501,7 +501,7 @@ bit_16                                 thread_number;
     };
   } else {  /* Target is specified by a thread */
    thread_number         = FIX_DAT.targt;
-   if ( Not target_thread[thread_number].thread_defined
+   if ( ! target_thread[thread_number].thread_defined
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -827,7 +827,7 @@ segment_entry_ptr                      seg;
   };
  if ( Seg.combine Is stack_combine
   ) {
-   if ( Not stack_segment_found
+   if ( ! stack_segment_found
     ) {
      largest_stack_seg        = seg;
      largest_stack_seg_length = Seg.length;
@@ -1480,7 +1480,7 @@ bit_16                                 thread_number;
     };
   } else {  /* Frame is specified by a thread */
    thread_number                = END_DAT.frame;
-   if ( Not frame_thread[thread_number].thread_defined
+   if ( ! frame_thread[thread_number].thread_defined
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -1528,7 +1528,7 @@ bit_16                                 thread_number;
     };
   } else {  /* Target is specified by a thread */
    thread_number                 = END_DAT.targt;
-   if ( Not target_thread[thread_number].thread_defined
+   if ( ! target_thread[thread_number].thread_defined
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -2081,7 +2081,7 @@ bit_16 obj_tmodule()
  tmodule_number++;
  tmodule_name = lookup_lname(31, (byte *) "(THEADR record not encountered)");
  obj_next_record();
- if ( Not obj_THEADR()
+ if ( ! obj_THEADR()
   ) {
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -2092,7 +2092,7 @@ bit_16 obj_tmodule()
                     (*infile.file_info).filename,
                     current_record_offset);
   };
- if ( Not obj_seg_grp()
+ if ( ! obj_seg_grp()
   ) {
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -2106,7 +2106,7 @@ bit_16 obj_tmodule()
  while ( obj_component()
   ) {
   };
- if ( Not obj_modtail()
+ if ( ! obj_modtail()
   ) {
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"

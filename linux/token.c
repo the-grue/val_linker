@@ -290,7 +290,7 @@ void scan_bit_16_switch(switch_table_ptr current_switch)
   };
  scan_out_token();
  copy_string(token, next_token);
-  if ( (Not token_is_number)                                ||
+  if ( (! token_is_number)                                ||
      (token_numeric_value <    Affected_thing.min) ||
      (token_numeric_value > Affected_thing.max)
    ) {
@@ -330,7 +330,7 @@ void scan_opt_bit_16(switch_table_ptr current_switch)
   };
  scan_out_token();
  copy_string(token, next_token);
-  if ( (Not token_is_number)                                ||
+  if ( (! token_is_number)                                ||
      (token_numeric_value <    Affected_thing.min) ||
      (token_numeric_value > Affected_thing.max)
    ) {
