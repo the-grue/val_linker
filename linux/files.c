@@ -53,7 +53,7 @@ BeginCode
      already_in_list = far_compare(matched_file,
                                    BytePtr(File_entry.filename),compare_len)
                        IsZero;
-     ExitIf(already_in_list);
+     if (already_in_list) break;
     EndTraverse;
    if ( Not already_in_list
     ) {

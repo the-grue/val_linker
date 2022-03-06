@@ -187,7 +187,7 @@ BeginCode
  start_of_expression++;
  while ( *start_of_expression IsNot '\000'
   ) {
-   ExitIf(segment_list.first IsNull);
+   if (segment_list.first IsNull) break;
    First(segments_unordered_list) =
    Last(segments_unordered_list)  = Null;
    while ( segment_list.first IsNotNull
