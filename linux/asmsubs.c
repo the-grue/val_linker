@@ -384,7 +384,7 @@ Structure word_struct
  {
   bit_8                                low_byte;
   bit_8                                high_byte;
- EndStructure;
+ };
 bit_16                                 sum;
 Structure word_struct                  word;
 bit_16                                *word_ptr;

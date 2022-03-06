@@ -9,8 +9,8 @@
 /* Block basic C commands */
 
 #define Structure           struct
-/*#define BeginStructure      {*/
-#define EndStructure        }
+/*#define BeginStructure      {
+#define EndStructure        }*/
 
 #define Union               union
 #define BeginUnion          {
@@ -29,13 +29,13 @@ Structure exp##_list_struct \
  { \
   exp##_ptr                            first; \
   exp##_ptr                            last; \
- EndStructure; \
+ }; \
 typedef Structure exp##_list_struct       exp##_list
 
 Structure Generic_Element_struct
  {
   Structure Generic_Element_struct far   *next;
- EndStructure;
+ };
 
 typedef Structure Generic_Element_struct  Generic_Element_type;
 typedef Generic_Element_type far         *Generic_Element_ptr;
@@ -138,7 +138,7 @@ Structure string_struct
   bit_16                     max_length;
   bit_16                     length;
   byte                       text[1];
- EndStructure;
+ };
 
 typedef Structure string_struct string_type;
 typedef string_type far        *string_ptr;

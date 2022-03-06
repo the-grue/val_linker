@@ -115,7 +115,7 @@ Structure acbp_struct
   unsigned                             b:1;
   unsigned                             c:3;
   unsigned                             a:3;
- EndStructure;
+ };
 
 Enumeration align_enum
  BeginEnumeration
@@ -134,12 +134,12 @@ Structure bit_16_switch_struct
   bit_16                               max;
   bit_16                               def;
   bit_16                               set;
- EndStructure;
+ };
 
 Structure boolean_switch_struct
  {
   bit_16                               val;
- EndStructure;
+ };
 
 Enumeration combine_enum
  BeginEnumeration
@@ -159,7 +159,7 @@ Structure DTA_struct
   bit_32                               file_size;
   byte                                 filename[13];
   byte                                 filler[85];
- EndStructure;
+ };
 
 Structure EXE_header_struct
  {
@@ -179,12 +179,12 @@ Structure EXE_header_struct
   bit_16                               overlay;
   bit_16                               always_one;
   bit_32                               relocation_table[1];
- EndStructure;
+ };
 
 Structure external_entry_struct
  {
   bit_16                               reserved;
- EndStructure;
+ };
 
 Structure internal_entry_struct
  {
@@ -192,21 +192,21 @@ Structure internal_entry_struct
   lseg_ptr                             lseg;
   bit_16                               frame;
   bit_16                               offset;
- EndStructure;
+ };
 
 Structure library_entry_struct
  {
   file_info_ptr                        lib_file;
   bit_16                               page;
   bit_8                                requested;
- EndStructure;
+ };
 
 Structure communal_entry_struct
  {
   public_entry_ptr                     next_communal;
   bit_32                               element_size;
   bit_32                               element_count;
- EndStructure;
+ };
 
 Union entry_information_union
  BeginUnion
@@ -235,7 +235,7 @@ Structure public_entry_struct
   bit_16                               module;
   bit_16                               length;
   byte                                 symbol[1];
- EndStructure;
+ };
 #define Library                        entry.library_type
 #define External                       entry.external_type
 #define Internal                       entry.internal_type
@@ -256,7 +256,7 @@ Structure file_info_struct
   bit_16                               module_count;
   public_entry_list                    external_list;
   byte                                 filename[1];
- EndStructure;
+ };
 
 ListTypeOf(file_info);
 
@@ -273,7 +273,7 @@ Structure file_struct
   bit_16                               bytes_in_buffer;
   bit_16                               bytes_left_in_buffer;
   bit_16                               byte_position;
- EndStructure;
+ };
 
 Structure FIX_DAT_struct
  {
@@ -282,7 +282,7 @@ Structure FIX_DAT_struct
   unsigned                             t:1;
   unsigned                             frame:3;
   unsigned                             f:1;
- EndStructure;
+ };
 
 Structure fixup_struct
  {
@@ -295,7 +295,7 @@ Structure fixup_struct
   unsigned                             target_method:2;
   unsigned                             external_error_detected:1;
   unsigned                             reserved:6;
- EndStructure;
+ };
 
 Structure group_entry_struct
  {
@@ -303,7 +303,7 @@ Structure group_entry_struct
   group_entry_ptr                      next_congruent;
   lname_entry_ptr                      group_name;
   segment_entry_ptr                    first_segment;
- EndStructure;
+ };
 
 ListTypeOf(group_entry);
 
@@ -311,7 +311,7 @@ Structure library_directory_struct
  {
   bit_8                                offset_to_symbol[38];
   byte                                 symbol_area[474];
- EndStructure;
+ };
 
 Structure library_file_header_struct
  {
@@ -319,13 +319,13 @@ Structure library_file_header_struct
   bit_16                               page_size;
   bit_32                               directory_position;
   bit_16                               n_directory_blocks;
- EndStructure;
+ };
 
  Structure library_symbol_entry_struct
   {
    bit_8                               length_of_symbol;
    byte                                symbol[1];
-  EndStructure;
+  };
 
 Structure lname_entry_struct
  {
@@ -333,7 +333,7 @@ Structure lname_entry_struct
   bit_16                               lname_checksum;
   bit_16                               length;
   byte                                 symbol[1];
- EndStructure;
+ };
 
 Structure LOCAT_struct
  {
@@ -342,7 +342,7 @@ Structure LOCAT_struct
   unsigned                             s:1;
   unsigned                             m:1;
   unsigned                             type_fixupp_record:1;
- EndStructure;
+ };
 
 Enumeration loc_enum
  BeginEnumeration
@@ -364,7 +364,7 @@ Structure lseg_struct
   bit_32                               highest_uninitialized_byte;
   bit_8                                align;
   byte_ptr                             data;
- EndStructure;
+ };
 
 ListTypeOf(lseg);
 
@@ -375,14 +375,14 @@ Structure memory_descriptor_struct
   bit_32                               available;
   bit_32                               size;
   byte_ptr                             unused_base;
- EndStructure;
+ };
 
 Structure MOD_TYP_struct
  {
   unsigned                             l:1;
   unsigned                             zeros:5;
   unsigned                             mattr:2;
- EndStructure;
+ };
 
 Union obj_ptr_union
  BeginUnion
@@ -422,7 +422,7 @@ Structure obj_record_header_struct
   bit_8                                rec_typ;
   bit_16                               rec_len;
   byte                                 variant_part[1];
- EndStructure;
+ };
 
 Structure pool_descriptor_struct
  {
@@ -430,7 +430,7 @@ Structure pool_descriptor_struct
   char_ptr                             pool_id;
   bit_32                               pool_size;
   bit_32                               used_bytes;
- EndStructure;
+ };
 
 Structure segment_entry_struct
  {
@@ -444,7 +444,7 @@ Structure segment_entry_struct
   bit_32                               highest_uninitialized_byte;
   lseg_list                            lsegs;
   group_entry_ptr                      owning_group;
- EndStructure;
+ };
 
 ListTypeOf(segment_entry);
 
@@ -455,7 +455,7 @@ Structure switch_table_struct
   char                                *full_name;
   void                                *affected_thing;
   void                  (*switch_processor)(switch_table_ptr current_switch);
- EndStructure;
+ };
 
 Structure temp_file_header_struct
  {
@@ -463,19 +463,19 @@ Structure temp_file_header_struct
   bit_16                               rec_len;
   lseg_ptr                             lseg;
   bit_16                               offset;
- EndStructure;
+ };
 
 Structure text_switch_struct
  {
   string_ptr                           val;
- EndStructure;
+ };
 
 Structure thread_struct
  {
   bit_8                                method;
   void far                            *referent;
   bit_8                                thread_defined;
- EndStructure;
+ };
 
 Enumeration token_class_enum
  BeginEnumeration
@@ -499,7 +499,7 @@ Structure token_stack_struct
   byte                                 break_char;
   string_ptr                           token_string;
   bit_16                               token_string_index;
- EndStructure;
+ };
 
 ListTypeOf(token_stack);
 
@@ -510,4 +510,4 @@ Structure TRD_DAT_struct
   unsigned                             z:1;
   unsigned                             d:1;
   unsigned                             type_fixupp_record:1;
- EndStructure;
+ };
