@@ -208,7 +208,7 @@ BeginCode
      more_tokens = False;
      return;
     };
-  EndLoop;
+  };
  return;
 EndCode
 #undef List
@@ -669,7 +669,7 @@ BeginCode
        break;
       };
     };
-  EndLoop;
+  };
  if ( token_break_char Is '\r'
   ) {
    token_break_char = '\n';

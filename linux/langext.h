@@ -10,8 +10,8 @@
 
 #define Loop                 while(1)
 #define BeginLoop            {
-#define EndLoop              }
-/*#define ExitLoop             break
+/*#define EndLoop              }
+#define ExitLoop             break
 #define ContinueLoop         continue*/
 #define ExitIf(cond)         if (cond) break
 #define LoopIf(cond)         if (cond) continue
