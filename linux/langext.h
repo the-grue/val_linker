@@ -9,10 +9,10 @@
 /* Block basic C commands */
 
 #define Repeat               do
-/*#define BeginRepeat          {*/
+/*#define BeginRepeat          {
 #define RepeatIf             } while ((
 #define Until                } while (!(
-/*#define EndRepeat            ))*/
+#define EndRepeat            ))*/
 
 #define For                  for (
 #define BeginFor             ) {

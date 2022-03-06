@@ -1797,7 +1797,7 @@ BeginCode
    end_of_record.b8 =
     (byte *)
      Addr(Current_record_header.variant_part[Current_record_header.rec_len-1]);
-   RepeatIf obj_COMENT()
+   } while (( obj_COMENT()
   ));
  return;
 EndCode

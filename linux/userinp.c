@@ -194,7 +194,7 @@ BeginCode
          add_files_to_list(list, token);
        };
     };
-   RepeatIf more_tokens
+   } while (( more_tokens
   ));
  return;
 EndCode
@@ -231,7 +231,7 @@ BeginCode
        Insert file_entry AtEnd InList List EndInsert;
       };
     };
-   RepeatIf more_tokens
+   } while (( more_tokens
   ));
  return;
 EndCode
