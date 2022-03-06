@@ -482,7 +482,7 @@ BeginCode
   ) {
    length = 0L;
    For pub=near_communals; pub IsNotNull; pub=Pub.Communal.next_communal
-    BeginFor
+    ) {
      if (Pub.type_entry IsNot near_communal) continue;
      length += Pub.Communal.element_size;
     EndFor;
@@ -504,7 +504,7 @@ BeginCode
    (*Lseg.segment).owning_group = group;
    offset = 0;
    For pub=near_communals; pub IsNotNull; pub=next_communal
-    BeginFor
+    ) {
      next_communal        = Pub.Communal.next_communal;
      if (Pub.type_entry IsNot near_communal) continue;
      size                 = Bit_16(Pub.Communal.element_size);
@@ -528,7 +528,7 @@ BeginCode
  lseg   = Null;
  offset = 0;
  For pub=far_communals; pub IsNotNull; pub=next_communal
-  BeginFor
+  ) {
    next_communal = Pub.Communal.next_communal;
    if (Pub.type_entry IsNot far_communal) continue; 
    length = Pub.Communal.element_size * Pub.Communal.element_count;
@@ -570,7 +570,7 @@ BeginCode
   +-------------------------------------------------------------------------+*/
 
  For pub=huge_communals; pub IsNotNull; pub=next_communal
-  BeginFor
+  ) {
    next_communal = Pub.Communal.next_communal;
    length = Pub.Communal.element_size * Pub.Communal.element_count;
    lseg = obj_generate_segment(HUGE_BSS_lname,

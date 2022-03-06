@@ -628,17 +628,17 @@ BeginCode
  if ( block_count IsNotZero
   ) {  /* Handle recursive case:  Content is iterated data block */
    For i=0; i<repeat_count; i++
-    BeginFor
+    ) {
      obj_ptr.b8 = content;
      LIDATA_index = old_index;
      For j=0; j<block_count; j++
-      BeginFor
+      ) {
        obj_fixup_LIDATA_IDB();
       EndFor;
     EndFor;
   } else {  /* Handle non-recursive case:  Content is data. */
    For i=0; i<repeat_count; i++
-    BeginFor
+    ) {
      obj_ptr.b8   = content;
      LIDATA_index = old_index;
      len          = Bit_16(*obj_ptr.b8++);  LIDATA_index += sizeof(bit_8);
@@ -1075,17 +1075,17 @@ BeginCode
   ) {  /* Handle recursive case:  Content is iterated data block */
    content = obj_ptr.b8;
    For i=0; i<repeat_count; i++
-    BeginFor
+    ) {
      obj_ptr.b8 = content;
      For j=0; j<block_count; j++
-      BeginFor
+      ) {
        obj_iterated_data_block();
       EndFor;
     EndFor;
   } else {  /* Handle non-recursive case:  Content is data. */
    len = Bit_16(*obj_ptr.b8++);
    For i=0; i<repeat_count; i++
-    BeginFor
+    ) {
      far_move(Addr(last_LxDATA_Lseg.data[LIDATA_offset]), 
               obj_ptr.b8, len);
      LIDATA_offset += len;
@@ -1127,7 +1127,7 @@ BeginCode
  if ( block_count IsNotZero
   ) {  /* Handle recursive case:  Content is iterated data block */
    For i=0; i<block_count; i++
-    BeginFor
+    ) {
      length     += Bit_32(repeat_count) * obj_iterated_data_block_length();
     EndFor;
   } else {  /* Handle non-recursive case:  Content is data. */

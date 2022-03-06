@@ -229,7 +229,7 @@ BeginCode
  iteration_count = len - pattern_length + 1;
  left  = Addr(String(s)[from]);
  For i=from; i LessThan iteration_count; i++
-  BeginFor
+  ) {
    if ( far_compare(left++, pat, pattern_length) IsZero
     ) {
      return(i);
@@ -296,7 +296,7 @@ BeginCode
      n_searches = Length(s) - Length(pattern) + 1;
      source = String(s);
      For i=0; i<n_searches; i++
-      BeginFor
+      ) {
        if ( far_match(String(pattern), source++, Length(pattern))
         ) {
          return(True);
@@ -400,7 +400,7 @@ BeginCode
  iteration_count = from + 1;
  right = Addr(String(s)[from]);
  For i=0; i LessThan iteration_count; i++, from--
-  BeginFor
+  ) {
    if ( far_compare(right--, pat, pattern_length) IsZero
     ) {
      return(from);

@@ -8,14 +8,8 @@
 
 /* Block basic C commands */
 
-/*#define Repeat               do
-#define BeginRepeat          {
-#define RepeatIf             } while ((
-#define Until                } while (!(
-#define EndRepeat            ))*/
-
 #define For                  for (
-#define BeginFor             ) {
+/*#define BeginFor             ) {*/
 #define EndFor               }
 
 #define BeginDeclarations    {

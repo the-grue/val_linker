@@ -65,7 +65,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
  For i=1; i<argc; i++
-  BeginFor
+  ) {
    if ( i Exceeds 1
     ) {
      concat_string(parm_string, space_string);

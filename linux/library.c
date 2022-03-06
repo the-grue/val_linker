@@ -145,11 +145,11 @@ BeginCode
  For current_block=0;
      current_block LessThan  n_directory_blocks;
      current_block++
-  BeginFor
+  ) {
    file_read(object_file_element, 512);
    directory_page = (library_directory_ptr) object_file_element;
    For entry_number=0; entry_number LessThan 37; entry_number++
-    BeginFor
+    ) {
      symbol_index =
       Directory_page.offset_to_symbol[entry_number] ShiftedLeft 1;
      if (symbol_index IsZero) continue;
@@ -202,7 +202,7 @@ BeginCode
    sort_directory(0, symbol_count-1);
    public_array = public_sort_array;
    For entry_number=0; entry_number LessThan symbol_count; entry_number++
-    BeginFor
+    ) {
      Insert *public_array++ AtEnd InList Lib_file.external_list EndInsert;
     EndFor;
   };

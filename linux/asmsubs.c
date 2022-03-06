@@ -24,7 +24,7 @@ EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  For i=0; i LessThan len; i++
-  BeginFor
+  ) {
    sum += sym[i];
   EndFor;
  return(sum); */
@@ -96,7 +96,7 @@ EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  For i=0; (*dest++ IsNotEqualTo c) AndIf (i IsNotEqualTo 0xFFFF); i++
-  BeginFor
+  ) {
   EndFor;
  return(i); */
 
@@ -391,7 +391,7 @@ bit_16                                *word_ptr;
 EndDeclarations
  word = (bit_16 *) Addr(word);
  For i=0; i LessThan len; i++
-  BeginFor
+  ) {
    *word_ptr = 0;
    if ( (address-- And 1)
     ) {
