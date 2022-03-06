@@ -8,7 +8,7 @@
 void process_object_modules()
 {
 file_info_ptr                          obj_file;
-EndDeclarations
+
 BeginCode
  object_module_start_time = Now;
  file_open_for_write(temp_file);

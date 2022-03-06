@@ -20,7 +20,7 @@
   +-------------------------------------------------------------------------+*/
 bit_16 checksum(bit_16 len, byte *sym)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  for ( i=0; i LessThan len; i++
@@ -48,7 +48,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 int_16 far_compare (byte_ptr left, byte_ptr right, bit_16 len)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  while ( len-- IsNotZero
@@ -92,7 +92,7 @@ EndCode
 bit_16 far_index(byte_ptr dest, byte c)
 {
 bit_16                                 i;
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  for ( i=0; (*dest++ IsNotEqualTo c) AndIf (i IsNotEqualTo 0xFFFF); i++
@@ -123,7 +123,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 far_match (byte_ptr pattern, byte_ptr s, bit_16 len)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  while ( len Exceeds 0
@@ -172,7 +172,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 byte_ptr far_move (byte_ptr dest, byte_ptr source, bit_16 len)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  while ( len-- IsNotZero
@@ -198,7 +198,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 byte_ptr far_move_left (byte_ptr dest, byte_ptr source, bit_16 len)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  dest   += len - 1;
@@ -230,7 +230,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 byte_ptr far_set (byte_ptr dest, byte source, bit_16 len)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  while ( len-- IsNotZero
@@ -256,7 +256,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 byte_ptr far_to_lower (byte_ptr dest, bit_16 len)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  while ( len-- IsNotZero
@@ -293,7 +293,7 @@ void library_directory_hash(byte_ptr      sym,
                             bit_16       *starting_entry,
                             bit_16       *delta_entry)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
 {
@@ -301,7 +301,7 @@ byte                                  *beg_str;
 byte                                  *end_str;
 bit_16                                 c;
 byte                                   temp[33];
-EndDeclarations
+
 BeginCode
  beg_str = temp;
  end_str = Addr(temp[len]);
@@ -376,7 +376,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 word_checksum(bit_16 len, bit_16 address, byte_ptr data)
 {
-EndDeclarations
+
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
 {
@@ -388,7 +388,7 @@ Structure word_struct
 bit_16                                 sum;
 Structure word_struct                  word;
 bit_16                                *word_ptr;
-EndDeclarations
+
  word = (bit_16 *) Addr(word);
  for ( i=0; i LessThan len; i++
   ) {

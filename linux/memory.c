@@ -40,7 +40,7 @@ memory_descriptor_ptr                  desc;
 #define Desc                           (*desc)
 memory_descriptor_ptr                  prior;
 #define Prior                          (*prior)
-EndDeclarations
+
 BeginCode
  prior = Null;
  desc  = free_pool.memory_descriptor_list;
@@ -88,7 +88,7 @@ byte_ptr allocate_memory (pool_descriptor_ptr pool, bit_32 size)
 memory_descriptor_ptr                  desc;
 memory_descriptor_ptr                  prev;
 byte_ptr                               element;
-EndDeclarations
+
 BeginCode
 
 /* Traverse the memory descriptor list and allocate the space from the
@@ -148,7 +148,7 @@ bit_32                                 size_this_chunk;
 bit_16                                 rc;
 memory_descriptor_ptr                  desc;
 #define Desc                           (*desc)
-EndDeclarations
+
 BeginCode
 /* First step for PC-DOS is to gobble all free paragraphs above the heap.
    The variable "far_memory" will point to that area. */
@@ -239,7 +239,7 @@ void release_pool(pool_descriptor_ptr pool)
 memory_descriptor_ptr                  desc;
 #define Desc                           (*desc)
 memory_descriptor_ptr                  next;
-EndDeclarations
+
 BeginCode
  desc  = Pool.memory_descriptor_list;
  while ( desc IsNotNull

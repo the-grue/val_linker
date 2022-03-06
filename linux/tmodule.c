@@ -40,7 +40,7 @@ bit_8                                  expected_type;
 bit_16                                 len;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot COMDEF_record
   ) {
@@ -152,7 +152,7 @@ EndCode
 bit_16 obj_COMENT()
 {
 bit_8                                  comment_class;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot COMENT_record
   ) {
@@ -183,7 +183,7 @@ EndCode
 /* obj_component:: obj_data | obj_debug_record */
 bit_16 obj_component()
 {
-EndDeclarations
+
 BeginCode
  if ( obj_data() OrIf obj_debug_record()
   ) {
@@ -201,7 +201,7 @@ EndCode
 /* obj_content_def:: obj_data_record {obj_FIXUPP} */
 bit_16 obj_content_def()
 {
-EndDeclarations
+
 BeginCode
  if ( Not obj_data_record()
   ) {
@@ -227,7 +227,7 @@ EndCode
 
 bit_16 obj_data()
 {
-EndDeclarations
+
 BeginCode
  if ( obj_content_def() OrIf
     obj_thread_def()  OrIf
@@ -254,7 +254,7 @@ EndCode
 
 bit_16 obj_data_record()
 {
-EndDeclarations
+
 BeginCode
  if ( obj_LIDATA() OrIf obj_LEDATA()
   ) {
@@ -273,7 +273,7 @@ EndCode
 
 bit_16 obj_debug_record()
 {
-EndDeclarations
+
 BeginCode
  if ( obj_LINNUM()
   ) {
@@ -292,7 +292,7 @@ bit_16 obj_EXTDEF()
 bit_16                                 len;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot EXTDEF_record
   ) {
@@ -349,7 +349,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 obj_FIXUPP()
 {
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot FIXUPP_record
   ) {
@@ -383,7 +383,7 @@ LOCAT_type                             LOCAT;
 bit_16                                 target_method;
 bit_8                                  temp;
 bit_16                                 thread_number;
-EndDeclarations
+
 BeginCode
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -585,7 +585,7 @@ EndCode
 void obj_fixup_LIDATA()
 {
 obj_ptr_type                           old_obj_ptr;
-EndDeclarations
+
 BeginCode
  LIDATA_index  = 0;
  LIDATA_offset = last_LxDATA_offset;
@@ -619,7 +619,7 @@ bit_16                                 j;
 bit_16                                 len;
 bit_16                                 old_index;
 bit_16                                 repeat_count;
-EndDeclarations
+
 BeginCode
  repeat_count = *obj_ptr.b16++;  LIDATA_index += sizeof(bit_16);
  block_count  = *obj_ptr.b16++;  LIDATA_index += sizeof(bit_16);
@@ -676,7 +676,7 @@ void obj_FIXUPP_thread()
 bit_16                                 method;
 bit_16                                 thread;
 TRD_DAT_type                           TRD_DAT;
-EndDeclarations
+
 BeginCode
  TRD_DAT = *obj_ptr.TRD_DAT++;
  thread  = TRD_DAT.thred;
@@ -743,7 +743,7 @@ bit_16 obj_FORREF()
 {
 bit_16                                 len;
 bit_16                                 segment_index;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot FORREF_record
   ) {
@@ -782,7 +782,7 @@ lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
-EndDeclarations
+
 BeginCode
  if ( combine Is stack_combine
   ) {
@@ -860,7 +860,7 @@ lseg_ptr                               lseg;
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 bit_16                                 segment_index;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot GRPDEF_record
   ) {
@@ -930,7 +930,7 @@ EndCode
 bit_16 obj_index_external()
 {
 bit_16                                 index;
-EndDeclarations
+
 BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
@@ -963,7 +963,7 @@ EndCode
 bit_16 obj_index_group()
 {
 bit_16                                 index;
-EndDeclarations
+
 BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
@@ -996,7 +996,7 @@ EndCode
 bit_16 obj_index_LNAME()
 {
 bit_16                                 index;
-EndDeclarations
+
 BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
@@ -1029,7 +1029,7 @@ EndCode
 bit_16 obj_index_segment()
 {
 bit_16                                 index;
-EndDeclarations
+
 BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
@@ -1067,7 +1067,7 @@ bit_16                                 i;
 bit_16                                 j;
 bit_16                                 len;
 bit_16                                 repeat_count;
-EndDeclarations
+
 BeginCode
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
@@ -1107,7 +1107,7 @@ bit_16                                 i;
 bit_16                                 len;
 bit_32                                 length;
 bit_16                                 repeat_count;
-EndDeclarations
+
 BeginCode
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
@@ -1146,7 +1146,7 @@ EndCode
 bit_32 obj_leaf_descriptor()
 {
 bit_8                                  element_size;
-EndDeclarations
+
 BeginCode
  element_size = *obj_ptr.b8++;
  if ( element_size LessThan 129
@@ -1195,7 +1195,7 @@ lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 bit_16                                 offset;
 bit_16                                 segment_index;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot LEDATA_record
   ) {
@@ -1254,7 +1254,7 @@ bit_16                                 len;
 bit_32                                 LIDATA_length;
 bit_32                                 next_byte;
 bit_16                                 segment_index;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot LIDATA_record
   ) {
@@ -1317,7 +1317,7 @@ bit_32 obj_LIDATA_length()
 {
 bit_32                                 length;
 bit_8                                  *start;
-EndDeclarations
+
 BeginCode
  start  = obj_ptr.b8;
  length = 0L;
@@ -1336,7 +1336,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 obj_LINNUM()
 {
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot LINNUM_record
   ) {
@@ -1353,7 +1353,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 obj_LNAMES()
 {
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot LNAMES_record
   ) {
@@ -1392,7 +1392,7 @@ bit_16                                 frame_method;
 MOD_TYP_type                           MOD_TYP;
 bit_16                                 target_method;
 bit_16                                 thread_number;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot MODEND_record
   ) {
@@ -1572,7 +1572,7 @@ bit_16 obj_MODEXT()
 bit_16                                 len;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot MODEXT_record
   ) {
@@ -1627,7 +1627,7 @@ bit_16                                 len;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
 bit_16                                 segment_index;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot MODPUB_record
   ) {
@@ -1685,7 +1685,7 @@ EndCode
 
 bit_16 obj_modtail()
 {
-EndDeclarations
+
 BeginCode
  if ( obj_MODEND()
   ) {
@@ -1703,7 +1703,7 @@ lname_entry_ptr obj_name()
 {
 lname_entry_ptr                        name;
 bit_16                                 len;
-EndDeclarations
+
 BeginCode
  len = obj_name_length();
  if ( len IsZero
@@ -1727,7 +1727,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 obj_name_length()
 {
-EndDeclarations
+
 BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
@@ -1745,7 +1745,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void obj_next_record()
 {
-EndDeclarations
+
 BeginCode
  do
   {
@@ -1815,7 +1815,7 @@ bit_16                                 len;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
 bit_16                                 segment_index;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot PUBDEF_record
   ) {
@@ -1886,7 +1886,7 @@ lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 bit_16                                 segment_index;
 lname_entry_ptr                        segment_lname;
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot SEGDEF_record
   ) {
@@ -1989,7 +1989,7 @@ EndCode
                  {obj_TYPDEF | obj_EXTDEF | obj_GRPDEF} */
 bit_16 obj_seg_grp()
 {
-EndDeclarations
+
 BeginCode
  while ( obj_LNAMES() OrIf obj_SEGDEF() OrIf obj_EXTDEF()
   ) {
@@ -2007,7 +2007,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 obj_THEADR()
 {
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot THEADR_record
   ) {
@@ -2028,7 +2028,7 @@ EndCode
 
 bit_16 obj_thread_def()
 {
-EndDeclarations
+
 BeginCode
  if ( obj_FIXUPP()
   ) {
@@ -2061,7 +2061,7 @@ EndCode
 
 bit_16 obj_tmodule()
 {
-EndDeclarations
+
 BeginCode
  far_set(BytePtr(externals), 0,
          sizeof(public_entry_ptr)*(max_externals.val+1));
@@ -2127,7 +2127,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 bit_16 obj_TYPDEF()
 {
-EndDeclarations
+
 BeginCode
  if ( Current_record_header.rec_typ IsNot TYPDEF_record
   ) {
@@ -2148,7 +2148,7 @@ void write_temp_file(bit_8           rec_typ,
                      byte_ptr        data,
                      bit_16          len)
 {
-EndDeclarations
+
 BeginCode
  temp_file_header.rec_typ       = rec_typ;
  temp_file_header.rec_len       = len;

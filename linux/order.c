@@ -25,7 +25,7 @@ lseg_ptr                               lseg;
 bit_32                                 mask;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
-EndDeclarations
+
 BeginCode
  if ( (*Active_segment.lsegs.first).align IsZero
   ) { /* Don't align absolute segments */
@@ -119,7 +119,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void get_order_token()
 {
-EndDeclarations
+
 BeginCode
  while ( token_break_char Is ' '
   ) {
@@ -163,7 +163,7 @@ EndCode
 void order_and_align_segments()
 {
 byte_ptr                               start_of_expression;
-EndDeclarations
+
 BeginCode
  order_start_time = Now;
 /*+-------------------------------------------------------------------------+
@@ -240,7 +240,7 @@ EndCode
 bit_16 order_expression()
 {
 bit_16                                 left_operand;
-EndDeclarations
+
 BeginCode
  get_order_token();
  left_operand = order_term();
@@ -262,7 +262,7 @@ EndCode
 bit_16 order_factor()
 {
 bit_16                                 unary_not;
-EndDeclarations
+
 BeginCode
  unary_not = False;
  while ( TokenIs(exclamation_string) OrIf
@@ -286,7 +286,7 @@ bit_16 order_primary()
 group_entry_ptr                        group;
 #define Group                          (*group)
 bit_16                                 operand;
-EndDeclarations
+
 BeginCode
  if ( TokenIs(true_string)
   ) {
@@ -385,7 +385,7 @@ bit_16                                 offset;
 public_entry_ptr                       pub;
 #define Pub                            (*pub)
 bit_16                                 size;
-EndDeclarations
+
 BeginCode
 
 /*+-------------------------------------------------------------------------+
@@ -613,7 +613,7 @@ EndCode
 bit_16 order_term()
 {
 bit_16                                 left_operand;
-EndDeclarations
+
 BeginCode
  left_operand = order_factor();
  while ( TokenIs(and_string)       OrIf
@@ -633,7 +633,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void order_token_get_char()
 {
-EndDeclarations
+
 BeginCode
  if ( token_break_char Is '\000'
   ) {

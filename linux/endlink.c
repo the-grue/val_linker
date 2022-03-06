@@ -7,7 +7,7 @@
   +-------------------------------------------------------------------------+*/
 void end_linker(bit_16 return_code)
 {
-EndDeclarations
+
 BeginCode
  if ( statistics.val IsTrue
   ) {
@@ -25,7 +25,7 @@ void linker_statistics()
 {
 file_info_ptr                          file;
 #define File                           (*file)
-EndDeclarations
+
 BeginCode
  statistics_start_time = Now;
  statistics.val        = False;  /* Prevent recursive call. */

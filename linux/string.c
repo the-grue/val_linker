@@ -9,7 +9,7 @@ string_ptr allocate_string(pool_descriptor_ptr pool, bit_16 len)
 {
 string_ptr                             temp;
 #define Temp                           (*temp)
-EndDeclarations
+
 BeginCode
  temp = StringPtr(allocate_memory(pool, Bit_32(sizeof(string_type))+
                                         Bit_32(len)));
@@ -29,7 +29,7 @@ int compare_string(string_ptr left, string_ptr right)
 {
 bit_16                                 left_len;
 bit_16                                 right_len;
-EndDeclarations
+
 BeginCode
  left_len  = Length(left);
  right_len = Length(right);
@@ -56,7 +56,7 @@ EndCode
 int compare_short_string(string_ptr left, string_ptr right)
 {
 bit_16                                 left_len;
-EndDeclarations
+
 BeginCode
  left_len = Length(left);
  if ( left_len IsZero
@@ -74,7 +74,7 @@ EndCode
 string_ptr concat_string(string_ptr dest, string_ptr source)
 {
 bit_16                                 temp;
-EndDeclarations
+
 BeginCode
  if ( (Length(source) + Length(dest)) Exceeds MaxLength(dest)
   ) {
@@ -99,7 +99,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 string_ptr concat_char_to_string(string_ptr dest, byte c)
 {
-EndDeclarations
+
 BeginCode
  if ( (Length(dest) + 1) Exceeds MaxLength(dest)
   ) {
@@ -121,7 +121,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 string_ptr copy_string (string_ptr dest, string_ptr source)
 {
-EndDeclarations
+
 BeginCode
  if ( Length(source) Exceeds MaxLength(dest)
   ) {
@@ -144,7 +144,7 @@ string_ptr cut_string(string_ptr s, bit_16 at, bit_16 len)
 {
 bit_16                                 length_to_right;
 bit_16                                 string_length;
-EndDeclarations
+
 BeginCode
  string_length = Length(s);
  if ( string_length NotGreaterThan at
@@ -170,7 +170,7 @@ string_ptr duplicate_string(pool_descriptor_ptr pool, string_ptr s)
 {
 string_ptr                             temp;
 #define Temp                           (*temp)
-EndDeclarations
+
 BeginCode
  temp = StringPtr(allocate_memory(pool,
                                   Bit_32(sizeof(string_type))+
@@ -190,7 +190,7 @@ string_ptr edit_number_string(string_ptr s, char_ptr format, ...)
 {
 va_list                                argptr;
 bit_16                                 i;
-EndDeclarations
+
 BeginCode
  va_start(argptr,format);
  vsprintf((char_ptr) temp_near_string, format, argptr);
@@ -217,7 +217,7 @@ byte_ptr                               left;
 bit_16                                 len;
 byte_ptr                               pat;
 bit_16                                 pattern_length;
-EndDeclarations
+
 BeginCode
  pattern_length = Length(pattern);
  pat            = String(pattern);
@@ -245,7 +245,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 string_ptr lowercase_string(string_ptr s)
 {
-EndDeclarations
+
 BeginCode
  far_to_lower(String(s), Length(s));
  return(s);
@@ -260,7 +260,7 @@ string_ptr make_constant_string(pool_descriptor_ptr pool, byte *s)
 {
 bit_16                                 len;
 string_ptr                             temp;
-EndDeclarations
+
 BeginCode
  len  = strlen(CharPtr(s));
  temp = StringPtr(allocate_memory(pool, 
@@ -281,7 +281,7 @@ bit_16 match_pattern(string_ptr pattern, string_ptr s)
 bit_16                                 i;
 bit_16                                 n_searches;
 byte_ptr                               source;
-EndDeclarations
+
 BeginCode
  if ( FirstCharIn(pattern) Is '*'
   ) {
@@ -325,7 +325,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 byte *near_string(string_ptr s)
 {
-EndDeclarations
+
 BeginCode
  far_move(temp_near_string, String(s), Length(s)+1);
  return(temp_near_string);
@@ -341,7 +341,7 @@ string_ptr paste_string(string_ptr dest, bit_16 at, string_ptr s)
 bit_16                                 length_inserted_string;
 bit_16                                 length_string_to_right;
 bit_16                                 length_string;
-EndDeclarations
+
 BeginCode
  length_string          = Length(dest);
  length_inserted_string = Length(s);
@@ -384,7 +384,7 @@ bit_16                                 len;
 byte_ptr                               right;
 byte_ptr                               pat;
 bit_16                                 pattern_length;
-EndDeclarations
+
 BeginCode
  pattern_length = Length(pattern);
  len            = Length(s);
@@ -417,7 +417,7 @@ EndCode
 string_ptr string(byte_ptr s)
 {
 bit_16                                 len;
-EndDeclarations
+
 BeginCode
  len  = far_index(s, 0);
  if ( len Exceeds MaxLength(temp_string)
@@ -440,7 +440,7 @@ EndCode
 string_ptr substr(string_ptr s, bit_16 at, bit_16 len)
 {
 bit_16                                 string_length;
-EndDeclarations
+
 BeginCode
  string_length = Length(s);
  if ( string_length IsZero
@@ -471,7 +471,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 string_ptr trunc_string(string_ptr s, bit_16 at)
 {
-EndDeclarations
+
 BeginCode
  if ( Length(s) NotGreaterThan at+1
   ) {

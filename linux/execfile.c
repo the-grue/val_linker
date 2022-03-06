@@ -14,7 +14,7 @@ lseg_ptr                               lseg;
 bit_32                                 n_uninitialized_bytes;
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
-EndDeclarations
+
 BeginCode
  image_size                      = exe_header_size+highest_uninitialized_byte;
  Exe_header.signature            = 0x5A4D;
@@ -84,7 +84,7 @@ lseg_ptr                               lseg;
 #define Lseg                           (*lseg)
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
-EndDeclarations
+
 BeginCode
  exec_image_start_time = Now;
 /*+-------------------------------------------------------------------------+
@@ -219,7 +219,7 @@ EndCode
   +-------------------------------------------------------------------------+*/
 void write_gap(bit_32 length)
 {
-EndDeclarations
+
 BeginCode
  while ( length Exceeds 0
   ) {

@@ -20,7 +20,7 @@ public_entry_ptr                       pub;
 segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 bit_32                                 stop_address;
-EndDeclarations
+
 BeginCode
  map_start_time = Now;
  if ( lst_file_list.first IsNull
@@ -302,7 +302,7 @@ void map_memory(byte_ptr data, bit_32 address, bit_32 length)
 bit_16                                 i;
 bit_32                                 line_address;
 char                                   ascii[20];
-EndDeclarations
+
 BeginCode
  line_address = address & 0xFFFF0L;
  while ( length Exceeds 0
@@ -350,7 +350,7 @@ void sort_publics_by_name(bit_16 left, bit_16 right)
 bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;
-EndDeclarations
+
 BeginCode
  if ( left NotLessThan right
   ) {
@@ -405,7 +405,7 @@ void sort_publics_by_value(bit_16 left, bit_16 right)
 bit_16                                 i;
 bit_16                                 j;
 public_entry_ptr                       temp;
-EndDeclarations
+
 BeginCode
  if ( left NotLessThan right
   ) {

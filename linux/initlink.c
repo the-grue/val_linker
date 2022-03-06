@@ -7,7 +7,7 @@
   +-------------------------------------------------------------------------+*/
 void primary_linker_initialization(byte *program_directory)
 {
-EndDeclarations
+
 BeginCode
 
  /* Note start time */
@@ -157,7 +157,7 @@ initialization occurs. */
 
 void secondary_linker_initialization()
 {
-EndDeclarations
+
 BeginCode
 
  secondary_init_start_time = Now;

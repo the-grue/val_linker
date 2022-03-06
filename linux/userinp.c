@@ -13,7 +13,7 @@ file_info_ptr                          file_entry;
 #define File_entry                     (*file_entry)
 token_stack_ptr                        source_element;
 #define Source_element                 (*source_element)
-EndDeclarations
+
 BeginCode
 
  user_input_start_time = Now;
@@ -176,7 +176,7 @@ void process_user_input_files(file_info_list *list,
                               bit_16          required)
 {
 #define List                           (*list)
-EndDeclarations
+
 BeginCode
  scan_out_token();
  do
@@ -211,7 +211,7 @@ void process_user_output_file(file_info_list *list,
 file_info_ptr                          file_entry;
 #define File_entry                     (*file_entry)
 #define List                           (*list)
-EndDeclarations
+
 BeginCode
  scan_out_token();
  do

@@ -12,7 +12,7 @@ void DOS_error(char_ptr format, ... )
 {
 va_list                                argptr;
 bit_16                                 error_number;
-EndDeclarations
+
 BeginCode
  if ( outregs.x.cflag
   ) {
@@ -41,7 +41,7 @@ void DOS_int21(char_ptr format, ... )
 {
 va_list                                argptr;
 bit_16                                 error_number;
-EndDeclarations
+
 BeginCode
  intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  if ( (outregs.x.cflag) AndIf
@@ -69,7 +69,7 @@ EndCode
 void linker_error(unsigned severity, char_ptr format, ...)
 {
 va_list                                argptr;
-EndDeclarations
+
 BeginCode
  fprintf(stdout,"\nLinker Error (Severity %d)\n",severity);
  va_start(argptr,format);
@@ -91,7 +91,7 @@ void linker_message(char_ptr format, ...)
 {
 va_list                                argptr;
 static char                            flag = 0;
-EndDeclarations
+
 BeginCode
  if(!flag) { /* Issue Signon message */
   flag = -1;
@@ -110,7 +110,7 @@ void print(char_ptr format, ...)
 {
 va_list                                argptr;
 bit_16                                 len;
-EndDeclarations
+
 BeginCode
  va_start(argptr,format);
  vsprintf(CharPtr(object_file_element), format, argptr);

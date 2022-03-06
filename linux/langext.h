@@ -8,8 +8,8 @@
 
 /* Block basic C commands */
 
-/*#define BeginDeclarations    {*/
-#define EndDeclarations
+/*#define BeginDeclarations    {
+#define EndDeclarations*/
 #define BeginCode
 #define EndCode              }
 

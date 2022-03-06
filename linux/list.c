@@ -14,7 +14,7 @@ Generic_Element_ptr                    current;
 #define Current                        (*current)
 Generic_Element_ptr                    prior;
 #define Prior                          (*prior)
-EndDeclarations
+
 BeginCode
  prior = Null;
  TraverseList(Lst, current)
@@ -59,7 +59,7 @@ void ListInsert(Generic_Element_ptr       elem,
 #define Elem                           (*elem)
 #define Aftr                           (*aftr)
 #define Lst                            (*lst)
-EndDeclarations
+
 BeginCode
  switch ( type_insert
   ) {
@@ -121,7 +121,7 @@ void ListPop(Generic_Element_list far *lst,
 {
 #define Elem                           (*elem)
 #define Lst                            (*lst)
-EndDeclarations
+
 BeginCode
  if ( First(Lst) IsNull
   ) {

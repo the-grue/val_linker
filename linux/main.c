@@ -7,7 +7,7 @@
   +-------------------------------------------------------------------------+*/
 void main(bit_16 argc, byte *argv[])
 {
-EndDeclarations
+
 BeginCode
  primary_linker_initialization(argv[0]);   link_step++;
  get_filenames_from_user(argc, argv);      link_step++;
