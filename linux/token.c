@@ -73,7 +73,7 @@ token_stack_ptr                        source_element;
 EndDeclarations
 BeginCode
  Loop
-  BeginLoop
+  {
    required = (required) AndIf (List.first IsNull);
    if ( token_type Is text_token_type
     ) {
@@ -622,7 +622,7 @@ token_stack_ptr                        tos;
 EndDeclarations
 BeginCode
  Loop
-  BeginLoop
+  {
    if ( ((*token_stack.first).source_file Is stdin) AndIf
       (prompt_next_stdin)
     ) {
