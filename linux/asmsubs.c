@@ -381,7 +381,7 @@ bit_16 word_checksum(bit_16 len, bit_16 address, byte_ptr data)
 /* The following assembly code is the equivalent of the following C code:
 {
 Structure word_struct
- BeginStructure
+ {
   bit_8                                low_byte;
   bit_8                                high_byte;
  EndStructure;

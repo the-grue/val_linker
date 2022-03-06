@@ -110,7 +110,7 @@ typedef
 typedef token_stack_type far                   *token_stack_ptr;
 
 Structure acbp_struct
- BeginStructure
+ {
   unsigned                             p:1;
   unsigned                             b:1;
   unsigned                             c:3;
@@ -128,7 +128,7 @@ Enumeration align_enum
  EndEnumeration;
 
 Structure bit_16_switch_struct
- BeginStructure
+ {
   bit_16                               val;
   bit_16                               min;
   bit_16                               max;
@@ -137,7 +137,7 @@ Structure bit_16_switch_struct
  EndStructure;
 
 Structure boolean_switch_struct
- BeginStructure
+ {
   bit_16                               val;
  EndStructure;
 
@@ -151,7 +151,7 @@ Enumeration combine_enum
  EndEnumeration;
 
 Structure DTA_struct
- BeginStructure
+ {
   byte                                 DOS_reserved[21];
   bit_8                                attribute;
   bit_16                               time_stamp;
@@ -162,7 +162,7 @@ Structure DTA_struct
  EndStructure;
 
 Structure EXE_header_struct
- BeginStructure
+ {
   bit_16                               signature;
   bit_16                               image_length_MOD_512;
   bit_16                               image_length_DIV_512;
@@ -182,12 +182,12 @@ Structure EXE_header_struct
  EndStructure;
 
 Structure external_entry_struct
- BeginStructure
+ {
   bit_16                               reserved;
  EndStructure;
 
 Structure internal_entry_struct
- BeginStructure
+ {
   group_entry_ptr                      group;
   lseg_ptr                             lseg;
   bit_16                               frame;
@@ -195,14 +195,14 @@ Structure internal_entry_struct
  EndStructure;
 
 Structure library_entry_struct
- BeginStructure
+ {
   file_info_ptr                        lib_file;
   bit_16                               page;
   bit_8                                requested;
  EndStructure;
 
 Structure communal_entry_struct
- BeginStructure
+ {
   public_entry_ptr                     next_communal;
   bit_32                               element_size;
   bit_32                               element_count;
@@ -227,7 +227,7 @@ Enumeration public_entry_class_enum
  EndEnumeration;
 
 Structure public_entry_struct
- BeginStructure
+ {
   public_entry_ptr                     next;
   public_entry_ptr                     next_congruent;
   bit_8                                type_entry;
@@ -244,7 +244,7 @@ Structure public_entry_struct
 ListTypeOf(public_entry);
 
 Structure file_info_struct
- BeginStructure
+ {
   file_info_ptr                        next;
   bit_8                                attribute;
   bit_16                               time_stamp;
@@ -261,7 +261,7 @@ Structure file_info_struct
 ListTypeOf(file_info);
 
 Structure file_struct
- BeginStructure
+ {
   file_info_ptr                        file_info;
   bit_16                               file_handle;
   bit_32                               start_of_buffer_position;
@@ -276,7 +276,7 @@ Structure file_struct
  EndStructure;
 
 Structure FIX_DAT_struct
- BeginStructure
+ {
   unsigned                             targt:2;
   unsigned                             p:1;
   unsigned                             t:1;
@@ -285,7 +285,7 @@ Structure FIX_DAT_struct
  EndStructure;
 
 Structure fixup_struct
- BeginStructure
+ {
   void far                            *frame_referent;
   void far                            *target_referent;
   bit_16                               target_offset;
@@ -298,7 +298,7 @@ Structure fixup_struct
  EndStructure;
 
 Structure group_entry_struct
- BeginStructure
+ {
   group_entry_ptr                      next;
   group_entry_ptr                      next_congruent;
   lname_entry_ptr                      group_name;
@@ -308,13 +308,13 @@ Structure group_entry_struct
 ListTypeOf(group_entry);
 
 Structure library_directory_struct
- BeginStructure
+ {
   bit_8                                offset_to_symbol[38];
   byte                                 symbol_area[474];
  EndStructure;
 
 Structure library_file_header_struct
- BeginStructure
+ {
   bit_8                                flag;
   bit_16                               page_size;
   bit_32                               directory_position;
@@ -322,13 +322,13 @@ Structure library_file_header_struct
  EndStructure;
 
  Structure library_symbol_entry_struct
-  BeginStructure
+  {
    bit_8                               length_of_symbol;
    byte                                symbol[1];
   EndStructure;
 
 Structure lname_entry_struct
- BeginStructure
+ {
   lname_entry_ptr                      next_congruent;
   bit_16                               lname_checksum;
   bit_16                               length;
@@ -336,7 +336,7 @@ Structure lname_entry_struct
  EndStructure;
 
 Structure LOCAT_struct
- BeginStructure
+ {
   unsigned                             data_record_offset:10;
   unsigned                             loc:3;
   unsigned                             s:1;
@@ -354,7 +354,7 @@ Enumeration loc_enum
  EndEnumeration;
 
 Structure lseg_struct
- BeginStructure
+ {
   lseg_ptr                             next;
   segment_entry_ptr                    segment;
   lname_entry_ptr                      tmodule;
@@ -369,7 +369,7 @@ Structure lseg_struct
 ListTypeOf(lseg);
 
 Structure memory_descriptor_struct
- BeginStructure
+ {
   memory_descriptor_ptr                next;
   byte_ptr                             chunk;
   bit_32                               available;
@@ -378,7 +378,7 @@ Structure memory_descriptor_struct
  EndStructure;
 
 Structure MOD_TYP_struct
- BeginStructure
+ {
   unsigned                             l:1;
   unsigned                             zeros:5;
   unsigned                             mattr:2;
@@ -418,14 +418,14 @@ Enumeration obj_mod_rec_type_enum
  EndEnumeration;
 
 Structure obj_record_header_struct
- BeginStructure
+ {
   bit_8                                rec_typ;
   bit_16                               rec_len;
   byte                                 variant_part[1];
  EndStructure;
 
 Structure pool_descriptor_struct
- BeginStructure
+ {
   memory_descriptor_ptr                memory_descriptor_list;
   char_ptr                             pool_id;
   bit_32                               pool_size;
@@ -433,7 +433,7 @@ Structure pool_descriptor_struct
  EndStructure;
 
 Structure segment_entry_struct
- BeginStructure
+ {
   segment_entry_ptr                    next;
   segment_entry_ptr                    next_congruent;
   lname_entry_ptr                      segment_name;
@@ -449,7 +449,7 @@ Structure segment_entry_struct
 ListTypeOf(segment_entry);
 
 Structure switch_table_struct
- BeginStructure
+ {
   bit_8                                min_length;
   char                                *abbr_name;
   char                                *full_name;
@@ -458,7 +458,7 @@ Structure switch_table_struct
  EndStructure;
 
 Structure temp_file_header_struct
- BeginStructure
+ {
   bit_8                                rec_typ;
   bit_16                               rec_len;
   lseg_ptr                             lseg;
@@ -466,12 +466,12 @@ Structure temp_file_header_struct
  EndStructure;
 
 Structure text_switch_struct
- BeginStructure
+ {
   string_ptr                           val;
  EndStructure;
 
 Structure thread_struct
- BeginStructure
+ {
   bit_8                                method;
   void far                            *referent;
   bit_8                                thread_defined;
@@ -493,7 +493,7 @@ Enumeration token_class_enum
  EndEnumeration;
 
 Structure token_stack_struct
- BeginStructure
+ {
   token_stack_ptr                      next;
   FILE                                *source_file;
   byte                                 break_char;
@@ -504,7 +504,7 @@ Structure token_stack_struct
 ListTypeOf(token_stack);
 
 Structure TRD_DAT_struct
- BeginStructure
+ {
   unsigned                             thred:2;
   unsigned                             method:3;
   unsigned                             z:1;

@@ -8,10 +8,8 @@
 
 /* Block basic C commands */
 
-/*#define Type                 typedef*/
-
 #define Structure           struct
-#define BeginStructure      {
+/*#define BeginStructure      {*/
 #define EndStructure        }
 
 #define Union               union
@@ -28,14 +26,14 @@
 
 #define ListTypeOf(exp) \
 Structure exp##_list_struct \
- BeginStructure \
+ { \
   exp##_ptr                            first; \
   exp##_ptr                            last; \
  EndStructure; \
 typedef Structure exp##_list_struct       exp##_list
 
 Structure Generic_Element_struct
- BeginStructure
+ {
   Structure Generic_Element_struct far   *next;
  EndStructure;
 
@@ -136,7 +134,7 @@ typedef void  /* near */       *near_ptr;
 typedef char  /* near */       *char_ptr;
 
 Structure string_struct
- BeginStructure
+ {
   bit_16                     max_length;
   bit_16                     length;
   byte                       text[1];
