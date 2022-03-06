@@ -72,7 +72,7 @@ token_stack_ptr                        source_element;
 #define Source_element                 (*source_element)
 EndDeclarations
 BeginCode
- Loop
+ while(1)
   {
    required = (required) AndIf (List.first IsNull);
    if ( token_type Is text_token_type
@@ -621,7 +621,7 @@ token_stack_ptr                        tos;
 #define Tos_string                     (*tos).token_string
 EndDeclarations
 BeginCode
- Loop
+ while(1)
   {
    if ( ((*token_stack.first).source_file Is stdin) AndIf
       (prompt_next_stdin)

@@ -8,8 +8,8 @@
 
 /* Block basic C commands */
 
-#define Loop                 while(1)
-/*#define BeginLoop            {
+/*#define Loop                 while(1)
+#define BeginLoop            {
 #define EndLoop              }
 #define ExitLoop             break
 #define ContinueLoop         continue
