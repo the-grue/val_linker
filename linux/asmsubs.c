@@ -314,14 +314,14 @@ byte                                   temp[33];
  while ( len-- > 0
   ) {
    c = (Bit_16(*beg_str++) & 0xFF) | 0x20;
-   *starting_block = c Xor ((*starting_block ShiftedLeft   2)  |
+   *starting_block = c ^ ((*starting_block ShiftedLeft   2)  |
                             (*starting_block ShiftedRight 14));
-   *delta_entry    = c Xor ((*delta_entry    ShiftedRight  2)  |
+   *delta_entry    = c ^ ((*delta_entry    ShiftedRight  2)  |
                             (*delta_entry    ShiftedLeft  14));
    c = (Bit_16(*end_str--) & 0xFF) | 0x20;
-   *delta_block    = c Xor ((*delta_block    ShiftedLeft   2)  |
+   *delta_block    = c ^ ((*delta_block    ShiftedLeft   2)  |
                             (*delta_block    ShiftedRight 14));
-   *starting_entry = c Xor ((*starting_entry ShiftedRight  2)  |
+   *starting_entry = c ^ ((*starting_entry ShiftedRight  2)  |
                             (*starting_entry ShiftedLeft  14));
   }; */
  asm            xor     ax,ax

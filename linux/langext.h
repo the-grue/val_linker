@@ -63,8 +63,8 @@ ListTypeOf(Generic_Element);
 
 /* Bitwise operators */
 /*#define And                  &
-#define Or                   |*/
-#define Xor                  ^
+#define Or                   |
+#define Xor                  ^*/
 #define Complement           ~
 /* Some other operators */
 #define Addr(exp)            &(exp)
