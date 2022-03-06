@@ -195,7 +195,7 @@ BeginCode
        };
     };
    RepeatIf more_tokens
-  EndRepeat;
+  ));
  return;
 EndCode
 #undef List
@@ -232,7 +232,7 @@ BeginCode
       };
     };
    RepeatIf more_tokens
-  EndRepeat;
+  ));
  return;
 EndCode
 #undef File_entry
