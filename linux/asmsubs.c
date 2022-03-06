@@ -53,7 +53,7 @@ int_16 far_compare (byte_ptr left, byte_ptr right, bit_16 len)
 /* The following assembly code is the equivalent of the following C code:
  while ( len-- IsNotZero
   ) {
-   if ( *left IsNotEqualTo *right
+   if ( *left != *right
     ) {
      if ( *left < *right
       ) {
@@ -95,7 +95,7 @@ bit_16                                 i;
 
 
 /* The following assembly code is the equivalent of the following C code:
- for ( i=0; (*dest++ IsNotEqualTo c) AndIf (i IsNotEqualTo 0xFFFF); i++
+ for ( i=0; (*dest++ != c) AndIf (i != 0xFFFF); i++
   ) {
   };
  return(i); */
