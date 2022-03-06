@@ -643,7 +643,7 @@ bit_16                                 repeat_count;
      LIDATA_index = old_index;
      len          = Bit_16(*obj_ptr.b8++);  LIDATA_index += sizeof(bit_8);
      if ( (fixup_index >= LIDATA_index)        AndIf
-        (fixup_index LessThan   (LIDATA_index + len))
+        (fixup_index <   (LIDATA_index + len))
       ) {
        write_temp_file(Current_record_header.rec_typ,
                        last_LxDATA_lseg,
@@ -932,7 +932,7 @@ bit_16 obj_index_external()
 bit_16                                 index;
 
 
- if ( *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 < 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
@@ -965,7 +965,7 @@ bit_16 obj_index_group()
 bit_16                                 index;
 
 
- if ( *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 < 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
@@ -998,7 +998,7 @@ bit_16 obj_index_LNAME()
 bit_16                                 index;
 
 
- if ( *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 < 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
@@ -1031,7 +1031,7 @@ bit_16 obj_index_segment()
 bit_16                                 index;
 
 
- if ( *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 < 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
   } else {
@@ -1149,7 +1149,7 @@ bit_8                                  element_size;
 
 
  element_size = *obj_ptr.b8++;
- if ( element_size LessThan 129
+ if ( element_size < 129
   ) {
    return(Bit_32(element_size));
   } else {
@@ -1729,7 +1729,7 @@ bit_16 obj_name_length()
 {
 
 
- if ( *obj_ptr.b8 LessThan 128
+ if ( *obj_ptr.b8 < 128
   ) {
    return(Bit_16(*obj_ptr.b8++));
   } else {

@@ -421,7 +421,7 @@ void file_position(bit_32 position)
 
 
  if ( (position >= File.start_of_buffer_position) AndIf
-    (position LessThan    File.next_buffer_position)
+    (position <    File.next_buffer_position)
   ) {
    File.byte_position        = Bit_16(position-File.start_of_buffer_position);
    File.current_byte         = Addr(File.buffer[File.byte_position]);

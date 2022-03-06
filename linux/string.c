@@ -37,7 +37,7 @@ bit_16                                 right_len;
   ) {
    return(0);
   };
- if ( left_len LessThan right_len
+ if ( left_len < right_len
   ) {
    return(-1);
   };
@@ -151,7 +151,7 @@ bit_16                                 string_length;
   ) {
    return(s);
   };
- if ( string_length LessThan (at + len)
+ if ( string_length < (at + len)
   ) {
    len = string_length - at;
   };
@@ -222,13 +222,13 @@ bit_16                                 pattern_length;
  pattern_length = Length(pattern);
  pat            = String(pattern);
  len            = Length(s);
- if ( (len - from) LessThan pattern_length
+ if ( (len - from) < pattern_length
   ) {
    return(0xFFFF);
   };
  iteration_count = len - pattern_length + 1;
  left  = Addr(String(s)[from]);
- for ( i=from; i LessThan iteration_count; i++
+ for ( i=from; i < iteration_count; i++
   ) {
    if ( far_compare(left++, pat, pattern_length) IsZero
     ) {
@@ -389,7 +389,7 @@ bit_16                                 pattern_length;
  pattern_length = Length(pattern);
  len            = Length(s);
  pat            = String(pattern);
- if ( len LessThan pattern_length
+ if ( len < pattern_length
   ) {
    return(0xFFFF);
   };
@@ -399,7 +399,7 @@ bit_16                                 pattern_length;
   };
  iteration_count = from + 1;
  right = Addr(String(s)[from]);
- for ( i=0; i LessThan iteration_count; i++, from--
+ for ( i=0; i < iteration_count; i++, from--
   ) {
    if ( far_compare(right--, pat, pattern_length) IsZero
     ) {

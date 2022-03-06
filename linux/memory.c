@@ -165,7 +165,7 @@ memory_descriptor_ptr                  desc;
 
  far_memory      = (byte huge *) MakeFarPtr(outregs.x.ax,0);
  far_memory_size = Bit_32(inregs.x.bx) ShiftedLeft 4;
- if ( far_memory_size LessThan 65536L
+ if ( far_memory_size < 65536L
   ) {
    linker_error(8,"Too little memory above heap.\n"
                  "\tTry running again with smaller buffersize and/or\n"

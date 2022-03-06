@@ -143,12 +143,12 @@ bit_16                                *symbol_in_page;
  symbol_count = 0;
  public_array = public_sort_array;
  for ( current_block=0;
-     current_block LessThan  n_directory_blocks;
+     current_block <  n_directory_blocks;
      current_block++
   ) {
    file_read(object_file_element, 512);
    directory_page = (library_directory_ptr) object_file_element;
-   for ( entry_number=0; entry_number LessThan 37; entry_number++
+   for ( entry_number=0; entry_number < 37; entry_number++
     ) {
      symbol_index =
       Directory_page.offset_to_symbol[entry_number] ShiftedLeft 1;
@@ -201,7 +201,7 @@ bit_16                                *symbol_in_page;
   ) {
    sort_directory(0, symbol_count-1);
    public_array = public_sort_array;
-   for ( entry_number=0; entry_number LessThan symbol_count; entry_number++
+   for ( entry_number=0; entry_number < symbol_count; entry_number++
     ) {
      Insert *public_array++ AtEnd InList Lib_file.external_list EndInsert;
     };
@@ -270,9 +270,9 @@ public_entry_ptr                       temp;
   };
  i = left;
  j = right;
- while ( i LessThan j
+ while ( i < j
   ) {
-   while ( i LessThan j
+   while ( i < j
     ) {
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
@@ -284,7 +284,7 @@ public_entry_ptr                       temp;
       };
      j--;
     };
-   while ( i LessThan j
+   while ( i < j
     ) {
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page

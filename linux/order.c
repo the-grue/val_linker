@@ -454,7 +454,7 @@ bit_16                                 size;
      linker_error(4, "No stack segment for .EXE file.\n");
     } else {
      if ( (stack.set IsTrue) AndIf 
-        (Bit_16(Largest_stack_seg.length) LessThan stack.val)
+        (Bit_16(Largest_stack_seg.length) < stack.val)
       ) {
        obj_generate_segment(generated_lname,
                             none_lname,

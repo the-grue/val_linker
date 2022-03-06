@@ -163,7 +163,7 @@ segment_entry_ptr                      seg;
    TraverseList(Seg.lsegs, lseg)
     BeginTraverse
      if (Lseg.address >= highest_uninitialized_byte) break;
-     if ( Lseg.address LessThan next_available_address
+     if ( Lseg.address < next_available_address
       ) {
        if ((Lseg.address+Lseg.length) <= 
               next_available_address) continue;

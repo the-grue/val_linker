@@ -85,7 +85,7 @@ bit_32                                 stop_address;
      print("\n");
      print("  Address         Publics by Name\n");
      print("\n");
-     for ( i=0; i LessThan n_publics_to_sort; i++
+     for ( i=0; i < n_publics_to_sort; i++
       ) {
        pub = public_sort_array[i];
        print(" %04X:%04X  ",
@@ -104,7 +104,7 @@ bit_32                                 stop_address;
      print("\n");
      print("  Address         Publics by Value\n");
      print("\n");
-     for ( i=0; i LessThan n_publics_to_sort; i++
+     for ( i=0; i < n_publics_to_sort; i++
       ) {
        pub = public_sort_array[i];
        print(" %04X:%04X  ",
@@ -316,7 +316,7 @@ char                                   ascii[20];
        print(" :");
        strcat(ascii, " : ");
       };
-     if ( (line_address LessThan address) OrIf (length IsZero)
+     if ( (line_address < address) OrIf (length IsZero)
       ) {
        print(" ..");
        ascii[strlen(ascii)] = ' ';
@@ -358,9 +358,9 @@ public_entry_ptr                       temp;
   };
  i = left;
  j = right;
- while ( i LessThan j
+ while ( i < j
   ) {
-   while ( i LessThan j
+   while ( i < j
     ) {
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
@@ -373,7 +373,7 @@ public_entry_ptr                       temp;
       };
      j--;
     };
-   while ( i LessThan j
+   while ( i < j
     ) {
      if ( far_compare((*public_sort_array[i]).symbol,
                     (*public_sort_array[j]).symbol,
@@ -413,9 +413,9 @@ public_entry_ptr                       temp;
   };
  i = left;
  j = right;
- while ( i LessThan j
+ while ( i < j
   ) {
-   while ( i LessThan j
+   while ( i < j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
@@ -429,7 +429,7 @@ public_entry_ptr                       temp;
       };
      j--;
     };
-   while ( i LessThan j
+   while ( i < j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
          ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf

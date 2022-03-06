@@ -23,7 +23,7 @@ bit_16 checksum(bit_16 len, byte *sym)
 
 
 /* The following assembly code is the equivalent of the following C code:
- for ( i=0; i LessThan len; i++
+ for ( i=0; i < len; i++
   ) {
    sum += sym[i];
   };
@@ -55,7 +55,7 @@ int_16 far_compare (byte_ptr left, byte_ptr right, bit_16 len)
   ) {
    if ( *left IsNotEqualTo *right
     ) {
-     if ( *left LessThan *right
+     if ( *left < *right
       ) {
        return(-1);
       } else {
@@ -390,7 +390,7 @@ struct word_struct                  word;
 bit_16                                *word_ptr;
 
  word = (bit_16 *) Addr(word);
- for ( i=0; i LessThan len; i++
+ for ( i=0; i < len; i++
   ) {
    *word_ptr = 0;
    if ( (address-- And 1)
