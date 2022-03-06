@@ -161,7 +161,7 @@ bit_32                                 stop_address;
       ) {
        TraverseList(Seg.lsegs, lseg)
         BeginTraverse
-         if (Lseg.length IsZero) continue;
+         if (Lseg.length == 0) continue;
          print("\n");
          print("File(%Fs) Next Uninitialized Byte(%05lX)\n",
                (*Lseg.file).filename,
@@ -316,7 +316,7 @@ char                                   ascii[20];
        print(" :");
        strcat(ascii, " : ");
       };
-     if ( (line_address < address) OrIf (length IsZero)
+     if ( (line_address < address) OrIf (length == 0)
       ) {
        print(" ..");
        ascii[strlen(ascii)] = ' ';

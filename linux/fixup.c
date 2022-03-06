@@ -38,7 +38,7 @@ bit_16 far                            *word_location;
  byte_location  = 
               Addr((*temp_file_header.lseg).data[temp_file_header.offset]);
  word_location  = (bit_16 far *) byte_location;
- if ( fixup.mode IsZero
+ if ( fixup.mode == 0
   ) { /* Self-relative fixup */
    location_address = (*temp_file_header.lseg).address +
                       Bit_32(temp_file_header.offset) +

@@ -27,7 +27,7 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 
 
- if ( (*Active_segment.lsegs.first).align IsZero
+ if ( (*Active_segment.lsegs.first).align == 0
   ) { /* Don't align absolute segments */
    return;
   };
@@ -56,7 +56,7 @@ public_entry_ptr                       pub;
  Active_segment.length  = (*Active_segment.lsegs.last).address +
                           (*Active_segment.lsegs.last).length -
                           Active_segment.address;
- if ( Active_segment.highest_uninitialized_byte IsZero
+ if ( Active_segment.highest_uninitialized_byte == 0
   ) {
    Active_segment.highest_uninitialized_byte =
     (*Active_segment.lsegs.first).address;

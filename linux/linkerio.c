@@ -115,7 +115,7 @@ bit_16                                 len;
  va_start(argptr,format);
  vsprintf(CharPtr(object_file_element), format, argptr);
  len = strlen(CharPtr(object_file_element));
- if ( len IsZero
+ if ( len == 0
   ) {
    return;
   };

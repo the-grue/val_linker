@@ -33,7 +33,7 @@ bit_16                                 right_len;
 
  left_len  = Length(left);
  right_len = Length(right);
- if ( (left_len IsZero) AndIf (right_len IsZero)
+ if ( (left_len == 0) AndIf (right_len == 0)
   ) {
    return(0);
   };
@@ -59,7 +59,7 @@ bit_16                                 left_len;
 
 
  left_len = Length(left);
- if ( left_len IsZero
+ if ( left_len == 0
   ) {
    return(0);
   };
@@ -230,7 +230,7 @@ bit_16                                 pattern_length;
  left  = Addr(String(s)[from]);
  for ( i=from; i < iteration_count; i++
   ) {
-   if ( far_compare(left++, pat, pattern_length) IsZero
+   if ( far_compare(left++, pat, pattern_length) == 0
     ) {
      return(i);
     };
@@ -354,7 +354,7 @@ bit_16                                 length_string;
                   s, length_inserted_string,
                   String(dest), length_string);
   };
- if ( length_inserted_string IsZero
+ if ( length_inserted_string == 0
   ) {
    return(dest);
   };
@@ -401,7 +401,7 @@ bit_16                                 pattern_length;
  right = Addr(String(s)[from]);
  for ( i=0; i < iteration_count; i++, from--
   ) {
-   if ( far_compare(right--, pat, pattern_length) IsZero
+   if ( far_compare(right--, pat, pattern_length) == 0
     ) {
      return(from);
     };
@@ -443,7 +443,7 @@ bit_16                                 string_length;
 
 
  string_length = Length(s);
- if ( string_length IsZero
+ if ( string_length == 0
   ) {
    return(null_string);
   };

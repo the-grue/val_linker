@@ -250,14 +250,14 @@ switch_table_ptr                       current_switch;
  lowercase_string(token);
  while ( Current_switch.full_name != 0
   ) {
-   if ( compare_string(token, string((byte *)Current_switch.abbr_name)) IsZero
+   if ( compare_string(token, string((byte *)Current_switch.abbr_name)) == 0
     ) {
      Current_switch.switch_processor(current_switch);
      return;
     };
    if ( (Length(token) >= Current_switch.min_length) AndIf
       (far_compare(String(token), (byte *) Current_switch.full_name,
-        Length(token)) IsZero)
+        Length(token)) == 0)
     ) {
      Current_switch.switch_processor(current_switch);
      return;

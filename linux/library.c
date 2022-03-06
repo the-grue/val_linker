@@ -152,7 +152,7 @@ bit_16                                *symbol_in_page;
     ) {
      symbol_index =
       Directory_page.offset_to_symbol[entry_number] ShiftedLeft 1;
-     if (symbol_index IsZero) continue;
+     if (symbol_index == 0) continue;
      symbol = (library_symbol_entry_ptr)
               Addr(Directory_page.offset_to_symbol[symbol_index]);
      symbol_in_page = (bit_16 *)

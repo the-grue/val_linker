@@ -358,7 +358,7 @@ bit_16 obj_FIXUPP()
  FIXUPP_contains_only_threads = True;
  while ( obj_ptr.b8 IsNot end_of_record.b8
   ) {
-   if ( (*obj_ptr.TRD_DAT).type_fixupp_record IsZero
+   if ( (*obj_ptr.TRD_DAT).type_fixupp_record == 0
     ) {
      obj_FIXUPP_thread();
     } else {
@@ -431,7 +431,7 @@ bit_16                                 thread_number;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( FIX_DAT.f IsZero
+ if ( FIX_DAT.f == 0
   ) {  /* Frame is specified explicitly */
    frame_method         = FIX_DAT.frame;
    fixup.frame_method   = frame_method;
@@ -478,7 +478,7 @@ bit_16                                 thread_number;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( FIX_DAT.t IsZero
+ if ( FIX_DAT.t == 0
   ) {  /* Target is specified explicitly */
    target_method       = FIX_DAT.targt;
    fixup.target_method = target_method;
@@ -518,7 +518,7 @@ bit_16                                 thread_number;
    fixup.target_method   = target_thread[thread_number].method;
   };
 
- if ( FIX_DAT.p IsZero
+ if ( FIX_DAT.p == 0
   ) {  /* There is a target displacement */
    fixup.target_offset = *obj_ptr.b16++;
   } else {  /* The target displacement is zero */
@@ -527,7 +527,7 @@ bit_16                                 thread_number;
 
  fixup.external_error_detected = False;
 
- if ( (fixup.mode IsZero) AndIf
+ if ( (fixup.mode == 0) AndIf
                              ((fixup.location_type Is base_location)    OrIf
                               (fixup.location_type Is pointer_location) OrIf
                               (fixup.location_type Is hibyte_location))
@@ -558,7 +558,7 @@ bit_16                                 thread_number;
                    BytePtr(Addr(fixup)),
                    sizeof(fixup));
   } else {
-   if ( fixup.mode IsZero
+   if ( fixup.mode == 0
     ) {
      linker_error(4, "Translator warning:\n"
                      "\tModule:  \"%Fs\"\n"
@@ -681,7 +681,7 @@ TRD_DAT_type                           TRD_DAT;
  TRD_DAT = *obj_ptr.TRD_DAT++;
  thread  = TRD_DAT.thred;
  method  = TRD_DAT.method;
- if ( TRD_DAT.d IsZero
+ if ( TRD_DAT.d == 0
   ) {  /* This is a target thread */
    target_thread[thread].method = Bit_8(method);
    target_thread[thread].thread_defined = True;
@@ -1111,7 +1111,7 @@ bit_16                                 repeat_count;
 
  repeat_count = *obj_ptr.b16++;
  block_count  = *obj_ptr.b16++;
- if ( repeat_count IsZero
+ if ( repeat_count == 0
   ) { /* This is a translator error. */
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
@@ -1453,7 +1453,7 @@ bit_16                                 thread_number;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( END_DAT.f IsZero
+ if ( END_DAT.f == 0
   ) {  /* Frame is specified explicitly */
    frame_method                 = END_DAT.frame;
    start_address.frame_method   = frame_method;
@@ -1503,7 +1503,7 @@ bit_16                                 thread_number;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( END_DAT.t IsZero
+ if ( END_DAT.t == 0
   ) {  /* Target is specified explicitly */
    target_method               = END_DAT.targt;
    start_address.target_method = target_method;
@@ -1545,7 +1545,7 @@ bit_16                                 thread_number;
    start_address.target_method   = target_thread[thread_number].method;
   };
 
- if ( END_DAT.p IsZero
+ if ( END_DAT.p == 0
   ) {  /* There is a target displacement */
    start_address.target_offset = *obj_ptr.b16++;
   } else {  /* The target displacement is zero */
@@ -1635,7 +1635,7 @@ bit_16                                 segment_index;
   };
  group_index = obj_index_group();
  segment_index = obj_index_segment();
- if ( (segment_index IsZero) AndIf (group_index IsZero)
+ if ( (segment_index == 0) AndIf (group_index == 0)
   ) {
    frame = *obj_ptr.b16++;
   };
@@ -1706,7 +1706,7 @@ bit_16                                 len;
 
 
  len = obj_name_length();
- if ( len IsZero
+ if ( len == 0
   ) {
    name = none_lname;
   } else {
@@ -1823,7 +1823,7 @@ bit_16                                 segment_index;
   };
  group_index = obj_index_group();
  segment_index = obj_index_segment();
- if ( (segment_index IsZero) AndIf (group_index IsZero)
+ if ( (segment_index == 0) AndIf (group_index == 0)
   ) {
    frame = *obj_ptr.b16++;
   };

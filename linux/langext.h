@@ -71,8 +71,8 @@ ListTypeOf(Generic_Element);
 #define Exceeds              >*/
 #define Positive             > 0
 #define Negative             < 0
-#define IsZero               == 0
-/*#define IsNull               == 0
+/*#define IsZero               == 0
+#define IsNull               == 0
 #define IsNotNull            != 0
 #define IsEmpty              == 0
 #define IsNotEmpty           != 0

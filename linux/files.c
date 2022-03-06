@@ -44,7 +44,7 @@ bit_16                                 rc;
                   "\t\"%Fs\"\n",
                   String(fn));
   };
- while ( rc IsZero
+ while ( rc == 0
   ) {
    compare_len = Length(current_filename) + 1;
    already_in_list = 0;
@@ -52,7 +52,7 @@ bit_16                                 rc;
     BeginTraverse
      already_in_list = far_compare(matched_file,
                                    BytePtr(File_entry.filename),compare_len)
-                       IsZero;
+                       == 0;
      if (already_in_list) break;
     EndTraverse;
    if ( Not already_in_list
@@ -248,7 +248,7 @@ bit_16                                 rc;
  inregs.x.cx = attr;
  rc = (bit_16) intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
  set_DTA_address(old_DTA);
- return(rc IsZero);
+ return(rc == 0);
 }
 
 /*+-------------------------------------------------------------------------+
@@ -282,7 +282,7 @@ void file_IO_limit(bit_16 limit)
 #define File                           infile
 
 
- if ( (limit IsZero) OrIf (limit > File.buffer_size)
+ if ( (limit == 0) OrIf (limit > File.buffer_size)
   ) {
    File.IO_limit = File.buffer_size;
   } else {
@@ -323,17 +323,17 @@ void file_open_for_read(file_info_ptr file_info)
   |                    Open the file and save the handle                    |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( compare_string(string(File_info.filename), device_AUX) IsZero
+ if ( compare_string(string(File_info.filename), device_AUX) == 0
   ) {
    File.file_handle = 3;
    return;
   };
- if ( compare_string(string(File_info.filename), device_CON) IsZero
+ if ( compare_string(string(File_info.filename), device_CON) == 0
   ) {
    File.file_handle = 0;
    return;
   };
- if ( compare_string(string(File_info.filename), device_PRN) IsZero
+ if ( compare_string(string(File_info.filename), device_PRN) == 0
   ) {
    File.file_handle = 4;
    return;
@@ -381,17 +381,17 @@ void file_open_for_write(file_info_ptr file_info)
   |                    Open the file and save the handle                    |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( compare_string(string(File_info.filename), device_AUX) IsZero
+ if ( compare_string(string(File_info.filename), device_AUX) == 0
   ) {
    File.file_handle = 3;
    return;
   };
- if ( compare_string(string(File_info.filename), device_CON) IsZero
+ if ( compare_string(string(File_info.filename), device_CON) == 0
   ) {
    File.file_handle = 1;
    return;
   };
- if ( compare_string(string(File_info.filename), device_PRN) IsZero
+ if ( compare_string(string(File_info.filename), device_PRN) == 0
   ) {
    File.file_handle = 4;
    return;
@@ -577,17 +577,17 @@ bit_16                                 right;
   |                       Check for AUX:, CON: & PRN:                       |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- if ( compare_string(substr(fn,0,4), device_AUX) IsZero
+ if ( compare_string(substr(fn,0,4), device_AUX) == 0
   ) {
    copy_string(fn, device_AUX);
    return(fn);
   };
- if ( compare_string(substr(fn,0,4), device_CON) IsZero
+ if ( compare_string(substr(fn,0,4), device_CON) == 0
   ) {
    copy_string(fn, device_CON);
    return(fn);
   };
- if ( compare_string(substr(fn,0,4), device_PRN) IsZero
+ if ( compare_string(substr(fn,0,4), device_PRN) == 0
   ) {
    copy_string(fn, device_PRN);
    return(fn);               
@@ -620,7 +620,7 @@ bit_16                                 right;
  right = index_string(fn, left+1, backslash_string);
  while ( right IsNot 0xffff
   ) {
-   if ( compare_string(substr(fn,left,4), backslash_dot_dot_string) IsZero
+   if ( compare_string(substr(fn,left,4), backslash_dot_dot_string) == 0
     ) {
      cut_string(fn, left, 3);
      right = left;
@@ -633,7 +633,7 @@ bit_16                                 right;
      right = index_string(fn, left+1, backslash_string);
      continue;
     } else {
-     if ( compare_string(substr(fn,left,3), backslash_dot_string) IsZero
+     if ( compare_string(substr(fn,left,3), backslash_dot_string) == 0
       ) {
        cut_string(fn, left, 2);
        right = index_string(fn, left+1, backslash_string);

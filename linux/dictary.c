@@ -131,7 +131,7 @@ lname_entry_ptr                        prior;
   ) {
    if ( len Is Lname_entry.length
     ) {
-     if ( far_compare(sym, Lname_entry.symbol, len) IsZero
+     if ( far_compare(sym, Lname_entry.symbol, len) == 0
       ) {
        if ( prior != 0
         ) {  /* Move lname to beginning of list */
@@ -180,7 +180,7 @@ public_entry_ptr                       prior;
   ) {
    if ( len Is Pub_entry.length
     ) {
-     if ( (far_compare(sym, Pub_entry.symbol, len) IsZero) AndIf
+     if ( (far_compare(sym, Pub_entry.symbol, len) == 0) AndIf
         (module Is Pub_entry.module)
       ) {
        if ( prior != 0
