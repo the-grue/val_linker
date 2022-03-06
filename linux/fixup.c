@@ -96,7 +96,7 @@ bit_16 far                            *word_location;
       break;
     };
   } else { /* Segment-relative fixup */
-   fbval          = Bit_16(frame_address ShiftedRight 4);
+   fbval          = Bit_16(frame_address >> 4);
    foval          = target_address - frame_address;
    if ( (frame_absolute == 0)                     &&
       (exefile == 0)                            &&
@@ -131,7 +131,7 @@ bit_16 far                            *word_location;
        };
       break;
      case hibyte_location:
-      *byte_location += Bit_8(foval ShiftedRight 8);
+      *byte_location += Bit_8(foval >> 8);
       break;
     };
   };

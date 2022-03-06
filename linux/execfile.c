@@ -20,12 +20,12 @@ segment_entry_ptr                      seg;
  Exe_header.signature            = 0x5A4D;
  Exe_header.image_length_MOD_512 = Bit_16(image_size % 512L);
  Exe_header.image_length_DIV_512 = Bit_16(image_size / 512L) + 1;
- Exe_header.n_header_paragraphs  = Bit_16(exe_header_size ShiftedRight 4L);
+ Exe_header.n_header_paragraphs  = Bit_16(exe_header_size >> 4L);
  n_uninitialized_bytes           = (*segment_list.last).address + 
                                    (*segment_list.last).length - 
                                    highest_uninitialized_byte;
  Exe_header.min_paragraphs_above = Bit_16((n_uninitialized_bytes + 
-                  AlignmentGap(n_uninitialized_bytes, 0xFL)) ShiftedRight 4L);
+                  AlignmentGap(n_uninitialized_bytes, 0xFL)) >> 4L);
  Exe_header.max_paragraphs_above = CPARMAXALLOC.val;
  if ( stack_segment_found != 0
   ) {
