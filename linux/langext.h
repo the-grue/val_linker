@@ -25,7 +25,7 @@ typedef Generic_Element_type far         *Generic_Element_ptr;
 
 ListTypeOf(Generic_Element);
 
-#define TraverseList(lst,elm)  for(elm=lst.first; elm IsNotNull; Next(elm))
+#define TraverseList(lst,elm)  for(elm=lst.first; elm != 0; Next(elm))
 #define BeginTraverse        {
 #define EndTraverse          }
 
@@ -73,10 +73,10 @@ ListTypeOf(Generic_Element);
 #define Negative             < 0
 #define IsZero               == 0
 #define IsNull               == 0
-#define IsNotNull            != 0
+/*#define IsNotNull            != 0*/
 #define IsEmpty              == 0
-#define IsNotEmpty           != 0
-/*#define IsNotZero            != 0
+/*#define IsNotEmpty           != 0
+#define IsNotZero            != 0
 #define IsTrue               != 0
 #define IsFalse              == 0
 #define NotGreaterThan       <=

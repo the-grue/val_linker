@@ -65,7 +65,7 @@ file_info_ptr                          file;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( (link_step > 4) AndIf (obj_file_list.first IsNotNull)
+ if ( (link_step > 4) AndIf (obj_file_list.first != 0)
   ) {
    linker_message("\n"
                   "Object File Statistics:\n");
@@ -83,7 +83,7 @@ file_info_ptr                          file;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( (link_step > 4) AndIf (lib_file_list.first IsNotNull)
+ if ( (link_step > 4) AndIf (lib_file_list.first != 0)
   ) {
    linker_message("\n"
                   "Library File Statistics:\n");

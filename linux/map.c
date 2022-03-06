@@ -47,7 +47,7 @@ bit_32                                 stop_address;
 
  if ( map.set != 0
   ) {
-   if ( First(group_list) IsNotNull
+   if ( First(group_list) != 0
     ) {
      print("\n");
      print(" Origin   Group\n");
@@ -146,7 +146,7 @@ bit_32                                 stop_address;
      print("Segment(%Fs) Class(%Fs)",
            (*Seg.segment_name).symbol,
            (*Seg.class_name).symbol);
-     if ( Seg.owning_group IsNotNull
+     if ( Seg.owning_group != 0
       ) {
        print(" Group(%Fs)",
              (*(*Seg.owning_group).group_name).symbol);
@@ -418,7 +418,7 @@ public_entry_ptr                       temp;
    while ( i < j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
-         ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
+         ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
       ) {
@@ -432,7 +432,7 @@ public_entry_ptr                       temp;
    while ( i < j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
-         ((*public_sort_array[j]).Internal.lseg IsNotNull)) OrIf
+         ((*public_sort_array[j]).Internal.lseg != 0)) OrIf
         (public_target_address(public_sort_array[i]) >
          public_target_address(public_sort_array[j]))
       ) {

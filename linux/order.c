@@ -61,13 +61,13 @@ public_entry_ptr                       pub;
    Active_segment.highest_uninitialized_byte =
     (*Active_segment.lsegs.first).address;
   };
- if ( (Active_segment.owning_group IsNotNull) AndIf
+ if ( (Active_segment.owning_group != 0) AndIf
     ((*Active_segment.owning_group).first_segment IsNull)
   ) {
    (*Active_segment.owning_group).first_segment = active_segment;
   };
  if ( (DOSSEG.val != 0) AndIf 
-    (Active_segment.owning_group IsNotNull) AndIf
+    (Active_segment.owning_group != 0) AndIf
     ((*Active_segment.owning_group).group_name Is DGROUP_lname)
   ) {
    if ( (edata_segment IsNull) AndIf
@@ -190,7 +190,7 @@ byte_ptr                               start_of_expression;
    if (segment_list.first IsNull) break;
    First(segments_unordered_list) =
    Last(segments_unordered_list)  = Null;
-   while ( segment_list.first IsNotNull
+   while ( segment_list.first != 0
     ) {
      Pop segment_list InTo active_segment EndPop;
      order_expression_char_ptr = start_of_expression;
@@ -222,7 +222,7 @@ byte_ptr                               start_of_expression;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- while ( segment_list.first IsNotNull
+ while ( segment_list.first != 0
   ) {
    Pop segment_list InTo active_segment EndPop;
    Insert active_segment AtEnd InList segments_ordered_list EndInsert;
@@ -478,10 +478,10 @@ bit_16                                 size;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- if ( near_communals IsNotNull
+ if ( near_communals != 0
   ) {
    length = 0L;
-   for ( pub=near_communals; pub IsNotNull; pub=Pub.Communal.next_communal
+   for ( pub=near_communals; pub != 0; pub=Pub.Communal.next_communal
     ) {
      if (Pub.type_entry IsNot near_communal) continue;
      length += Pub.Communal.element_size;
@@ -503,7 +503,7 @@ bit_16                                 size;
    group                        = lookup_group(DGROUP_lname);
    (*Lseg.segment).owning_group = group;
    offset = 0;
-   for ( pub=near_communals; pub IsNotNull; pub=next_communal
+   for ( pub=near_communals; pub != 0; pub=next_communal
     ) {
      next_communal        = Pub.Communal.next_communal;
      if (Pub.type_entry IsNot near_communal) continue;
@@ -527,7 +527,7 @@ bit_16                                 size;
 
  lseg   = Null;
  offset = 0;
- for ( pub=far_communals; pub IsNotNull; pub=next_communal
+ for ( pub=far_communals; pub != 0; pub=next_communal
   ) {
    next_communal = Pub.Communal.next_communal;
    if (Pub.type_entry IsNot far_communal) continue; 
@@ -569,7 +569,7 @@ bit_16                                 size;
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- for ( pub=huge_communals; pub IsNotNull; pub=next_communal
+ for ( pub=huge_communals; pub != 0; pub=next_communal
   ) {
    next_communal = Pub.Communal.next_communal;
    length = Pub.Communal.element_size * Pub.Communal.element_count;

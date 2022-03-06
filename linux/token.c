@@ -133,7 +133,7 @@ token_stack_ptr                        source_element;
        Push source_element OnTo token_stack EndPush;
        token_break_char                  = ' ';
       };
-     if ( default_prompt IsNotNull
+     if ( default_prompt != 0
       ) {
        linker_message(default_prompt, String(default_filename));
        prompt_next_stdin = False;
@@ -248,7 +248,7 @@ switch_table_ptr                       current_switch;
  scan_out_token();
  copy_string(token, next_token);
  lowercase_string(token);
- while ( Current_switch.full_name IsNotNull
+ while ( Current_switch.full_name != 0
   ) {
    if ( compare_string(token, string((byte *)Current_switch.abbr_name)) IsZero
     ) {
@@ -501,7 +501,7 @@ FILE                                  *help_file;
    printf("Could not open help file \"%Fs\".\n", String(help_filename));
   } else {
    while ( fgets(CharPtr(object_file_element), MAX_ELEMENT_SIZE, help_file) 
-         IsNotNull
+         != 0
     ) {
      if ( *CharPtr(object_file_element) Is '\f'
        ) {

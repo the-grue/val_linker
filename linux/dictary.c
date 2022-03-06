@@ -79,11 +79,11 @@ group_entry_ptr                        prior;
  hash_val    = Group_lname.lname_checksum Mod group_table_hash_size.val;
  group_entry = group_hash_table[hash_val];
  prior       = Null;
- while ( group_entry IsNotNull
+ while ( group_entry != 0
   ) {
    if ( group_lname Is Group_entry.group_name
     ) {
-     if ( prior IsNotNull
+     if ( prior != 0
       ) {  /* Move group to beginning of list */
        Prior.next_congruent       = Group_entry.next_congruent;
        Group_entry.next_congruent = group_hash_table[hash_val];
@@ -127,13 +127,13 @@ lname_entry_ptr                        prior;
  hash_val    = charsum Mod lname_table_hash_size.val;
  lname_entry = lname_hash_table[hash_val];
  prior       = Null;
- while ( lname_entry IsNotNull
+ while ( lname_entry != 0
   ) {
    if ( len Is Lname_entry.length
     ) {
      if ( far_compare(sym, Lname_entry.symbol, len) IsZero
       ) {
-       if ( prior IsNotNull
+       if ( prior != 0
         ) {  /* Move lname to beginning of list */
          Prior.next_congruent       = Lname_entry.next_congruent;
          Lname_entry.next_congruent = lname_hash_table[hash_val];
@@ -176,14 +176,14 @@ public_entry_ptr                       prior;
  hash_val  = checksum(len, sym) Mod public_table_hash_size.val;
  pub_entry = public_hash_table[hash_val];
  prior     = Null;
- while ( pub_entry IsNotNull
+ while ( pub_entry != 0
   ) {
    if ( len Is Pub_entry.length
     ) {
      if ( (far_compare(sym, Pub_entry.symbol, len) IsZero) AndIf
         (module Is Pub_entry.module)
       ) {
-       if ( prior IsNotNull
+       if ( prior != 0
         ) {  /* Move public to beginning of list */
          Prior.next_congruent        = Pub_entry.next_congruent;
          Pub_entry.next_congruent    = public_hash_table[hash_val];
@@ -235,13 +235,13 @@ segment_entry_ptr                      prior;
  if ( (combine != 0) AndIf (combine IsNot blank_common_combine)
   ) {  /* All non-zero combine types except blank common will be combined. */
    prior         = Null;
-   while ( segment_entry IsNotNull
+   while ( segment_entry != 0
     ) {
      if ( (segment_lname       Is Segment_entry.segment_name) AndIf
         (class_lname         Is Segment_entry.class_name)   AndIf
         (combine             Is Segment_entry.combine)
       ) {
-       if ( prior IsNotNull
+       if ( prior != 0
         ) {  /* Move segment to beginning of list */
          Prior.next_congruent         = Segment_entry.next_congruent;
          Segment_entry.next_congruent = segment_hash_table[hash_val];

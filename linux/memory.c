@@ -44,7 +44,7 @@ memory_descriptor_ptr                  prior;
 
  prior = Null;
  desc  = free_pool.memory_descriptor_list;
- while ( desc IsNotNull
+ while ( desc != 0
   ) {
    if ( Desc.available >= size
     ) {
@@ -97,7 +97,7 @@ byte_ptr                               element;
 
  prev = NULL;
  desc = Pool.memory_descriptor_list;
- while ( desc IsNotNull
+ while ( desc != 0
   ) {
    if ( size <= Desc.available
     ) { /* We can take the element from this chunk */
@@ -105,7 +105,7 @@ byte_ptr                               element;
      element                  = Desc.unused_base;
      Desc.unused_base        += Bit_16(size);
      Desc.available          -= size;
-     if ( prev IsNotNull
+     if ( prev != 0
       ) {
        Prev.next                   = Desc.next;
        Desc.next                   = Pool.memory_descriptor_list;
@@ -242,7 +242,7 @@ memory_descriptor_ptr                  next;
 
 
  desc  = Pool.memory_descriptor_list;
- while ( desc IsNotNull
+ while ( desc != 0
   ) {
    Desc.available                    = Desc.size;
    Desc.unused_base                  = Desc.chunk;
