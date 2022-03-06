@@ -17,7 +17,7 @@ typedef
  struct DTA_struct                        DTA_type;
 typedef DTA_type far                           *DTA_ptr;
 typedef
- Union entry_information_union               entry_information_type;
+ union entry_information_union               entry_information_type;
 typedef
  struct EXE_header_struct                 EXE_header_type;
 typedef EXE_header_type far                    *EXE_header_ptr;
@@ -71,7 +71,7 @@ typedef
  struct MOD_TYP_struct                    MOD_TYP_type;
 typedef MOD_TYP_type                           *MOD_TYP_ptr;
 typedef
- Union obj_ptr_union                         obj_ptr_type;
+ union obj_ptr_union                         obj_ptr_type;
 typedef
  struct obj_record_header_struct          obj_record_header_type;
 typedef obj_record_header_type                 *obj_record_header_ptr;
@@ -208,7 +208,7 @@ struct communal_entry_struct
   bit_32                               element_count;
  };
 
-Union entry_information_union
+union entry_information_union
  {
   library_entry_type                   library_type;
   external_entry_type                  external_type;
@@ -384,7 +384,7 @@ struct MOD_TYP_struct
   unsigned                             mattr:2;
  };
 
-Union obj_ptr_union
+union obj_ptr_union
  {
   bit_8                               *b8;
   bit_16                              *b16;
