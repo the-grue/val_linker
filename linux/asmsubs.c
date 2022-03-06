@@ -23,7 +23,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
- For i=0; i LessThan len; i++
+ for ( i=0; i LessThan len; i++
   ) {
    sum += sym[i];
   };
@@ -95,7 +95,7 @@ bit_16                                 i;
 EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
- For i=0; (*dest++ IsNotEqualTo c) AndIf (i IsNotEqualTo 0xFFFF); i++
+ for ( i=0; (*dest++ IsNotEqualTo c) AndIf (i IsNotEqualTo 0xFFFF); i++
   ) {
   };
  return(i); */
@@ -390,7 +390,7 @@ Structure word_struct                  word;
 bit_16                                *word_ptr;
 EndDeclarations
  word = (bit_16 *) Addr(word);
- For i=0; i LessThan len; i++
+ for ( i=0; i LessThan len; i++
   ) {
    *word_ptr = 0;
    if ( (address-- And 1)

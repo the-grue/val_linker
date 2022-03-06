@@ -85,7 +85,7 @@ BeginCode
      print("\n");
      print("  Address         Publics by Name\n");
      print("\n");
-     For i=0; i LessThan n_publics_to_sort; i++
+     for ( i=0; i LessThan n_publics_to_sort; i++
       ) {
        pub = public_sort_array[i];
        print(" %04X:%04X  ",
@@ -104,7 +104,7 @@ BeginCode
      print("\n");
      print("  Address         Publics by Value\n");
      print("\n");
-     For i=0; i LessThan n_publics_to_sort; i++
+     for ( i=0; i LessThan n_publics_to_sort; i++
       ) {
        pub = public_sort_array[i];
        print(" %04X:%04X  ",
@@ -309,7 +309,7 @@ BeginCode
   ) {
    print("%05X: ", line_address);
    far_set(BytePtr(ascii), 0, 20);
-   For i=0; i<16; i++
+   for ( i=0; i<16; i++
     ) {
      if ( i Is 8
       ) {

@@ -234,17 +234,17 @@ BeginCode
  if ( block_count IsNotZero
   ) {  /* Handle recursive case:  Content is iterated data block */
    content = obj_ptr.b8;
-   For i=0; i<repeat_count; i++
+   for ( i=0; i<repeat_count; i++
     ) {
      obj_ptr.b8 = content;
-     For j=0; j<block_count; j++
+     for ( j=0; j<block_count; j++
       ) {
        fixup_LIDATA_IDB();
       };
     };
   } else {  /* Handle non-recursive case:  Content is data. */
    len = Bit_16(*obj_ptr.b8++);
-   For i=0; i<repeat_count; i++
+   for ( i=0; i<repeat_count; i++
     ) {
      far_move(lseg_data_ptr, obj_ptr.b8, len);
      lseg_data_ptr += len;

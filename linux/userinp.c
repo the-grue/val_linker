@@ -64,7 +64,7 @@ BeginCode
   |               concatenate the parm line into parm_string                |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
- For i=1; i<argc; i++
+ for ( i=1; i<argc; i++
   ) {
    if ( i Exceeds 1
     ) {

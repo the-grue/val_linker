@@ -481,7 +481,7 @@ BeginCode
  if ( near_communals IsNotNull
   ) {
    length = 0L;
-   For pub=near_communals; pub IsNotNull; pub=Pub.Communal.next_communal
+   for ( pub=near_communals; pub IsNotNull; pub=Pub.Communal.next_communal
     ) {
      if (Pub.type_entry IsNot near_communal) continue;
      length += Pub.Communal.element_size;
@@ -503,7 +503,7 @@ BeginCode
    group                        = lookup_group(DGROUP_lname);
    (*Lseg.segment).owning_group = group;
    offset = 0;
-   For pub=near_communals; pub IsNotNull; pub=next_communal
+   for ( pub=near_communals; pub IsNotNull; pub=next_communal
     ) {
      next_communal        = Pub.Communal.next_communal;
      if (Pub.type_entry IsNot near_communal) continue;
@@ -527,7 +527,7 @@ BeginCode
 
  lseg   = Null;
  offset = 0;
- For pub=far_communals; pub IsNotNull; pub=next_communal
+ for ( pub=far_communals; pub IsNotNull; pub=next_communal
   ) {
    next_communal = Pub.Communal.next_communal;
    if (Pub.type_entry IsNot far_communal) continue; 
@@ -569,7 +569,7 @@ BeginCode
   |                                                                         |
   +-------------------------------------------------------------------------+*/
 
- For pub=huge_communals; pub IsNotNull; pub=next_communal
+ for ( pub=huge_communals; pub IsNotNull; pub=next_communal
   ) {
    next_communal = Pub.Communal.next_communal;
    length = Pub.Communal.element_size * Pub.Communal.element_count;
