@@ -104,7 +104,7 @@ BeginCode
       Last(Lst) = elem;
      };
     break;
-  EndCase;
+  };
  return;
 EndCode
 #undef Elem

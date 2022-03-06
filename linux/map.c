@@ -249,7 +249,7 @@ BeginCode
          case 6:
           print("None");
           break;
-        EndCase;
+        };
        print(") Target(");
        switch ( fixup.target_method
         ) {
@@ -276,7 +276,7 @@ BeginCode
          case 3:
           print("Abs(%04lX)", ((bit_32)(fixup.target_referent)));
           break;
-        EndCase;
+        };
        print(")\n");
        file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
       EndWhile;

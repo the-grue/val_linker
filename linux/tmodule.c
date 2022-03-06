@@ -94,7 +94,7 @@ BeginCode
                        (*infile.file_info).filename,
                        current_record_offset,
                        element_type);
-    EndCase;
+    };
    if ( Pub.type_entry Is unused
     ) {
      Insert pub AtEnd InList external_list EndInsert;
@@ -111,7 +111,7 @@ BeginCode
        Pub.Communal.next_communal = near_communals;
        near_communals             = pub;
        break;
-     EndCase;
+     };
     } else {
      if ( Pub.type_entry Is expected_type
       ) {
@@ -170,7 +170,7 @@ BeginCode
     break;
    default:
     break;
-  EndCase;
+  };
  return(True);
 EndCode
 
@@ -452,7 +452,7 @@ BeginCode
      default:
       fixup.frame_referent = Null;
       break;
-    EndCase;
+    };
   } else {  /* Frame is specified by a thread */
    thread_number        = FIX_DAT.frame;
    if ( Not frame_thread[thread_number].thread_defined
@@ -498,7 +498,7 @@ BeginCode
       fixup.target_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
       break;
-    EndCase;
+    };
   } else {  /* Target is specified by a thread */
    thread_number         = FIX_DAT.targt;
    if ( Not target_thread[thread_number].thread_defined
@@ -705,7 +705,7 @@ BeginCode
      default:
       target_thread[thread].referent = Null;
       break;
-    EndCase;
+    };
   } else {  /* This is a frame thread */
    frame_thread[thread].method = Bit_8(method);
    frame_thread[thread].thread_defined = True;
@@ -729,7 +729,7 @@ BeginCode
      default:
       frame_thread[thread].referent = Null;
       break;
-    EndCase;
+    };
   };
  return;
 EndCode
@@ -1477,7 +1477,7 @@ BeginCode
      default:
       start_address.frame_referent = Null;
       break;
-    EndCase;
+    };
   } else {  /* Frame is specified by a thread */
    thread_number                = END_DAT.frame;
    if ( Not frame_thread[thread_number].thread_defined
@@ -1525,7 +1525,7 @@ BeginCode
       start_address.target_referent =
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
       break;
-    EndCase;
+    };
   } else {  /* Target is specified by a thread */
    thread_number                 = END_DAT.targt;
    if ( Not target_thread[thread_number].thread_defined

@@ -479,7 +479,7 @@ BeginCode
      EndWhile;
     token_type = filename_token_type;
     break;
-  EndCase;
+  };
  return;
 EndCode
 

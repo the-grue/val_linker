@@ -11,8 +11,8 @@
 /*#define Using                switch (
 #define BeginCase            ) {
 #define When                 case
-#define Otherwise            default*/
-#define EndCase              }
+#define Otherwise            default
+#define EndCase              }*/
 
 #define Loop                 while(1)
 #define BeginLoop            {

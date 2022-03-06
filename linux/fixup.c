@@ -94,7 +94,7 @@ BeginCode
      case pointer_location:    /* Undefined action */
      case hibyte_location:     /* Undefined action */
       break;
-    EndCase;
+    };
   } else { /* Segment-relative fixup */
    fbval          = Bit_16(frame_address ShiftedRight 4);
    foval          = target_address - frame_address;
@@ -133,7 +133,7 @@ BeginCode
      case hibyte_location:
       *byte_location += Bit_8(foval ShiftedRight 8);
       break;
-    EndCase;
+    };
   };
  return;
 EndCode
@@ -191,7 +191,7 @@ BeginCode
                     (*(*temp_file_header.lseg).file).filename,
             (*(*(*temp_file_header.lseg).segment).segment_name).symbol);
     break;
-  EndCase;
+  };
  return;
 EndCode
 #undef Lseg
@@ -349,13 +349,13 @@ BeginCode
        frame_absolute = True;
        frame_address  = Bit_32(fixup.target_referent);
        break;
-     EndCase;
+     };
     break;
    case 6:  /* No frame */
     frame_absolute = False;
     frame_address = 0L;
     break;
-  EndCase;
+  };
  return(frame_address & 0xFFFFFFF0L);
 EndCode
 #undef Grp
@@ -415,7 +415,7 @@ BeginCode
      default:
       linker_error(16, "Internal logic error:  Invalid temp file record.\n");
       break;
-    EndCase;
+    };
    file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
   EndWhile;
  file_close_for_read();
@@ -567,7 +567,7 @@ BeginCode
     target_address = Bit_32(fixup.target_referent) +
                       Bit_32(fixup.target_offset);
     break;
-  EndCase;
+  };
  return(target_address);
 EndCode
 #undef Grp
