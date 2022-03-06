@@ -95,7 +95,7 @@ BeginCode
      When hibyte_location:     /* Undefined action */
       break;
     EndCase;
-  Else /* Segment-relative fixup */
+  } else { /* Segment-relative fixup */
    fbval          = Bit_16(frame_address ShiftedRight 4);
    foval          = target_address - frame_address;
    if ( (frame_absolute IsFalse)                     AndIf
@@ -242,7 +242,7 @@ BeginCode
        fixup_LIDATA_IDB();
       EndFor;
     EndFor;
-  Else  /* Handle non-recursive case:  Content is data. */
+  } else {  /* Handle non-recursive case:  Content is data. */
    len = Bit_16(*obj_ptr.b8++);
    For i=0; i<repeat_count; i++
     BeginFor
@@ -386,7 +386,7 @@ BeginCode
    if ( align_exe_header.val IsTrue
     ) {
      exe_header_size += AlignmentGap(exe_header_size, 0xFL);
-    Else
+    } else {
      exe_header_size += AlignmentGap(exe_header_size, 0x1FFL);
     };
    exe_header       = (EXE_header_ptr)
@@ -452,18 +452,18 @@ BeginCode
      fixup.external_error_detected = True;
     };
    address = 0L;
-  Else
+  } else {
    if ( Pub.Internal.group IsNull
     ) {
      if ( Pub.Internal.lseg IsNull
       ) {
        frame_absolute = True;
        address        = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
-      Else
+      } else {
        frame_absolute = (*Pub.Internal.lseg).align Is absolute_segment;
        address        = (*(*Pub.Internal.lseg).segment).address;
       };
-    Else
+    } else {
      frame_absolute = 
                (*(*(*Pub.Internal.group).first_segment).lsegs.first).align Is
                absolute_segment;
@@ -504,11 +504,11 @@ BeginCode
      fixup.external_error_detected = True;
     };
    address = 0L;
-  Else
+  } else {
    if ( Pub.Internal.lseg IsNull
     ) {
      address = (Bit_32(Pub.Internal.frame) ShiftedLeft 4);
-    Else
+    } else {
      address = (*Pub.Internal.lseg).address;
     };
   };

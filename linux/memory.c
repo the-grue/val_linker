@@ -51,7 +51,7 @@ BeginCode
      if ( prior IsNull
       ) {
        free_pool.memory_descriptor_list  = Desc.next;
-      Else
+      } else {
        Prior.next                        = Desc.next;
       };
      free_pool.pool_size              -= Desc.available;
@@ -204,7 +204,7 @@ BeginCode
    if ( far_memory_size Exceeds 65536L
     ) {
      size_this_chunk                  = 65536L;
-    Else
+    } else {
      size_this_chunk                  = far_memory_size;
     };
    Desc.chunk                         =

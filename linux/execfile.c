@@ -33,7 +33,7 @@ BeginCode
    Exe_header.initial_SP = Bit_16(largest_stack_seg_length +
                            Largest_stack_seg.address -
                             (Bit_32(Exe_header.initial_SS) ShiftedLeft 4L));
-  Else
+  } else {
    Exe_header.initial_SS = 0;
    Exe_header.initial_SP = 0;
   };
@@ -60,7 +60,7 @@ BeginCode
                                  Lseg.data);
       EndTraverse;
     EndTraverse;
-  Else
+  } else {
    checksum = 0xFFFF;
   };
  Exe_header.checksum = Complement checksum;
@@ -102,7 +102,7 @@ BeginCode
       (initial_IP IsNot 0x0100)
     ) {  /* COM file start address must be 0000:0100 */
       linker_error(4, "Start address for COM file is not 0000:0100.\n");
-    Else
+    } else {
      if ( (sysfile.val IsTrue)   AndIf
         (initial_CS IsNotZero) AndIf 
         (initial_IP IsNotZero)
@@ -110,7 +110,7 @@ BeginCode
         linker_error(4, "Start address for SYS file is not 0000:0000.\n");
       };
     };
-  Else  /* No start address found. */
+  } else {  /* No start address found. */
    linker_error(4,"No start address.\n");
    initial_CS = 0;
    initial_IP = 0;
@@ -123,11 +123,11 @@ BeginCode
  if ( (comfile.val IsTrue) AndIf (stack_segment_found IsTrue)
   ) {  /* COM file should not have a stack segment. */
     linker_error(4, "COM file should not have a stack segment.\n");
-  Else
+  } else {
    if ( (sysfile.val IsTrue) AndIf (stack_segment_found IsTrue)
     ) {  /* SYS file should not have a stack segment. */
       linker_error(4, "SYS file should not have a stack segment.\n");
-    Else
+    } else {
      if ( (exefile IsTrue) AndIf (stack_segment_found IsFalse)
       ) {  /* EXE file should have a stack segment. */
        linker_error(4, "EXE file should have a stack segment.\n");
@@ -172,11 +172,11 @@ BeginCode
        if ( Seg.combine IsNot blank_common_combine
         ) {
          file_write(Addr(Lseg.data[Bit_16(data_index)]), partial_length);
-        Else
+        } else {
          write_gap(partial_length);
         };
 		next_available_address += partial_length;
-      Else
+      } else {
        gap = Lseg.address - next_available_address;
        if ( gap IsNotZero
         ) {
@@ -190,15 +190,15 @@ BeginCode
          if ( Seg.combine IsNot blank_common_combine
           ) {
            file_write(Lseg.data, partial_length);
-          Else
+          } else {
            write_gap(partial_length);
           };
           next_available_address += partial_length;
-        Else
+        } else {
          if ( Seg.combine IsNot blank_common_combine
           ) {
            file_write(Lseg.data, Lseg.length);
-          Else
+          } else {
            write_gap(Lseg.length);
           };
          next_available_address += Lseg.length;
@@ -227,7 +227,7 @@ BeginCode
     ) {
      file_write(BytePtr(object_file_element), Bit_32(MAX_ELEMENT_SIZE));
      length -= Bit_32(MAX_ELEMENT_SIZE);
-    Else
+    } else {
      file_write(BytePtr(object_file_element), length);
      length = 0L;
     };

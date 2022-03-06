@@ -77,7 +77,7 @@ BeginCode
  if ( severity Exceeds 7
   ) {
    end_linker(severity);
-  Else
+  } else {
    return;
   };
 EndCode

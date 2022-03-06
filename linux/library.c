@@ -178,7 +178,7 @@ BeginCode
                       "\tThe latter has been ignored.\n",
                       Pub.symbol,
                       (*Pub.Library.lib_file).filename, Lib_file.filename);
-      Else
+      } else {
        Pub.type_entry        = public_in_library;
        Pub.Library.page      = Symbol_in_page;
        Pub.Library.lib_file  = lib_file;

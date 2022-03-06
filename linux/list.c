@@ -28,7 +28,7 @@ BeginCode
         ) {
          Last(Lst) = Null;
         };
-      Else
+      } else {
        Prior.next = Elem.next;
        if ( Last(Lst) Is elem
         ) {
@@ -85,7 +85,7 @@ BeginCode
     if ( Last(Lst) IsNull
      ) {
       First(Lst) = elem;
-     Else
+     } else {
       (*Last(Lst)).next = elem;
      };
     Last(Lst)  = elem;

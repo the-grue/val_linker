@@ -82,7 +82,7 @@ BeginCode
        Pub.Internal.lseg   = Active_segment.lsegs.first;
        Pub.Internal.frame  = 0;
        Pub.Internal.offset = 0;
-      Else
+      } else {
        linker_error(4, "Could not generate symbol \"_edata\" "
                        "when \"/DOSSEG\" set\n"
                        "because it was explicitly defined.\n");
@@ -100,7 +100,7 @@ BeginCode
        Pub.Internal.lseg   = Active_segment.lsegs.first;
        Pub.Internal.frame  = 0;
        Pub.Internal.offset = 0;
-      Else
+      } else {
        linker_error(4, "Could not generate symbol \"_end\" "
                        "when \"/DOSSEG\" set\n"
                        "because it was explicitly defined.\n");
@@ -134,7 +134,7 @@ BeginCode
      order_token_get_char();
     EndWhile;
    lowercase_string(token);
-  Else
+  } else {
    if ( token_break_char Is '['
     ) {
      While token_break_char IsNot ']'
@@ -147,7 +147,7 @@ BeginCode
       ) {
        lowercase_string(token);
       };
-    Else
+    } else {
      concat_char_to_string(token, token_break_char);
      order_token_get_char();
     };
@@ -201,12 +201,12 @@ BeginCode
          ((Active_segment.segment_name Is codeview_segment_SYMBOLS) AndIf
           (Active_segment.class_name Is codeview_class_DEBSYM)))
       ) { /* Eat the codeview segment */
-      Else /* Process all non-codeview segments */
+      } else { /* Process all non-codeview segments */
        if ( order_expression()
         ) {
          Insert active_segment AtEnd InList segments_ordered_list EndInsert;
          align_active_segment();
-        Else
+        } else {
          Insert active_segment AtEnd InList segments_unordered_list EndInsert;
         };
       };
@@ -305,7 +305,7 @@ BeginCode
     ) {
      get_order_token();
      return(operand);
-    Else
+    } else {
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
                      String(ordering.val));
@@ -340,7 +340,7 @@ BeginCode
    if ( group IsNull
     ) {
      operand = False;
-    Else
+    } else {
      operand =
       match_pattern(token, string((*Group.group_name).symbol));
     };
@@ -398,7 +398,7 @@ BeginCode
  if ( comfile.val IsTrue
   ) {
    address_base = 0x100L;
-  Else
+  } else {
    address_base = 0L;
   };
  next_available_address = 0L;
@@ -426,7 +426,7 @@ BeginCode
                        "!(cl[*bss]|cl[*BSS]|cl[*stack]|cl[*STACK]), "
                        "cl[*bss]|cl[*BSS], "
                        "cl[*stack]|cl[*STACK])")));
-    Else
+    } else {
      ordering.val = duplicate_string(Addr(static_pool),
                                      string((byte *) ("(true)")));
     };
@@ -447,12 +447,12 @@ BeginCode
     ) {
      linker_error(4, "Stack segment found for a non .EXE file.\n");
     };
-  Else
+  } else {
    if ( (stack_segment_found IsFalse) AndIf
       (stack.set           IsFalse)
     ) {
      linker_error(4, "No stack segment for .EXE file.\n");
-    Else
+    } else {
      if ( (stack.set IsTrue) AndIf 
         (Bit_16(Largest_stack_seg.length) LessThan stack.val)
       ) {
@@ -586,7 +586,7 @@ BeginCode
      linker_error(4, "Communal \"%Fs\" has element size exceeding 64K.\n",
                      Pub.symbol);
      offset = 0;
-    Else
+    } else {
      offset = Bit_16(65536L Mod Pub.Communal.element_size);
     };
    length                          += Bit_32(offset);

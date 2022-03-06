@@ -95,7 +95,7 @@ BeginCode
        if ( Pub.Internal.lseg IsNull
         ) {
          print("Abs  ");
-        Else
+        } else {
          print("     ");
         };
        print("%Fs\n", Pub.symbol);
@@ -114,7 +114,7 @@ BeginCode
        if ( Pub.Internal.lseg IsNull
         ) {
          print("Abs  ");
-        Else
+        } else {
          print("     ");
         };
        print("%Fs\n", Pub.symbol);
@@ -202,7 +202,7 @@ BeginCode
                        Bit_32(temp_file_header.rec_len));
          file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
          ContinueLoop;
-        Else
+        } else {
          file_read(BytePtr(Addr(fixup)), temp_file_header.rec_len);
         };
        if ( last_location_lseg IsNot temp_file_header.lseg
@@ -321,12 +321,12 @@ BeginCode
        print(" ..");
        ascii[strlen(ascii)] = ' ';
        line_address++;
-      Else
+      } else {
        print(" %02X", *data);
        if ( isprint(*data)
         ) {
          ascii[strlen(ascii)] = (char) *data;
-        Else
+        } else {
          ascii[strlen(ascii)] = '.';
         };
        data++;

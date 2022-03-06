@@ -108,12 +108,12 @@ BeginCode
   ) {
    default_extension = com_extension_string;
    default_prompt = "COM file[%Fs]:  ";
-  Else
+  } else {
    if ( sysfile.val IsTrue
     ) {
      default_extension = sys_extension_string;
      default_prompt = "SYS file[%Fs]:  ";
-    Else
+    } else {
      default_extension = exe_extension_string;
      default_prompt = "EXE file[%Fs]:  ";
     };
@@ -189,7 +189,7 @@ BeginCode
        ) {
         linker_error(4, "\"%Fs\" is an illegal input file name.\n",
                         String(token));
-       Else
+       } else {
          add_extension_to_file(token,default_extension);
          add_files_to_list(list, token);
        };

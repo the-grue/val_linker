@@ -9,9 +9,9 @@
 /* Block basic C commands */
 
 /*#define If                   if (
-#define Then                 ) { */
+#define Then                 ) { 
 #define Else                 } else {
-/*#define ElseIf               } else if (
+#define ElseIf               } else if (
 #define EndIf                }*/
 
 #define Using                switch (

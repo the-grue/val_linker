@@ -53,7 +53,7 @@ BeginCode
   } else if ( mm IsNotZero
    ) {
     sprintf(time_array,"%u:%02u.%02u",mm,ss,cc);
-   Else
+   } else {
     sprintf(time_array,"%u.%02u",ss,cc);
  };
  return(time_array);

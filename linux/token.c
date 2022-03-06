@@ -152,11 +152,11 @@ BeginCode
          if ( comfile.val IsTrue
           ) {
            default_extension = com_extension_string;
-          Else
+          } else {
            if ( sysfile.val IsTrue
             ) {
              default_extension = sys_extension_string;
-            Else
+            } else {
              default_extension = exe_extension_string;
             };
            };
@@ -166,7 +166,7 @@ BeginCode
        more_tokens = False;
        return;
       };
-    Else
+    } else {
      if ( (token_type Is separator_token_type)           OrIf
         (token_type Is terminator_token_type)          OrIf
         (token_type Is end_of_command_line_token_type)
@@ -185,18 +185,18 @@ BeginCode
          if ( comfile.val IsTrue
           ) {
            default_extension = com_extension_string;
-          Else
+          } else {
            if ( sysfile.val IsTrue
             ) {
              default_extension = sys_extension_string;
-            Else
+            } else {
              default_extension = exe_extension_string;
             };
            };
          change_extension(default_filename, default_extension);
         };
        copy_string(token, default_filename);
-      Else
+      } else {
        copy_string(token, null_string);
       };
      if ( (*token_stack.first).source_file Is stdin
@@ -298,7 +298,7 @@ BeginCode
                   "               between %u and %u\n",
                   Current_switch.full_name,
                   Affected_thing.min, Affected_thing.max);
-   Else
+   } else {
     Affected_thing.val = token_numeric_value;
     Affected_thing.set = True;
    };
@@ -338,7 +338,7 @@ BeginCode
                   "               between %u and %u\n",
                   Current_switch.full_name,
                   Affected_thing.min, Affected_thing.max);
-   Else
+   } else {
     Affected_thing.val = token_numeric_value;
    };
  scan_out_token();
@@ -370,7 +370,7 @@ BeginCode
     if ( token_stack.first Is token_stack.last
      ) {
       token_type       = end_of_command_line_token_type;
-     Else
+     } else {
       token_type       = line_end_token_type;
      };
     token_break_char = ' ';  /* Make it look like we advanced a character */
@@ -414,7 +414,7 @@ BeginCode
       if ( token_break_char IsNot '\n'
        ) {
         concat_char_to_string(next_token, token_break_char);
-       Else
+       } else {
         if ( (*token_stack.first).source_file Is stdin
          ) {
           linker_message("continue parenthesized text:  ");
@@ -448,7 +448,7 @@ BeginCode
          ((String(next_token)[1] Is 'x') OrIf (String(next_token)[1] Is 'X'))
        ) {
         token_is_hex_number = True;
-       Else
+       } else {
         if ( token_is_hex_number IsFalse
          ) {
           token_is_number = token_is_number AndIf
@@ -458,7 +458,7 @@ BeginCode
             token_numeric_value = (token_numeric_value * 10) +
                                   Bit_16(token_break_char - '0');
            };
-         Else
+         } else {
           token_is_hex_number =
           token_is_number     = token_is_number AndIf
                                 isxdigit(token_break_char);
@@ -468,7 +468,7 @@ BeginCode
              ) {
               token_numeric_value = (token_numeric_value * 16) +
                                     Bit_16(token_break_char - '0');
-             Else
+             } else {
               token_numeric_value = (token_numeric_value * 16) +
                                  Bit_16(toupper(token_break_char) - 'A' + 10);
              };
@@ -499,7 +499,7 @@ BeginCode
  if ( help_file IsNull
   ) {
    printf("Could not open help file \"%Fs\".\n", String(help_filename));
-  Else
+  } else {
    While fgets(CharPtr(object_file_element), MAX_ELEMENT_SIZE, help_file) 
          IsNotNull
     BeginWhile
@@ -507,7 +507,7 @@ BeginCode
        ) {
         linker_message("Press [RETURN] to continue...");
         gets(CharPtr(object_file_element));
-       Else
+       } else {
         linker_message(CharPtr(object_file_element));
       };
     EndWhile;
@@ -641,18 +641,18 @@ BeginCode
       ) {
        token_break_char = String(Tos_string)[Tos.token_string_index++];
        ExitLoop;
-      Else
+      } else {
        if ( token_stack.first Is token_stack.last
         ) {
          token_break_char = '\n';
          return;
-        Else
+        } else {
          Pop token_stack InTo tos EndPop;
          Push tos OnTo token_stack_free_list EndPush;
          ContinueLoop;
         };
       };
-    Else /* Input is from a file */
+    } else { /* Input is from a file */
      c = fgetc(Tos.source_file);
      if ( c Is EOF
       ) {
@@ -664,7 +664,7 @@ BeginCode
        token_break_char = Tos.break_char;
        Push tos OnTo token_stack_free_list EndPush;
        ExitLoop;
-      Else
+      } else {
        token_break_char = Byte(c);
        ExitLoop;
       };

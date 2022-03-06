@@ -184,7 +184,7 @@ BeginCode
                 allocate_memory(Addr(static_pool),
                                 Bit_32(sizeof(file_info_type)) + 5L);
    far_move((*temp_file).filename, BytePtr("l.tmp"), 6);
-  Else
+  } else {
    copy_string(temp_filename.val, 
                substr(temp_filename.val, 1, Length(temp_filename.val)-2));
    temp_file = (file_info_ptr)
@@ -262,7 +262,7 @@ BeginCode
    codeview_class_DEBTYP    = lookup_lname(6, (byte *) "debtyp");
    codeview_segment_SYMBOLS = lookup_lname(9, (byte *) "$$symbols");
    codeview_segment_TYPES   = lookup_lname(7, (byte *) "$$types");
-  Else
+  } else {
    BSS_lname                = lookup_lname(3, (byte *) "BSS");
    DGROUP_lname             = lookup_lname(6, (byte *) "DGROUP");
    FAR_BSS_lname            = lookup_lname(7, (byte *) "FAR_BSS");

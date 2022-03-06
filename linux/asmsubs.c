@@ -58,7 +58,7 @@ BeginCode
      if ( *left LessThan *right
       ) {
        return(-1);
-      Else
+      } else {
        return(1);
       };
     };
@@ -396,7 +396,7 @@ EndDeclarations
    if ( (address-- And 1)
     ) {
      word.high_byte = *data++;
-    Else
+    } else {
      word.low_byte = *data++;
     };
    sum += *word_ptr;

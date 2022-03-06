@@ -112,7 +112,7 @@ BeginCode
        near_communals             = pub;
        break;
      EndCase;
-    Else
+    } else {
      if ( Pub.type_entry Is expected_type
       ) {
        if ( (element_size              * element_count)              Exceeds 
@@ -121,7 +121,7 @@ BeginCode
          Pub.Communal.element_size  = element_size;
          Pub.Communal.element_count = element_count;
         };
-      Else
+      } else {
        if ( (Pub.type_entry Is near_communal) OrIf
           (Pub.type_entry Is far_communal)
         ) {
@@ -327,7 +327,7 @@ BeginCode
     ) {
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
-    Else
+    } else {
      if ( (Pub.type_entry Is public_in_library) AndIf
         (Not Pub.Library.requested)
       ) {
@@ -361,7 +361,7 @@ BeginCode
    if ( (*obj_ptr.TRD_DAT).type_fixupp_record IsZero
     ) {
      obj_FIXUPP_thread();
-    Else
+    } else {
      FIXUPP_contains_only_threads = False;
      obj_FIXUPP_fixup();
     };
@@ -453,7 +453,7 @@ BeginCode
       fixup.frame_referent = Null;
       break;
     EndCase;
-  Else  /* Frame is specified by a thread */
+  } else {  /* Frame is specified by a thread */
    thread_number        = FIX_DAT.frame;
    if ( Not frame_thread[thread_number].thread_defined
     ) {
@@ -499,7 +499,7 @@ BeginCode
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
       break;
     EndCase;
-  Else  /* Target is specified by a thread */
+  } else {  /* Target is specified by a thread */
    thread_number         = FIX_DAT.targt;
    if ( Not target_thread[thread_number].thread_defined
     ) {
@@ -521,7 +521,7 @@ BeginCode
  if ( FIX_DAT.p IsZero
   ) {  /* There is a target displacement */
    fixup.target_offset = *obj_ptr.b16++;
-  Else  /* The target displacement is zero */
+  } else {  /* The target displacement is zero */
    fixup.target_offset = 0;
   };
 
@@ -557,7 +557,7 @@ BeginCode
                    last_LxDATA_offset + fixup_index,
                    BytePtr(Addr(fixup)),
                    sizeof(fixup));
-  Else
+  } else {
    if ( fixup.mode IsZero
     ) {
      linker_error(4, "Translator warning:\n"
@@ -569,7 +569,7 @@ BeginCode
                      (*tmodule_name).symbol,
                      (*infile.file_info).filename,
                      current_record_offset);
-    Else
+    } else {
      obj_fixup_LIDATA();
     };
   };
@@ -636,7 +636,7 @@ BeginCode
        obj_fixup_LIDATA_IDB();
       EndFor;
     EndFor;
-  Else  /* Handle non-recursive case:  Content is data. */
+  } else {  /* Handle non-recursive case:  Content is data. */
    For i=0; i<repeat_count; i++
     BeginFor
      obj_ptr.b8   = content;
@@ -706,7 +706,7 @@ BeginCode
       target_thread[thread].referent = Null;
       break;
     EndCase;
-  Else  /* This is a frame thread */
+  } else {  /* This is a frame thread */
    frame_thread[thread].method = Bit_8(method);
    frame_thread[thread].thread_defined = True;
    Using method
@@ -813,7 +813,7 @@ BeginCode
    Lseg.highest_uninitialized_byte = 0L;
 
    Insert lseg AtEnd InList Seg.lsegs EndInsert;
-  Else  /* Not the first occurrence of this common */
+  } else {  /* Not the first occurrence of this common */
    lseg = Seg.lsegs.first;
    if ( length Exceeds Seg.length
     ) {  /* Expand common block to be big enough to hold this entry. */
@@ -832,7 +832,7 @@ BeginCode
      largest_stack_seg        = seg;
      largest_stack_seg_length = Seg.length;
      stack_segment_found      = True;
-    Else
+    } else {
      if ( Seg.length Exceeds largest_stack_seg_length
       ) {
        largest_stack_seg        = seg;
@@ -903,7 +903,7 @@ BeginCode
    if ( Seg.owning_group IsNull
     ) {
      Seg.owning_group = group;
-    Else
+    } else {
      if ( Seg.owning_group IsNot group
       ) {
        linker_error(4, "Attempt to place segment \"%Fs\" into group \"%Fs\"\n"
@@ -935,7 +935,7 @@ BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
-  Else
+  } else {
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
@@ -968,7 +968,7 @@ BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
-  Else
+  } else {
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
@@ -1001,7 +1001,7 @@ BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
-  Else
+  } else {
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
@@ -1034,7 +1034,7 @@ BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
    index = Bit_16(*obj_ptr.b8++);
-  Else
+  } else {
    index = (Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
            Bit_16(*obj_ptr.b8++);
   };
@@ -1082,7 +1082,7 @@ BeginCode
        obj_iterated_data_block();
       EndFor;
     EndFor;
-  Else  /* Handle non-recursive case:  Content is data. */
+  } else {  /* Handle non-recursive case:  Content is data. */
    len = Bit_16(*obj_ptr.b8++);
    For i=0; i<repeat_count; i++
     BeginFor
@@ -1130,7 +1130,7 @@ BeginCode
     BeginFor
      length     += Bit_32(repeat_count) * obj_iterated_data_block_length();
     EndFor;
-  Else  /* Handle non-recursive case:  Content is data. */
+  } else {  /* Handle non-recursive case:  Content is data. */
    len         = Bit_16(*obj_ptr.b8++);
    obj_ptr.b8 += len;
    length      = Bit_32(repeat_count) * Bit_32(len);
@@ -1152,20 +1152,20 @@ BeginCode
  if ( element_size LessThan 129
   ) {
    return(Bit_32(element_size));
-  Else
+  } else {
    if ( element_size Is 129
     ) {
      return(Bit_32(*obj_ptr.b16++));
-    Else
+    } else {
      if ( element_size Is 132
       ) {
        obj_ptr.b8--;
        return((*obj_ptr.b32++) And 0x00FFFFFFL);
-      Else
+      } else {
        if ( element_size Is 136
         ) {
          return(*obj_ptr.b32++);
-        Else
+        } else {
          linker_error(12, "Translator error:\n"
                         "\tModule:  \"%Fs\"\n"
                         "\t  File:  \"%Fs\"\n"
@@ -1231,7 +1231,7 @@ BeginCode
  if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
   ) {
    far_move(Addr(Lseg.data[offset]), obj_ptr.b8, len);
-  Else  /* We must save the initialization data out to the tmp file until
+  } else {  /* We must save the initialization data out to the tmp file until
            later when we know the length. */
    write_temp_file(Current_record_header.rec_typ,
                    last_LxDATA_lseg,
@@ -1291,7 +1291,7 @@ BeginCode
    BeginWhile
    obj_iterated_data_block();
    EndWhile;
-  Else  /* We must save the initialization data out to the tmp file until
+  } else {  /* We must save the initialization data out to the tmp file until
            later when we know the length. */
    len                     = Current_record_header.rec_len - 4;
    if ( segment_index Exceeds 127
@@ -1478,7 +1478,7 @@ BeginCode
       start_address.frame_referent = Null;
       break;
     EndCase;
-  Else  /* Frame is specified by a thread */
+  } else {  /* Frame is specified by a thread */
    thread_number                = END_DAT.frame;
    if ( Not frame_thread[thread_number].thread_defined
     ) {
@@ -1526,7 +1526,7 @@ BeginCode
        (void far *) (Bit_32(*obj_ptr.b16++) ShiftedLeft 4);
       break;
     EndCase;
-  Else  /* Target is specified by a thread */
+  } else {  /* Target is specified by a thread */
    thread_number                 = END_DAT.targt;
    if ( Not target_thread[thread_number].thread_defined
     ) {
@@ -1548,7 +1548,7 @@ BeginCode
  if ( END_DAT.p IsZero
   ) {  /* There is a target displacement */
    start_address.target_offset = *obj_ptr.b16++;
-  Else  /* The target displacement is zero */
+  } else {  /* The target displacement is zero */
    linker_error(12, "Translator error:\n"
                     "\tModule:  \"%Fs\"\n"
                     "\t  File:  \"%Fs\"\n"
@@ -1657,7 +1657,7 @@ BeginCode
                      (*tmodule_name).symbol,(*infile.file_info).filename);
      obj_ptr.b16++;      /* Eat offset. */
      obj_name_length();  /* Eat type index. */
-    Else
+    } else {
      if ( Pub.type_entry Is unused
       ) {
        Insert pub AtEnd InList external_list EndInsert;
@@ -1709,7 +1709,7 @@ BeginCode
  if ( len IsZero
   ) {
    name = none_lname;
-  Else
+  } else {
    if ( case_ignore.val
     ) {
      far_to_lower(BytePtr(obj_ptr.b8), len);
@@ -1732,7 +1732,7 @@ BeginCode
  if ( *obj_ptr.b8 LessThan 128
   ) {
    return(Bit_16(*obj_ptr.b8++));
-  Else
+  } else {
    return((Bit_16(*obj_ptr.b8++ - 128) ShiftedLeft 8) +
           (Bit_16(*obj_ptr.b8++)));
   };
@@ -1845,7 +1845,7 @@ BeginCode
                      (*tmodule_name).symbol,(*infile.file_info).filename);
      obj_ptr.b16++;      /* Eat offset. */
      obj_name_length();  /* Eat type index. */
-    Else
+    } else {
      if ( Pub.type_entry Is unused
       ) {
        Insert pub AtEnd InList external_list EndInsert;
@@ -1898,7 +1898,7 @@ BeginCode
   ) {
    address  = (Bit_32(*obj_ptr.b16++) ShiftedLeft 4L);  /* Frame */
    address += Bit_32(*obj_ptr.b8++);                    /* Offset */
-  Else
+  } else {
    address = 0L;
   };
  if ( align Exceeds dword_aligned
@@ -2035,7 +2035,7 @@ BeginCode
    if ( FIXUPP_contains_only_threads
     ) {
      return(True);
-    Else
+    } else {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
                       "\t  File:  \"%Fs\"\n"

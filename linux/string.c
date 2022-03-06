@@ -302,17 +302,17 @@ BeginCode
          return(True);
         };
       EndFor;
-    Else /* We must match only the tail */
+    } else { /* We must match only the tail */
      if ( Length(pattern) Exceeds Length(s)
       ) {
        return(False);
-      Else
+      } else {
        return(far_match(String(pattern),
                         BytePtr(Addr(String(s)[Length(s)-Length(pattern)])),
                         Length(pattern)));
       };
     };
-  Else /* We must match only the front */
+  } else { /* We must match only the front */
    return(far_match(String(pattern), String(s), Length(pattern)));
   };
  return(False);

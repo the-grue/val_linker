@@ -118,7 +118,7 @@ BeginCode
  if ( rc IsNotZero
   ) {
    copy_string(current_filename, null_string);
-  Else
+  } else {
    far_to_lower((*DTA).filename, 12);
    copy_string(current_filename, current_path);
    concat_string(current_filename, string((*DTA).filename));
@@ -285,7 +285,7 @@ BeginCode
  if ( (limit IsZero) OrIf (limit Exceeds File.buffer_size)
   ) {
    File.IO_limit = File.buffer_size;
-  Else
+  } else {
    File.IO_limit = limit;
   };
  return;
@@ -426,7 +426,7 @@ BeginCode
    File.byte_position        = Bit_16(position-File.start_of_buffer_position);
    File.current_byte         = Addr(File.buffer[File.byte_position]);
    File.bytes_left_in_buffer = File.bytes_in_buffer - File.byte_position;
-  Else
+  } else {
    inregs.h.ah = 0x42;                   /* Move file pointer */
    inregs.h.al = 0x00;                   /* Relative to start of file */
    inregs.x.bx = File.file_handle;
@@ -481,7 +481,7 @@ BeginCode
      File.start_of_buffer_position   = File.next_buffer_position;
      File.next_buffer_position       = File.start_of_buffer_position +
                                        File.bytes_in_buffer;
-    Else
+    } else {
      far_move(into, File.current_byte, length);
      into                      += length;
      File.current_byte         += length;
@@ -528,7 +528,7 @@ BeginCode
      File.start_of_buffer_position   = File.next_buffer_position;
      File.next_buffer_position       = File.start_of_buffer_position +
                                        File.bytes_left_in_buffer;
-    Else
+    } else {
      far_move(File.current_byte, from, Bit_16(length));
      from                      += Bit_16(length);
      File.current_byte         += Bit_16(length);
@@ -632,7 +632,7 @@ BeginCode
      cut_string(fn, left, right-left);
      right = index_string(fn, left+1, backslash_string);
      ContinueLoop;
-    Else
+    } else {
      if ( compare_string(substr(fn,left,3), backslash_dot_string) IsZero
       ) {
        cut_string(fn, left, 2);
@@ -703,7 +703,7 @@ BeginCode
  if ( rc IsNotZero
   ) {
    copy_string(current_filename, null_string);
-  Else
+  } else {
    far_to_lower((*DTA).filename, 12);
    copy_string(current_filename, current_path);
    concat_string(current_filename, string((*DTA).filename));
