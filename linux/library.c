@@ -17,7 +17,7 @@ BeginCode
     BeginTraverse
      process_library(current_lib_file_info);
     EndTraverse;
-  EndWhile;
+  };
  write_temp_file(0, Null, 0, 0, 0);
  file_close_for_write();
  return;
@@ -64,7 +64,7 @@ BeginCode
       };
     EndTraverse;
    file_close_for_read();
-  EndWhile;
+  };
  return;
 EndCode
 #undef Lib_file
@@ -283,7 +283,7 @@ BeginCode
        ExitLoop;
       };
      j--;
-    EndWhile;
+    };
    While i LessThan j
     ) {
      if ( (*public_sort_array[i]).Library.page GreaterThan
@@ -295,8 +295,8 @@ BeginCode
        ExitLoop;
       };
      i++;
-    EndWhile;
-  EndWhile;
+    };
+  };
   if ( i Exceeds 0
    ) {
     sort_directory(left, i-1);

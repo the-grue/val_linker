@@ -36,7 +36,7 @@ BeginCode
  While token_break_char Is ' '
   ) {
    token_get_char();
-  EndWhile;
+  };
 EndCode
 
 /*+-------------------------------------------------------------------------+
@@ -263,7 +263,7 @@ BeginCode
      return;
     };
    current_switch++;
-  EndWhile;
+  };
  linker_error(8,"Syntax error:  \"%Fs\" is an unknown switch.\n",
                 String(token));
  return;
@@ -428,7 +428,7 @@ BeginCode
        ) {
         paren_count--;
        };
-     EndWhile;
+     };
     token_break_char = ' ';  /* Make it look like we advanced a character */
     break;
    default:
@@ -476,7 +476,7 @@ BeginCode
          };
        };
       token_get_char();
-     EndWhile;
+     };
     token_type = filename_token_type;
     break;
   };
@@ -510,7 +510,7 @@ BeginCode
        } else {
         linker_message(CharPtr(object_file_element));
       };
-    EndWhile;
+    };
    fclose(help_file);
   };
  exit(0);

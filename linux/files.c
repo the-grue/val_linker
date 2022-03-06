@@ -71,7 +71,7 @@ BeginCode
      Insert file_entry AtEnd InList File_list EndInsert;
     };
    rc = continue_file_search();
-  EndWhile;
+  };
  return;
 EndCode
 #undef File_entry
@@ -489,7 +489,7 @@ BeginCode
      File.byte_position        += length;
      length                     = 0;
     };
-  EndWhile;
+  };
  return;
 EndCode
 #undef File
@@ -537,7 +537,7 @@ BeginCode
      File.bytes_in_buffer      += Bit_16(length);
      length                     = 0;
     };
-  EndWhile;
+  };
  return;
 EndCode
 #undef File
@@ -642,7 +642,7 @@ BeginCode
     };
    left  = right;
    right = index_string(fn, left+1, backslash_string);
-  EndWhile;
+  };
  return(fn);
 EndCode
 

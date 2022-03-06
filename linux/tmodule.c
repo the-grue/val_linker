@@ -138,7 +138,7 @@ BeginCode
         };
       };
     };
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -209,7 +209,7 @@ BeginCode
   };
  While obj_FIXUPP()
   ) {
-  EndWhile;
+  };
  return(True);
 EndCode
 
@@ -336,7 +336,7 @@ BeginCode
        Pub.Library.requested = True;
       };
     };
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -365,7 +365,7 @@ BeginCode
      FIXUPP_contains_only_threads = False;
      obj_FIXUPP_fixup();
     };
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -600,7 +600,7 @@ BeginCode
  While obj_ptr.b8 IsNot end_of_last_LIDATA_record.b8
   ) {
    obj_fixup_LIDATA_IDB();
-  EndWhile;
+  };
  obj_ptr = old_obj_ptr;
  return;
 EndCode
@@ -914,7 +914,7 @@ BeginCode
                        (*Group.group_name).symbol);
      };
     };
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1290,7 +1290,7 @@ BeginCode
    While obj_ptr.b8 IsNot end_of_record.b8
    ) {
    obj_iterated_data_block();
-   EndWhile;
+   };
   } else {  /* We must save the initialization data out to the tmp file until
            later when we know the length. */
    len                     = Current_record_header.rec_len - 4;
@@ -1324,7 +1324,7 @@ BeginCode
  While obj_ptr.b8 IsNot end_of_record.b8
   ) {
    length += obj_iterated_data_block_length();
-  EndWhile;
+  };
  obj_ptr.b8 = start;
  return(length);
 EndCode
@@ -1375,7 +1375,7 @@ BeginCode
                       max_lnames.val);
     };
    lnames[++n_lnames] = obj_name();
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1608,7 +1608,7 @@ BeginCode
      Insert pub AtEnd InList external_list EndInsert;
      Pub.type_entry = external;
     };
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1669,7 +1669,7 @@ BeginCode
      Pub.Internal.offset  = *obj_ptr.b16++;
      obj_name_length();  /* Eat type index. */
     };
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1758,7 +1758,7 @@ BeginCode
                    infile.start_of_buffer_position +
                    Bit_32(Current_record_header.rec_len));
      file_read(object_file_element,  sizeof(obj_record_header_type) - 1);
-    EndWhile;
+    };
    current_record_offset = Bit_32(infile.byte_position) +
                            infile.start_of_buffer_position -
                            Bit_32(sizeof(obj_record_header_type)-1);
@@ -1863,7 +1863,7 @@ BeginCode
      Pub.Internal.offset  = *obj_ptr.b16++;
      obj_name_length();  /* Eat type index. */
     };
-  EndWhile;
+  };
  obj_next_record();
  return(True);
 EndCode
@@ -1993,10 +1993,10 @@ EndDeclarations
 BeginCode
  While obj_LNAMES() OrIf obj_SEGDEF() OrIf obj_EXTDEF()
   ) {
-  EndWhile;
+  };
  While obj_TYPDEF() OrIf obj_EXTDEF() OrIf obj_GRPDEF()
   ) {
-  EndWhile;
+  };
  return(True);
 EndCode
 
@@ -2105,7 +2105,7 @@ BeginCode
   };
  While obj_component()
   ) {
-  EndWhile;
+  };
  if ( Not obj_modtail()
   ) {
    linker_error(12, "Translator error:\n"

@@ -64,7 +64,7 @@ BeginCode
     };
    left++;
    right++;
-  EndWhile;
+  };
  return(0); */
 
  asm            cld
@@ -138,7 +138,7 @@ BeginCode
     };
    source++;
    pattern++;
-  EndWhile;
+  };
  return(True); */
 
  asm            mov     cx,len
@@ -178,7 +178,7 @@ BeginCode
  While len-- IsNotZero
   ) {
    *dest++ = *source++;
-  EndWhile; */
+  }; */
 
  asm            cld
  asm            push    ds
@@ -206,7 +206,7 @@ BeginCode
  While len-- IsNotZero
   ) {
    *dest-- = *source--;
-  EndWhile; */
+  }; */
 
  asm            std
  asm            push    ds
@@ -236,7 +236,7 @@ BeginCode
  While len-- IsNotZero
   ) {
    *dest++ = source;
-  EndWhile; */
+  }; */
 
  asm            cld
  asm            mov     cx,len
@@ -262,7 +262,7 @@ BeginCode
  While len-- IsNotZero
   ) {
    tolower(*dest++);
-  EndWhile; */
+  }; */
 
  asm            mov     cx,len
  asm            les     di,dest
@@ -323,7 +323,7 @@ BeginCode
                             (*delta_block    ShiftedRight 14));
    *starting_entry = c Xor ((*starting_entry ShiftedRight  2)  Or
                             (*starting_entry ShiftedLeft  14));
-  EndWhile; */
+  }; */
  asm            xor     ax,ax
  asm            mov     cl,2
  asm            xor     bx,bx

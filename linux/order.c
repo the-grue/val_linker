@@ -124,7 +124,7 @@ BeginCode
  While token_break_char Is ' '
   ) {
    order_token_get_char();
-  EndWhile;
+  };
  copy_string(token, null_string);
  if ( IsIdentifier(token_break_char)
   ) {
@@ -132,7 +132,7 @@ BeginCode
     ) {
      concat_char_to_string(token, token_break_char);
      order_token_get_char();
-    EndWhile;
+    };
    lowercase_string(token);
   } else {
    if ( token_break_char Is '['
@@ -141,7 +141,7 @@ BeginCode
       ) {
        concat_char_to_string(token, token_break_char);
        order_token_get_char();
-      EndWhile;
+      };
      order_token_get_char();
      if ( case_ignore.val
       ) {
@@ -210,11 +210,11 @@ BeginCode
          Insert active_segment AtEnd InList segments_unordered_list EndInsert;
         };
       };
-    EndWhile;
+    };
    start_of_expression = order_expression_char_ptr;
    start_of_expression--;
    segment_list = segments_unordered_list;
-  EndWhile;
+  };
 
 /*+-------------------------------------------------------------------------+
   |                                                                         |
@@ -227,7 +227,7 @@ BeginCode
    Pop segment_list InTo active_segment EndPop;
    Insert active_segment AtEnd InList segments_ordered_list EndInsert;
    align_active_segment();
-  EndWhile;
+  };
  segment_list = segments_ordered_list;
  return;
 EndCode
@@ -250,7 +250,7 @@ BeginCode
   ) {
    get_order_token();
    left_operand |= order_term();
-  EndWhile;
+  };
  return(left_operand);
 EndCode
 
@@ -272,7 +272,7 @@ BeginCode
   ) {
    get_order_token();
    unary_not ^= True;
-  EndWhile;
+  };
  return(unary_not ^ order_primary());
 EndCode
 
@@ -622,7 +622,7 @@ BeginCode
   ) {
    get_order_token();
    left_operand &= order_factor();
-  EndWhile;
+  };
  return(left_operand);
 EndCode
 

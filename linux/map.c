@@ -279,7 +279,7 @@ BeginCode
         };
        print(")\n");
        file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
-      EndWhile;
+      };
      file_close_for_read();
     };
   };
@@ -336,7 +336,7 @@ BeginCode
       };
     EndFor;
    print("  %s\n", ascii);
-  EndWhile;
+  };
  return;
 EndCode
 
@@ -372,7 +372,7 @@ BeginCode
        ExitLoop;
       };
      j--;
-    EndWhile;
+    };
    While i LessThan j
     ) {
      if ( far_compare((*public_sort_array[i]).symbol,
@@ -385,8 +385,8 @@ BeginCode
        ExitLoop;
       };
      i++;
-    EndWhile;
-  EndWhile;
+    };
+  };
   if ( i Exceeds 0
    ) {
     sort_publics_by_name(left, i-1);
@@ -428,7 +428,7 @@ BeginCode
        ExitLoop;
       };
      j--;
-    EndWhile;
+    };
    While i LessThan j
     ) {
      if ( (((*public_sort_array[i]).Internal.lseg IsNull) AndIf
@@ -442,8 +442,8 @@ BeginCode
        ExitLoop;
       };
      i++;
-    EndWhile;
-  EndWhile;
+    };
+  };
   if ( i Exceeds 0
    ) {
     sort_publics_by_value(left, i-1);

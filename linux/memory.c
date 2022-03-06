@@ -63,7 +63,7 @@ BeginCode
     };
    prior = desc;
    Next(desc);
-  EndWhile;
+  };
  linker_error (8,"No more free far memory for pool \"%s\"\n."
                  "\tTry running again with smaller buffersize and/or\n"
                  "\tvirtualized fixup processing.\n",
@@ -115,7 +115,7 @@ BeginCode
     };
    prev = desc;
    Next(desc);
-  EndWhile;
+  };
 
 /* Well, none of the memory descriptors had enough space to allocate this
    element.  So, we will have to get another chunk, add it to this pool and
@@ -216,7 +216,7 @@ BeginCode
    free_pool.memory_descriptor_list   = desc;
    far_memory                        += size_this_chunk;
    far_memory_size                   -= size_this_chunk;
-  EndWhile;
+  };
  free_pool.pool_id                   = "Free pool";
  static_pool.pool_id                 = "Static pool";
  dynamic_pool.pool_id                = "Dynamic pool";
@@ -251,7 +251,7 @@ BeginCode
    Desc.next                         = free_pool.memory_descriptor_list;
    free_pool.memory_descriptor_list  = desc;
    desc = next;
-  EndWhile;
+  };
  Pool.memory_descriptor_list = Null;
  Pool.pool_size              =
  Pool.used_bytes             = 0L;

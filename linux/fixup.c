@@ -165,21 +165,21 @@ BeginCode
      ) {
       offset = *obj_ptr.b16++;
       Lseg.data[offset] += *obj_ptr.b8++;
-     EndWhile;
+     };
     break;
    case 1:
     While obj_ptr.b8 IsNot end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       *((bit_16 far *) Addr(Lseg.data[offset])) += *obj_ptr.b16++;
-     EndWhile;
+     };
     break;
    case 2:
     While obj_ptr.b8 IsNot end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       *((bit_32 far *) Addr(Lseg.data[offset])) += *obj_ptr.b32++;
-     EndWhile;
+     };
     break;
    default:
     linker_error(4, "Translator error:\n"
@@ -273,7 +273,7 @@ BeginCode
  While obj_ptr.b8 IsNot end_of_record.b8
   ) {
    fixup_LIDATA_IDB();
-  EndWhile;
+  };
  return;
 EndCode
 #undef Lseg
@@ -417,7 +417,7 @@ BeginCode
       break;
     };
    file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
-  EndWhile;
+  };
  file_close_for_read();
  return;
 EndCode

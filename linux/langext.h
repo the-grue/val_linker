@@ -23,8 +23,8 @@
 #define LoopIf(cond)         if (cond) continue
 
 #define While                while (
-/*#define BeginWhile           ) {*/
-#define EndWhile             }
+/*#define BeginWhile           ) {
+#define EndWhile             }*/
 
 #define Repeat               do
 #define BeginRepeat          {

@@ -93,7 +93,7 @@ BeginCode
     };
    prior       = group_entry;
    group_entry = Group_entry.next_congruent;
-  EndWhile;
+  };
  group_entry = (group_entry_ptr)
                 allocate_memory(Addr(static_pool),
                                 Bit_32(sizeof(group_entry_type)));
@@ -144,7 +144,7 @@ BeginCode
     };
    prior       = lname_entry;
    lname_entry = Lname_entry.next_congruent;
-  EndWhile;
+  };
  lname_entry = (lname_entry_ptr)
                 allocate_memory(Addr(static_pool),
                                 Bit_32(sizeof(lname_entry_type))+Bit_32(len));
@@ -194,7 +194,7 @@ BeginCode
     };
    prior     = pub_entry;
    pub_entry = Pub_entry.next_congruent;
-  EndWhile;
+  };
  pub_entry = (public_entry_ptr)
               allocate_memory(Addr(static_pool),
                               Bit_32(sizeof(public_entry_type))+Bit_32(len));
@@ -251,7 +251,7 @@ BeginCode
       };
      prior       = segment_entry;
      segment_entry = Segment_entry.next_congruent;
-    EndWhile;
+    };
   };
  segment_entry = (segment_entry_ptr)
                 allocate_memory(Addr(static_pool),

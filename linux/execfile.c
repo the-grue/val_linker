@@ -231,6 +231,6 @@ BeginCode
      file_write(BytePtr(object_file_element), length);
      length = 0L;
     };
-  EndWhile;
+  };
  return;
 EndCode

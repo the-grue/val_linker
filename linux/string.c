@@ -200,7 +200,7 @@ BeginCode
   ) {
    i -= 3;
    paste_string(s, i, comma_string);
-  EndWhile;
+  };
  return(s);
 EndCode
 
