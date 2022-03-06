@@ -60,8 +60,8 @@ ListTypeOf(Generic_Element);
 #define OrIf                 ||
 #define Not                  !
 #define Is                   ==
-#define IsNot                !=
-/*#define IsEqualTo            ==
+/*#define IsNot                !=
+#define IsEqualTo            ==
 #define Equals               ==
 #define IsNotEqualTo         !=
 #define LessThan             <

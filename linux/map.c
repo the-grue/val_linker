@@ -68,14 +68,14 @@ bit_32                                 stop_address;
    n_publics_to_sort = 0;
    TraverseList(external_list, pub)
     BeginTraverse
-     if (Pub.type_entry IsNot internal) continue;
+     if (Pub.type_entry != internal) continue;
      public_sort_array[n_publics_to_sort++] = pub;
     EndTraverse;
    TraverseList(lib_file_list, file)
     BeginTraverse
      TraverseList(File.external_list, pub)
       BeginTraverse
-       if (Pub.type_entry IsNot internal) continue;
+       if (Pub.type_entry != internal) continue;
        public_sort_array[n_publics_to_sort++] = pub;
       EndTraverse;
     EndTraverse;
@@ -172,8 +172,8 @@ bit_32                                 stop_address;
                Lseg.length,
                align_text[Lseg.align]);
          if ( (detail_level.val > 2)             AndIf 
-            (Lseg.align IsNot absolute_segment)      AndIf
-            (Seg.combine IsNot blank_common_combine)
+            (Lseg.align != absolute_segment)      AndIf
+            (Seg.combine != blank_common_combine)
           ) {
            map_memory(Lseg.data, Lseg.address, Lseg.length);
           };
@@ -195,7 +195,7 @@ bit_32                                 stop_address;
      file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
      while ( temp_file_header.rec_typ != 0
       ) {
-       if ( temp_file_header.rec_typ IsNot FIXUPP_record
+       if ( temp_file_header.rec_typ != FIXUPP_record
         ) {
          file_position(Bit_32(infile.byte_position) +
                        infile.start_of_buffer_position +
@@ -205,7 +205,7 @@ bit_32                                 stop_address;
         } else {
          file_read(BytePtr(Addr(fixup)), temp_file_header.rec_len);
         };
-       if ( last_location_lseg IsNot temp_file_header.lseg
+       if ( last_location_lseg != temp_file_header.lseg
         ) {
          lseg = temp_file_header.lseg;
          seg  = Lseg.segment;

@@ -232,7 +232,7 @@ segment_entry_ptr                      prior;
                   Class_lname.lname_checksum)
                  Mod segment_table_hash_size.val;
  segment_entry = segment_hash_table[hash_val];
- if ( (combine != 0) AndIf (combine IsNot blank_common_combine)
+ if ( (combine != 0) AndIf (combine != blank_common_combine)
   ) {  /* All non-zero combine types except blank common will be combined. */
    prior         = Null;
    while ( segment_entry != 0

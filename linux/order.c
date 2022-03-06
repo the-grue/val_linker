@@ -137,7 +137,7 @@ void get_order_token()
   } else {
    if ( token_break_char Is '['
     ) {
-     while ( token_break_char IsNot ']'
+     while ( token_break_char != ']'
       ) {
        concat_char_to_string(token, token_break_char);
        order_token_get_char();
@@ -185,7 +185,7 @@ byte_ptr                               start_of_expression;
  highest_uninitialized_byte = 0L;
  start_of_expression = String(ordering.val);
  start_of_expression++;
- while ( *start_of_expression IsNot '\000'
+ while ( *start_of_expression != '\000'
   ) {
    if (segment_list.first == 0) break;
    First(segments_unordered_list) =
@@ -314,7 +314,7 @@ bit_16                                 operand;
  if ( TokenStartsWith(segment_string)
   ) {
    get_order_token();
-   if ( *String(token) IsNot '['
+   if ( *String(token) != '['
     ) {
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
@@ -329,7 +329,7 @@ bit_16                                 operand;
  if ( TokenStartsWith(group_string)
   ) {
    get_order_token();
-   if ( *String(token) IsNot '['
+   if ( *String(token) != '['
     ) {
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
@@ -350,7 +350,7 @@ bit_16                                 operand;
  if ( TokenStartsWith(class_string)
   ) {
    get_order_token();
-   if ( *String(token) IsNot '['
+   if ( *String(token) != '['
     ) {
      linker_error(8, "Expression syntax error:\n"
                      "\t\"%Fs\"\n",
@@ -483,7 +483,7 @@ bit_16                                 size;
    length = 0L;
    for ( pub=near_communals; pub != 0; pub=Pub.Communal.next_communal
     ) {
-     if (Pub.type_entry IsNot near_communal) continue;
+     if (Pub.type_entry != near_communal) continue;
      length += Pub.Communal.element_size;
     };
    if ( length > 65536L
@@ -506,7 +506,7 @@ bit_16                                 size;
    for ( pub=near_communals; pub != 0; pub=next_communal
     ) {
      next_communal        = Pub.Communal.next_communal;
-     if (Pub.type_entry IsNot near_communal) continue;
+     if (Pub.type_entry != near_communal) continue;
      size                 = Bit_16(Pub.Communal.element_size);
      Pub.type_entry       = internal;
      Pub.Internal.group   = group;
@@ -530,7 +530,7 @@ bit_16                                 size;
  for ( pub=far_communals; pub != 0; pub=next_communal
   ) {
    next_communal = Pub.Communal.next_communal;
-   if (Pub.type_entry IsNot far_communal) continue; 
+   if (Pub.type_entry != far_communal) continue; 
    length = Pub.Communal.element_size * Pub.Communal.element_count;
    if ( length > 65536L
     ) {

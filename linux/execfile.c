@@ -99,7 +99,7 @@ segment_entry_ptr                      seg;
    initial_IP            = Bit_16(target() - frame());
    if ( (comfile.val != 0)      AndIf 
       (initial_CS != 0)    AndIf 
-      (initial_IP IsNot 0x0100)
+      (initial_IP != 0x0100)
     ) {  /* COM file start address must be 0000:0100 */
       linker_error(4, "Start address for COM file is not 0000:0100.\n");
     } else {
@@ -169,7 +169,7 @@ segment_entry_ptr                      seg;
               next_available_address) continue;
        data_index     = next_available_address - Lseg.address;
        partial_length = Lseg.length - data_index;
-       if ( Seg.combine IsNot blank_common_combine
+       if ( Seg.combine != blank_common_combine
         ) {
          file_write(Addr(Lseg.data[Bit_16(data_index)]), partial_length);
         } else {
@@ -187,7 +187,7 @@ segment_entry_ptr                      seg;
         ) {
          partial_length = (Lseg.address + Lseg.length) - 
                           highest_uninitialized_byte;
-         if ( Seg.combine IsNot blank_common_combine
+         if ( Seg.combine != blank_common_combine
           ) {
            file_write(Lseg.data, partial_length);
           } else {
@@ -195,7 +195,7 @@ segment_entry_ptr                      seg;
           };
           next_available_address += partial_length;
         } else {
-         if ( Seg.combine IsNot blank_common_combine
+         if ( Seg.combine != blank_common_combine
           ) {
            file_write(Lseg.data, Lseg.length);
           } else {

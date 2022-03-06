@@ -9,7 +9,7 @@ string_ptr add_extension_to_file(string_ptr fn, string_ptr ext)
 {
 
 
- if ( index_string(fn,0,colon_string) IsNot 1
+ if ( index_string(fn,0,colon_string) != 1
   ) {  /* AUX:, CON:, or PRN: */
    return(fn);
   };
@@ -145,7 +145,7 @@ string_ptr default_directory(string_ptr drive, string_ptr directory)
  *String(directory) = '\\';
  Length(directory) = far_index(String(directory), 0);
  far_to_lower(String(directory), Length(directory));
- if ( LastCharIn(directory) IsNot '\\'
+ if ( LastCharIn(directory) != '\\'
   ) {
    concat_string(directory,backslash_string);
   };
@@ -618,7 +618,7 @@ bit_16                                 right;
   +-------------------------------------------------------------------------+*/
  left  = index_string(fn, -1, backslash_string);
  right = index_string(fn, left+1, backslash_string);
- while ( right IsNot 0xffff
+ while ( right != 0xffff
   ) {
    if ( compare_string(substr(fn,left,4), backslash_dot_dot_string) == 0
     ) {

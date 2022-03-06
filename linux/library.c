@@ -42,13 +42,13 @@ public_entry_ptr                       pub;
    Lib_file.pass_count++;
    TraverseList(Lib_file.external_list, pub)
     BeginTraverse
-     if ((Pub.type_entry IsNot public_in_library) OrIf
+     if ((Pub.type_entry != public_in_library) OrIf
             (Not Pub.Library.requested)) continue;
      pos = Bit_32(Pub.Library.page) * Bit_32(Lib_file.page_size);
      file_position(pos);
      Lib_file.module_count++;
      obj_tmodule();
-     if ( Pub.type_entry IsNot internal
+     if ( Pub.type_entry != internal
       ) {
        linker_error(12, "Library directory error:\n"
                         "\tLibrary:  \"%Fs\"\n"
@@ -124,7 +124,7 @@ bit_16                                *symbol_in_page;
  file_open_for_read(lib_file);
  file_IO_limit(sizeof(library_file_header_type));
  file_read(object_file_element, sizeof(library_file_header_type));
- if ( Lib_hdr.flag IsNot 0xF0
+ if ( Lib_hdr.flag != 0xF0
   ) {
    linker_error(4,"File \"%Fs\" is not in LIB file format.\n"
                   "\tThis file has been ignored.\n",
@@ -171,7 +171,7 @@ bit_16                                *symbol_in_page;
   | same manner except it will log when it ignores a module in a library.   |
   |                                                                         |
   +-------------------------------------------------------------------------+*/
-     if ( Pub.type_entry IsNot unused
+     if ( Pub.type_entry != unused
       ) {  /* Log the ambiguity. */
        linker_error(4,"The symbol \"%Fs\" is defined in the libraries\n"
                       "\t\"%Fs\" and \"%Fs\".\n"

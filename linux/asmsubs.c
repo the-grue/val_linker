@@ -132,7 +132,7 @@ bit_16 far_match (byte_ptr pattern, byte_ptr s, bit_16 len)
     ) {
      return(True);
     };
-   if ( (*pattern IsNot '?') AndIf (*pattern IsNot *source)
+   if ( (*pattern != '?') AndIf (*pattern != *source)
     ) {
      return(False);
     };

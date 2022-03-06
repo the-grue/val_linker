@@ -83,7 +83,7 @@ token_stack_ptr                        source_element;
    if ( token_type Is indirect_file_token_type
     ) {
      scan_out_token();
-     if ( token_type IsNot filename_token_type
+     if ( token_type != filename_token_type
       ) {
        linker_error(8,"Input syntax error:  Expected filename after '@'.\n");
       };
@@ -124,7 +124,7 @@ token_stack_ptr                        source_element;
        ((token_type Is separator_token_type)           OrIf
         (token_type Is line_end_token_type)))
     ) {
-     if ( (*token_stack.first).source_file IsNot stdin
+     if ( (*token_stack.first).source_file != stdin
       ) {
        source_element                    = get_free_token_source_element();
        Source_element.source_file        = stdin;
@@ -283,7 +283,7 @@ void scan_bit_16_switch(switch_table_ptr current_switch)
 
  scan_out_token();
  copy_string(token, next_token);
- if ( token_type IsNot switch_end_token_type
+ if ( token_type != switch_end_token_type
   ) {
    linker_error(8,"Syntax error:  \":\" did not follow switch \"%s\"\n",
                   Current_switch.full_name);
@@ -323,7 +323,7 @@ void scan_opt_bit_16(switch_table_ptr current_switch)
  scan_out_token();
  copy_string(token, next_token);
  Affected_thing.set = True;
- if ( token_type IsNot switch_end_token_type
+ if ( token_type != switch_end_token_type
   ) {
    Affected_thing.val = Affected_thing.def;
    return;
@@ -411,7 +411,7 @@ bit_16                                 paren_count;
     while ( paren_count != 0
      ) {
       token_get_char();
-      if ( token_break_char IsNot '\n'
+      if ( token_break_char != '\n'
        ) {
         concat_char_to_string(next_token, token_break_char);
        } else {
@@ -434,14 +434,14 @@ bit_16                                 paren_count;
    default:
     token_is_number     = True;
     token_numeric_value = 0;
-    while ( (token_break_char IsNot ',')  AndIf
-          (token_break_char IsNot ';')  AndIf
-          (token_break_char IsNot '+')  AndIf
-          (token_break_char IsNot '/')  AndIf
-          (token_break_char IsNot '@')  AndIf
-          (token_break_char IsNot ':')  AndIf
-          (token_break_char IsNot ' ')  AndIf
-          (token_break_char IsNot '\n')
+    while ( (token_break_char != ',')  AndIf
+          (token_break_char != ';')  AndIf
+          (token_break_char != '+')  AndIf
+          (token_break_char != '/')  AndIf
+          (token_break_char != '@')  AndIf
+          (token_break_char != ':')  AndIf
+          (token_break_char != ' ')  AndIf
+          (token_break_char != '\n')
      ) {
       concat_char_to_string(next_token, token_break_char);
       if ( (Length(next_token) Is 2) AndIf (String(next_token)[0] Is '0') AndIf
@@ -587,14 +587,14 @@ void scan_text_switch(switch_table_ptr current_switch)
 
  scan_out_token();
  copy_string(token, next_token);
- if ( token_type IsNot switch_end_token_type
+ if ( token_type != switch_end_token_type
   ) {
    linker_error(8,"Syntax error:  \":\" did not follow switch \"%s\"\n",
                   Current_switch.full_name);
   };
  scan_out_token();
  copy_string(token, next_token);
- if ( token_type IsNot text_token_type
+ if ( token_type != text_token_type
   ) {
    linker_error(8, "Syntax error:  Parenthesized text did not follow\n"
                    "\t\"%s\" switch.  Instead found \"%Fs\".\n",
@@ -656,7 +656,7 @@ token_stack_ptr                        tos;
      c = fgetc(Tos.source_file);
      if ( c Is EOF
       ) {
-       if ( Tos.source_file IsNot stdin
+       if ( Tos.source_file != stdin
         ) {
          fclose(Tos.source_file);
         };

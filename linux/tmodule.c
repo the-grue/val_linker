@@ -42,11 +42,11 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 
 
- if ( Current_record_header.rec_typ IsNot COMDEF_record
+ if ( Current_record_header.rec_typ != COMDEF_record
   ) {
    return(False);
   };
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    if ( n_externals >= max_externals.val
     ) {
@@ -154,7 +154,7 @@ bit_16 obj_COMENT()
 bit_8                                  comment_class;
 
 
- if ( Current_record_header.rec_typ IsNot COMENT_record
+ if ( Current_record_header.rec_typ != COMENT_record
   ) {
    return(False);
   };
@@ -294,11 +294,11 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 
 
- if ( Current_record_header.rec_typ IsNot EXTDEF_record
+ if ( Current_record_header.rec_typ != EXTDEF_record
   ) {
    return(False);
   };
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    if ( n_externals >= max_externals.val
     ) {
@@ -351,12 +351,12 @@ bit_16 obj_FIXUPP()
 {
 
 
- if ( Current_record_header.rec_typ IsNot FIXUPP_record
+ if ( Current_record_header.rec_typ != FIXUPP_record
   ) {
    return(False);
   };
  FIXUPP_contains_only_threads = True;
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    if ( (*obj_ptr.TRD_DAT).type_fixupp_record == 0
     ) {
@@ -597,7 +597,7 @@ obj_ptr_type                           old_obj_ptr;
     [Last_LIDATA_record_header.rec_len-1]);
  obj_index_segment();
  obj_ptr.b16++;
- while ( obj_ptr.b8 IsNot end_of_last_LIDATA_record.b8
+ while ( obj_ptr.b8 != end_of_last_LIDATA_record.b8
   ) {
    obj_fixup_LIDATA_IDB();
   };
@@ -745,7 +745,7 @@ bit_16                                 len;
 bit_16                                 segment_index;
 
 
- if ( Current_record_header.rec_typ IsNot FORREF_record
+ if ( Current_record_header.rec_typ != FORREF_record
   ) {
    return(False);
   };
@@ -790,7 +790,7 @@ segment_entry_ptr                      seg;
                                           number of words. */
   };
  seg             = lookup_segment(segment_lname, class_lname, combine);
- if ( (combine IsNot common_combine) OrIf (Seg.lsegs.first == 0)
+ if ( (combine != common_combine) OrIf (Seg.lsegs.first == 0)
   ) {
    Seg.address   = address;
    Seg.length   += length;
@@ -803,8 +803,8 @@ segment_entry_ptr                      seg;
    Lseg.address  = address;
    Lseg.length   = length;
    Lseg.align    = align;
-   if ( (combine IsNot common_combine)      AndIf
-      (combine IsNot blank_common_combine)
+   if ( (combine != common_combine)      AndIf
+      (combine != blank_common_combine)
     ) {  /* Don't allocate common data yet.  (We will wait until we
              know how long the common block will be.) */
      Lseg.data   = allocate_memory(Addr(static_pool), length);
@@ -862,7 +862,7 @@ segment_entry_ptr                      seg;
 bit_16                                 segment_index;
 
 
- if ( Current_record_header.rec_typ IsNot GRPDEF_record
+ if ( Current_record_header.rec_typ != GRPDEF_record
   ) {
    return(False);
   };
@@ -882,9 +882,9 @@ bit_16                                 segment_index;
                     max_groups.val);
   };
  gnames[++n_groups]  = group;
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
-   if ( *obj_ptr.b8++ IsNot 0xFF
+   if ( *obj_ptr.b8++ != 0xFF
     ) {
      linker_error(12, "Translator error:\n"
                       "\tModule:  \"%Fs\"\n"
@@ -904,7 +904,7 @@ bit_16                                 segment_index;
     ) {
      Seg.owning_group = group;
     } else {
-     if ( Seg.owning_group IsNot group
+     if ( Seg.owning_group != group
       ) {
        linker_error(4, "Attempt to place segment \"%Fs\" into group \"%Fs\"\n"
                        "\twhen it is already in group \"%Fs\".\n"
@@ -1197,7 +1197,7 @@ bit_16                                 offset;
 bit_16                                 segment_index;
 
 
- if ( Current_record_header.rec_typ IsNot LEDATA_record
+ if ( Current_record_header.rec_typ != LEDATA_record
   ) {
    return(False);
   };
@@ -1228,7 +1228,7 @@ bit_16                                 segment_index;
   ) {
    Lseg.highest_uninitialized_byte = next_byte;
   };
- if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
+ if ( (*last_LxDATA_Lseg.segment).combine != common_combine
   ) {
    far_move(Addr(Lseg.data[offset]), obj_ptr.b8, len);
   } else {  /* We must save the initialization data out to the tmp file until
@@ -1256,7 +1256,7 @@ bit_32                                 next_byte;
 bit_16                                 segment_index;
 
 
- if ( Current_record_header.rec_typ IsNot LIDATA_record
+ if ( Current_record_header.rec_typ != LIDATA_record
   ) {
    return(False);
   };
@@ -1285,9 +1285,9 @@ bit_16                                 segment_index;
   ) {
    last_LxDATA_Lseg.highest_uninitialized_byte = next_byte;
   };
- if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
+ if ( (*last_LxDATA_Lseg.segment).combine != common_combine
   ) {
-   while ( obj_ptr.b8 IsNot end_of_record.b8
+   while ( obj_ptr.b8 != end_of_record.b8
    ) {
    obj_iterated_data_block();
    };
@@ -1321,7 +1321,7 @@ bit_8                                  *start;
 
  start  = obj_ptr.b8;
  length = 0L;
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    length += obj_iterated_data_block_length();
   };
@@ -1338,7 +1338,7 @@ bit_16 obj_LINNUM()
 {
 
 
- if ( Current_record_header.rec_typ IsNot LINNUM_record
+ if ( Current_record_header.rec_typ != LINNUM_record
   ) {
    return(False);
   };
@@ -1355,11 +1355,11 @@ bit_16 obj_LNAMES()
 {
 
 
- if ( Current_record_header.rec_typ IsNot LNAMES_record
+ if ( Current_record_header.rec_typ != LNAMES_record
   ) {
    return(False);
   };
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    if ( n_lnames >= max_lnames.val
     ) {
@@ -1394,7 +1394,7 @@ bit_16                                 target_method;
 bit_16                                 thread_number;
 
 
- if ( Current_record_header.rec_typ IsNot MODEND_record
+ if ( Current_record_header.rec_typ != MODEND_record
   ) {
    return(False);
   };
@@ -1412,12 +1412,12 @@ bit_16                                 thread_number;
                    current_record_offset);
   };
 
- if ( (MOD_TYP.mattr IsNot 1) AndIf (MOD_TYP.mattr IsNot 3)
+ if ( (MOD_TYP.mattr != 1) AndIf (MOD_TYP.mattr != 3)
   ) {  /* We have no starting address */
    return(True);
   };
 
- if ( MOD_TYP.l IsNot 1
+ if ( MOD_TYP.l != 1
   ) {
    linker_error(4, "Translator error:\n"
                    "\tModule:  \"%Fs\"\n"
@@ -1574,11 +1574,11 @@ public_entry_ptr                       pub;
 #define Pub                            (*pub)
 
 
- if ( Current_record_header.rec_typ IsNot MODEXT_record
+ if ( Current_record_header.rec_typ != MODEXT_record
   ) {
    return(False);
   };
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    if ( n_externals >= max_externals.val
     ) {
@@ -1629,7 +1629,7 @@ public_entry_ptr                       pub;
 bit_16                                 segment_index;
 
 
- if ( Current_record_header.rec_typ IsNot MODPUB_record
+ if ( Current_record_header.rec_typ != MODPUB_record
   ) {
    return(False);
   };
@@ -1639,7 +1639,7 @@ bit_16                                 segment_index;
   ) {
    frame = *obj_ptr.b16++;
   };
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    len = obj_name_length();
    if ( case_ignore.val
@@ -1817,7 +1817,7 @@ public_entry_ptr                       pub;
 bit_16                                 segment_index;
 
 
- if ( Current_record_header.rec_typ IsNot PUBDEF_record
+ if ( Current_record_header.rec_typ != PUBDEF_record
   ) {
    return(False);
   };
@@ -1827,7 +1827,7 @@ bit_16                                 segment_index;
   ) {
    frame = *obj_ptr.b16++;
   };
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    len = obj_name_length();
    if ( case_ignore.val
@@ -1888,7 +1888,7 @@ bit_16                                 segment_index;
 lname_entry_ptr                        segment_lname;
 
 
- if ( Current_record_header.rec_typ IsNot SEGDEF_record
+ if ( Current_record_header.rec_typ != SEGDEF_record
   ) {
    return(False);
   };
@@ -2009,7 +2009,7 @@ bit_16 obj_THEADR()
 {
 
 
- if ( Current_record_header.rec_typ IsNot THEADR_record
+ if ( Current_record_header.rec_typ != THEADR_record
   ) {
    return(False);
   };
@@ -2129,7 +2129,7 @@ bit_16 obj_TYPDEF()
 {
 
 
- if ( Current_record_header.rec_typ IsNot TYPDEF_record
+ if ( Current_record_header.rec_typ != TYPDEF_record
   ) {
    return(False);
   };

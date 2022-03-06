@@ -185,7 +185,7 @@ void process_user_input_files(file_info_list *list,
    if ( Length(token) > 0
     ) {
      process_filename(token);
-      if ( index_string(token, 0, colon_string) IsNot 1
+      if ( index_string(token, 0, colon_string) != 1
        ) {
         linker_error(4, "\"%Fs\" is an illegal input file name.\n",
                         String(token));

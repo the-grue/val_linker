@@ -22,7 +22,7 @@ bit_16 far                            *word_location;
  target_address = target();
  if ( ((target_address < frame_address) OrIf
      (target_address > (frame_address + 65535L))) AndIf
-    (fixup.frame_method IsNot 6) AndIf (frame_absolute == 0)
+    (fixup.frame_method != 6) AndIf (frame_absolute == 0)
   ) {
    linker_error(4, "Fixup error:\n"
                    "\t Module:  \"%Fs\"\n"
@@ -161,21 +161,21 @@ bit_8                                  size;
  switch ( size
   ) {
    case 0:
-    while ( obj_ptr.b8 IsNot end_of_record.b8
+    while ( obj_ptr.b8 != end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       Lseg.data[offset] += *obj_ptr.b8++;
      };
     break;
    case 1:
-    while ( obj_ptr.b8 IsNot end_of_record.b8
+    while ( obj_ptr.b8 != end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       *((bit_16 far *) Addr(Lseg.data[offset])) += *obj_ptr.b16++;
      };
     break;
    case 2:
-    while ( obj_ptr.b8 IsNot end_of_record.b8
+    while ( obj_ptr.b8 != end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
       *((bit_32 far *) Addr(Lseg.data[offset])) += *obj_ptr.b32++;
@@ -270,7 +270,7 @@ lseg_ptr                               lseg;
  file_read(BytePtr(object_file_element), temp_file_header.rec_len);
  obj_ptr.b8       = object_file_element;
  end_of_record.b8 = Addr(obj_ptr.b8[temp_file_header.rec_len]);
- while ( obj_ptr.b8 IsNot end_of_record.b8
+ while ( obj_ptr.b8 != end_of_record.b8
   ) {
    fixup_LIDATA_IDB();
   };
@@ -436,7 +436,7 @@ segment_entry_ptr                      seg;
 
 
  frame_absolute = False;
- if ( Pub.type_entry IsNot internal
+ if ( Pub.type_entry != internal
   ) {
    seg = (*temp_file_header.lseg).segment;
    if ( Not fixup.external_error_detected
@@ -488,7 +488,7 @@ segment_entry_ptr                      seg;
 #define Seg                            (*seg)
 
 
- if ( Pub.type_entry IsNot internal
+ if ( Pub.type_entry != internal
   ) {
    seg = (*temp_file_header.lseg).segment;
    if ( Not fixup.external_error_detected

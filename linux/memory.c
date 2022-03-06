@@ -156,7 +156,7 @@ memory_descriptor_ptr                  desc;
  inregs.h.ah = 0x48;                     /* DOS allocate memory */
  inregs.x.bx = 0xFFFF;                   /* Ask for too much memory */
  rc = intdos(Addr(inregs),Addr(outregs));/* Do the allocate expecting to fail*/
- if ( (outregs.x.cflag == 0) OrIf (rc IsNot 8)
+ if ( (outregs.x.cflag == 0) OrIf (rc != 8)
   ) {
    DOS_error("Problem allocating memory above heap.\n");
   };
