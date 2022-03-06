@@ -45,7 +45,7 @@ BeginCode
                   String(fn));
   };
  While rc IsZero
-  BeginWhile
+  ) {
    compare_len = Length(current_filename) + 1;
    already_in_list = 0;
    TraverseList(File_list, file_entry)
@@ -458,7 +458,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  While length Exceeds 0
-  BeginWhile
+  ) {
    if ( length Exceeds File.bytes_left_in_buffer
     ) {
      if ( File.bytes_left_in_buffer Exceeds 0
@@ -507,7 +507,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  While length Exceeds 0L
-  BeginWhile
+  ) {
    if ( length Exceeds Bit_32(File.bytes_left_in_buffer)
     ) {
      far_move(File.current_byte, from, File.bytes_left_in_buffer);
@@ -619,7 +619,7 @@ BeginCode
  left  = index_string(fn, -1, backslash_string);
  right = index_string(fn, left+1, backslash_string);
  While right IsNot 0xffff
-  BeginWhile
+  ) {
    if ( compare_string(substr(fn,left,4), backslash_dot_dot_string) IsZero
     ) {
      cut_string(fn, left, 3);

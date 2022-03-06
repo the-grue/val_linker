@@ -80,7 +80,7 @@ BeginCode
  group_entry = group_hash_table[hash_val];
  prior       = Null;
  While group_entry IsNotNull
-  BeginWhile
+  ) {
    if ( group_lname Is Group_entry.group_name
     ) {
      if ( prior IsNotNull
@@ -128,7 +128,7 @@ BeginCode
  lname_entry = lname_hash_table[hash_val];
  prior       = Null;
  While lname_entry IsNotNull
-  BeginWhile
+  ) {
    if ( len Is Lname_entry.length
     ) {
      if ( far_compare(sym, Lname_entry.symbol, len) IsZero
@@ -177,7 +177,7 @@ BeginCode
  pub_entry = public_hash_table[hash_val];
  prior     = Null;
  While pub_entry IsNotNull
-  BeginWhile
+  ) {
    if ( len Is Pub_entry.length
     ) {
      if ( (far_compare(sym, Pub_entry.symbol, len) IsZero) AndIf
@@ -236,7 +236,7 @@ BeginCode
   ) {  /* All non-zero combine types except blank common will be combined. */
    prior         = Null;
    While segment_entry IsNotNull
-    BeginWhile
+    ) {
      if ( (segment_lname       Is Segment_entry.segment_name) AndIf
         (class_lname         Is Segment_entry.class_name)   AndIf
         (combine             Is Segment_entry.combine)

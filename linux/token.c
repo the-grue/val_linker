@@ -34,7 +34,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  While token_break_char Is ' '
-  BeginWhile
+  ) {
    token_get_char();
   EndWhile;
 EndCode
@@ -249,7 +249,7 @@ BeginCode
  copy_string(token, next_token);
  lowercase_string(token);
  While Current_switch.full_name IsNotNull
-  BeginWhile
+  ) {
    if ( compare_string(token, string((byte *)Current_switch.abbr_name)) IsZero
     ) {
      Current_switch.switch_processor(current_switch);
@@ -409,7 +409,7 @@ BeginCode
     token_type  = text_token_type;
     concat_char_to_string(next_token, token_break_char);
     While paren_count IsNotZero
-     BeginWhile
+     ) {
       token_get_char();
       if ( token_break_char IsNot '\n'
        ) {
@@ -442,7 +442,7 @@ BeginCode
           (token_break_char IsNot ':')  AndIf
           (token_break_char IsNot ' ')  AndIf
           (token_break_char IsNot '\n')
-     BeginWhile
+     ) {
       concat_char_to_string(next_token, token_break_char);
       if ( (Length(next_token) Is 2) AndIf (String(next_token)[0] Is '0') AndIf
          ((String(next_token)[1] Is 'x') OrIf (String(next_token)[1] Is 'X'))
@@ -502,7 +502,7 @@ BeginCode
   } else {
    While fgets(CharPtr(object_file_element), MAX_ELEMENT_SIZE, help_file) 
          IsNotNull
-    BeginWhile
+    ) {
      if ( *CharPtr(object_file_element) Is '\f'
        ) {
         linker_message("Press [RETURN] to continue...");

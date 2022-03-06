@@ -222,7 +222,7 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  While length Exceeds 0
-  BeginWhile
+  ) {
    if ( length Exceeds Bit_32(MAX_ELEMENT_SIZE)
     ) {
      file_write(BytePtr(object_file_element), Bit_32(MAX_ELEMENT_SIZE));

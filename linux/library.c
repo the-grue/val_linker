@@ -12,7 +12,7 @@ EndDeclarations
 BeginCode
  library_processing_start_time = Now;
  While library_request_count Exceeds 0
-  BeginWhile
+  ) {
    TraverseList(lib_file_list, current_lib_file_info)
     BeginTraverse
      process_library(current_lib_file_info);
@@ -37,7 +37,7 @@ public_entry_ptr                       pub;
 EndDeclarations
 BeginCode
  While Lib_file.request_count Exceeds 0
-  BeginWhile
+  ) {
    file_open_for_read(lib_file);
    Lib_file.pass_count++;
    TraverseList(Lib_file.external_list, pub)
@@ -271,9 +271,9 @@ BeginCode
  i = left;
  j = right;
  While i LessThan j
-  BeginWhile
+  ) {
    While i LessThan j
-    BeginWhile
+    ) {
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
       ) {
@@ -285,7 +285,7 @@ BeginCode
      j--;
     EndWhile;
    While i LessThan j
-    BeginWhile
+    ) {
      if ( (*public_sort_array[i]).Library.page GreaterThan
         (*public_sort_array[j]).Library.page
       ) {

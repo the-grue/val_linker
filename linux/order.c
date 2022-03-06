@@ -122,14 +122,14 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  While token_break_char Is ' '
-  BeginWhile
+  ) {
    order_token_get_char();
   EndWhile;
  copy_string(token, null_string);
  if ( IsIdentifier(token_break_char)
   ) {
    While IsIdentifier(token_break_char)
-    BeginWhile
+    ) {
      concat_char_to_string(token, token_break_char);
      order_token_get_char();
     EndWhile;
@@ -138,7 +138,7 @@ BeginCode
    if ( token_break_char Is '['
     ) {
      While token_break_char IsNot ']'
-      BeginWhile
+      ) {
        concat_char_to_string(token, token_break_char);
        order_token_get_char();
       EndWhile;
@@ -186,12 +186,12 @@ BeginCode
  start_of_expression = String(ordering.val);
  start_of_expression++;
  While *start_of_expression IsNot '\000'
-  BeginWhile
+  ) {
    ExitIf(segment_list.first IsNull);
    First(segments_unordered_list) =
    Last(segments_unordered_list)  = Null;
    While segment_list.first IsNotNull
-    BeginWhile
+    ) {
      Pop segment_list InTo active_segment EndPop;
      order_expression_char_ptr = start_of_expression;
      token_break_char = ' ';
@@ -223,7 +223,7 @@ BeginCode
   +-------------------------------------------------------------------------+*/
 
  While segment_list.first IsNotNull
-  BeginWhile
+  ) {
    Pop segment_list InTo active_segment EndPop;
    Insert active_segment AtEnd InList segments_ordered_list EndInsert;
    align_active_segment();
@@ -247,7 +247,7 @@ BeginCode
  While TokenIs(or_string)   OrIf
        TokenIs(plus_string) OrIf
        TokenIs(bar_string)
-  BeginWhile
+  ) {
    get_order_token();
    left_operand |= order_term();
   EndWhile;
@@ -269,7 +269,7 @@ BeginCode
        TokenIs(tilde_string)       OrIf
        TokenIs(minus_string)       OrIf
        TokenIs(not_string)
-  BeginWhile
+  ) {
    get_order_token();
    unary_not ^= True;
   EndWhile;
@@ -619,7 +619,7 @@ BeginCode
  While TokenIs(and_string)       OrIf
        TokenIs(star_string)      OrIf
        TokenIs(ampersand_string)
-  BeginWhile
+  ) {
    get_order_token();
    left_operand &= order_factor();
   EndWhile;

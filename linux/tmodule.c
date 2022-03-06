@@ -47,7 +47,7 @@ BeginCode
    return(False);
   };
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    if ( n_externals NotLessThan max_externals.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
@@ -208,7 +208,7 @@ BeginCode
    return(False);
   };
  While obj_FIXUPP()
-  BeginWhile
+  ) {
   EndWhile;
  return(True);
 EndCode
@@ -299,7 +299,7 @@ BeginCode
    return(False);
   };
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    if ( n_externals NotLessThan max_externals.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
@@ -357,7 +357,7 @@ BeginCode
   };
  FIXUPP_contains_only_threads = True;
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    if ( (*obj_ptr.TRD_DAT).type_fixupp_record IsZero
     ) {
      obj_FIXUPP_thread();
@@ -598,7 +598,7 @@ BeginCode
  obj_index_segment();
  obj_ptr.b16++;
  While obj_ptr.b8 IsNot end_of_last_LIDATA_record.b8
-  BeginWhile
+  ) {
    obj_fixup_LIDATA_IDB();
   EndWhile;
  obj_ptr = old_obj_ptr;
@@ -883,7 +883,7 @@ BeginCode
   };
  gnames[++n_groups]  = group;
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    if ( *obj_ptr.b8++ IsNot 0xFF
     ) {
      linker_error(12, "Translator error:\n"
@@ -1288,7 +1288,7 @@ BeginCode
  if ( (*last_LxDATA_Lseg.segment).combine IsNot common_combine
   ) {
    While obj_ptr.b8 IsNot end_of_record.b8
-   BeginWhile
+   ) {
    obj_iterated_data_block();
    EndWhile;
   } else {  /* We must save the initialization data out to the tmp file until
@@ -1322,7 +1322,7 @@ BeginCode
  start  = obj_ptr.b8;
  length = 0L;
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    length += obj_iterated_data_block_length();
   EndWhile;
  obj_ptr.b8 = start;
@@ -1360,7 +1360,7 @@ BeginCode
    return(False);
   };
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    if ( n_lnames NotLessThan max_lnames.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
@@ -1579,7 +1579,7 @@ BeginCode
    return(False);
   };
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    if ( n_externals NotLessThan max_externals.val
     ) {
      linker_error(12, "Internal limit exceeded:\n"
@@ -1640,7 +1640,7 @@ BeginCode
    frame = *obj_ptr.b16++;
   };
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    len = obj_name_length();
    if ( case_ignore.val
     ) {
@@ -1753,7 +1753,7 @@ BeginCode
    While (Current_record_header.rec_typ Is LINNUM_record) OrIf
          ((Current_record_header.rec_typ Is COMENT_record) AndIf
           (Current_record_header.rec_len Exceeds MAX_OBJECT_FILE_READ_SIZE))
-    BeginWhile
+    ) {
      file_position(Bit_32(infile.byte_position) +
                    infile.start_of_buffer_position +
                    Bit_32(Current_record_header.rec_len));
@@ -1828,7 +1828,7 @@ BeginCode
    frame = *obj_ptr.b16++;
   };
  While obj_ptr.b8 IsNot end_of_record.b8
-  BeginWhile
+  ) {
    len = obj_name_length();
    if ( case_ignore.val
     ) {
@@ -1992,10 +1992,10 @@ BeginDeclarations
 EndDeclarations
 BeginCode
  While obj_LNAMES() OrIf obj_SEGDEF() OrIf obj_EXTDEF()
-  BeginWhile
+  ) {
   EndWhile;
  While obj_TYPDEF() OrIf obj_EXTDEF() OrIf obj_GRPDEF()
-  BeginWhile
+  ) {
   EndWhile;
  return(True);
 EndCode
@@ -2104,7 +2104,7 @@ BeginCode
                     current_record_offset);
   };
  While obj_component()
-  BeginWhile
+  ) {
   EndWhile;
  if ( Not obj_modtail()
   ) {

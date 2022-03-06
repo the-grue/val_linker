@@ -197,7 +197,7 @@ BeginCode
  copy_string(s, string(temp_near_string));
  i = Length(s);
  While i Exceeds 3
-  BeginWhile
+  ) {
    i -= 3;
    paste_string(s, i, comma_string);
   EndWhile;

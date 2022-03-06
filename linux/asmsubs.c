@@ -52,7 +52,7 @@ EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  While len-- IsNotZero
-  BeginWhile
+  ) {
    if ( *left IsNotEqualTo *right
     ) {
      if ( *left LessThan *right
@@ -127,7 +127,7 @@ EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  While len Exceeds 0
-  BeginWhile
+  ) {
    if ( *pattern Is '*'
     ) {
      return(True);
@@ -176,7 +176,7 @@ EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  While len-- IsNotZero
-  BeginWhile
+  ) {
    *dest++ = *source++;
   EndWhile; */
 
@@ -204,7 +204,7 @@ BeginCode
  dest   += len - 1;
  source += len - 1;
  While len-- IsNotZero
-  BeginWhile
+  ) {
    *dest-- = *source--;
   EndWhile; */
 
@@ -234,7 +234,7 @@ EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  While len-- IsNotZero
-  BeginWhile
+  ) {
    *dest++ = source;
   EndWhile; */
 
@@ -260,7 +260,7 @@ EndDeclarations
 BeginCode
 /* The following assembly code is the equivalent of the following C code:
  While len-- IsNotZero
-  BeginWhile
+  ) {
    tolower(*dest++);
   EndWhile; */
 
@@ -312,7 +312,7 @@ BeginCode
  *starting_entry =
  *delta_entry    = 0;
  While len-- Exceeds 0
-  BeginWhile
+  ) {
    c = (Bit_16(*beg_str++) And 0xFF) Or 0x20;
    *starting_block = c Xor ((*starting_block ShiftedLeft   2)  Or
                             (*starting_block ShiftedRight 14));
