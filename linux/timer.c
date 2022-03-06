@@ -14,7 +14,7 @@ bit_32                                 hhmmsscc;
 
 
  inregs.h.ah = 0x2C;                   /* Get time function */
- intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ intdosx(&(inregs), &(outregs), &(segregs));
 /* DOS_int21("Failed to get the system time.\n");*/
  hhmmsscc = Bit_32(outregs.h.dl)            +
             Bit_32(outregs.h.dh)  *    100L +

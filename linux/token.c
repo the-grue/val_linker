@@ -53,7 +53,7 @@ token_stack_ptr                        elem;
  if ( elem == 0
   ) {
    elem = (token_stack_ptr) 
-           allocate_memory(Addr(static_pool),
+           allocate_memory(&(static_pool),
                            Bit_32(sizeof(token_stack_type)));
   };
  return(elem);
@@ -600,7 +600,7 @@ void scan_text_switch(switch_table_ptr current_switch)
                    "\t\"%s\" switch.  Instead found \"%Fs\".\n",
                   Current_switch.full_name, String(token));
   };
- Affected_thing.val = duplicate_string(Addr(static_pool), next_token);
+ Affected_thing.val = duplicate_string(&(static_pool), next_token);
  scan_out_token();
  copy_string(token, next_token);
  return;

@@ -87,7 +87,7 @@ bit_16                                 temp;
                   String(source), Length(dest));
   };
  temp = Length(source);
- far_move(Addr(String(dest)[Length(dest)]), String(source), temp + 1);
+ far_move(&(String(dest)[Length(dest)]), String(source), temp + 1);
  Length(dest) += temp;
  return(dest);
 }
@@ -157,7 +157,7 @@ bit_16                                 string_length;
   };
  Length(s)       -= len;
  length_to_right  = string_length - (at+len);
- far_move(Addr(String(s)[at]), Addr(String(s)[at+len]), length_to_right+1);
+ far_move(&(String(s)[at]), &(String(s)[at+len]), length_to_right+1);
  return(s);
 }
 
@@ -227,7 +227,7 @@ bit_16                                 pattern_length;
    return(0xFFFF);
   };
  iteration_count = len - pattern_length + 1;
- left  = Addr(String(s)[from]);
+ left  = &(String(s)[from]);
  for ( i=from; i < iteration_count; i++
   ) {
    if ( far_compare(left++, pat, pattern_length) == 0
@@ -308,7 +308,7 @@ byte_ptr                               source;
        return(False);
       } else {
        return(far_match(String(pattern),
-                        BytePtr(Addr(String(s)[Length(s)-Length(pattern)])),
+                        BytePtr(&(String(s)[Length(s)-Length(pattern)])),
                         Length(pattern)));
       };
     };
@@ -363,10 +363,10 @@ bit_16                                 length_string;
    at = length_string;
   };
  length_string_to_right = length_string - at;
- far_move_left(Addr(String(dest)[at+length_inserted_string]),
-               Addr(String(dest)[at]),
+ far_move_left(&(String(dest)[at+length_inserted_string]),
+               &(String(dest)[at]),
                length_string_to_right+1);
- far_move(Addr(String(dest)[at]), String(s), length_inserted_string);
+ far_move(&(String(dest)[at]), String(s), length_inserted_string);
  Length(dest) += length_inserted_string;
  return(dest);
 }
@@ -398,7 +398,7 @@ bit_16                                 pattern_length;
    from = len - pattern_length;
   };
  iteration_count = from + 1;
- right = Addr(String(s)[from]);
+ right = &(String(s)[from]);
  for ( i=0; i < iteration_count; i++, from--
   ) {
    if ( far_compare(right--, pat, pattern_length) == 0
@@ -459,7 +459,7 @@ bit_16                                 string_length;
   ) {
    linker_error(8,"Destination string too small in SUBSTR operation\n");
   };
- far_move(String(temp_string), Addr(String(s)[at]), len+1);
+ far_move(String(temp_string), &(String(s)[at]), len+1);
  Length(temp_string) = len;
  return(temp_string);
 }

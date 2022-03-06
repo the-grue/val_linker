@@ -61,13 +61,8 @@ ListTypeOf(Generic_Element);
                                (x=='_'))
 #define IsNumber(x)          ((x>='0') && (x<='9'))
 
-/* Bitwise operators */
-/*#define And                  &
-#define Or                   |
-#define Xor                  ^
-#define Complement           ~*/
 /* Some other operators */
-#define Addr(exp)            &(exp)
+/*#define Addr(exp)            &(exp)*/
 #define Mod                  %
 #define ShiftedLeft          <<
 #define ShiftedRight         >>

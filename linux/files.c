@@ -58,7 +58,7 @@ bit_16                                 rc;
    if ( ! already_in_list
     ) {
      file_entry = (file_info_ptr)
-                   allocate_memory(Addr(static_pool),
+                   allocate_memory(&(static_pool),
                                    Bit_32(sizeof(file_info_type)) +
                                    Bit_32(compare_len) - 1L);
      File_entry.attribute       = (*DTA).attribute;
@@ -113,7 +113,7 @@ bit_16                                 rc;
  set_DTA_address(DTA);
 
  inregs.h.ah = 0x4F;                   /* Continue file search */
- rc = (bit_16) intdos(Addr(inregs), Addr(outregs));
+ rc = (bit_16) intdos(&(inregs), &(outregs));
  set_DTA_address(old_DTA);
  if ( rc != 0
   ) {
@@ -141,7 +141,7 @@ string_ptr default_directory(string_ptr drive, string_ptr directory)
  inregs.h.dl = *String(drive) - 'a' + 1;
  inregs.x.si = Offset(String(directory)) + 1;
  segregs.ds  = Segment(String(directory));
- intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ intdosx(&(inregs), &(outregs), &(segregs));
  *String(directory) = '\\';
  Length(directory) = far_index(String(directory), 0);
  far_to_lower(String(directory), Length(directory));
@@ -164,9 +164,9 @@ string_ptr default_drive()
 string_ptr                             drive;
 
 
- drive = make_constant_string(Addr(static_pool), (byte *) " :");
+ drive = make_constant_string(&(static_pool), (byte *) " :");
  inregs.h.ah = 0x19;                   /* Report current drive */
- intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ intdosx(&(inregs), &(outregs), &(segregs));
 /* DOS_int21("Failed to get current drive.\n");*/
  *String(drive) = (char) (outregs.h.al + 'a');
  return(drive);
@@ -246,7 +246,7 @@ bit_16                                 rc;
  segregs.ds  = Segment(String(fn));
  inregs.x.dx = Offset(String(fn));
  inregs.x.cx = attr;
- rc = (bit_16) intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ rc = (bit_16) intdosx(&(inregs), &(outregs), &(segregs));
  set_DTA_address(old_DTA);
  return(rc == 0);
 }
@@ -424,7 +424,7 @@ void file_position(bit_32 position)
     (position <    File.next_buffer_position)
   ) {
    File.byte_position        = Bit_16(position-File.start_of_buffer_position);
-   File.current_byte         = Addr(File.buffer[File.byte_position]);
+   File.current_byte         = &(File.buffer[File.byte_position]);
    File.bytes_left_in_buffer = File.bytes_in_buffer - File.byte_position;
   } else {
    inregs.h.ah = 0x42;                   /* Move file pointer */
@@ -555,7 +555,7 @@ DTA_ptr                                DTA_address;
 
 
  inregs.h.ah = 0x2F;                   /* Get DTA address */
- intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ intdosx(&(inregs), &(outregs), &(segregs));
  DTA_address = (DTA_ptr) MakeFarPtr(segregs.es, outregs.x.bx);
  return(DTA_address);
 }
@@ -660,7 +660,7 @@ void set_DTA_address(DTA_ptr DTA_address)
  inregs.h.ah = 0x1A;                   /* Set DTA address */
  segregs.ds  = Segment(DTA_address);
  inregs.x.dx = Offset(DTA_address);
- intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ intdosx(&(inregs), &(outregs), &(segregs));
  return;
 }
 
@@ -698,7 +698,7 @@ bit_16                                 rc;
  segregs.ds  = Segment(String(fn));
  inregs.x.dx = Offset(String(fn));
  inregs.x.cx = attr;
- rc = (bit_16) intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ rc = (bit_16) intdosx(&(inregs), &(outregs), &(segregs));
  set_DTA_address(old_DTA);
  if ( rc != 0
   ) {

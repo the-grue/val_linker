@@ -83,14 +83,14 @@ file_info_ptr                          current_lib_file_info;
  library_directory_start_time = Now;
  public_sort_array = (public_entry_ptr_array)
                        allocate_memory
-                        (Addr(dynamic_pool),
+                        (&(dynamic_pool),
                          Bit_32(sizeof(public_entry_ptr)) *
                           Bit_32(MAX_PUBLICS_IN_LIBRARY));
  TraverseList(lib_file_list, current_lib_file_info)
   BeginTraverse
    process_library_directory(current_lib_file_info);
   EndTraverse;
- release_pool(Addr(dynamic_pool));
+ release_pool(&(dynamic_pool));
  return;
 }
 
@@ -154,9 +154,9 @@ bit_16                                *symbol_in_page;
       Directory_page.offset_to_symbol[entry_number] ShiftedLeft 1;
      if (symbol_index == 0) continue;
      symbol = (library_symbol_entry_ptr)
-              Addr(Directory_page.offset_to_symbol[symbol_index]);
+              &(Directory_page.offset_to_symbol[symbol_index]);
      symbol_in_page = (bit_16 *)
-                      Addr(Symbol.symbol[Symbol.length_of_symbol]);
+                      &(Symbol.symbol[Symbol.length_of_symbol]);
      if ( case_ignore.val
       ) {
        far_to_lower(Symbol.symbol, Symbol.length_of_symbol);

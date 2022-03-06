@@ -304,9 +304,9 @@ byte                                   temp[33];
 
 
  beg_str = temp;
- end_str = Addr(temp[len]);
+ end_str = &(temp[len]);
  temp[0] = Byte(len);
- far_move(BytePtr(Addr(temp[1]), sym, len);
+ far_move(BytePtr(&(temp[1]), sym, len);
  *starting_block =
  *delta_block    =
  *starting_entry =
@@ -389,7 +389,7 @@ bit_16                                 sum;
 struct word_struct                  word;
 bit_16                                *word_ptr;
 
- word = (bit_16 *) Addr(word);
+ word = (bit_16 *) &(word);
  for ( i=0; i < len; i++
   ) {
    *word_ptr = 0;

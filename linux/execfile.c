@@ -171,7 +171,7 @@ segment_entry_ptr                      seg;
        partial_length = Lseg.length - data_index;
        if ( Seg.combine != blank_common_combine
         ) {
-         file_write(Addr(Lseg.data[Bit_16(data_index)]), partial_length);
+         file_write(&(Lseg.data[Bit_16(data_index)]), partial_length);
         } else {
          write_gap(partial_length);
         };

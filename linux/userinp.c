@@ -95,7 +95,7 @@ token_stack_ptr                        source_element;
  copy_string(default_filename, null_string);
  default_prompt    = "OBJ file(s)%Fs:  ";
  prompting_for     = 1;
- process_user_input_files(Addr(obj_file_list),
+ process_user_input_files(&(obj_file_list),
                           True);
 
 /*+-------------------------------------------------------------------------+
@@ -122,7 +122,7 @@ token_stack_ptr                        source_element;
  copy_string(default_filename, string((*(obj_file_list.first)).filename));
  change_extension(default_filename, default_extension);
  prompting_for = 2;
- process_user_output_file(Addr(exe_file_list),
+ process_user_output_file(&(exe_file_list),
                           False);
 
 /*+-------------------------------------------------------------------------+
@@ -135,7 +135,7 @@ token_stack_ptr                        source_element;
  copy_string(default_filename, null_string);
  default_prompt    = "LST file:%Fs  ";
  prompting_for     = 3;
- process_user_output_file(Addr(lst_file_list),
+ process_user_output_file(&(lst_file_list),
                           False);
  if ( (First(lst_file_list) == 0)                 &&
     ((map.set != 0) || (detail_level.val > 0))
@@ -143,7 +143,7 @@ token_stack_ptr                        source_element;
    copy_string(token, string((*(exe_file_list.first)).filename));
    change_extension(token, lst_extension_string);
    file_entry = (file_info_ptr)
-                 allocate_memory(Addr(static_pool),
+                 allocate_memory(&(static_pool),
                                  Bit_32(sizeof(file_info_type)) +
                                  Bit_32(Length(token)));
    far_move(File_entry.filename, String(token), Length(token)+1);
@@ -160,7 +160,7 @@ token_stack_ptr                        source_element;
  copy_string(default_filename, null_string);
  default_prompt    = "LIB file(s):%Fs  ";
  prompting_for     = 4;
- process_user_input_files(Addr(lib_file_list),
+ process_user_input_files(&(lib_file_list),
                           False);
  return;
 }
@@ -224,7 +224,7 @@ file_info_ptr                          file_entry;
      if ( List.first == 0
       ) {
        file_entry = (file_info_ptr)
-                     allocate_memory(Addr(static_pool),
+                     allocate_memory(&(static_pool),
                                      Bit_32(sizeof(file_info_type)) +
                                      Bit_32(Length(token)));
        far_move(File_entry.filename, String(token), Length(token)+1);

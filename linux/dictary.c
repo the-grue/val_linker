@@ -95,7 +95,7 @@ group_entry_ptr                        prior;
    group_entry = Group_entry.next_congruent;
   };
  group_entry = (group_entry_ptr)
-                allocate_memory(Addr(static_pool),
+                allocate_memory(&(static_pool),
                                 Bit_32(sizeof(group_entry_type)));
  Insert group_entry AtEnd InList group_list EndInsert;
  Group_entry.group_name     = group_lname;
@@ -146,7 +146,7 @@ lname_entry_ptr                        prior;
    lname_entry = Lname_entry.next_congruent;
   };
  lname_entry = (lname_entry_ptr)
-                allocate_memory(Addr(static_pool),
+                allocate_memory(&(static_pool),
                                 Bit_32(sizeof(lname_entry_type))+Bit_32(len));
  Lname_entry.lname_checksum = charsum;
  Lname_entry.length         = len;
@@ -196,7 +196,7 @@ public_entry_ptr                       prior;
    pub_entry = Pub_entry.next_congruent;
   };
  pub_entry = (public_entry_ptr)
-              allocate_memory(Addr(static_pool),
+              allocate_memory(&(static_pool),
                               Bit_32(sizeof(public_entry_type))+Bit_32(len));
  Pub_entry.type_entry        = unused;
  Pub_entry.module            = module;
@@ -254,7 +254,7 @@ segment_entry_ptr                      prior;
     };
   };
  segment_entry = (segment_entry_ptr)
-                allocate_memory(Addr(static_pool),
+                allocate_memory(&(static_pool),
                                 Bit_32(sizeof(segment_entry_type)));
  Insert segment_entry AtEnd InList segment_list EndInsert;
  Segment_entry.segment_name   = segment_lname;

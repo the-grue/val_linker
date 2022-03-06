@@ -38,7 +38,7 @@ public_entry_ptr                       pub;
    if ( Active_segment.combine == common_combine
     ) {  /* Finally, we know how big the common area is, so allocate
              memory for it.  */
-     Lseg.data = allocate_memory(Addr(static_pool), Lseg.length);
+     Lseg.data = allocate_memory(&(static_pool), Lseg.length);
     };
    mask                    = align_mask[Lseg.align];
    gap                     = AlignmentGap(next_available_address, mask);
@@ -418,7 +418,7 @@ bit_16                                 size;
   ) {
    if ( DOSSEG.val != 0
     ) {
-     ordering.val = duplicate_string(Addr(static_pool),
+     ordering.val = duplicate_string(&(static_pool),
       string((byte *) ("(seg[*code]|seg[*CODE], "
                        "!(gr[dgroup]|gr[DGROUP]), "
                        "cl[begdata]|cl[BEGDATA], "
@@ -427,7 +427,7 @@ bit_16                                 size;
                        "cl[*bss]|cl[*BSS], "
                        "cl[*stack]|cl[*STACK])")));
     } else {
-     ordering.val = duplicate_string(Addr(static_pool),
+     ordering.val = duplicate_string(&(static_pool),
                                      string((byte *) ("(true)")));
     };
   };

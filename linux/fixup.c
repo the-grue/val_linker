@@ -17,7 +17,7 @@ bit_32                                 target_address;
 bit_16 far                            *word_location;
 
 
- file_read(BytePtr(Addr(fixup)), sizeof(fixup));
+ file_read(BytePtr(&(fixup)), sizeof(fixup));
  frame_address  = frame();
  target_address = target();
  if ( ((target_address < frame_address) ||
@@ -36,7 +36,7 @@ bit_16 far                            *word_location;
                    temp_file_header.offset);
   };
  byte_location  = 
-              Addr((*temp_file_header.lseg).data[temp_file_header.offset]);
+              &((*temp_file_header.lseg).data[temp_file_header.offset]);
  word_location  = (bit_16 far *) byte_location;
  if ( fixup.mode == 0
   ) { /* Self-relative fixup */
@@ -156,7 +156,7 @@ bit_8                                  size;
  len           = temp_file_header.rec_len;
  file_read(BytePtr(object_file_element), len);
  obj_ptr.b8       = object_file_element;
- end_of_record.b8 = Addr(obj_ptr.b8[len]);
+ end_of_record.b8 = &(obj_ptr.b8[len]);
  size             = *obj_ptr.b8++;
  switch ( size
   ) {
@@ -171,14 +171,14 @@ bit_8                                  size;
     while ( obj_ptr.b8 != end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
-      *((bit_16 far *) Addr(Lseg.data[offset])) += *obj_ptr.b16++;
+      *((bit_16 far *) &(Lseg.data[offset])) += *obj_ptr.b16++;
      };
     break;
    case 2:
     while ( obj_ptr.b8 != end_of_record.b8
      ) {
       offset = *obj_ptr.b16++;
-      *((bit_32 far *) Addr(Lseg.data[offset])) += *obj_ptr.b32++;
+      *((bit_32 far *) &(Lseg.data[offset])) += *obj_ptr.b32++;
      };
     break;
    default:
@@ -208,7 +208,7 @@ lseg_ptr                               lseg;
 
 
  lseg          = temp_file_header.lseg;
- lseg_data_ptr = Addr(Lseg.data[temp_file_header.offset]);
+ lseg_data_ptr = &(Lseg.data[temp_file_header.offset]);
  file_read(lseg_data_ptr, temp_file_header.rec_len);
  return;
 }
@@ -266,10 +266,10 @@ lseg_ptr                               lseg;
 
 
  lseg          = temp_file_header.lseg;
- lseg_data_ptr = Addr(Lseg.data[temp_file_header.offset]);
+ lseg_data_ptr = &(Lseg.data[temp_file_header.offset]);
  file_read(BytePtr(object_file_element), temp_file_header.rec_len);
  obj_ptr.b8       = object_file_element;
- end_of_record.b8 = Addr(obj_ptr.b8[temp_file_header.rec_len]);
+ end_of_record.b8 = &(obj_ptr.b8[temp_file_header.rec_len]);
  while ( obj_ptr.b8 != end_of_record.b8
   ) {
    fixup_LIDATA_IDB();
@@ -390,12 +390,12 @@ void pass_two()
      exe_header_size += AlignmentGap(exe_header_size, 0x1FFL);
     };
    exe_header       = (EXE_header_ptr)
-                       allocate_memory(Addr(static_pool),
+                       allocate_memory(&(static_pool),
                                        exe_header_size);
    far_set(BytePtr(exe_header), 0, Bit_16(exe_header_size));
   };
  file_open_for_read(temp_file);
- file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
+ file_read(BytePtr(&(temp_file_header)), sizeof(temp_file_header));
  while ( temp_file_header.rec_typ != 0
   ) {
    switch ( temp_file_header.rec_typ
@@ -416,7 +416,7 @@ void pass_two()
       linker_error(16, "Internal logic error:  Invalid temp file record.\n");
       break;
     };
-   file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
+   file_read(BytePtr(&(temp_file_header)), sizeof(temp_file_header));
   };
  file_close_for_read();
  return;

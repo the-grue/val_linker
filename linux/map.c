@@ -62,7 +62,7 @@ bit_32                                 stop_address;
 
     public_sort_array = (public_entry_ptr_array)
                           allocate_memory
-                           (Addr(dynamic_pool),
+                           (&(dynamic_pool),
                             Bit_32(sizeof(public_entry_ptr)) *
                              Bit_32(MAX_PUBLICS_IN_LIBRARY));
    n_publics_to_sort = 0;
@@ -192,7 +192,7 @@ bit_32                                 stop_address;
      print("\n");
      print("Fixups:\n");
      file_open_for_read(temp_file);
-     file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
+     file_read(BytePtr(&(temp_file_header)), sizeof(temp_file_header));
      while ( temp_file_header.rec_typ != 0
       ) {
        if ( temp_file_header.rec_typ != FIXUPP_record
@@ -200,10 +200,10 @@ bit_32                                 stop_address;
          file_position(Bit_32(infile.byte_position) +
                        infile.start_of_buffer_position +
                        Bit_32(temp_file_header.rec_len));
-         file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
+         file_read(BytePtr(&(temp_file_header)), sizeof(temp_file_header));
          continue;
         } else {
-         file_read(BytePtr(Addr(fixup)), temp_file_header.rec_len);
+         file_read(BytePtr(&(fixup)), temp_file_header.rec_len);
         };
        if ( last_location_lseg != temp_file_header.lseg
         ) {
@@ -278,7 +278,7 @@ bit_32                                 stop_address;
           break;
         };
        print(")\n");
-       file_read(BytePtr(Addr(temp_file_header)), sizeof(temp_file_header));
+       file_read(BytePtr(&(temp_file_header)), sizeof(temp_file_header));
       };
      file_close_for_read();
     };

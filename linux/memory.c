@@ -155,7 +155,7 @@ memory_descriptor_ptr                  desc;
 
  inregs.h.ah = 0x48;                     /* DOS allocate memory */
  inregs.x.bx = 0xFFFF;                   /* Ask for too much memory */
- rc = intdos(Addr(inregs),Addr(outregs));/* Do the allocate expecting to fail*/
+ rc = intdos(&(inregs),&(outregs));/* Do the allocate expecting to fail*/
  if ( (outregs.x.cflag == 0) || (rc != 8)
   ) {
    DOS_error("Problem allocating memory above heap.\n");
@@ -199,7 +199,7 @@ memory_descriptor_ptr                  desc;
  while ( far_memory_size != 0
   ) {
    desc = (memory_descriptor_ptr) 
-           allocate_memory(Addr(static_pool),
+           allocate_memory(&(static_pool),
                            Bit_32(sizeof(memory_descriptor_type)));
    if ( far_memory_size > 65536L
     ) {

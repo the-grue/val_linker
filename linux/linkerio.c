@@ -43,7 +43,7 @@ va_list                                argptr;
 bit_16                                 error_number;
 
 
- intdosx(Addr(inregs), Addr(outregs), Addr(segregs));
+ intdosx(&(inregs), &(outregs), &(segregs));
  if ( (outregs.x.cflag) &&
     (! ((inregs.h.al  == 0x41) && (outregs.x.ax == 2)))
   ) {

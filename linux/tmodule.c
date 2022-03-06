@@ -555,7 +555,7 @@ bit_16                                 thread_number;
    write_temp_file(Current_record_header.rec_typ,
                    last_LxDATA_lseg,
                    last_LxDATA_offset + fixup_index,
-                   BytePtr(Addr(fixup)),
+                   BytePtr(&(fixup)),
                    sizeof(fixup));
   } else {
    if ( fixup.mode == 0
@@ -593,7 +593,7 @@ obj_ptr_type                           old_obj_ptr;
  obj_ptr.b8    = Last_LIDATA_record_header.variant_part;
  end_of_last_LIDATA_record.b8 =
   (byte *)
-   Addr(Last_LIDATA_record_header.variant_part
+   &(Last_LIDATA_record_header.variant_part
     [Last_LIDATA_record_header.rec_len-1]);
  obj_index_segment();
  obj_ptr.b16++;
@@ -648,7 +648,7 @@ bit_16                                 repeat_count;
        write_temp_file(Current_record_header.rec_typ,
                        last_LxDATA_lseg,
                        LIDATA_offset + fixup_index - LIDATA_index,
-                       BytePtr(Addr(fixup)),
+                       BytePtr(&(fixup)),
                        sizeof(fixup));
        if ( ((fixup.location_type == base_location)     ||
            (fixup.location_type == pointer_location)) &&
@@ -795,7 +795,7 @@ segment_entry_ptr                      seg;
    Seg.address   = address;
    Seg.length   += length;
    lseg          = (lseg_ptr) 
-                    allocate_memory(Addr(static_pool),
+                    allocate_memory(&(static_pool),
                                     Bit_32(sizeof(lseg_type)));
    Lseg.segment  = seg;
    Lseg.tmodule  = tmodule;
@@ -807,7 +807,7 @@ segment_entry_ptr                      seg;
       (combine != blank_common_combine)
     ) {  /* Don't allocate common data yet.  (We will wait until we
              know how long the common block will be.) */
-     Lseg.data   = allocate_memory(Addr(static_pool), length);
+     Lseg.data   = allocate_memory(&(static_pool), length);
     };
 
    Lseg.highest_uninitialized_byte = 0L;
@@ -1086,7 +1086,7 @@ bit_16                                 repeat_count;
    len = Bit_16(*obj_ptr.b8++);
    for ( i=0; i<repeat_count; i++
     ) {
-     far_move(Addr(last_LxDATA_Lseg.data[LIDATA_offset]), 
+     far_move(&(last_LxDATA_Lseg.data[LIDATA_offset]), 
               obj_ptr.b8, len);
      LIDATA_offset += len;
     };
@@ -1230,7 +1230,7 @@ bit_16                                 segment_index;
   };
  if ( (*last_LxDATA_Lseg.segment).combine != common_combine
   ) {
-   far_move(Addr(Lseg.data[offset]), obj_ptr.b8, len);
+   far_move(&(Lseg.data[offset]), obj_ptr.b8, len);
   } else {  /* We must save the initialization data out to the tmp file until
            later when we know the length. */
    write_temp_file(Current_record_header.rec_typ,
@@ -1796,7 +1796,7 @@ void obj_next_record()
    obj_ptr.b8 = Current_record_header.variant_part;
    end_of_record.b8 =
     (byte *)
-     Addr(Current_record_header.variant_part[Current_record_header.rec_len-1]);
+     &(Current_record_header.variant_part[Current_record_header.rec_len-1]);
    } while (( obj_COMENT()
   ));
  return;
@@ -2154,7 +2154,7 @@ void write_temp_file(bit_8           rec_typ,
  temp_file_header.rec_len       = len;
  temp_file_header.lseg          = lseg;
  temp_file_header.offset        = offset;
- file_write(BytePtr(Addr(temp_file_header)), 
+ file_write(BytePtr(&(temp_file_header)), 
             Bit_32(sizeof(temp_file_header)));
  if ( len > 0
   ) {
