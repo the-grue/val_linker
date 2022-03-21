@@ -43,6 +43,7 @@
 #include <ctype.h>
 #include <dos.h>
 #include <string.h>
+#include <time.h>
 
 #include "langext.h"
 #include "defines.h"

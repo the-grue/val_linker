@@ -11,15 +11,16 @@
 bit_32 get_time(void)
 {
 bit_32                                 hhmmsscc;
+struct tm *vtime;
+time_t utime;
 
+ time(&utime);	
+ vtime = localtime(&utime);
 
- inregs.h.ah = 0x2C;                   /* Get time function */
- intdosx(&(inregs), &(outregs), &(segregs));
-/* DOS_int21("Failed to get the system time.\n");*/
- hhmmsscc = Bit_32(outregs.h.dl)            +
-            Bit_32(outregs.h.dh)  *    100L +
-            Bit_32(outregs.h.cl)  *   6000L +
-            Bit_32(outregs.h.ch)  * 360000L;
+ hhmmsscc = vtime->tm_sec * 100		+
+            vtime->tm_min * 6000	+
+            vtime->tm_hour * 360000;
+
  return(hhmmsscc);
 }
 
